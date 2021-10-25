@@ -1,11 +1,6 @@
-import { PiniaPluginContext } from 'pinia'
 import * as shvl from 'shvl'
 
-declare module 'pinia' {
-  export interface DefineStoreOptions<Id extends string, S extends StateTree, G, A> {
-    persist?: boolean | PersistedStateOptions
-  }
-}
+import type { PiniaPluginContext } from 'pinia'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
 
@@ -16,8 +11,22 @@ export interface PersistedStateOptions {
   overwrite?: boolean
 }
 
+declare module 'pinia' {
+  export interface DefineStoreOptions<
+    Id extends string,
+    S extends StateTree,
+    G,
+    A,
+  > {
+    persist?: boolean | PersistedStateOptions
+  }
+}
+
 export default function (context: PiniaPluginContext): void {
-  const { options: { persist }, store } = context
+  const {
+    options: { persist },
+    store,
+  } = context
 
   if (!persist) return
 
@@ -33,19 +42,22 @@ export default function (context: PiniaPluginContext): void {
     if (fromStorage) {
       if (overwrite) store.$state = JSON.parse(fromStorage)
       else store.$patch(JSON.parse(fromStorage))
-    } 
-  } catch (_) { }
-  
+    }
+  } catch (_) {}
+
   store.$subscribe((_: unknown, state: unknown) => {
     try {
       const toStore = Array.isArray(paths)
         ? paths.reduce((substate, path) => {
-            return shvl.set(substate, path, shvl.get(state as Object, path))
-          }, {})
+          return shvl.set(
+            substate,
+            path,
+            shvl.get(state as Record<string, unknown>, path),
+          )
+        }, {})
         : state
 
       storage.setItem(key, JSON.stringify(toStore))
-    } catch (_) { }
-    
+    } catch (_) {}
   })
 }

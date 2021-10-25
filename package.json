@@ -1,7 +1,10 @@
 {
   "name": "pinia-plugin-persistedstate",
   "version": "0.0.2-beta.1",
-  "description": "",
+  "description": "Configurable persistence and rehydration of Pinia stores.",
+  "keywords": [
+    "pinia-plugin"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -10,13 +13,16 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
-    "release": "bumpp -c ':bookmark: release v%s' -t -p"
+    "prepublishOnly": "npm run build",
+    "release": "bumpp -c ':bookmark: release v%s' -t -p",
+    "lint": "eslint --fix --ext .ts"
   },
   "author": "Sacha 'PraZ' Bouillez",
   "license": "MIT",
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^2.2.0",
     "bumpp": "^7.1.1",
+    "eslint": "7",
     "pinia": "^2.0.0-rc.14",
     "tsup": "^5.5.0",
     "typescript": "^4.4.4",
