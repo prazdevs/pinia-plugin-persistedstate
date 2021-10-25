@@ -9,14 +9,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --dts --format cjs,esm"
+    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "release": "git-ensure -a && bumpp -c ':bookmark: release v%s' -t -p"
   },
   "author": "Sacha 'PraZ' Bouillez",
   "license": "MIT",
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^2.2.0",
     "bumpp": "^7.1.1",
-    "git-ensure": "^0.1.0",
     "pinia": "^2.0.0-rc.14",
     "tsup": "^5.5.0",
     "typescript": "^4.4.4",
