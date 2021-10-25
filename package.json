@@ -1,6 +1,6 @@
 {
   "name": "pinia-plugin-persistedstate",
-  "version": "0.0.1",
+  "version": "0.0.2-beta.1",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
-    "release": "git-ensure -a && bumpp -c ':bookmark: release v%s' -t -p"
+    "release": "bumpp -c ':bookmark: release v%s' -t -p"
   },
   "author": "Sacha 'PraZ' Bouillez",
   "license": "MIT",
