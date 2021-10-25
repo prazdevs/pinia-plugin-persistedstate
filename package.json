@@ -1,0 +1,25 @@
+{
+  "name": "pinia-plugin-persistedstate",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format cjs,esm"
+  },
+  "author": "Sacha 'PraZ' Bouillez",
+  "license": "MIT",
+  "devDependencies": {
+    "@prazdevs/eslint-config-typescript": "^2.2.0",
+    "pinia": "^2.0.0-rc.14",
+    "tsup": "^5.5.0",
+    "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "pinia": "^2.0.0-rc.14"
+  }
+}
