@@ -5,23 +5,45 @@ import type { PiniaPluginContext } from 'pinia'
 export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
 
 export interface PersistedStateOptions {
+  /**
+   * Storage key to use.
+   * @default $store.id
+   */
   key?: string
+
+  /**
+   * Where to store persisted state.
+   * @default localStorage
+   */
   storage?: StorageLike
+
+  /**
+   * Dot-notation paths to partially save state.
+   * @default undefined
+   */
   paths?: Array<string>
+
+  /**
+   * Overwrite initial state (patch otherwise).
+   * @default false
+   */
   overwrite?: boolean
 }
 
 declare module 'pinia' {
-  export interface DefineStoreOptions<
-    Id extends string,
-    S extends StateTree,
-    G,
-    A,
-  > {
+  export interface DefineStoreOptions<Id extends string, S extends StateTree, G, A> {
+    /**
+     * Persist store in storage.
+     * @docs https://github.com/prazdevs/pinia-plugin-persistedstate.
+     */
     persist?: boolean | PersistedStateOptions
   }
 }
 
+/**
+ * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
+ * @param context Options
+ */
 export default function (context: PiniaPluginContext): void {
   const {
     options: { persist },
