@@ -3,12 +3,11 @@ lockfileVersion: 5.3
 specifiers:
   '@prazdevs/eslint-config-typescript': ^2.2.0
   bumpp: ^7.1.1
-  eslint: '7'
-  pinia: ^2.0.0-rc.14
+  eslint: 7.32.0
+  pinia: ^2.0.0
   shvl: ^2.0.3
   tsup: ^5.5.0
   typescript: ^4.4.4
-  vue-demi: ^0.11.4
 
 dependencies:
   shvl: 2.0.3
@@ -17,10 +16,9 @@ devDependencies:
   '@prazdevs/eslint-config-typescript': 2.2.0_eslint@7.32.0+typescript@4.4.4
   bumpp: 7.1.1
   eslint: 7.32.0
-  pinia: 2.0.0-rc.14_typescript@4.4.4
+  pinia: 2.0.0_typescript@4.4.4
   tsup: 5.5.0_typescript@4.4.4
   typescript: 4.4.4
-  vue-demi: 0.11.4
 
 packages:
 
@@ -2107,11 +2105,11 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pinia/2.0.0-rc.14_typescript@4.4.4:
-    resolution: {integrity: sha512-vM8vYMsFdFDK1ND6j4+f7TC4hKB8moAjyn9HcHKqdOf1bHN4fL5g9Mz/8t8U0pEqnUwR2AU8yxD0gr+uU18x3g==}
+  /pinia/2.0.0_typescript@4.4.4:
+    resolution: {integrity: sha512-pqnQv1m7oEwYExGl//EtOn9rgFn7gtXECP/hZHy+WicmHXmWWkbsvpR+9z1xxrIgDOmVYuh1eYfRULJklzOKsQ==}
     peerDependencies:
       '@vue/composition-api': ^1.2.4
-      typescript: ^4.4.3
+      typescript: ^4.4.4
       vue: ^2.6.14 || ^3.2.0
     peerDependenciesMeta:
       '@vue/composition-api':

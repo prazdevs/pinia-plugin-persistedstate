@@ -22,14 +22,13 @@
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^2.2.0",
     "bumpp": "^7.1.1",
-    "eslint": "7",
-    "pinia": "^2.0.0-rc.14",
+    "eslint": "7.32.0",
+    "pinia": "^2.0.0",
     "tsup": "^5.5.0",
-    "typescript": "^4.4.4",
-    "vue-demi": "^0.11.4"
+    "typescript": "^4.4.4"
   },
   "peerDependencies": {
-    "pinia": "^2.0.0-rc.14"
+    "pinia": "^2.0.0"
   },
   "dependencies": {
     "shvl": "^2.0.3"
