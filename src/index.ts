@@ -1,6 +1,6 @@
 import * as shvl from 'shvl'
 
-import type { PiniaPluginContext } from 'pinia'
+import type { PiniaPluginContext, StateTree, SubscriptionCallbackMutation } from 'pinia'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
 
@@ -65,9 +65,9 @@ export default function (context: PiniaPluginContext): void {
       if (overwrite) store.$state = JSON.parse(fromStorage)
       else store.$patch(JSON.parse(fromStorage))
     }
-  } catch (_) {}
+  } catch (_error) {}
 
-  store.$subscribe((_: unknown, state: unknown) => {
+  store.$subscribe((_mutation: unknown, state: unknown) => {
     try {
       const toStore = Array.isArray(paths)
         ? paths.reduce((substate, path) => {
@@ -80,6 +80,6 @@ export default function (context: PiniaPluginContext): void {
         : state
 
       storage.setItem(key, JSON.stringify(toStore))
-    } catch (_) {}
+    } catch (_error) {}
   })
 }
