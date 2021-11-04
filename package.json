@@ -2,10 +2,12 @@
   "name": "pinia-plugin-persistedstate",
   "version": "1.0.1",
   "description": "Configurable persistence and rehydration of Pinia stores.",
-  "repository": "https://github.com/prazdevs/pinia-plugin-persistedstate.git",
   "keywords": [
     "pinia-plugin"
   ],
+  "repository": "https://github.com/prazdevs/pinia-plugin-persistedstate.git",
+  "license": "MIT",
+  "author": "Sacha 'PraZ' Bouillez",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -21,8 +23,12 @@
     "test:3": "vue-demi-switch 3 && jest",
     "test": "pnpm run test:2 && pnpm run test:3"
   },
-  "author": "Sacha 'PraZ' Bouillez",
-  "license": "MIT",
+  "peerDependencies": {
+    "pinia": "^2.0.0"
+  },
+  "dependencies": {
+    "shvl": "^2.0.3"
+  },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^2.2.0",
     "@types/jest": "^27.0.2",
@@ -38,11 +44,5 @@
     "vue": "^3.2.21",
     "vue-demi": "^0.12.0",
     "vue2": "npm:vue@2"
-  },
-  "peerDependencies": {
-    "pinia": "^2.0.0"
-  },
-  "dependencies": {
-    "shvl": "^2.0.3"
   }
 }
