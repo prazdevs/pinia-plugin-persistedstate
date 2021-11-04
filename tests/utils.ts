@@ -6,5 +6,5 @@ export function initializeLocalStorage (
 }
 
 export function readLocalStoage (key: string): Record<string, unknown> {
-  return JSON.parse(localStorage.getItem(key) ?? '')
+  return JSON.parse(localStorage.getItem(key) ?? '{}')
 }
