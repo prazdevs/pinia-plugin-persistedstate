@@ -16,12 +16,13 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
-    "prepublishOnly": "npm run build",
     "release": "bumpp -c ':bookmark: release v%s' -t -p",
-    "lint": "eslint --fix --ext .ts",
+    "lint": "eslint --ext .ts",
+    "lint:fix": "eslint --ext --fix .ts",
     "test:2": "vue-demi-switch 2 vue2 && jest",
-    "test:3": "vue-demi-switch 3 && jest --coverage",
-    "test": "pnpm run test:2 && pnpm run test:3"
+    "test:3": "vue-demi-switch 3 && jest",
+    "test": "pnpm run test:2 && pnpm run test:3",
+    "coverage": "vue-demi-switch 3 && jest --ci --silent --coverage"
   },
   "peerDependencies": {
     "pinia": "^2.0.0"
