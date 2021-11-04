@@ -1,0 +1,50 @@
+name: Publish package and upload coverage
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*
+
+jobs: 
+  on_release:
+    name: Publish package and upload coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.19.0
+      
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build
+        run: pnpm build
+
+      - name: Generate coverage
+        run: pnpm coverage
+
+      - name: Publish coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Sonar scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      
