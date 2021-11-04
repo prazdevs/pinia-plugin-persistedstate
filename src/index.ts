@@ -1,6 +1,6 @@
 import * as shvl from 'shvl'
 
-import type { PiniaPluginContext, StateTree, SubscriptionCallbackMutation } from 'pinia'
+import type { PiniaPluginContext } from 'pinia'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
 
