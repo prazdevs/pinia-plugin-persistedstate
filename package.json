@@ -16,17 +16,27 @@
     "build": "tsup src/index.ts --dts --format cjs,esm",
     "prepublishOnly": "npm run build",
     "release": "bumpp -c ':bookmark: release v%s' -t -p",
-    "lint": "eslint --fix --ext .ts"
+    "lint": "eslint --fix --ext .ts",
+    "test:2": "vue-demi-switch 2 vue2 && jest",
+    "test:3": "vue-demi-switch 3 && jest"
   },
   "author": "Sacha 'PraZ' Bouillez",
   "license": "MIT",
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^2.2.0",
+    "@types/jest": "^27.0.2",
+    "@vue/composition-api": "^1.3.3",
     "bumpp": "^7.1.1",
-    "eslint": "7.32.0",
-    "pinia": "^2.0.0",
+    "eslint": "7",
+    "jest": "^27.3.1",
+    "pinia": "^2.0.0-rc.14",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
     "tsup": "^5.5.0",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "vue": "^3.2.21",
+    "vue-demi": "^0.12.0",
+    "vue2": "npm:vue@2"
   },
   "peerDependencies": {
     "pinia": "^2.0.0"
