@@ -22,10 +22,10 @@ jobs:
           cache: 'pnpm'
         
       - name: Install dependencies
-        run: 'pnpm i'
+        run: pnpm i
 
       - name: Build
-        run: 'pnpm build'
+        run: pnpm build
 
-      - test: Test
-        run: 'pnpm test'
+      - name: Test
+        run: pnpm test
