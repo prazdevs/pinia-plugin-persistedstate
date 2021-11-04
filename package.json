@@ -18,7 +18,8 @@
     "release": "bumpp -c ':bookmark: release v%s' -t -p",
     "lint": "eslint --fix --ext .ts",
     "test:2": "vue-demi-switch 2 vue2 && jest",
-    "test:3": "vue-demi-switch 3 && jest"
+    "test:3": "vue-demi-switch 3 && jest",
+    "test": "pnpm run test:2 && pnpm run test:3"
   },
   "author": "Sacha 'PraZ' Bouillez",
   "license": "MIT",

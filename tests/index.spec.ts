@@ -1,26 +1,54 @@
 import { setActivePinia, createPinia, defineStore } from 'pinia'
-import { createApp } from 'vue-demi'
+import { createApp, nextTick } from 'vue-demi'
 
 import Plugin from '../src/index'
+import { initializeLocalStorage, readLocalStoage } from './utils'
 
-const useStore = defineStore('store', {
-  state: () => ({
-    lorem: 'ipsum',
-  }),
-})
-
-const app = createApp({})
+const key = 'mock-store'
 
 describe('PiniaPluginPersistedstate', () => {
   beforeEach(() => {
+    const app = createApp({})
     const pinia = createPinia()
     pinia.use(Plugin)
     app.use(pinia)
     setActivePinia(pinia)
   })
 
-  it('reads state', () => {
-    const store = useStore()
-    expect(store.lorem).toBe('ipsum')
+  afterEach(() => {
+    localStorage.clear()
+  })
+
+  describe('default settings', () => {
+    const useStore = defineStore(key, {
+      state: () => ({
+        lorem: '',
+      }),
+      persist: true,
+    })
+
+    it('persists store in localStorage', async () => {
+      //* arrange
+      const store = useStore()
+
+      //* act
+      store.lorem = 'ipsum'
+      await nextTick()
+
+      //* assert
+      expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+    })
+
+    it('rehydrates store from localStorage', async () => {
+      //* arrange
+      initializeLocalStorage(key, { lorem: 'ipsum' })
+
+      //* act
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('ipsum')
+    })
   })
 })
