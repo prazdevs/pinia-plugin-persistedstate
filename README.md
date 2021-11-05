@@ -26,7 +26,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 const pinia = createPinia()
-pinia.use(piniaPluginPersistedState)
+pinia.use(piniaPluginPersistedstate)
 ```
 
 ## 🚀 Usage
