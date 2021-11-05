@@ -7,7 +7,6 @@
   <img alt="" src="https://img.shields.io/github/workflow/status/prazdevs/pinia-plugin-persistedstate/Build,%20lint%20and%20test?label=ci&logo=github">
   <img alt="" src="https://img.shields.io/sonar/quality_gate/prazdevs_pinia-plugin-persistedstate?style=flat&logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io">
   <img alt="" src="https://img.shields.io/codecov/c/github/prazdevs/pinia-plugin-persistedstate?logo=Codecov&token=BYLAJJOOLS">
-  <img alt="" src="https://img.shields.io/bundlephobia/minzip/pinia-plugin-persistedstate?style=flat" />
   <img alt="" src="https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat" />
 </p>
 
