@@ -87,7 +87,7 @@ Want to add some feature? PRs are welcome!
 Feel free to contact me:
 
 - <a href="https://twitter.com/prazdevs"><img src="https://img.shields.io/twitter/follow/prazdevs?style=social" /></a>
-- <img src="https://img.shields.io/badge/Discord-PraZ%234184-darkgrey?labelColor=7289DA&logo=discord&logoColor=white&style=flat" />
+- <img alt="discord: PraZ#4184" src="https://img.shields.io/badge/Discord-PraZ%234184-darkgrey?labelColor=7289DA&logo=discord&logoColor=white&style=flat" />
 
 ## 📝 Licence
 
