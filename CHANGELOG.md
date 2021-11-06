@@ -1,30 +1,24 @@
 # Changelog
 
-<a name="next"></a>
-## next
+<a name="1.0.2"></a>
+## 1.0.2 (2021-11-06)
 
 ### Added
 
+- 🔊 add changelog [[2425259](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/242525956b3cd4aac115a8901da432b17df35b8b)]
 - ✅ add option tests [[3abdaed](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/3abdaed2b2d409a961d04e422408800e47715e6f)]
-- 👷‍♂️ add push/pr action [[598d551](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/598d551d940e4a5567805bf425fd521575d06769)]
 - ✅ add default config tests [[3f5ed97](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/3f5ed9723ceff7782ac2879f40ddcf5b7a020e41)]
 
 ### Changed
 
+- ⬆️ bump dependencies [[d3eb230](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/d3eb230d64b11e1486dfa6b476badabaee308e81)]
+- ⬆️ bump pinia to 2.0.2 [[2c6f28c](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/2c6f28c4934c6a1ba606e3c096e44fd04331ec5a)]
 - 🚚 rename private parameters to be more explicit [[60b97b2](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/60b97b2cba22e0923f36551108805ed551c96fed)]
-- 🚨 lint package.json [[405586f](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/405586f22c411918d279acdf56cc9b4caff56f56)]
-
-### Fixed
-
-- 💚 fix CI [[60165b2](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/60165b2439851321e98e7d371aba7ea983ac219e)]
-- 💚 fix CI [[4fe55b0](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/4fe55b0bf42a9784a1b6d1a854206bc8623143de)]
-- 💚 fix CI [[e8e0fb5](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/e8e0fb525cab0e17f343494f2d5268b153465cfb)]
 
 ### Miscellaneous
 
-- ⚰️ remove unused imports [[4504d54](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/4504d5496ae05a058ee18e08946cf230ee26616a)]
+- 📝 fix typo in code example [[03c2fa1](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/03c2fa1e6f9cc3ca1b619f9da07155863e15f1dc)]
 - ⚗️ collect coverage from Vue3 tests [[b81c654](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/b81c6544381153578481d6c9d02dcb39eb58573c)]
-- 🧪 scaffold tests [[7894cac](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/7894cac95a6bb6c896d8897f5ec5ec78a6eb40ba)]
 
 
 <a name="1.0.1"></a>
