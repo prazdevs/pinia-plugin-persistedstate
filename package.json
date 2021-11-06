@@ -25,7 +25,7 @@
     "coverage": "vue-demi-switch 3 && jest --ci --silent --coverage"
   },
   "peerDependencies": {
-    "pinia": "^2.0.0"
+    "pinia": "^2.0.2"
   },
   "dependencies": {
     "shvl": "^2.0.3"
@@ -37,7 +37,7 @@
     "bumpp": "^7.1.1",
     "eslint": "7",
     "jest": "^27.3.1",
-    "pinia": "^2.0.0-rc.14",
+    "pinia": "^2.0.2",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "tsup": "^5.5.0",

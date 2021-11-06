@@ -7,7 +7,7 @@ specifiers:
   bumpp: ^7.1.1
   eslint: '7'
   jest: ^27.3.1
-  pinia: ^2.0.0-rc.14
+  pinia: ^2.0.2
   shvl: ^2.0.3
   ts-jest: ^27.0.7
   ts-node: ^10.4.0
@@ -27,7 +27,7 @@ devDependencies:
   bumpp: 7.1.1
   eslint: 7.32.0
   jest: 27.3.1_ts-node@10.4.0
-  pinia: 2.0.0-rc.14_dea39b756828c7c19fab4afeff261641
+  pinia: 2.0.2_dea39b756828c7c19fab4afeff261641
   ts-jest: 27.0.7_2c4ca6574207836d1023f54689cc81ac
   ts-node: 10.4.0_typescript@4.4.4
   tsup: 5.5.0_ts-node@10.4.0+typescript@4.4.4
@@ -3726,11 +3726,11 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pinia/2.0.0-rc.14_dea39b756828c7c19fab4afeff261641:
-    resolution: {integrity: sha512-vM8vYMsFdFDK1ND6j4+f7TC4hKB8moAjyn9HcHKqdOf1bHN4fL5g9Mz/8t8U0pEqnUwR2AU8yxD0gr+uU18x3g==}
+  /pinia/2.0.2_dea39b756828c7c19fab4afeff261641:
+    resolution: {integrity: sha512-ljN+9p9XHE8YrMBgxLbpo5rdVPj7Fri4Bl9qswz5dJPeoK6ra66YOLrGpBoCsHjAqu9jOBC3oJeErocicf51oA==}
     peerDependencies:
-      '@vue/composition-api': ^1.2.4
-      typescript: ^4.4.3
+      '@vue/composition-api': ^1.3.0
+      typescript: ^4.4.4
       vue: ^2.6.14 || ^3.2.0
     peerDependenciesMeta:
       '@vue/composition-api':
