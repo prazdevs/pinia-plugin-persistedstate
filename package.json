@@ -32,7 +32,7 @@
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
     "@types/jest": "^27.0.3",
-    "@vue/composition-api": "^1.4.1",
+    "@vue/composition-api": "^1.4.2",
     "eslint": "8",
     "jest": "^27.4.5",
     "pinia": "^2.0.6",
