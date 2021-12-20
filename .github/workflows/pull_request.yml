@@ -1,11 +1,6 @@
 name: Build, lint and test
 
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-  
+on: [pull_request, push]
 
 jobs:
   on_pull_request:
