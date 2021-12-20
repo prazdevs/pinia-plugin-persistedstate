@@ -45,10 +45,7 @@ declare module 'pinia' {
  * @param context Options
  */
 export default function (context: PiniaPluginContext): void {
-  const {
-    options: { persist },
-    store,
-  } = context
+  const { options: { persist }, store } = context
 
   if (!persist) return
 

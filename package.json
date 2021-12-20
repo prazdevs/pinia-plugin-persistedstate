@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
-    "coverage": "vue-demi-switch 3 && jest --ci --silent --coverage",
+    "coverage": "vue-demi-switch 3 && c8 -r lcov vitest",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --ext --fix .ts",
     "test:2": "vue-demi-switch 2 vue2 && vitest",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
     "@vue/composition-api": "^1.4.2",
+    "c8": "^7.10.0",
     "eslint": "8",
     "happy-dom": "^2.25.0",
     "pinia": "^2.0.6",
