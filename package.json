@@ -19,8 +19,8 @@
     "coverage": "vue-demi-switch 3 && jest --ci --silent --coverage",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --ext --fix .ts",
-    "test:2": "vue-demi-switch 2 vue2 && jest",
-    "test:3": "vue-demi-switch 3 && jest",
+    "test:2": "vue-demi-switch 2 vue2 && vitest",
+    "test:3": "vue-demi-switch 3 && vitest",
     "test": "pnpm run test:2 && pnpm run test:3"
   },
   "peerDependencies": {
@@ -31,15 +31,14 @@
   },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
-    "@types/jest": "^27.0.3",
     "@vue/composition-api": "^1.4.2",
     "eslint": "8",
-    "jest": "^27.4.5",
+    "happy-dom": "^2.25.0",
     "pinia": "^2.0.6",
-    "ts-jest": "^27.1.2",
-    "ts-node": "^10.4.0",
     "tsup": "^5.11.6",
     "typescript": "^4.5.4",
+    "vite": "^2.7.4",
+    "vitest": "^0.0.102",
     "vue": "^3.2.26",
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@2"

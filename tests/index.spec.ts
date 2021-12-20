@@ -1,4 +1,5 @@
 import { setActivePinia, createPinia, defineStore } from 'pinia'
+import { describe, beforeEach, afterEach, it, expect } from 'vitest'
 import { createApp, nextTick } from 'vue-demi'
 
 import Plugin from '../src/index'
