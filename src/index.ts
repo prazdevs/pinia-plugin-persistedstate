@@ -30,6 +30,7 @@ export interface PersistedStateOptions {
   overwrite?: boolean
 }
 
+/* c8 ignore next 11 */
 declare module 'pinia' {
   export interface DefineStoreOptions<Id extends string, S extends StateTree, G, A> {
     /**
