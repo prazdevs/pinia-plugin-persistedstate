@@ -24,7 +24,7 @@
     "test": "pnpm run test:2 && pnpm run test:3"
   },
   "peerDependencies": {
-    "pinia": "^2.0.6"
+    "pinia": "^2.0.9"
   },
   "dependencies": {
     "shvl": "^2.0.3"
@@ -34,12 +34,12 @@
     "@vue/composition-api": "^1.4.2",
     "c8": "^7.10.0",
     "eslint": "8",
-    "happy-dom": "^2.25.0",
-    "pinia": "^2.0.6",
-    "tsup": "^5.11.6",
+    "happy-dom": "^2.25.1",
+    "pinia": "^2.0.9",
+    "tsup": "^5.11.9",
     "typescript": "^4.5.4",
-    "vite": "^2.7.4",
-    "vitest": "^0.0.102",
+    "vite": "^2.7.6",
+    "vitest": "^0.0.113",
     "vue": "^3.2.26",
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@2"
