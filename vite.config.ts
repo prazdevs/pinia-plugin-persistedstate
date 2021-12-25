@@ -9,6 +9,13 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: ['./tests/setup.ts'],
     watch: false,
-    deps: { inline: ['vue2', '@vue/composition-api', 'vue-demi'] },
+    deps: {
+      inline: [
+        'vue2',
+        '@vue/composition-api',
+        'vue-demi',
+        'pinia',
+      ],
+    },
   },
 })
