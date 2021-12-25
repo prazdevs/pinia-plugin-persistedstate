@@ -24,7 +24,7 @@
     "test": "pnpm run test:2 && pnpm run test:3"
   },
   "peerDependencies": {
-    "pinia": "^2.0.9"
+    "pinia": "^2.0.0"
   },
   "dependencies": {
     "shvl": "^2.0.3"
