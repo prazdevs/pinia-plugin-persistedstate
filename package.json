@@ -19,8 +19,9 @@
     "coverage": "vue-demi-switch 3 && c8 vitest",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --fix --ext .ts",
-    "test:2": "vue-demi-switch 2 vue2 && vitest",
-    "test:3": "vue-demi-switch 3 && vitest",
+    "test:ui": "vue-demi-switch 3 && vitest --ui",
+    "test:2": "vue-demi-switch 2 vue2 && vitest --run",
+    "test:3": "vue-demi-switch 3 && vitest --run",
     "test": "pnpm run test:2 && pnpm run test:3"
   },
   "peerDependencies": {
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
+    "@vitest/ui": "^0.0.142",
     "@vue/composition-api": "^1.4.3",
     "c8": "^7.11.0",
     "eslint": "8.6.0",
@@ -45,8 +47,13 @@
     "vue2": "npm:vue@2"
   },
   "c8": {
-    "reporter": ["lcov", "text"],
-    "include": ["src/index.ts"]
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "include": [
+      "src/index.ts"
+    ]
   },
   "volta": {
     "node": "16.13.1"
