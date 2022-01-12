@@ -8,10 +8,10 @@ specifiers:
   happy-dom: ^2.25.1
   pinia: ^2.0.9
   shvl: ^2.0.3
-  tsup: ^5.11.10
+  tsup: ^5.11.11
   typescript: ^4.5.4
   vite: ^2.7.10
-  vitest: ^0.0.132
+  vitest: ^0.0.142
   vue: ^3.2.26
   vue-demi: ^0.12.1
   vue2: npm:vue@2
@@ -26,10 +26,10 @@ devDependencies:
   eslint: 8.6.0
   happy-dom: 2.25.1
   pinia: 2.0.9_e1fba48a0056f8c73faf827fc02e3678
-  tsup: 5.11.10_typescript@4.5.4
+  tsup: 5.11.11_typescript@4.5.4
   typescript: 4.5.4
   vite: 2.7.10
-  vitest: 0.0.132_c8@7.11.0+happy-dom@2.25.1
+  vitest: 0.0.142_c8@7.11.0+happy-dom@2.25.1
   vue: 3.2.26
   vue-demi: 0.12.1_2f8cc5045e4ac61bb9fbdf1f8e24d5d0
   vue2: /vue/2.6.14
@@ -3121,8 +3121,8 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: true
 
-  /tinyspy/0.2.7:
-    resolution: {integrity: sha512-AaNITSED8/2j2/nSgPeQZW2nNhdTxNJ7XwcdBezI7MtPS2C+pJ1HjcHc/qfDhohUhQvODITdxzWH9u+Qs+7yFQ==}
+  /tinyspy/0.2.8:
+    resolution: {integrity: sha512-4VXqQzzh9gC5uOLk77cLr9R3wqJq07xJlgM9IUdCNJCet139r+046ETKbU1x7mGs7B0k7eopyH5U6yflbBXNyA==}
     engines: {node: '>=14.0.0'}
     dev: true
 
@@ -3168,8 +3168,8 @@ packages:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
     dev: true
 
-  /tsup/5.11.10_typescript@4.5.4:
-    resolution: {integrity: sha512-z8YzbPyF8Vvj37h+TY84AfvlmKZtBTRuWwRETWUbfckMj854WeLkuRQV8vRyoY8bLJQhnKWlLge/3fVbFZGERg==}
+  /tsup/5.11.11_typescript@4.5.4:
+    resolution: {integrity: sha512-rgbTu+KhAI9PdGUS07rKohDXbRLTstBGJaxl75q7RZYRGF+n+kN8L4RlXY5pqYb9Hsq0gEB6nS39v7nSvVBS+g==}
     hasBin: true
     peerDependencies:
       typescript: ^4.1.0
@@ -3307,8 +3307,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.0.132_c8@7.11.0+happy-dom@2.25.1:
-    resolution: {integrity: sha512-LxmHT3aAS+7mRJzYQg5tS5IQuDSmEBupaPcHK9PMRiOITZ2dMFo7mcvmvNZ8k0SL7NIIXYJ0BHTLX9ROY3xHmw==}
+  /vitest/0.0.142_c8@7.11.0+happy-dom@2.25.1:
+    resolution: {integrity: sha512-d1Ya3Jd/RKYfH9qJHlrCw7AU3Xne7sjdjLfR0Kh+UsYmpRvdYsWAA8AkrIkv2U/N77wmA59LlqooMBI5GoK/ZQ==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
@@ -3333,7 +3333,7 @@ packages:
       happy-dom: 2.25.1
       local-pkg: 0.4.1
       tinypool: 0.1.1
-      tinyspy: 0.2.7
+      tinyspy: 0.2.8
       vite: 2.7.10
     transitivePeerDependencies:
       - less
