@@ -13,19 +13,6 @@ beforeEach(() => {
   pinia.use(Plugin)
   app.use(pinia)
   setActivePinia(pinia)
-
-  localStorage.clear()
-})
-
-afterEach(() => {
-  // @ts-expect-error mocked in setup
-  localStorage.getItem.mockClear()
-  // @ts-expect-error mocked in setup
-  localStorage.setItem.mockClear()
-  // @ts-expect-error mocked in setup
-  localStorage.removeItem.mockClear()
-  // @ts-expect-error mocked in setup
-  localStorage.clear.mockClear()
 })
 
 describe('disabled', () => {
