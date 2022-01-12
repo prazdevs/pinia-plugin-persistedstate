@@ -8,6 +8,10 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
     setupFiles: ['./tests/setup.ts'],
+    coverage: {
+      reporter: ['lcov', 'text'],
+      include: ['src/index.ts'],
+    },
     deps: {
       inline: [
         'vue2',
