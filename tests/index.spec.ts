@@ -1,8 +1,8 @@
 import { setActivePinia, createPinia, defineStore } from 'pinia'
-import { describe, beforeEach, afterEach, it, expect } from 'vitest'
+import { describe, beforeEach, it, expect, vi } from 'vitest'
 import { createApp, nextTick } from 'vue-demi'
 
-import Plugin from '../src/index'
+import Plugin, { StorageLike } from '../src/index'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
@@ -174,5 +174,45 @@ describe('w/ paths', () => {
     expect(store.lorem).toEqual('ipsum')
     expect(store.dolor.consectetur.adipiscing).toEqual('elit')
     expect(localStorage.getItem).toHaveBeenCalledWith(key)
+  })
+})
+
+describe('w/ storage', () => {
+  let stored: Record<string, string>
+  const storage: StorageLike = {
+    getItem: vi.fn(key => stored[key]),
+    setItem: vi.fn((key, value) => { stored[key] = value }),
+    removeItem: vi.fn(key => { delete stored[key] }),
+  }
+
+  const useStore = defineStore(key, {
+    state: () => ({ lorem: '' }),
+    persist: { storage },
+  })
+
+  it('persists to given storage', async () => {
+    //* arrange
+    stored = {}
+    const store = useStore()
+
+    //* act
+    store.lorem = 'ipsum'
+    await nextTick()
+
+    //* assert
+    expect(stored[key]).toEqual('{"lorem":"ipsum"}')
+    expect(storage.setItem).toHaveBeenCalled()
+  })
+
+  it('rehydrates from given storage', () => {
+    //* arrange
+    stored = { 'mock-store': '{"lorem":"ipsum"}' }
+
+    //* act
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('ipsum')
+    expect(storage.getItem).toHaveBeenCalled()
   })
 })
