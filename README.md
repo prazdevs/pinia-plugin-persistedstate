@@ -54,7 +54,7 @@ In case you want to configure how the data should be persisted, `persist` can ta
 - `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from localstorage.
 - `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from localstorage.
 
->The context exposed to the hooks is the `PiniaPluginContext`, more infos [here](https://pinia.vuejs.org/core-concepts/plugins.html#introduction).
+>The context passed to the hooks is the `PiniaPluginContext`. It exposes properties such as the current store. More infos [here](https://pinia.vuejs.org/core-concepts/plugins.html#introduction).
 
 
 ```ts
