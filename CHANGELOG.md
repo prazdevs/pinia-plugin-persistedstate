@@ -1,5 +1,19 @@
 # Changelog
 
+<a name="1.1.0"></a>
+## 1.1.0 (2022-01-23)
+
+### Added
+
+- ✨ Add beforeRestore and afterRestore hooks [[fbba368](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fbba368c1ca13e06bfa024fd47781ff692406b7c)]
+
+<a name="1.0.3"></a>
+## 1.0.3 (2021-12-25)
+
+### Miscellaneous
+
+- ⚗️ move to vitest [[bc3c350](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/bc3c3508fc02610e6e11c58aa5adc1754edf2b95)]
+
 <a name="1.0.2"></a>
 ## 1.0.2 (2021-11-06)
 
