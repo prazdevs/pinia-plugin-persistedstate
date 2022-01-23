@@ -28,6 +28,17 @@ export interface PersistedStateOptions {
    * @default false
    */
   overwrite?: boolean
+
+  /**
+   * Hook called before state is hydrated from storage.
+   * @default undefined
+   */
+  beforeRestore?: (context: PiniaPluginContext) => void
+
+  /**
+   * Hook called after state is hydrated from storage.
+   */
+  afterRestore?: (context: PiniaPluginContext) => void
 }
 
 /* c8 ignore next 11 */
@@ -55,7 +66,11 @@ export default function (context: PiniaPluginContext): void {
     key = store.$id,
     paths = null,
     overwrite = false,
+    beforeRestore = null,
+    afterRestore = null,
   } = typeof persist != 'boolean' ? persist : {}
+
+  beforeRestore?.(context)
 
   try {
     const fromStorage = storage.getItem(key)
@@ -64,6 +79,8 @@ export default function (context: PiniaPluginContext): void {
       else store.$patch(JSON.parse(fromStorage))
     }
   } catch (_error) {}
+
+  afterRestore?.(context)
 
   store.$subscribe((_mutation: unknown, state: unknown) => {
     try {
