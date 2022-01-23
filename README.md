@@ -11,7 +11,7 @@
 
 ## ✨ Features
 
-- Persist Pinia stores with the same API as [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate).
+- Persist Pinia stores with the same API as [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) (and more).
 - Configurable per Pinia store.
 - Still compatible with Vue 2 and 3.
 - Super small (<1kB).
@@ -54,6 +54,8 @@ In case you want to configure how the data should be persisted, `persist` can ta
 - `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from localstorage.
 - `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from localstorage.
 
+>The context exposed to the hooks is the `PiniaPluginContext`, more infos [here](https://pinia.vuejs.org/core-concepts/plugins.html#introduction).
+
 
 ```ts
 import { defineStore } from 'pinia'
@@ -75,15 +77,15 @@ export const useStore = defineStore('main', {
     beforeRestore: (context) => {
       console.log('Before hydration...')
     },
-    afterRestore: ({ store }) => {
-      store.lastReload = new Date().toString()
-    }),
-  }
+    afterRestore: (context) => {
+      console.log('After hydration...')
+    },
+  },
 })
 ```
 The config above will only persist the `nested.data` property in `sessionStorage` under `storekey` and will overwrite the state on hydration.
 
-It will also execute the `beforeRestore` and `afterRestore` hooks before/after hydration.
+It will also execute the `beforeRestore` and `afterRestore` hooks respectively _before_ and _after_ hydration.
 
 ## ⚠️ Limitations
 
@@ -109,9 +111,9 @@ a === b -> true
 a === b -> false
 ```
 
-As a consequence, reactivity between _a_ and _b_ is lost.
+As a consequence, reactivity between `a` and `b` is lost.
 
-To get around this you can exclude either _a_ or _b_ from persisting and use the `afterRestore()` hook to populate them after hydration. That way _a_ and _b_ have the same reference again and reactivity is restored after page reload.
+To get around this you can exclude either `a` or `b` from persisting and use the `afterRestore` hook to populate them after hydration. That way `a` and `b` have the same reference again and reactivity is restored after page reload.
 
 ## 🤝 Contributing
 
