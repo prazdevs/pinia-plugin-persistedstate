@@ -51,6 +51,8 @@ In case you want to configure how the data should be persisted, `persist` can ta
 - `storage` : Storage like object to persist state to. Must have `getItem`, `setItem` and `removeItem` methods (defaults to `localStorage`).
 - `paths: Array<string>` : Array of dot-notation paths to partially persist the state, `[]` means no state is persisted (defaults to `undefined` and persists the whole state).
 - `overwrite: boolean` : Whether you want to ovewrite the initial state on hydration (defaults to `false` and [patches](https://pinia.esm.dev/api/interfaces/pinia._StoreWithState.html#patch) the state).
+- `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from localstorage.
+- `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from localstorage.
 
 
 ```ts
@@ -70,16 +72,52 @@ export const useStore = defineStore('main', {
     storage: window.sessionStorage,
     paths: ['nested.data'],
     overwrite: true,
+    beforeRestore: (context) => {
+      console.log('Before hydration...')
+    },
+    afterRestore: ({ state }) => {
+      state.lastReload = new Date().toString()
+    }),
   }
 })
 ```
 The config above will only persist the `nested.data` property in `sessionStorage` under `storekey` and will overwrite the state on hydration.
 
+It will also execute the `beforeRestore` and `afterRestore` hooks before/after hydration.
+
+## ⚠️ Limitations
+
+__References do not persist__
+
+Beware of the following:
+
+```js
+const a = {
+  1: 'one',
+  2: 'two',
+  ...
+}
+const b = a
+
+// Before hydration 'a' and 'b'
+// point to the same object:
+a === b -> true
+
+// After hydration (page reload)
+// 'a' and 'b' are different objects
+// with the same content:
+a === b -> false
+```
+
+As a consequence, reactivity between _a_ and _b_ is lost.
+
+To get around this you can exclude either _a_ or _b_ from persisting and use the `afterRestore()` hook to populate them after hydration. That way _a_ and _b_ have the same reference again and reactivity is restored after page reload.
+
 ## 🤝 Contributing
 
-This project tries to bring `vuex-persistedstate`'s API to `Pinia` but I did not bring the whole API yet. 
+This project tries to bring `vuex-persistedstate`'s API to `Pinia` but I did not bring the whole API yet.
 
-Run into a problem? Open an [issue](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/new/choose).  
+Run into a problem? Open an [issue](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/new/choose).
 Want to add some feature? PRs are welcome!
 
 ## 👤 About the author
