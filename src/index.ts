@@ -37,6 +37,7 @@ export interface PersistedStateOptions {
 
   /**
    * Hook called after state is hydrated from storage.
+   * @default undefined
    */
   afterRestore?: (context: PiniaPluginContext) => void
 }
@@ -54,10 +55,11 @@ declare module 'pinia' {
 
 /**
  * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
- * @param context Options
  */
 export default function (context: PiniaPluginContext): void {
   const { options: { persist }, store } = context
+
+  const t = typeof store
 
   if (!persist) return
 
