@@ -217,27 +217,19 @@ describe('w/ storage', () => {
   })
 })
 
-/**
- * Test `beforeRestore` and `afterRestore` function call execution if set.
- */
-describe('beforeRestore and afterRestore', () => {
+describe('w/ hooks', () => {
+  const beforeRestore = vi.fn(ctx => { ctx.store.before = 'before' })
+  const afterRestore = vi.fn(ctx => { ctx.store.after = 'after' })
   const useStore = defineStore(key, {
     state: () => ({
       lorem: '',
       before: '',
       after: '',
     }),
-    persist: {
-      beforeRestore: vi.fn(ctx => {
-        ctx.store.before = 'before'
-      }),
-      afterRestore: vi.fn(ctx => {
-        ctx.store.after = 'after'
-      }),
-    },
+    persist: { beforeRestore, afterRestore },
   })
 
-  it('rehydrates store from localStorage', async () => {
+  it('runs hooks before and after hydration', async () => {
     //* arrange
     initializeLocalStorage(key, { lorem: 'ipsum' })
 
@@ -247,8 +239,9 @@ describe('beforeRestore and afterRestore', () => {
 
     //* assert
     expect(store.lorem).toEqual('ipsum')
-    expect(localStorage.getItem).toHaveBeenCalledWith(key)
+    expect(beforeRestore).toHaveBeenCalled()
     expect(store.before).toEqual('before')
+    expect(afterRestore).toHaveBeenCalled()
     expect(store.after).toEqual('after')
   })
 })
