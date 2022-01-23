@@ -42,7 +42,6 @@ export interface PersistedStateOptions {
   afterRestore?: (context: PiniaPluginContext) => void
 }
 
-/* c8 ignore next 11 */
 declare module 'pinia' {
   export interface DefineStoreOptions<Id extends string, S extends StateTree, G, A> {
     /**
