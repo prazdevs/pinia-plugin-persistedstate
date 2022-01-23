@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@prazdevs/eslint-config-typescript': ^3.0.1
-  '@vitest/ui': ^0.1.25
+  '@vitest/ui': ^0.2.0
   '@vue/composition-api': ^1.4.4
   c8: ^7.11.0
   eslint: 8.7.0
@@ -12,7 +12,7 @@ specifiers:
   tsup: ^5.11.11
   typescript: ^4.5.5
   vite: ^2.7.13
-  vitest: ^0.1.25
+  vitest: ^0.2.0
   vue: ^3.2.26
   vue-demi: ^0.12.1
   vue2: npm:vue@2
@@ -22,7 +22,7 @@ dependencies:
 
 devDependencies:
   '@prazdevs/eslint-config-typescript': 3.0.1_eslint@8.7.0+typescript@4.5.5
-  '@vitest/ui': 0.1.25
+  '@vitest/ui': 0.2.0
   '@vue/composition-api': 1.4.4_vue@3.2.26
   c8: 7.11.0
   eslint: 8.7.0
@@ -31,7 +31,7 @@ devDependencies:
   tsup: 5.11.11_typescript@4.5.5
   typescript: 4.5.5
   vite: 2.7.13
-  vitest: 0.1.25_f06adbaf6fc6616fc7eda372be579ae4
+  vitest: 0.2.0_cafce70a01b621943e7f4a1bc1a8e35a
   vue: 3.2.26
   vue-demi: 0.12.1_439ece1495fdfbea4fc5e7ffd4c5a26f
   vue2: /vue/2.6.14
@@ -524,8 +524,8 @@ packages:
       eslint-visitor-keys: 3.1.0
     dev: true
 
-  /@vitest/ui/0.1.25:
-    resolution: {integrity: sha512-lcyHy4D49netEogcSCW16n3L7VzHlbyAgDMZ6Qu4ayP19aRoogeRbbIP/k1okiyAUrXQhdTd15FZjkqNkPte1g==}
+  /@vitest/ui/0.2.0:
+    resolution: {integrity: sha512-obnebdaw4mQVkOrifxCa+R/6q9BBXpAf4Lkdw8/NHVn+fDYhDl2PZXQtxV7DbzArij8FEjEzHQR7t6hc48zjnw==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -3328,8 +3328,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.1.25_f06adbaf6fc6616fc7eda372be579ae4:
-    resolution: {integrity: sha512-8GL4sQwGcPlnEwRKQXVFUu5lmmx6TxQq2Kt+7qBnr9oMaNZWTN4w118UazMKl+K9vcfg/BnJK5hdeOTdTeI78A==}
+  /vitest/0.2.0_cafce70a01b621943e7f4a1bc1a8e35a:
+    resolution: {integrity: sha512-+8c0UN/KKQe/ye0CCCqYuPbOEZl12Fhb5hVkCiL2DdBA4jOEgHDd35AZqdHVBXaAoTedS3MD5G/LhkOxCWB8pw==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
@@ -3349,7 +3349,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.1.25
+      '@vitest/ui': 0.2.0
       c8: 7.11.0
       chai: 4.3.4
       happy-dom: 2.28.0
