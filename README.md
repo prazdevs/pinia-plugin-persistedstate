@@ -75,8 +75,8 @@ export const useStore = defineStore('main', {
     beforeRestore: (context) => {
       console.log('Before hydration...')
     },
-    afterRestore: ({ state }) => {
-      state.lastReload = new Date().toString()
+    afterRestore: ({ store }) => {
+      store.lastReload = new Date().toString()
     }),
   }
 })
