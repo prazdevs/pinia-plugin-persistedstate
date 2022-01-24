@@ -89,7 +89,7 @@ It will also execute the `beforeRestore` and `afterRestore` hooks respectively _
 
 ## ⚠️ Limitations
 
-__References do not persist__
+### __References do not persist__
 
 Beware of the following:
 
@@ -114,6 +114,12 @@ a === b -> false
 As a consequence, reactivity between `a` and `b` is lost.
 
 To get around this you can exclude either `a` or `b` from persisting and use the `afterRestore` hook to populate them after hydration. That way `a` and `b` have the same reference again and reactivity is restored after page reload.
+
+### __Non primitive types are not persisted__
+
+Due to serialization (`JSON.stringify`/`JSON.parse`) needed to persist in storage, non primitive typed data such as `Date` are no rehydrated as `Date` but as `string` instead.
+
+To get around this you can use the `afterRestore` hook to reformat the data as needed.
 
 ## 🤝 Contributing
 
