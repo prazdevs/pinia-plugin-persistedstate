@@ -17,6 +17,7 @@
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
+    "size": "size-limit",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --fix --ext .ts",
     "test:ui": "vue-demi-switch 3 && vitest --ui",
@@ -33,12 +34,14 @@
   },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
+    "@size-limit/preset-small-lib": "^7.0.5",
     "@vitest/ui": "^0.2.3",
     "@vue/composition-api": "^1.4.4",
     "c8": "^7.11.0",
     "eslint": "8.7.0",
     "happy-dom": "^2.30.1",
     "pinia": "^2.0.9",
+    "size-limit": "^7.0.5",
     "tsup": "^5.11.11",
     "typescript": "^4.5.5",
     "vite": "^2.7.13",
@@ -47,6 +50,10 @@
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@2"
   },
+  "size-limit": [{ 
+    "path": "dist/index.js",
+    "limit": "1 kB"
+  }],
   "volta": {
     "node": "16.13.1"
   }
