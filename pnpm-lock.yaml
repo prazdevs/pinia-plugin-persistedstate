@@ -6,7 +6,7 @@ specifiers:
   '@vue/composition-api': ^1.4.4
   c8: ^7.11.0
   eslint: 8.7.0
-  happy-dom: ^2.30.0
+  happy-dom: ^2.30.1
   pinia: ^2.0.9
   shvl: ^2.0.3
   tsup: ^5.11.11
@@ -26,12 +26,12 @@ devDependencies:
   '@vue/composition-api': 1.4.4_vue@3.2.26
   c8: 7.11.0
   eslint: 8.7.0
-  happy-dom: 2.30.0
+  happy-dom: 2.30.1
   pinia: 2.0.9_23968fb516b796e24bcc6679078d30fb
   tsup: 5.11.11_typescript@4.5.5
   typescript: 4.5.5
   vite: 2.7.13
-  vitest: 0.2.3_70587b841622ba0b5416e0bcc08256ce
+  vitest: 0.2.3_ecfb20571b54874e0e616d3cea76d5b9
   vue: 3.2.26
   vue-demi: 0.12.1_439ece1495fdfbea4fc5e7ffd4c5a26f
   vue2: /vue/2.6.14
@@ -1945,8 +1945,8 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /happy-dom/2.30.0:
-    resolution: {integrity: sha512-//9pqe00RsVdBIR340bM8KRF0pYtwgVEo10pOpkCT3bIl45NjYFYg89ZV8dzu1j7rsP6ECTUy+OqNFf1h2wlaA==}
+  /happy-dom/2.30.1:
+    resolution: {integrity: sha512-Qz3Z/zn/VeUCtVEGoSCDD+zzPcyOEdIYz4p1BvsXvrTSx6vXyGadMDAsxOKf8ZFCRfuyLpLKfqdRHFFPF77qPA==}
     dependencies:
       he: 1.2.0
       node-fetch: 2.6.6
@@ -3328,7 +3328,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.2.3_70587b841622ba0b5416e0bcc08256ce:
+  /vitest/0.2.3_ecfb20571b54874e0e616d3cea76d5b9:
     resolution: {integrity: sha512-hkJpXkJJ52yyBrnoyqox6eoo4mzYmlm+OwSNSFqhMidY75wEGV1/DsAR6kx6WLucI3CtlToAzfI94WZGfgRUrg==}
     engines: {node: '>=14.14.0'}
     hasBin: true
@@ -3352,7 +3352,7 @@ packages:
       '@vitest/ui': 0.2.3
       c8: 7.11.0
       chai: 4.3.4
-      happy-dom: 2.30.0
+      happy-dom: 2.30.1
       local-pkg: 0.4.1
       tinypool: 0.1.1
       tinyspy: 0.2.8
