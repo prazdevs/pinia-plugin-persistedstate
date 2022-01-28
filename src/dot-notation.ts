@@ -36,9 +36,10 @@ const _prop = (prop: string) => (obj?: unknown) =>
 const _split = (separator: string) => (str: string) => str.split(separator)
 
 /**
- * Gets nested property from path
- * @param obj object to read
- * @returns path => obj[path] || undefined
+ * Get nested value
+ * @param path dot-notation path
+ * @returns obj => obj[path]
  */
-export const _get: (obj: unknown) => (x: string) => unknown = (obj: unknown) =>
-  _compose(_reduce(_prop)(obj), _split('.'))
+export const _get: (path: string) => (obj: unknown) => unknown
+  = (path: string) => (obj: unknown) =>
+    _compose(_reduce(_prop)(obj), _split('.'))(path)

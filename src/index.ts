@@ -92,7 +92,7 @@ export default function (context: PiniaPluginContext): void {
           return shvl.set(
             substate,
             path,
-            _get(state)(path),
+            _get(path)(state),
           )
         }, {})
         : state
