@@ -2,6 +2,8 @@ import * as shvl from 'shvl'
 
 import type { PiniaPluginContext } from 'pinia'
 
+import { _get } from './dot-notation'
+
 export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
 
 export interface PersistedStateOptions {
@@ -90,7 +92,7 @@ export default function (context: PiniaPluginContext): void {
           return shvl.set(
             substate,
             path,
-            shvl.get(state as Record<string, unknown>, path),
+            _get(state)(path),
           )
         }, {})
         : state
