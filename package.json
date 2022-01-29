@@ -29,9 +29,6 @@
   "peerDependencies": {
     "pinia": "^2.0.0"
   },
-  "dependencies": {
-    "shvl": "^2.0.3"
-  },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
     "@size-limit/preset-small-lib": "^7.0.5",
@@ -50,10 +47,12 @@
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@2"
   },
-  "size-limit": [{ 
-    "path": "dist/index.js",
-    "limit": "1 kB"
-  }],
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "1 kB"
+    }
+  ],
   "volta": {
     "node": "16.13.1"
   }

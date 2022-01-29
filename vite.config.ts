@@ -7,11 +7,10 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
-    setupFiles: ['./tests/setup.ts'],
     silent: true,
     coverage: {
       reporter: ['lcov', 'text'],
-      include: ['src/index.ts'],
+      include: ['src/index.ts', 'src/pick.ts'],
     },
     deps: {
       inline: [

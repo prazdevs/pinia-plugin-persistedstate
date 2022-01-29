@@ -1,8 +1,6 @@
-import * as shvl from 'shvl'
-
 import type { PiniaPluginContext } from 'pinia'
 
-import { _get } from './dot-notation'
+import pick from './pick'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
 
@@ -88,13 +86,7 @@ export default function (context: PiniaPluginContext): void {
   store.$subscribe((_mutation: unknown, state: unknown) => {
     try {
       const toStore = Array.isArray(paths)
-        ? paths.reduce((substate, path) => {
-          return shvl.set(
-            substate,
-            path,
-            _get(path)(state),
-          )
-        }, {})
+        ? pick(state, paths)
         : state
 
       storage.setItem(key, JSON.stringify(toStore))

@@ -1,13 +1,32 @@
 import { setActivePinia, createPinia, defineStore } from 'pinia'
-import { describe, beforeEach, it, expect, vi } from 'vitest'
-import { createApp, nextTick } from 'vue-demi'
+import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
+import { createApp, nextTick, Vue2, isVue2, install } from 'vue-demi'
 
 import Plugin, { StorageLike } from '../src/index'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
 
+beforeAll(() => {
+  if (isVue2) {
+    Vue2.config.productionTip = false
+    Vue2.config.devtools = false
+    install(Vue2)
+  }
+})
+
 beforeEach(() => {
+  let state: Record<string, string> = {}
+
+  Object.defineProperty(window, 'localStorage', {
+    value: {
+      getItem: vi.fn(key => state[key]),
+      setItem: vi.fn((key, value) => { state[key] = value }),
+      removeItem: vi.fn(key => delete state[key]),
+      clear: vi.fn(() => { state = {} }),
+    },
+  })
+
   const app = createApp({})
   const pinia = createPinia()
   pinia.use(Plugin)
