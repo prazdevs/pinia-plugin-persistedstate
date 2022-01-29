@@ -9,7 +9,6 @@ specifiers:
   eslint: 8.7.0
   happy-dom: ^2.30.1
   pinia: ^2.0.10
-  shvl: ^2.0.3
   size-limit: ^7.0.5
   tsup: ^5.11.11
   typescript: ^4.5.5
@@ -18,9 +17,6 @@ specifiers:
   vue: ^3.2.26
   vue-demi: ^0.12.1
   vue2: npm:vue@2
-
-dependencies:
-  shvl: 2.0.3
 
 devDependencies:
   '@prazdevs/eslint-config-typescript': 3.0.1_eslint@8.7.0+typescript@4.5.5
@@ -3143,10 +3139,6 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
     dev: true
-
-  /shvl/2.0.3:
-    resolution: {integrity: sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw==}
-    dev: false
 
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}

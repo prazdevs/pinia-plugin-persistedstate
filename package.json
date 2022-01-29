@@ -22,15 +22,12 @@
     "lint:fix": "eslint --fix --ext .ts",
     "test:ui": "vue-demi-switch 3 && vitest --ui",
     "test:watch": "vue-demi-switch 3 && vitest --watch",
-    "test:2": "vue-demi-switch 2 vue2 && vitest --run",
+    "test:2": "vue-demi-switch 2 vue2 && vitest --run index",
     "test:3": "vue-demi-switch 3 && vitest --run",
     "test": "pnpm run test:2 && pnpm run test:3"
   },
   "peerDependencies": {
     "pinia": "^2.0.0"
-  },
-  "dependencies": {
-    "shvl": "^2.0.3"
   },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.0.1",
@@ -50,10 +47,12 @@
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@2"
   },
-  "size-limit": [{ 
-    "path": "dist/index.js",
-    "limit": "1 kB"
-  }],
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "1 kB"
+    }
+  ],
   "volta": {
     "node": "16.13.1"
   }
