@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.2.0"></a>
+## 1.2.0 (2022-01-29)
+
+### Changed
+
+- 🏗️ internalize pick function ([#14](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/14)) [[1152acf](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/1152acf0a90e2c2051dae159bc59889c7e6dedbe)]
+
+### Miscellaneous
+
+- 📝 add type persistence limitation and workaround [[aa52a70](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/aa52a7037905f1cc7121a2626cc6b5bbf751c94a)]
+
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2022-01-23)
 
