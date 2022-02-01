@@ -1,6 +1,6 @@
 import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
-import { createApp, nextTick, Vue2, isVue2, install } from 'vue-demi'
+import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
 import Plugin, { StorageLike } from '../src/index'
 import { initializeLocalStorage, readLocalStoage } from './utils'
@@ -71,6 +71,43 @@ describe('default settings', () => {
     state: () => ({ lorem: '' }),
     persist: true,
   })
+
+  it('persists store in localStorage', async () => {
+    //* arrange
+    const store = useStore()
+
+    //* act
+    store.lorem = 'ipsum'
+    await nextTick()
+
+    //* assert
+    expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      key,
+      JSON.stringify({ lorem: 'ipsum' }),
+    )
+  })
+
+  it('rehydrates store from localStorage', async () => {
+    //* arrange
+    initializeLocalStorage(key, { lorem: 'ipsum' })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('ipsum')
+    expect(localStorage.getItem).toHaveBeenCalledWith(key)
+  })
+})
+
+describe('setup function syntax', () => {
+  const useStore = defineStore(
+    key,
+    () => ({ lorem: ref('') }),
+    { persist: true },
+  )
 
   it('persists store in localStorage', async () => {
     //* arrange

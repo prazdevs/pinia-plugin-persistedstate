@@ -43,7 +43,7 @@ export interface PersistedStateOptions {
 }
 
 declare module 'pinia' {
-  export interface DefineStoreOptions<Id extends string, S extends StateTree, G, A> {
+  export interface DefineStoreOptionsBase<S extends StateTree, Store> {
     /**
      * Persist store in storage.
      * @docs https://github.com/prazdevs/pinia-plugin-persistedstate.
