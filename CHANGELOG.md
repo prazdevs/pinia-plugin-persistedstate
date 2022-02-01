@@ -1,5 +1,14 @@
 # Changelog
 
+
+<a name="1.2.1"></a>
+## 1.2.1 (2022-02-01)
+
+### Fixed
+
+- 🐛 extend DefineStoreOptionsBase ([#16](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/16)) [[e429a4e](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/e429a4e5e24ddf55950cb7580a7c6b0782d733c6)]
+
+
 <a name="1.2.0"></a>
 ## 1.2.0 (2022-01-29)
 
@@ -19,12 +28,14 @@
 
 - ✨ Add beforeRestore and afterRestore hooks [[fbba368](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fbba368c1ca13e06bfa024fd47781ff692406b7c)]
 
+
 <a name="1.0.3"></a>
 ## 1.0.3 (2021-12-25)
 
 ### Miscellaneous
 
 - ⚗️ move to vitest [[bc3c350](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/bc3c3508fc02610e6e11c58aa5adc1754edf2b95)]
+
 
 <a name="1.0.2"></a>
 ## 1.0.2 (2021-11-06)
@@ -71,6 +82,3 @@
 ### Added
 
 - 🎉 initial commit [[2fa1802](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/2fa1802c3eda8fa098697d359d752b10799a30eb)]
-
-
-
