@@ -1,6 +1,6 @@
 {
   "name": "pinia-plugin-persistedstate",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "keywords": [
     "pinia-plugin"
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
-    "release": "bumpp -t -p -c ':bookmark: release v'",
+    "release": "bumpp  -t -p -c \":bookmark: release v\"",
     "size": "size-limit",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --fix --ext .ts",
