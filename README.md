@@ -14,6 +14,7 @@
 - Persist Pinia stores with the same API as [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) (and more).
 - Configurable per Pinia store.
 - Still compatible with Vue 2 and 3.
+- No external dependencies.
 - Super small (<1kB).
 
 ## ⚙️ Installing
@@ -35,6 +36,7 @@ You just need to add the `persist` option to the store you want to be persisted 
 ```ts
 import { defineStore } from 'pinia'
 
+//* using option store syntax
 export const useStore = defineStore('main', {
   state: () => {
     return {
@@ -43,6 +45,18 @@ export const useStore = defineStore('main', {
   },
   persist: true
 })
+
+//* or using setup store syntax
+export const useStore = defineStore(
+  'main',
+  () => {
+    const someState = ref('hello pinia')
+    return { someState }
+  },
+  {
+    persist: true,
+  },
+)
 ```
 
 In case you want to configure how the data should be persisted, `persist` can take options:
