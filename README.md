@@ -135,6 +135,12 @@ Due to serialization (`JSON.stringify`/`JSON.parse`) needed to persist in storag
 
 To get around this you can use the `afterRestore` hook to reformat the data as needed.
 
+### __Storage must be synchronous__
+
+When providing a `storage` option, all methods (`getItem`, `setItem`, `removeItem`) must be synchronous. This is due to Pinia's state subscription (`$subscribe`) being synchronous (like mutations). 
+
+If you want to add asynchronous behaviours (such as async storages), you can try [subscribing to actions (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions). Actions are made for asynchronous tasks and provide proper error handling.
+
 ## 🤝 Contributing
 
 This project tries to bring `vuex-persistedstate`'s API to `Pinia` but I did not bring the whole API yet.
