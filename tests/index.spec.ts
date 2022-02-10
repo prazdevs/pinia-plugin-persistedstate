@@ -238,7 +238,6 @@ describe('w/ storage', () => {
   const storage: StorageLike = {
     getItem: vi.fn(key => stored[key]),
     setItem: vi.fn((key, value) => { stored[key] = value }),
-    removeItem: vi.fn(key => { delete stored[key] }),
   }
 
   const useStore = defineStore(key, {
@@ -270,6 +269,26 @@ describe('w/ storage', () => {
     //* assert
     expect(store.lorem).toEqual('ipsum')
     expect(storage.getItem).toHaveBeenCalled()
+  })
+})
+
+describe('w/ overwrite', () => {
+  const useStore = defineStore(key, {
+    state: () => ({ lorem: 'ipsum' }),
+    persist: { overwrite: true },
+  })
+
+  it('overwrites store from storage', async () => {
+    //* arrange
+    initializeLocalStorage(key, { lorem: 'dolor sit amet' })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('dolor sit amet')
+    expect(localStorage.getItem).toHaveBeenCalledWith(key)
   })
 })
 
