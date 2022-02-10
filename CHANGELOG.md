@@ -1,6 +1,19 @@
 # Changelog
 
 
+<a name="1.2.2"></a>
+## 1.2.2 (2022-02-10)
+
+### Changed
+
+- 🏷️ simplify StorageLike type [[57f07b1](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/57f07b1d63bb40bda21db0e372bb8d5867e5a4ba)]
+
+### Miscellaneous
+
+- 📝 add nuxt usage docs [[c9e47ea](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c9e47ea71d2d737d2d72f27de75c53d2eec515d7)]
+
+
+
 <a name="1.2.1"></a>
 ## 1.2.1 (2022-02-01)
 
