@@ -101,6 +101,23 @@ The config above will only persist the `nested.data` property in `sessionStorage
 
 It will also execute the `beforeRestore` and `afterRestore` hooks respectively _before_ and _after_ hydration.
 
+### Usage with Nuxt
+
+You can use Nuxt's [`Cookies`](https://v3.nuxtjs.org/docs/usage/cookies/) and `useCookie` to define a `storage` to persist your stores with SSR.
+
+```ts
+import { defineStore } from 'pinia';
+
+export const useUserStore = defineStore('ssr', {
+  persist: {
+    storage: {
+      getItem: (key) => { return useCookie(key, { encode: x => x, decode: x => x }).value },
+      setItem: (key, value) => { useCookie(key, { encode: x => x, decode: x => x }).value = value },
+    },
+  },
+})
+```
+
 ## ⚠️ Limitations
 
 ### __References do not persist__
