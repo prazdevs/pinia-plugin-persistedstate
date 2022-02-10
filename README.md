@@ -62,7 +62,7 @@ export const useStore = defineStore(
 In case you want to configure how the data should be persisted, `persist` can take options:
 
 - `key: string` : Key to use in storage (defaults to the current store id).
-- `storage` : Storage like object to persist state to. Must have `getItem`, `setItem` and `removeItem` methods (defaults to `localStorage`).
+- `storage` : Storage like object to persist state to. Must have `getItem` and `setItem` methods (defaults to `localStorage`).
 - `paths: Array<string>` : Array of dot-notation paths to partially persist the state, `[]` means no state is persisted (defaults to `undefined` and persists the whole state).
 - `overwrite: boolean` : Whether you want to ovewrite the initial state on hydration (defaults to `false` and [patches](https://pinia.esm.dev/api/interfaces/pinia._StoreWithState.html#patch) the state).
 - `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from localstorage.
@@ -137,7 +137,7 @@ To get around this you can use the `afterRestore` hook to reformat the data as n
 
 ### __Storage must be synchronous__
 
-When providing a `storage` option, all methods (`getItem`, `setItem`, `removeItem`) must be synchronous. This is due to Pinia's state subscription (`$subscribe`) being synchronous (like mutations). 
+When providing a `storage` option, all methods (`getItem`, `setItem`) must be synchronous. This is due to Pinia's state subscription (`$subscribe`) being synchronous (like mutations). 
 
 If you want to add asynchronous behaviours (such as async storages), you can try [subscribing to actions (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions). Actions are made for asynchronous tasks and provide proper error handling.
 
