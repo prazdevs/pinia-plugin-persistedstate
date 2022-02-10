@@ -2,7 +2,7 @@ import type { PiniaPluginContext } from 'pinia'
 
 import pick from './pick'
 
-export type StorageLike = Pick<Storage, 'getItem' | 'removeItem' | 'setItem'>
+export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
 
 export interface PersistedStateOptions {
   /**
@@ -57,8 +57,6 @@ declare module 'pinia' {
  */
 export default function (context: PiniaPluginContext): void {
   const { options: { persist }, store } = context
-
-  const t = typeof store
 
   if (!persist) return
 
