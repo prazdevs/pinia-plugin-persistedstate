@@ -64,7 +64,6 @@ In case you want to configure how the data should be persisted, `persist` can ta
 - `key: string` : Key to use in storage (defaults to the current store id).
 - `storage` : Storage like object to persist state to. Must have `getItem` and `setItem` methods (defaults to `localStorage`).
 - `paths: Array<string>` : Array of dot-notation paths to partially persist the state, `[]` means no state is persisted (defaults to `undefined` and persists the whole state).
-- `overwrite: boolean` : Whether you want to ovewrite the initial state on hydration (defaults to `false` and [patches](https://pinia.esm.dev/api/interfaces/pinia._StoreWithState.html#patch) the state).
 - `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from localstorage.
 - `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from localstorage.
 
@@ -87,7 +86,6 @@ export const useStore = defineStore('main', {
     key: 'storekey',
     storage: window.sessionStorage,
     paths: ['nested.data'],
-    overwrite: true,
     beforeRestore: (context) => {
       console.log('Before hydration...')
     },
@@ -97,7 +95,7 @@ export const useStore = defineStore('main', {
   },
 })
 ```
-The config above will only persist the `nested.data` property in `sessionStorage` under `storekey` and will overwrite the state on hydration.
+The config above will only persist the `nested.data` property in `sessionStorage` under `storekey`.
 
 It will also execute the `beforeRestore` and `afterRestore` hooks respectively _before_ and _after_ hydration.
 
