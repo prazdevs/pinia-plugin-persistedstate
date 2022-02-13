@@ -101,6 +101,17 @@ It will also execute the `beforeRestore` and `afterRestore` hooks respectively _
 
 ### Usage with Nuxt
 
+Declare a [Nuxt Plugin](https://v3.nuxtjs.org/docs/directory-structure/plugins) to add the plugin to Pinia.
+
+```ts
+import PiniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { defineNuxtPlugin } from '#app'
+
+export default defineNuxtPlugin(nuxtApp => {
+  nuxtApp.$pinia.use(PiniaPluginPersistedstate)
+})
+```
+
 You can use Nuxt's [`Cookies`](https://v3.nuxtjs.org/docs/usage/cookies/) and `useCookie` to define a `storage` to persist your stores with SSR.
 
 ```ts
