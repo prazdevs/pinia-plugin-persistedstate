@@ -1,8 +1,13 @@
-import type { PiniaPluginContext } from 'pinia'
+import type { PiniaPluginContext, StateTree } from 'pinia'
 
 import pick from './pick'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
+
+export interface Serializer {
+  serialize: (value: StateTree) => string
+  deserialize: (value: string) => StateTree
+}
 
 export interface PersistedStateOptions {
   /**
@@ -28,6 +33,12 @@ export interface PersistedStateOptions {
    * @default false
    */
   overwrite?: boolean
+
+  /**
+   * Serializer to use
+   * @default { serialize: JSON.stringify, deserialize: JSON.parse }
+   */
+  serialize?: Serializer
 
   /**
    * Hook called before state is hydrated from storage.
@@ -70,6 +81,10 @@ export default function PiniaPersistedState(context: PiniaPluginContext): void {
     overwrite = false,
     beforeRestore = null,
     afterRestore = null,
+    serialize = {
+      serialize: JSON.stringify,
+      deserialize: JSON.parse,
+    } as Serializer,
   } = typeof persist != 'boolean' ? persist : {}
 
   beforeRestore?.(context)
@@ -77,7 +92,7 @@ export default function PiniaPersistedState(context: PiniaPluginContext): void {
   try {
     const fromStorage = storage.getItem(key)
     if (fromStorage) {
-      const storageState = JSON.parse(fromStorage)
+      const storageState = serialize.deserialize(fromStorage)
       if (overwrite) store.$state = storageState
       else store.$patch(storageState)
     }
@@ -89,7 +104,7 @@ export default function PiniaPersistedState(context: PiniaPluginContext): void {
     try {
       const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-      storage.setItem(key, JSON.stringify(toStore))
+      storage.setItem(key, serialize.serialize(toStore))
     } catch (_error) {}
   })
 }
