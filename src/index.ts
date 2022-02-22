@@ -55,8 +55,11 @@ declare module 'pinia' {
 /**
  * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
  */
-export default function (context: PiniaPluginContext): void {
-  const { options: { persist }, store } = context
+export default function PiniaPersistedState(context: PiniaPluginContext): void {
+  const {
+    options: { persist },
+    store,
+  } = context
 
   if (!persist) return
 
@@ -74,18 +77,17 @@ export default function (context: PiniaPluginContext): void {
   try {
     const fromStorage = storage.getItem(key)
     if (fromStorage) {
-      if (overwrite) store.$state = JSON.parse(fromStorage)
-      else store.$patch(JSON.parse(fromStorage))
+      const storageState = JSON.parse(fromStorage)
+      if (overwrite) store.$state = storageState
+      else store.$patch(storageState)
     }
   } catch (_error) {}
 
   afterRestore?.(context)
 
-  store.$subscribe((_mutation: unknown, state: unknown) => {
+  store.$subscribe((_mutation, state) => {
     try {
-      const toStore = Array.isArray(paths)
-        ? pick(state, paths)
-        : state
+      const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
       storage.setItem(key, JSON.stringify(toStore))
     } catch (_error) {}
