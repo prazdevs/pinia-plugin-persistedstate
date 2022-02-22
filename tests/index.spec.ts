@@ -1,4 +1,4 @@
-import { setActivePinia, createPinia, defineStore } from 'pinia'
+import { setActivePinia, createPinia, defineStore, StateTree } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
@@ -21,9 +21,13 @@ beforeEach(() => {
   Object.defineProperty(window, 'localStorage', {
     value: {
       getItem: vi.fn(key => state[key]),
-      setItem: vi.fn((key, value) => { state[key] = value }),
+      setItem: vi.fn((key, value) => {
+        state[key] = value
+      }),
       removeItem: vi.fn(key => delete state[key]),
-      clear: vi.fn(() => { state = {} }),
+      clear: vi.fn(() => {
+        state = {}
+      }),
     },
   })
 
@@ -103,11 +107,9 @@ describe('default settings', () => {
 })
 
 describe('setup function syntax', () => {
-  const useStore = defineStore(
-    key,
-    () => ({ lorem: ref('') }),
-    { persist: true },
-  )
+  const useStore = defineStore(key, () => ({ lorem: ref('') }), {
+    persist: true,
+  })
 
   it('persists store in localStorage', async () => {
     //* arrange
@@ -237,7 +239,9 @@ describe('w/ storage', () => {
   let stored: Record<string, string>
   const storage: StorageLike = {
     getItem: vi.fn(key => stored[key]),
-    setItem: vi.fn((key, value) => { stored[key] = value }),
+    setItem: vi.fn((key, value) => {
+      stored[key] = value
+    }),
   }
 
   const useStore = defineStore(key, {
@@ -293,8 +297,12 @@ describe('w/ overwrite', () => {
 })
 
 describe('w/ hooks', () => {
-  const beforeRestore = vi.fn(ctx => { ctx.store.before = 'before' })
-  const afterRestore = vi.fn(ctx => { ctx.store.after = 'after' })
+  const beforeRestore = vi.fn(ctx => {
+    ctx.store.before = 'before'
+  })
+  const afterRestore = vi.fn(ctx => {
+    ctx.store.after = 'after'
+  })
   const useStore = defineStore(key, {
     state: () => ({
       lorem: '',
@@ -319,4 +327,37 @@ describe('w/ hooks', () => {
     expect(afterRestore).toHaveBeenCalled()
     expect(store.after).toEqual('after')
   })
+})
+
+describe('w/ serializer', () => {
+  const serializer = vi.fn<[StateTree], string>(value => JSON.stringify(value))
+  const deserializer = vi.fn<[string], StateTree>(value => JSON.parse(value))
+  const useStore = defineStore(key, {
+    state: () => ({
+      lorem: '',
+    }),
+    persist: {
+      serialize: {
+        serialize: serializer,
+        deserialize: deserializer,
+      },
+    },
+  })
+
+  it('Initializes Correctly', async () => {
+    //* arrange
+    const initial = { lorem: 'ipsum' }
+    initializeLocalStorage(key, initial)
+
+    //* act
+    await nextTick()
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('ipsum')
+    expect(deserializer).toHaveBeenCalledWith(localStorage.getItem(key))
+    expect(deserializer).toHaveReturnedWith(initial)
+  })
+
+  it.todo('Serializes Correctly')
 })
