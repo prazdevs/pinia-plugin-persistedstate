@@ -367,7 +367,7 @@ describe('w/ serializer', () => {
     const useStore = defineStore(key, {
       state: () => initial,
       actions: {
-        update() {
+        update () {
           this.lorem = 'dolor'
         },
       },
