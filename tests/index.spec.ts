@@ -330,24 +330,24 @@ describe('w/ hooks', () => {
 })
 
 describe('w/ serializer', () => {
-  const serializer = vi.fn<[StateTree], string>(value => JSON.stringify(value))
-  const deserializer = vi.fn<[string], StateTree>(value => JSON.parse(value))
-  const useStore = defineStore(key, {
-    state: () => ({
-      lorem: '',
-    }),
-    persist: {
-      serialize: {
-        serialize: serializer,
-        deserialize: deserializer,
-      },
-    },
-  })
-
   it('Initializes Correctly', async () => {
     //* arrange
     const initial = { lorem: 'ipsum' }
     initializeLocalStorage(key, initial)
+
+    const deserializer = vi.fn<[string], StateTree>(value => JSON.parse(value))
+
+    const useStore = defineStore(key, {
+      state: () => ({
+        lorem: '',
+      }),
+      persist: {
+        serialize: {
+          serialize: JSON.stringify,
+          deserialize: deserializer,
+        },
+      },
+    })
 
     //* act
     await nextTick()
@@ -359,5 +359,35 @@ describe('w/ serializer', () => {
     expect(deserializer).toHaveReturnedWith(initial)
   })
 
-  it.todo('Serializes Correctly')
+  it('Serializes Correctly', async () => {
+    //* arrange
+    const initial = { lorem: 'ipsum' }
+    initializeLocalStorage(key, initial)
+    const serializer = vi.fn<[StateTree], string>(s => JSON.stringify(s))
+    const useStore = defineStore(key, {
+      state: () => initial,
+      actions: {
+        update() {
+          this.lorem = 'dolor'
+        },
+      },
+      persist: {
+        serialize: {
+          serialize: serializer,
+          deserialize: JSON.parse,
+        },
+      },
+    })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+    store.update()
+    await nextTick()
+
+    //* assert
+    expect(store.lorem).toEqual('dolor')
+    expect(serializer).toHaveBeenCalledWith({ lorem: 'dolor' })
+    expect(serializer).toHaveReturnedWith(localStorage.getItem(key))
+  })
 })
