@@ -89,5 +89,5 @@ export default function (context: PiniaPluginContext): void {
 
       storage.setItem(key, JSON.stringify(toStore))
     } catch (_error) {}
-  })
+  }, { detached: true })
 }
