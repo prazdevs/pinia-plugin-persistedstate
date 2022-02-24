@@ -1,4 +1,8 @@
-import type { PiniaPluginContext } from 'pinia'
+import type {
+  PiniaPluginContext,
+  StateTree,
+  SubscriptionCallbackMutation,
+} from 'pinia'
 
 import pick from './pick'
 
@@ -81,13 +85,14 @@ export default function (context: PiniaPluginContext): void {
 
   afterRestore?.(context)
 
-  store.$subscribe((_mutation: unknown, state: unknown) => {
-    try {
-      const toStore = Array.isArray(paths)
-        ? pick(state, paths)
-        : state
+  store.$subscribe(
+    (_mutation: SubscriptionCallbackMutation<StateTree>, state: StateTree) => {
+      try {
+        const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-      storage.setItem(key, JSON.stringify(toStore))
-    } catch (_error) {}
-  }, { detached: true })
+        storage.setItem(key, JSON.stringify(toStore))
+      } catch (_error) {}
+    },
+    { detached: true },
+  )
 }
