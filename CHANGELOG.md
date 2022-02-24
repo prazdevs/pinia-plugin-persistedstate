@@ -1,6 +1,14 @@
 # Changelog
 
 
+<a name="1.2.3"></a>
+## 1.2.3 (2022-02-24)
+
+### Changed
+
+- 🩹 subscribe to pinia state changes in detached mode. ([#24](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/24)) [[7d3c8e9](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/7d3c8e99a73c46a54825f6e532f9aedb462e04bb)]
+
+
 <a name="1.2.2"></a>
 ## 1.2.2 (2022-02-10)
 
@@ -11,7 +19,6 @@
 ### Miscellaneous
 
 - 📝 add nuxt usage docs [[c9e47ea](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c9e47ea71d2d737d2d72f27de75c53d2eec515d7)]
-
 
 
 <a name="1.2.1"></a>
