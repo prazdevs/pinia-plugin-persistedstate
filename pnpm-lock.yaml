@@ -3,8 +3,8 @@ lockfileVersion: 5.3
 specifiers:
   '@prazdevs/eslint-config-typescript': ^3.1.0
   '@size-limit/preset-small-lib': ^7.0.8
-  '@vitest/ui': ^0.5.3
-  '@vue/composition-api': ^1.4.6
+  '@vitest/ui': ^0.5.5
+  '@vue/composition-api': ^1.4.7
   bumpp: ^7.1.1
   c8: ^7.11.0
   eslint: 8.9.0
@@ -14,7 +14,7 @@ specifiers:
   tsup: ^5.11.13
   typescript: ^4.5.5
   vite: ^2.8.4
-  vitest: ^0.5.3
+  vitest: ^0.5.5
   vue: ^3.2.31
   vue-demi: ^0.12.1
   vue2: npm:vue@^2.6.14
@@ -22,20 +22,20 @@ specifiers:
 devDependencies:
   '@prazdevs/eslint-config-typescript': 3.1.0_eslint@8.9.0+typescript@4.5.5
   '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
-  '@vitest/ui': 0.5.3
-  '@vue/composition-api': 1.4.6_vue@3.2.31
+  '@vitest/ui': 0.5.5
+  '@vue/composition-api': 1.4.7_vue@3.2.31
   bumpp: 7.1.1
   c8: 7.11.0
   eslint: 8.9.0
   happy-dom: 2.41.0
-  pinia: 2.0.11_e3bbdf3f6734520ceacc2713caa5584d
+  pinia: 2.0.11_99638d05026a1327cb908a6d4dccf6b1
   size-limit: 7.0.8
   tsup: 5.11.13_typescript@4.5.5
   typescript: 4.5.5
   vite: 2.8.4
-  vitest: 0.5.3_c18abc161fa74046c4e4c772046a8f3d
+  vitest: 0.5.5_69801f542aa6a9c86a231237d016b96d
   vue: 3.2.31
-  vue-demi: 0.12.1_0c8d2fbcfa191d2c47c336e7a7117e42
+  vue-demi: 0.12.1_6029426d27de2d1951ecc378ed93068e
   vue2: /vue/2.6.14
 
 packages:
@@ -383,8 +383,8 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/ui/0.5.3:
-    resolution: {integrity: sha512-8iicYgYLEPj31XpHkU8/X0w6kSLcf+b4EjJj02iF4VF3aWmomxG5DWnCxrx6B7ipb90XWgoaAwkU8Gy5YSdkOQ==}
+  /@vitest/ui/0.5.5:
+    resolution: {integrity: sha512-zPM+a9EHPR+nSXYJ8KaG8LGe5wwpq1cGZ3LcALFD5Q043rgK7xoTyqXnjgnw7rRbg2IixMyExpQ2X6WkBYxi0A==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -427,8 +427,8 @@ packages:
       '@vue/shared': 3.2.31
     dev: true
 
-  /@vue/composition-api/1.4.6_vue@3.2.31:
-    resolution: {integrity: sha512-UP359OJ0G0Zli603/i9fhXFmNtZUSrypSFyqClMxizp8ezlaMK2GCmHgy3qyrRnO/xjcDAx09vvXPwNFtxHPtQ==}
+  /@vue/composition-api/1.4.7_vue@3.2.31:
+    resolution: {integrity: sha512-IaYlkcVTDzdVNVJNhpi3k0f5jWoLg4GJduO1pxJzItKCfGtaHAc3mxvxYc6bbsPzZ1DkW2MYJYmiiAfaYbmhIg==}
     peerDependencies:
       vue: '>= 2.5 < 3'
     dependencies:
@@ -2393,7 +2393,7 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pinia/2.0.11_e3bbdf3f6734520ceacc2713caa5584d:
+  /pinia/2.0.11_99638d05026a1327cb908a6d4dccf6b1:
     resolution: {integrity: sha512-JzcmnMqu28PNWOjDgEDK6fTrIzX8eQZKPPKvu/fpHdpXARUj1xeVdFi3YFIMOWswqaBd589cpmAMdSSTryI9iw==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
@@ -2405,11 +2405,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@vue/composition-api': 1.4.6_vue@3.2.31
+      '@vue/composition-api': 1.4.7_vue@3.2.31
       '@vue/devtools-api': 6.0.11
       typescript: 4.5.5
       vue: 3.2.31
-      vue-demi: 0.12.1_0c8d2fbcfa191d2c47c336e7a7117e42
+      vue-demi: 0.12.1_6029426d27de2d1951ecc378ed93068e
     dev: true
 
   /pirates/4.0.5:
@@ -3056,8 +3056,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.5.3_c18abc161fa74046c4e4c772046a8f3d:
-    resolution: {integrity: sha512-tAV96lEUvycgiqsQKoQRjzXwDg+ae/R2jBLtt6MnFywOXbC9wYl+nRT9qT+d/+Mlw2B4dvVa9zuekY3emdcXJA==}
+  /vitest/0.5.5_69801f542aa6a9c86a231237d016b96d:
+    resolution: {integrity: sha512-oBKIXpFOGN7jDdK0MO4uWcB+UOPRyEJveB8XDx74XsFNbjGF7vHmHqwAomNE8MGtDW8hBKvSSbr58hibFiQc5Q==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
@@ -3077,7 +3077,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.5.3
+      '@vitest/ui': 0.5.5
       c8: 7.11.0
       chai: 4.3.6
       happy-dom: 2.41.0
@@ -3091,7 +3091,7 @@ packages:
       - stylus
     dev: true
 
-  /vue-demi/0.12.1_0c8d2fbcfa191d2c47c336e7a7117e42:
+  /vue-demi/0.12.1_6029426d27de2d1951ecc378ed93068e:
     resolution: {integrity: sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==}
     engines: {node: '>=12'}
     hasBin: true
@@ -3103,7 +3103,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@vue/composition-api': 1.4.6_vue@3.2.31
+      '@vue/composition-api': 1.4.7_vue@3.2.31
       vue: 3.2.31
     dev: true
 
