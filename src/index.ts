@@ -109,7 +109,7 @@ export default function PiniaPersistState (context: PiniaPluginContext): void {
       try {
         const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-        storage.setItem(key, JSON.stringify(toStore))
+        storage.setItem(key, serialize.serialize(toStore as StateTree))
       } catch (_error) {}
     },
     { detached: true },
