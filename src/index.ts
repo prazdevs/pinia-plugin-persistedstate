@@ -46,6 +46,11 @@ export interface PersistedStateOptions {
   afterRestore?: (context: PiniaPluginContext) => void
 }
 
+export type PersistedStateDefaultOptions = Pick<
+  PersistedStateOptions,
+  "storage" | "overwrite" | "beforeRestore" | "afterRestore"
+>;
+
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
     /**
@@ -59,18 +64,20 @@ declare module 'pinia' {
 /**
  * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
  */
-export default function (context: PiniaPluginContext): void {
+ export const createPiniaPluginPersistedstate =
+ (options: PersistedStateDefaultOptions = {}) =>
+ (context: PiniaPluginContext): void => {
   const { options: { persist }, store } = context
 
   if (!persist) return
 
   const {
-    storage = localStorage,
+    storage = options?.storage ?? localStorage,
     key = store.$id,
     paths = null,
-    overwrite = false,
-    beforeRestore = null,
-    afterRestore = null,
+    overwrite = options?.overwrite ?? false,
+    beforeRestore = options?.beforeRestore,
+    afterRestore = options?.afterRestore,
   } = typeof persist != 'boolean' ? persist : {}
 
   beforeRestore?.(context)
@@ -96,3 +103,6 @@ export default function (context: PiniaPluginContext): void {
     { detached: true },
   )
 }
+
+const piniaPluginPersistedState = createPiniaPluginPersistedstate()
+export default piniaPluginPersistedState
