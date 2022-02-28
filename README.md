@@ -29,6 +29,13 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 ```
 
+If you want to change the default options, you can use a factory function:
+```ts
+import { createPiniaPluginPersistedstate } from "pinia-plugin-persistedstate";
+
+pinia.use(createPiniaPluginPersistedstate({ storage: customStorage }));
+```
+
 ## 🚀 Usage
 
 You just need to add the `persist` option to the store you want to be persisted as follows:
