@@ -19,6 +19,7 @@
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
+    "prepare": "husky install",
     "release": "bumpp  -t -p -c \":bookmark: release v\"",
     "size": "size-limit",
     "test:ui": "vue-demi-switch 3 && vitest --ui",
@@ -41,6 +42,8 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "happy-dom": "^2.41.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "pinia": "^2.0.11",
     "prettier": "^2.5.1",
     "size-limit": "^7.0.8",
@@ -52,12 +55,13 @@
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@^2.6.14"
   },
-  "size-limit": [
-    {
-      "path": "dist/index.js",
-      "limit": "1 kB"
-    }
-  ],
+  "size-limit": [{
+    "path": "dist/index.js",
+    "limit": "1 kB"
+  }],
+  "lint-staged": {
+    "*.ts": "eslint --ext .ts --fix"
+  },
   "volta": {
     "node": "16.13.1"
   }
