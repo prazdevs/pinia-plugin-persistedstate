@@ -1,10 +1,10 @@
-function get (object: unknown, path: Array<string>): unknown {
+function get(object: unknown, path: Array<string>): unknown {
   return path.reduce((obj: Record<string, unknown>, p: string) => {
     return obj?.[p] as Record<string, unknown>
   }, object as Record<string, unknown>)
 }
 
-function set (object: unknown, path: Array<string>, val: unknown): unknown {
+function set(object: unknown, path: Array<string>, val: unknown): unknown {
   return (
     (path.slice(0, -1).reduce((obj: Record<string, unknown>, p: string) => {
       return !/^(__proto__)$/.test(p)
@@ -15,7 +15,7 @@ function set (object: unknown, path: Array<string>, val: unknown): unknown {
   )
 }
 
-export default function pick (object: unknown, paths: Array<string>): unknown {
+export default function pick(object: unknown, paths: Array<string>): unknown {
   return paths.reduce((substate: unknown, path: string) => {
     const pathArray = path.split('.')
     return set(substate, pathArray, get(object, pathArray))

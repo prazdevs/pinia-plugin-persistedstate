@@ -60,7 +60,10 @@ declare module 'pinia' {
  * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
  */
 export default function (context: PiniaPluginContext): void {
-  const { options: { persist }, store } = context
+  const {
+    options: { persist },
+    store,
+  } = context
 
   if (!persist) return
 

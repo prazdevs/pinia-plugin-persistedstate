@@ -21,9 +21,13 @@ beforeEach(() => {
   Object.defineProperty(window, 'localStorage', {
     value: {
       getItem: vi.fn(key => state[key]),
-      setItem: vi.fn((key, value) => { state[key] = value }),
+      setItem: vi.fn((key, value) => {
+        state[key] = value
+      }),
       removeItem: vi.fn(key => delete state[key]),
-      clear: vi.fn(() => { state = {} }),
+      clear: vi.fn(() => {
+        state = {}
+      }),
     },
   })
 
@@ -103,11 +107,9 @@ describe('default settings', () => {
 })
 
 describe('setup function syntax', () => {
-  const useStore = defineStore(
-    key,
-    () => ({ lorem: ref('') }),
-    { persist: true },
-  )
+  const useStore = defineStore(key, () => ({ lorem: ref('') }), {
+    persist: true,
+  })
 
   it('persists store in localStorage', async () => {
     //* arrange
@@ -237,7 +239,9 @@ describe('w/ storage', () => {
   let stored: Record<string, string>
   const storage: StorageLike = {
     getItem: vi.fn(key => stored[key]),
-    setItem: vi.fn((key, value) => { stored[key] = value }),
+    setItem: vi.fn((key, value) => {
+      stored[key] = value
+    }),
   }
 
   const useStore = defineStore(key, {
@@ -293,8 +297,12 @@ describe('w/ overwrite', () => {
 })
 
 describe('w/ hooks', () => {
-  const beforeRestore = vi.fn(ctx => { ctx.store.before = 'before' })
-  const afterRestore = vi.fn(ctx => { ctx.store.after = 'after' })
+  const beforeRestore = vi.fn(ctx => {
+    ctx.store.before = 'before'
+  })
+  const afterRestore = vi.fn(ctx => {
+    ctx.store.after = 'after'
+  })
   const useStore = defineStore(key, {
     state: () => ({
       lorem: '',
