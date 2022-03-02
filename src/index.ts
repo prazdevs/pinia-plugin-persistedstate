@@ -42,7 +42,7 @@ export interface PersistedStateOptions {
    * Serializer to use
    * @default { serialize: JSON.stringify, deserialize: JSON.parse }
    */
-  serialize?: Serializer
+  serializer?: Serializer
 
   /**
    * Hook called before state is hydrated from storage.
@@ -85,7 +85,7 @@ export default function PiniaPersistState(context: PiniaPluginContext): void {
     overwrite = false,
     beforeRestore = null,
     afterRestore = null,
-    serialize = {
+    serializer = {
       serialize: JSON.stringify,
       deserialize: JSON.parse,
     } as Serializer,
@@ -96,7 +96,7 @@ export default function PiniaPersistState(context: PiniaPluginContext): void {
   try {
     const fromStorage = storage.getItem(key)
     if (fromStorage) {
-      const storageState = serialize.deserialize(fromStorage)
+      const storageState = serializer.deserialize(fromStorage)
       if (overwrite) store.$state = storageState
       else store.$patch(storageState)
     }
@@ -109,7 +109,7 @@ export default function PiniaPersistState(context: PiniaPluginContext): void {
       try {
         const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-        storage.setItem(key, serialize.serialize(toStore as StateTree))
+        storage.setItem(key, serializer.serialize(toStore as StateTree))
       } catch (_error) {}
     },
     { detached: true },
