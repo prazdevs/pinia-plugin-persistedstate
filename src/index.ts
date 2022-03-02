@@ -9,7 +9,15 @@ import pick from './pick'
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
 
 export interface Serializer {
+  /**
+   * Serializes state into string before storing
+   * @default JSON.stringify
+   */
   serialize: (value: StateTree) => string
+  /**
+   * Deserializes string into state before hydrating
+   * @default JSON.parse
+   */
   deserialize: (value: string) => StateTree
 }
 
@@ -40,7 +48,6 @@ export interface PersistedStateOptions {
 
   /**
    * Serializer to use
-   * @default { serialize: JSON.stringify, deserialize: JSON.parse }
    */
   serializer?: Serializer
 
