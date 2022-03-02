@@ -1,4 +1,4 @@
-import { setActivePinia, createPinia, defineStore } from 'pinia'
+import { setActivePinia, createPinia, defineStore, StateTree } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
@@ -326,5 +326,61 @@ describe('w/ hooks', () => {
     expect(store.before).toEqual('before')
     expect(afterRestore).toHaveBeenCalled()
     expect(store.after).toEqual('after')
+  })
+})
+
+describe('w/ serializer', () => {
+  it('Initializes Correctly', async () => {
+    //* arrange
+    const initial = { lorem: 'ipsum' }
+    initializeLocalStorage(key, initial)
+
+    const deserializer = vi.fn<[string], StateTree>(value => JSON.parse(value))
+
+    const useStore = defineStore(key, {
+      state: () => ({
+        lorem: '',
+      }),
+      persist: {
+        serializer: {
+          serialize: JSON.stringify,
+          deserialize: deserializer,
+        },
+      },
+    })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('ipsum') // Keeping this here, because else I get `store` unused -> `useStore` unused
+    expect(deserializer).toHaveBeenCalledWith(localStorage.getItem(key))
+    expect(deserializer).toHaveReturnedWith(initial)
+  })
+
+  it('Serializes Correctly', async () => {
+    //* arrange
+    const initial = { lorem: 'ipsum' }
+    initializeLocalStorage(key, initial)
+    const serializer = vi.fn<[StateTree], string>(s => JSON.stringify(s))
+    const useStore = defineStore(key, {
+      state: () => initial,
+      persist: {
+        serializer: {
+          serialize: serializer,
+          deserialize: JSON.parse,
+        },
+      },
+    })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+    store.$patch({ lorem: 'dolor' })
+    await nextTick()
+
+    //* assert
+    expect(serializer).toHaveBeenCalledWith({ lorem: 'dolor' })
   })
 })

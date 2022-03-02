@@ -8,6 +8,11 @@ import pick from './pick'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
 
+export interface Serializer {
+  serialize: (value: StateTree) => string
+  deserialize: (value: string) => StateTree
+}
+
 export interface PersistedStateOptions {
   /**
    * Storage key to use.
@@ -32,6 +37,12 @@ export interface PersistedStateOptions {
    * @default false
    */
   overwrite?: boolean
+
+  /**
+   * Serializer to use
+   * @default { serialize: JSON.stringify, deserialize: JSON.parse }
+   */
+  serializer?: Serializer
 
   /**
    * Hook called before state is hydrated from storage.
@@ -59,7 +70,7 @@ declare module 'pinia' {
 /**
  * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
  */
-export default function (context: PiniaPluginContext): void {
+export default function PiniaPersistState(context: PiniaPluginContext): void {
   const {
     options: { persist },
     store,
@@ -74,6 +85,10 @@ export default function (context: PiniaPluginContext): void {
     overwrite = false,
     beforeRestore = null,
     afterRestore = null,
+    serializer = {
+      serialize: JSON.stringify,
+      deserialize: JSON.parse,
+    } as Serializer,
   } = typeof persist != 'boolean' ? persist : {}
 
   beforeRestore?.(context)
@@ -81,8 +96,9 @@ export default function (context: PiniaPluginContext): void {
   try {
     const fromStorage = storage.getItem(key)
     if (fromStorage) {
-      if (overwrite) store.$state = JSON.parse(fromStorage)
-      else store.$patch(JSON.parse(fromStorage))
+      const storageState = serializer.deserialize(fromStorage)
+      if (overwrite) store.$state = storageState
+      else store.$patch(storageState)
     }
   } catch (_error) {}
 
@@ -93,7 +109,7 @@ export default function (context: PiniaPluginContext): void {
       try {
         const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-        storage.setItem(key, JSON.stringify(toStore))
+        storage.setItem(key, serializer.serialize(toStore as StateTree))
       } catch (_error) {}
     },
     { detached: true },
