@@ -1,4 +1,4 @@
-import { setActivePinia, createPinia, defineStore, StateTree } from 'pinia'
+import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
@@ -330,57 +330,49 @@ describe('w/ hooks', () => {
 })
 
 describe('w/ serializer', () => {
-  it('Initializes Correctly', async () => {
+  it('deserializes', async () => {
     //* arrange
-    const initial = { lorem: 'ipsum' }
-    initializeLocalStorage(key, initial)
-
-    const deserializer = vi.fn<[string], StateTree>(value => JSON.parse(value))
-
+    initializeLocalStorage(key, { lorem: 'ipsum' })
+    const deserialize = vi.fn(JSON.parse)
     const useStore = defineStore(key, {
-      state: () => ({
-        lorem: '',
-      }),
+      state: () => ({ lorem: '' }),
       persist: {
         serializer: {
           serialize: JSON.stringify,
-          deserialize: deserializer,
+          deserialize,
         },
       },
     })
 
     //* act
     await nextTick()
-    const store = useStore()
+    useStore()
 
     //* assert
-    expect(store.lorem).toEqual('ipsum') // Keeping this here, because else I get `store` unused -> `useStore` unused
-    expect(deserializer).toHaveBeenCalledWith(localStorage.getItem(key))
-    expect(deserializer).toHaveReturnedWith(initial)
+    expect(deserialize).toHaveBeenCalledWith(localStorage.getItem(key))
+    expect(deserialize).toHaveReturnedWith({ lorem: 'ipsum' })
   })
 
-  it('Serializes Correctly', async () => {
+  it('deserializes', async () => {
     //* arrange
-    const initial = { lorem: 'ipsum' }
-    initializeLocalStorage(key, initial)
-    const serializer = vi.fn<[StateTree], string>(s => JSON.stringify(s))
+    const serialize = vi.fn(JSON.stringify)
     const useStore = defineStore(key, {
-      state: () => initial,
+      state: () => ({ lorem: 'ipsum' }),
       persist: {
         serializer: {
-          serialize: serializer,
+          serialize,
           deserialize: JSON.parse,
         },
       },
     })
+    const store = useStore()
 
     //* act
-    await nextTick()
-    const store = useStore()
-    store.$patch({ lorem: 'dolor' })
+    store.lorem = 'dolor'
     await nextTick()
 
     //* assert
-    expect(serializer).toHaveBeenCalledWith({ lorem: 'dolor' })
+    expect(serialize).toHaveBeenCalledWith({ lorem: 'dolor' })
+    expect(serialize).toHaveReturnedWith(localStorage.getItem(key))
   })
 })
