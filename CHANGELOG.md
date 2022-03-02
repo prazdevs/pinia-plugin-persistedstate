@@ -1,6 +1,18 @@
 # Changelog
 
 
+<a name="1.3.0"></a>
+## 1.3.0 (2022-03-02)
+
+### Added
+
+- ✨ add custom (de-)serializer ([#22](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/22)) [[f9313da](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/f9313da2b41a253211e5cb35d2e2c8776f357cf9)]
+- 🔊 update changelog [[c12422e](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c12422edb313658f13a2e2bbd8cedc4f929ee1a3)]
+
+### Miscellaneous
+
+- 💡 add example projects ([#30](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/30)) [[9500821](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/95008217c7450cf46929ca3803c750294eb79199)]
+
 <a name="1.2.3"></a>
 ## 1.2.3 (2022-02-24)
 
