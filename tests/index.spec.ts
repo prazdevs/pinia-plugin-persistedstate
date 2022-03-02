@@ -342,7 +342,7 @@ describe('w/ serializer', () => {
         lorem: '',
       }),
       persist: {
-        serialize: {
+        serializer: {
           serialize: JSON.stringify,
           deserialize: deserializer,
         },
@@ -354,7 +354,7 @@ describe('w/ serializer', () => {
     const store = useStore()
 
     //* assert
-    expect(store.lorem).toEqual('ipsum')
+    expect(store.lorem).toEqual('ipsum') // Keeping this here, because else I get `store` unused -> `useStore` unused
     expect(deserializer).toHaveBeenCalledWith(localStorage.getItem(key))
     expect(deserializer).toHaveReturnedWith(initial)
   })
@@ -366,13 +366,8 @@ describe('w/ serializer', () => {
     const serializer = vi.fn<[StateTree], string>(s => JSON.stringify(s))
     const useStore = defineStore(key, {
       state: () => initial,
-      actions: {
-        update() {
-          this.lorem = 'dolor'
-        },
-      },
       persist: {
-        serialize: {
+        serializer: {
           serialize: serializer,
           deserialize: JSON.parse,
         },
@@ -382,12 +377,10 @@ describe('w/ serializer', () => {
     //* act
     await nextTick()
     const store = useStore()
-    store.update()
+    store.$patch({ lorem: 'dolor' })
     await nextTick()
 
     //* assert
-    expect(store.lorem).toEqual('dolor')
     expect(serializer).toHaveBeenCalledWith({ lorem: 'dolor' })
-    expect(serializer).toHaveReturnedWith(localStorage.getItem(key))
   })
 })
