@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "latest",
+    "pinia": "latest",
+    "pinia-plugin-persistedstate": "latest"
+  },
+  "devDependencies": {
+    "nuxt3": "latest"
+  }
+}
