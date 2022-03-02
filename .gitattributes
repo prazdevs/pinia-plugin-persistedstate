@@ -1,2 +1,2 @@
-.husky/* linguist-vendored
-examples/* linguist-documentation
+.husky/** linguist-vendored
+examples/** linguist-documentation
