@@ -17,10 +17,11 @@
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
-    "release": "bumpp  -t -p -c \":bookmark: release v\"",
-    "size": "size-limit",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
+    "prepare": "husky install",
+    "release": "bumpp  -t -p -c \":bookmark: release v\"",
+    "size": "size-limit",
     "test:ui": "vue-demi-switch 3 && vitest --ui",
     "test:watch": "vue-demi-switch 3 && vitest --watch",
     "test:2": "vue-demi-switch 2 vue2 && vitest --run index",
@@ -33,28 +34,34 @@
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.1.0",
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@vitest/ui": "^0.5.5",
-    "@vue/composition-api": "^1.4.7",
+    "@vitest/ui": "^0.5.7",
+    "@vue/composition-api": "^1.4.9",
     "bumpp": "^7.1.1",
     "c8": "^7.11.0",
-    "eslint": "8.9.0",
+    "eslint": "8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "happy-dom": "^2.41.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "pinia": "^2.0.11",
+    "prettier": "^2.5.1",
     "size-limit": "^7.0.8",
     "tsup": "^5.11.13",
     "typescript": "^4.5.5",
     "vite": "^2.8.4",
-    "vitest": "^0.5.5",
+    "vitest": "^0.5.7",
     "vue": "^3.2.31",
     "vue-demi": "^0.12.1",
     "vue2": "npm:vue@^2.6.14"
   },
-  "size-limit": [
-    {
-      "path": "dist/index.js",
-      "limit": "1 kB"
-    }
-  ],
+  "size-limit": [{
+    "path": "dist/index.js",
+    "limit": "1 kB"
+  }],
+  "lint-staged": {
+    "*.ts": "eslint --ext .ts --fix"
+  },
   "volta": {
     "node": "16.13.1"
   }

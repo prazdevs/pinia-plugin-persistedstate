@@ -13,12 +13,7 @@ export default defineConfig({
       include: ['src/index.ts', 'src/pick.ts'],
     },
     deps: {
-      inline: [
-        'vue2',
-        '@vue/composition-api',
-        'vue-demi',
-        'pinia',
-      ],
+      inline: ['vue2', '@vue/composition-api', 'vue-demi', 'pinia'],
     },
   },
 })
