@@ -27,6 +27,7 @@
 - Configurable per Pinia store.
 - Still compatible with Vue 2 and 3.
 - No external dependencies.
+- Supports a custom serializer for advanced needs.
 - Super small (<1kB).
 
 ## ⚙️ Installing
