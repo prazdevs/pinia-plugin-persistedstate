@@ -27,7 +27,11 @@
 
 ## ⚙️ Installing
 
-1. Install with your favourite package manager (**pnpm**, npm, yarn).
+1. Install with your favourite package manager:
+    - **pnpm** : `pnpm i pinia-plugin-persistedstate`
+    - npm : `npm i pinia-plugin-persistedstate`
+    - yarn : `yarn add pinia-plugin-persistedstate`
+
 2. Add the plugin to pinia:
 ```ts
 import { createPinia } from 'pinia'
