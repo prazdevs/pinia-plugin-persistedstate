@@ -1,5 +1,7 @@
 <p align="center">
-  <img alt="" src="https://i.imgur.com/prUNzrf.png">
+
+![pinia-plugin-persistedstate logo](https://i.imgur.com/prUNzrf.png)
+
 </p>
 
 <p align="center">
@@ -10,11 +12,13 @@
 <p align="center">Configurable persistence and rehydration of Pinia stores.</p>
 
 <p align="center">
-  <img alt="" src="https://img.shields.io/github/package-json/v/prazdevs/pinia-plugin-persistedstate?style=flat&color=orange" />
-  <img alt="" src="https://img.shields.io/github/workflow/status/prazdevs/pinia-plugin-persistedstate/Build,%20lint%20and%20test?label=ci&logo=github">
-  <img alt="" src="https://img.shields.io/sonar/quality_gate/prazdevs_pinia-plugin-persistedstate?style=flat&logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io">
-  <img alt="" src="https://img.shields.io/codecov/c/github/prazdevs/pinia-plugin-persistedstate?logo=Codecov&token=BYLAJJOOLS">
-  <img alt="" src="https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat&color=blue" />
+
+[![npm](https://img.shields.io/github/package-json/v/prazdevs/pinia-plugin-persistedstate?style=flat&color=orange)](https://www.npmjs.com/package/pinia-plugin-persistedstate)
+[![CI](https://img.shields.io/github/workflow/status/prazdevs/pinia-plugin-persistedstate/Build,%20lint%20and%20test?label=ci&logo=github)](https://github.com/prazdevs/pinia-plugin-persistedstate/actions/workflows/push.yml)
+[![Quality](https://img.shields.io/sonar/quality_gate/prazdevs_pinia-plugin-persistedstate?style=flat&logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/project/overview?id=prazdevs_pinia-plugin-persistedstate)
+![Coverage](https://img.shields.io/codecov/c/github/prazdevs/pinia-plugin-persistedstate?logo=Codecov&token=BYLAJJOOLS)
+[![License](https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat&color=blue)](https://github.com/prazdevs/pinia-plugin-persistedstate/tree/HEAD/LICENSE)
+
 </p>
 
 ## ✨ Features
@@ -202,10 +206,10 @@ Want to add some feature? PRs are welcome!
 
 Feel free to contact me:
 
-- <a href="https://twitter.com/prazdevs"><img src="https://img.shields.io/twitter/follow/prazdevs?style=social" /></a>
-- <img alt="discord: PraZ#4184" src="https://img.shields.io/badge/Discord-PraZ%234184-darkgrey?labelColor=7289DA&logo=discord&logoColor=white&style=flat" />
+- [![twitter: @prazdevs](https://img.shields.io/twitter/follow/prazdevs?style=social)](https://twitter.com/prazdevs)
+- ![discord: PraZ#4184"](https://img.shields.io/badge/Discord-PraZ%234184-darkgrey?labelColor=7289DA&logo=discord&logoColor=white&style=flat)
 
 ## 📝 License
 
-Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).<br />
+Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).  
 This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENCE) license.
