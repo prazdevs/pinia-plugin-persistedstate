@@ -1,8 +1,8 @@
 import type { StateTree } from 'pinia'
 
-function get(state: StateTree, path: string[]): StateTree {
+function get(state: StateTree, path: string[]): unknown {
   return path.reduce((obj, p) => {
-    return obj?.[p] as StateTree
+    return obj?.[p]
   }, state)
 }
 
