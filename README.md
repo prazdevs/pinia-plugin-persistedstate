@@ -27,7 +27,7 @@
 
 ## ⚙️ Installing
 
-1. Install with your favourite package manager:
+1. Install with your favorite package manager:
 
    - **pnpm** : `pnpm i pinia-plugin-persistedstate`
    - npm : `npm i pinia-plugin-persistedstate`
@@ -78,8 +78,8 @@ In case you want to configure how the data should be persisted, `persist` can ta
 - `key: string` : Key to use in storage (defaults to the current store id).
 - `storage` : Storage like object to persist state to. Must have `getItem` and `setItem` methods (defaults to `localStorage`).
 - `paths: Array<string>` : Array of dot-notation paths to partially persist the state, `[]` means no state is persisted (defaults to `undefined` and persists the whole state).
-- `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from localstorage.
-- `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from localstorage.
+- `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from local storage.
+- `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from local storage.
 
 > The context passed to the hooks is the `PiniaPluginContext`. It exposes properties such as the current store. More infos [here](https://pinia.vuejs.org/core-concepts/plugins.html#introduction).
 
@@ -102,7 +102,7 @@ export const useStore = defineStore('main', {
     }
   },
   persist: {
-    key: 'storekey',
+    key: 'store-key',
     storage: window.sessionStorage,
     paths: ['nested.data'],
     beforeRestore: context => {
@@ -115,7 +115,7 @@ export const useStore = defineStore('main', {
 })
 ```
 
-The config above will only persist the `nested.data` property in `sessionStorage` under `storekey`.
+The config above will only persist the `nested.data` property in `sessionStorage` under `store-key`.
 
 It will also execute the `beforeRestore` and `afterRestore` hooks respectively _before_ and _after_ hydration.
 
@@ -189,7 +189,7 @@ To get around this you can use the `afterRestore` hook to reformat the data as n
 
 When providing a `storage` option, all methods (`getItem`, `setItem`) must be synchronous. This is due to Pinia's state subscription (`$subscribe`) being synchronous (like mutations).
 
-If you want to add asynchronous behaviours (such as async storages), you can try [subscribing to actions (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions). Actions are made for asynchronous tasks and provide proper error handling.
+If you want to add asynchronous behavior (such as async storages), you can try [subscribing to actions (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions). Actions are made for asynchronous tasks and provide proper error handling.
 
 ## 🤝 Contributing
 
@@ -205,7 +205,7 @@ Feel free to contact me:
 - <a href="https://twitter.com/prazdevs"><img src="https://img.shields.io/twitter/follow/prazdevs?style=social" /></a>
 - <img alt="discord: PraZ#4184" src="https://img.shields.io/badge/Discord-PraZ%234184-darkgrey?labelColor=7289DA&logo=discord&logoColor=white&style=flat" />
 
-## 📝 Licence
+## 📝 License
 
 Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).<br />
 This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENCE) license.
