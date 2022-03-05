@@ -14,6 +14,7 @@ export interface Serializer {
    * @default JSON.stringify
    */
   serialize: (value: StateTree) => string
+
   /**
    * Deserializes string into state before hydrating
    * @default JSON.parse
@@ -64,6 +65,11 @@ export interface PersistedStateOptions {
   afterRestore?: (context: PiniaPluginContext) => void
 }
 
+export type PersistedStateFactoryOptions = Pick<
+  PersistedStateOptions,
+  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore'
+>
+
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
     /**
@@ -74,51 +80,57 @@ declare module 'pinia' {
   }
 }
 
-/**
- * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
- */
-export default function PiniaPersistState(context: PiniaPluginContext): void {
-  const {
-    options: { persist },
-    store,
-  } = context
+export function createPersistedState(
+  factoryOptions: PersistedStateFactoryOptions = {},
+) {
+  return function (context: PiniaPluginContext): void {
+    const {
+      options: { persist },
+      store,
+    } = context
 
-  if (!persist) return
+    if (!persist) return
 
-  const {
-    storage = localStorage,
-    key = store.$id,
-    paths = null,
-    overwrite = false,
-    beforeRestore = null,
-    afterRestore = null,
-    serializer = {
-      serialize: JSON.stringify,
-      deserialize: JSON.parse,
-    } as Serializer,
-  } = typeof persist != 'boolean' ? persist : {}
+    const {
+      storage = factoryOptions.storage ?? localStorage,
+      beforeRestore = factoryOptions.beforeRestore ?? null,
+      afterRestore = factoryOptions.afterRestore ?? null,
+      serializer = factoryOptions.serializer ?? {
+        serialize: JSON.stringify,
+        deserialize: JSON.parse,
+      },
+      key = store.$id,
+      paths = null,
+      overwrite = false,
+    } = typeof persist != 'boolean' ? persist : {}
 
-  beforeRestore?.(context)
+    beforeRestore?.(context)
 
-  try {
-    const fromStorage = storage.getItem(key)
-    if (fromStorage) {
-      const storageState = serializer.deserialize(fromStorage)
-      if (overwrite) store.$state = storageState
-      else store.$patch(storageState)
-    }
-  } catch (_error) {}
+    try {
+      const fromStorage = storage.getItem(key)
+      if (fromStorage) {
+        const storageState = serializer.deserialize(fromStorage)
+        if (overwrite) store.$state = storageState
+        else store.$patch(storageState)
+      }
+    } catch (_error) {}
 
-  afterRestore?.(context)
+    afterRestore?.(context)
 
-  store.$subscribe(
-    (_mutation: SubscriptionCallbackMutation<StateTree>, state: StateTree) => {
-      try {
-        const toStore = Array.isArray(paths) ? pick(state, paths) : state
+    store.$subscribe(
+      (
+        _mutation: SubscriptionCallbackMutation<StateTree>,
+        state: StateTree,
+      ) => {
+        try {
+          const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-        storage.setItem(key, serializer.serialize(toStore as StateTree))
-      } catch (_error) {}
-    },
-    { detached: true },
-  )
+          storage.setItem(key, serializer.serialize(toStore as StateTree))
+        } catch (_error) {}
+      },
+      { detached: true },
+    )
+  }
 }
+
+export default createPersistedState()
