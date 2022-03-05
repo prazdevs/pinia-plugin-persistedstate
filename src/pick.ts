@@ -1,23 +1,24 @@
-function get(object: unknown, path: Array<string>): unknown {
-  return path.reduce((obj: Record<string, unknown>, p: string) => {
-    return obj?.[p] as Record<string, unknown>
-  }, object as Record<string, unknown>)
+import type { StateTree } from 'pinia'
+
+function get(state: StateTree, path: Array<string>): unknown {
+  return path.reduce((obj, p) => {
+    return obj?.[p]
+  }, state)
 }
 
-function set(object: unknown, path: Array<string>, val: unknown): unknown {
+function set(state: StateTree, path: Array<string>, val: unknown): StateTree {
   return (
-    (path.slice(0, -1).reduce((obj: Record<string, unknown>, p: string) => {
-      return !/^(__proto__)$/.test(p)
-        ? ((obj[p] = obj[p] || {}) as Record<string, unknown>)
-        : {}
-    }, object as Record<string, unknown>)[path[path.length - 1]] = val),
-    object
+    (path.slice(0, -1).reduce((obj, p) => {
+      if (!/^(__proto__)$/.test(p)) return (obj[p] = obj[p] || {})
+      else return {}
+    }, state)[path[path.length - 1]] = val),
+    state
   )
 }
 
-export default function pick(object: unknown, paths: Array<string>): unknown {
-  return paths.reduce((substate: unknown, path: string) => {
+export default function pick(baseState: StateTree, paths: string[]): StateTree {
+  return paths.reduce<StateTree>((substate, path) => {
     const pathArray = path.split('.')
-    return set(substate, pathArray, get(object, pathArray))
+    return set(substate, pathArray, get(baseState, pathArray))
   }, {})
 }
