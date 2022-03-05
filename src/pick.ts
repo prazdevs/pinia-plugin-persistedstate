@@ -1,12 +1,12 @@
 import type { StateTree } from 'pinia'
 
-function get(state: StateTree, path: string[]): unknown {
+function get(state: StateTree, path: Array<string>): unknown {
   return path.reduce((obj, p) => {
     return obj?.[p]
   }, state)
 }
 
-function set(state: StateTree, path: string[], val: unknown): StateTree {
+function set(state: StateTree, path: Array<string>, val: unknown): StateTree {
   return (
     (path.slice(0, -1).reduce((obj, p) => {
       if (!/^(__proto__)$/.test(p)) return (obj[p] = obj[p] || {})
