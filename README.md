@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="pinia-plugin-persistedstate logo" src="https://i.imgur.com/prUNzrf.png">
+  <img alt="" src="https://i.imgur.com/prUNzrf.png">
 </p>
 
 <p align="center">
