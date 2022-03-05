@@ -41,12 +41,6 @@ export interface PersistedStateOptions {
   paths?: Array<string>
 
   /**
-   * Overwrite initial state (patch otherwise).
-   * @default false
-   */
-  overwrite?: boolean
-
-  /**
    * Serializer to use
    */
   serializer?: Serializer
@@ -89,7 +83,6 @@ export default function PiniaPersistState(context: PiniaPluginContext): void {
     storage = localStorage,
     key = store.$id,
     paths = null,
-    overwrite = false,
     beforeRestore = null,
     afterRestore = null,
     serializer = {
@@ -103,9 +96,7 @@ export default function PiniaPersistState(context: PiniaPluginContext): void {
   try {
     const fromStorage = storage.getItem(key)
     if (fromStorage) {
-      const storageState = serializer.deserialize(fromStorage)
-      if (overwrite) store.$state = storageState
-      else store.$patch(storageState)
+      store.$patch(serializer.deserialize(fromStorage))
     }
   } catch (_error) {}
 
