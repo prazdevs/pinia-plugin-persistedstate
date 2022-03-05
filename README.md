@@ -152,6 +152,28 @@ export const useUserStore = defineStore('ssr', {
 })
 ```
 
+## 🔧 Factory function configuration
+
+Need to override default options? You can import and use `createPersistedState(options)`:
+
+```ts
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
+pinia.use(createPersistedState({
+  storage: sessionStorage,
+  beforeRestore: () => {},
+  afterRestore: () => {},
+  serializer: {
+    serialize: JSON.stringify,
+    deserialize: JSON.parse,
+  }
+}))
+```
+
+The options passed will be used in any store declaring `persist: true`. You can still override these defaults with per-store options.
+
 ## ⚠️ Limitations
 
 ### **References do not persist**
