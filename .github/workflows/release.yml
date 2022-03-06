@@ -49,12 +49,6 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Sonar scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           
       - name: Publish on NPM
         uses: JS-DevTools/npm-publish@v1
