@@ -46,15 +46,11 @@ jobs:
         run: pnpm coverage
 
       - name: Publish coverage
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Sonar scan
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        with:
+          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
           
       - name: Publish on NPM
         uses: JS-DevTools/npm-publish@v1
