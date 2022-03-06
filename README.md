@@ -125,32 +125,25 @@ It will also execute the `beforeRestore` and `afterRestore` hooks respectively _
 Declare a [Nuxt Plugin](https://v3.nuxtjs.org/docs/directory-structure/plugins) to add the plugin to Pinia.
 
 ```ts
-import PiniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { defineNuxtPlugin } from '#app'
+import { createNuxtPersistedState } from 'pinia-plugin-persistedstate'
+import { defineNuxtPlugin, useCookie } from '#app'
 
 export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.$pinia.use(PiniaPluginPersistedstate)
+  nuxtApp.$pinia.use(createNuxtPersistedState(useCookie))
 })
 ```
 
-You can use Nuxt's [`Cookies`](https://v3.nuxtjs.org/docs/usage/cookies/) and `useCookie` to define a `storage` to persist your stores with SSR.
+The plugin will use Nuxt's [`Cookies`](https://v3.nuxtjs.org/docs/usage/cookies/) and `useCookie` to define a `storage` to persist your stores with SSR.
 
 ```ts
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('ssr', {
-  persist: {
-    storage: {
-      getItem: key => {
-        return useCookie(key, { encode: x => x, decode: x => x }).value
-      },
-      setItem: (key, value) => {
-        useCookie(key, { encode: x => x, decode: x => x }).value = value
-      },
-    },
-  },
+  persist: true
 })
 ```
+
+> Warning: when using `createNuxtPersistedState`, overriding the `storage` option in the store definition will break server-side persistance/rehydration with `Cookies`.
 
 ## 🔧 Factory function configuration
 
@@ -172,6 +165,8 @@ pinia.use(createPersistedState({
 ```
 
 The options passed will be used in any store declaring `persist: true`. You can still override these defaults with per-store options.
+
+You can also override default options in Nuxt with `createNuxtPersistedState(useCookie, options)`.
 
 ## ⚠️ Limitations
 
