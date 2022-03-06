@@ -46,9 +46,11 @@ jobs:
         run: pnpm coverage
 
       - name: Publish coverage
-        uses: codecov/codecov-action@v2
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
           
       - name: Publish on NPM
         uses: JS-DevTools/npm-publish@v1
