@@ -1,4 +1,8 @@
 import type {
+  CookieOptions,
+  CookieRef,
+} from 'nuxt3/dist/app/composables/cookie'
+import type {
   PiniaPluginContext,
   StateTree,
   SubscriptionCallbackMutation,
@@ -64,6 +68,11 @@ export type PersistedStateFactoryOptions = Pick<
   'storage' | 'serializer' | 'afterRestore' | 'beforeRestore'
 >
 
+export type PersistedStateNuxtFactoryOptions = Omit<
+  PersistedStateFactoryOptions,
+  'storage'
+>
+
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
     /**
@@ -122,6 +131,29 @@ export function createPersistedState(
       { detached: true },
     )
   }
+}
+
+export function createNuxtPersistedState(
+  useCookie: <T>(key: string, opts: CookieOptions<T>) => CookieRef<T>,
+  factoryOptions?: PersistedStateNuxtFactoryOptions,
+): (context: PiniaPluginContext) => void {
+  return createPersistedState({
+    storage: {
+      getItem: key => {
+        return useCookie(key, {
+          encode: x => x as string,
+          decode: x => x,
+        }).value as string
+      },
+      setItem: (key, value) => {
+        useCookie(key, {
+          encode: x => x as string,
+          decode: x => x,
+        }).value = value
+      },
+    },
+    ...factoryOptions,
+  })
 }
 
 export default createPersistedState()
