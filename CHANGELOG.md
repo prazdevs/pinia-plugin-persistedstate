@@ -1,6 +1,15 @@
 # Changelog
 
 
+<a name="1.5.0"></a>
+## 1.5.0 (2022-03-06)
+
+### Added
+
+- ✨ add Nuxt factory function helper ([#40](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/40)) [[c7be40b](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c7be40b5e03f5a25196fdf78a8437d54a2da1fd4)]
+- 🔊 update changelog [[294b665](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/294b6658cd3d51eeb517ae5f344fa530f72b4be4)]
+
+
 <a name="1.4.0"></a>
 ## 1.4.0 (2022-03-06)
 
