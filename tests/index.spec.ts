@@ -2,7 +2,10 @@ import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
-import Plugin, { createPersistedState } from '../src/index'
+import Plugin, {
+  createPersistedState,
+  createNuxtPersistedState,
+} from '../src/index'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
@@ -455,5 +458,31 @@ describe('factory function', () => {
     expect(storage.setItem).toHaveBeenCalledOnce()
     expect(serializer.serialize).toHaveBeenCalledOnce()
     expect(serializer.deserialize).toHaveBeenCalledOnce()
+  })
+})
+
+describe('nuxt factory function', () => {
+  it('uses cookie composable', async () => {
+    //* arrange
+    const cookieRef = ref()
+    const useCookie = vi.fn(() => cookieRef)
+    const app = createApp({})
+    const pinia = createPinia()
+
+    //* act
+    pinia.use(createNuxtPersistedState(useCookie))
+    app.use(pinia)
+    setActivePinia(pinia)
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: true,
+    })
+    const store = useStore()
+    store.lorem = 'dolor'
+    await nextTick()
+
+    //* assert
+    expect(useCookie).toHaveBeenCalledTimes(2)
+    expect(cookieRef.value).toEqual('{"lorem":"dolor"}')
   })
 })
