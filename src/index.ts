@@ -110,9 +110,7 @@ export function createPersistedState(
 
     try {
       const fromStorage = storage.getItem(key)
-      if (fromStorage) {
-        store.$patch(serializer.deserialize(fromStorage))
-      }
+      if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
     } catch (_error) {}
 
     afterRestore?.(context)
