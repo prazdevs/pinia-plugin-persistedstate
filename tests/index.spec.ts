@@ -461,7 +461,7 @@ describe('factory function', () => {
   })
 })
 
-describe.only('nuxt factory function', () => {
+describe('nuxt factory function', () => {
   it('uses cookie composable', async () => {
     //* arrange
     const cookieRef = ref()
