@@ -2,7 +2,9 @@ import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
-import Plugin, { StorageLike } from '../src/index'
+import type { StorageLike } from '../src/types'
+
+import Plugin from '../src/index'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
@@ -144,7 +146,7 @@ describe('setup function syntax', () => {
 describe('w/ key', () => {
   const useStore = defineStore(key, {
     state: () => ({ lorem: '' }),
-    persist: { key: 'mock' },
+    persist: { name: 'mock' },
   })
 
   it('persists store in localStorage under given key', async () => {

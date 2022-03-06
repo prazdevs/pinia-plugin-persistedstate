@@ -1,68 +1,11 @@
 import type {
-  PiniaPluginContext,
-  StateTree,
-  SubscriptionCallbackMutation,
-} from 'pinia'
+  PersistGlobalOptions,
+  PersistStoreOptions,
+  PersistResolvedOptions,
+} from './types'
+import type { PiniaPlugin, PiniaPluginContext, StateTree } from 'pinia'
 
 import pick from './pick'
-
-export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
-
-export interface Serializer {
-  /**
-   * Serializes state into string before storing
-   * @default JSON.stringify
-   */
-  serialize: (value: StateTree) => string
-  /**
-   * Deserializes string into state before hydrating
-   * @default JSON.parse
-   */
-  deserialize: (value: string) => StateTree
-}
-
-export interface PersistedStateOptions {
-  /**
-   * Storage key to use.
-   * @default $store.id
-   */
-  key?: string
-
-  /**
-   * Where to store persisted state.
-   * @default localStorage
-   */
-  storage?: StorageLike
-
-  /**
-   * Dot-notation paths to partially save state.
-   * @default undefined
-   */
-  paths?: Array<string>
-
-  /**
-   * Overwrite initial state (patch otherwise).
-   * @default false
-   */
-  overwrite?: boolean
-
-  /**
-   * Serializer to use
-   */
-  serializer?: Serializer
-
-  /**
-   * Hook called before state is hydrated from storage.
-   * @default undefined
-   */
-  beforeRestore?: (context: PiniaPluginContext) => void
-
-  /**
-   * Hook called after state is hydrated from storage.
-   * @default undefined
-   */
-  afterRestore?: (context: PiniaPluginContext) => void
-}
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
@@ -70,55 +13,85 @@ declare module 'pinia' {
      * Persist store in storage.
      * @docs https://github.com/prazdevs/pinia-plugin-persistedstate.
      */
-    persist?: boolean | PersistedStateOptions
+    persist?: boolean | PersistStoreOptions
   }
 }
 
 /**
  * Pinia plugin to persist stores in a storage based on vuex-persistedstate.
  */
-export default function PiniaPersistState(context: PiniaPluginContext): void {
-  const {
-    options: { persist },
-    store,
-  } = context
-
-  if (!persist) return
-
-  const {
-    storage = localStorage,
-    key = store.$id,
-    paths = null,
-    overwrite = false,
-    beforeRestore = null,
-    afterRestore = null,
-    serializer = {
+export function PiniaPersistState(
+  gOptions: PersistGlobalOptions = {},
+): PiniaPlugin {
+  const opts: Required<PersistGlobalOptions> = {
+    ...gOptions,
+    prefix: 'pinia-',
+    overwrite: false,
+    serializer: {
       serialize: JSON.stringify,
       deserialize: JSON.parse,
-    } as Serializer,
-  } = typeof persist != 'boolean' ? persist : {}
-
-  beforeRestore?.(context)
-
-  try {
-    const fromStorage = storage.getItem(key)
-    if (fromStorage) {
-      const storageState = serializer.deserialize(fromStorage)
-      if (overwrite) store.$state = storageState
-      else store.$patch(storageState)
-    }
-  } catch (_error) {}
-
-  afterRestore?.(context)
-
-  store.$subscribe(
-    (_mutation: SubscriptionCallbackMutation<StateTree>, state: StateTree) => {
-      try {
-        const toStore = Array.isArray(paths) ? pick(state, paths) : state
-
-        storage.setItem(key, serializer.serialize(toStore as StateTree))
-      } catch (_error) {}
     },
-    { detached: true },
-  )
+    storage: localStorage,
+    beforeRestore: null,
+    afterRestore: null,
+  }
+
+  return function PiniaPersistedState(context: PiniaPluginContext): void {
+    const {
+      options: { persist },
+      store,
+    } = context
+
+    if (!persist) return
+
+    const {
+      storage = opts.storage,
+      name = store.$id,
+      paths = null,
+      overwrite = !!opts.overwrite,
+      beforeRestore = opts.beforeRestore,
+      afterRestore = opts.afterRestore,
+      serializer = opts.serializer,
+    } = typeof persist != 'boolean' ? persist : {}
+
+    const key = opts.prefix + name
+
+    const resolved: PersistResolvedOptions = {
+      key,
+      paths,
+      overwrite,
+      beforeRestore,
+      afterRestore,
+      serializer,
+      name,
+      prefix: opts.prefix,
+      storage,
+    }
+
+    beforeRestore?.(context, resolved)
+
+    try {
+      const fromStorage = storage.getItem(key)
+      if (fromStorage) {
+        const storageState = serializer.deserialize(fromStorage)
+        if (overwrite) store.$state = storageState
+        else store.$patch(storageState)
+      }
+    } catch (_error) {}
+
+    afterRestore?.(context, resolved)
+
+    store.$subscribe(
+      (_mutation, state) => {
+        try {
+          const toStore = Array.isArray(paths) ? pick(state, paths) : state
+
+          storage.setItem(key, serializer.serialize(toStore as StateTree))
+        } catch (_error) {}
+      },
+      { detached: true },
+    )
+  }
 }
+
+export default PiniaPersistState()
