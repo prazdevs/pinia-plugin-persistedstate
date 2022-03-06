@@ -1,6 +1,22 @@
 # Changelog
 
 
+<a name="1.4.0"></a>
+## 1.4.0 (2022-03-06)
+
+### Added
+
+- ✨ add factory function ([#39](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/39)) [[761a873](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/761a873b01bd1bf5045de8c7bb63ed28a12fa0a4)]
+
+### Breaking changes
+
+- 💥 remove overwrite option (never worked) [[b88713c](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/b88713c404f4062ddfbbfe550108876329df55d3)]
+
+### Miscellaneous
+
+- 🏷️ improve `pick` typings ([#36](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/36)) [[6d18bf7](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/6d18bf7c83668ca27722432a8beabd469c312bc4)]
+- 📝 add install command ([#34](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/34)) [[575b322](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/575b322a8630ddede9cc8fbf57d9fb841df6f49e)]
+
 <a name="1.3.0"></a>
 ## 1.3.0 (2022-03-02)
 
