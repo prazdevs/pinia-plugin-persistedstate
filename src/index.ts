@@ -24,7 +24,6 @@ export function PiniaPersistState(
   gOptions: PersistGlobalOptions = {},
 ): PiniaPlugin {
   const opts: Required<PersistGlobalOptions> = {
-    ...gOptions,
     prefix: 'pinia-',
     overwrite: false,
     serializer: {
@@ -34,7 +33,13 @@ export function PiniaPersistState(
     storage: localStorage,
     beforeRestore: null,
     afterRestore: null,
+    globalBeforeRestore: null,
+    globalAfterRestore: null,
+    ...gOptions,
   }
+
+  const globalAfterRestore = opts.globalAfterRestore
+  const globalBeforeRestore = opts.globalBeforeRestore
 
   return function PiniaPersistedState(context: PiniaPluginContext): void {
     const {
@@ -62,6 +67,8 @@ export function PiniaPersistState(
       overwrite,
       beforeRestore,
       afterRestore,
+      globalAfterRestore,
+      globalBeforeRestore,
       serializer,
       name,
       prefix: opts.prefix,
@@ -69,6 +76,7 @@ export function PiniaPersistState(
     }
 
     beforeRestore?.(context, resolved)
+    globalBeforeRestore?.(context, resolved)
 
     try {
       const fromStorage = storage.getItem(key)
@@ -76,10 +84,13 @@ export function PiniaPersistState(
         const storageState = serializer.deserialize(fromStorage)
         if (overwrite) store.$state = storageState
         else store.$patch(storageState)
+      } else {
+        storage.setItem(key, serializer.serialize(store.$state))
       }
     } catch (_error) {}
 
     afterRestore?.(context, resolved)
+    globalAfterRestore?.(context, resolved)
 
     store.$subscribe(
       (_mutation, state) => {

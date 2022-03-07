@@ -9,7 +9,7 @@ export interface PersistStoreOptions extends PersistBaseOptions {
 
   /**
    * Dot-notation paths to partially save state.
-   * @default undefined
+   * @default null
    */
-  paths?: Array<string> | undefined | null
+  paths?: Array<string> | null
 }

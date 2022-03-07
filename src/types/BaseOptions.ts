@@ -20,13 +20,13 @@ export interface PersistBaseOptions {
 
   /**
    * Hook called before state is hydrated from storage.
-   * @default undefined
+   * @default null
    */
   beforeRestore?: PersistHook | null
 
   /**
    * Hook called after state is hydrated from storage.
-   * @default undefined
+   * @default null
    */
   afterRestore?: PersistHook | null
 }
