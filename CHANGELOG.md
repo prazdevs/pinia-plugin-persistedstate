@@ -1,6 +1,14 @@
 # Changelog
 
 
+<a name="1.5.1"></a>
+## 1.5.1 (2022-03-08)
+
+### Fixed
+
+- 🐛 remove nuxt3 type dependency ([#45](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/45)) [[b475be5](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/b475be5068722dd48ea3ed4bbf39e98e3a510656)]
+
+
 <a name="1.5.0"></a>
 ## 1.5.0 (2022-03-06)
 
