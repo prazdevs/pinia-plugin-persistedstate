@@ -1,8 +1,4 @@
 import type {
-  CookieOptions,
-  CookieRef,
-} from 'nuxt3/dist/app/composables/cookie'
-import type {
   PiniaPluginContext,
   StateTree,
   SubscriptionCallbackMutation,
@@ -129,6 +125,16 @@ export function createPersistedState(
       { detached: true },
     )
   }
+}
+
+interface CookieOptions<T> {
+  decode: (value: string) => T
+  encode: (value: T) => string
+  [key: string]: unknown
+}
+
+interface CookieRef<T> {
+  value: T
 }
 
 export function createNuxtPersistedState(
