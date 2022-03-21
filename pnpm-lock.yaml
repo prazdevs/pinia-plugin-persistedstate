@@ -3,14 +3,14 @@ lockfileVersion: 5.3
 specifiers:
   '@prazdevs/eslint-config-typescript': ^3.1.0
   '@size-limit/preset-small-lib': ^7.0.8
-  '@vitest/ui': ^0.7.4
+  '@vitest/ui': ^0.7.7
   '@vue/composition-api': ^1.4.9
   bumpp: ^7.1.1
   c8: ^7.11.0
   eslint: 8.11.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.0.0
-  happy-dom: ^2.49.0
+  happy-dom: ^2.49.2
   husky: ^7.0.4
   lint-staged: ^12.3.7
   pinia: ^2.0.12
@@ -19,7 +19,7 @@ specifiers:
   tsup: ^5.12.1
   typescript: ^4.6.2
   vite: ^2.8.6
-  vitest: ^0.7.4
+  vitest: ^0.7.7
   vue: ^3.2.31
   vue-demi: ^0.12.4
   vue2: npm:vue@^2.6.14
@@ -27,14 +27,14 @@ specifiers:
 devDependencies:
   '@prazdevs/eslint-config-typescript': 3.1.0_eslint@8.11.0+typescript@4.6.2
   '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
-  '@vitest/ui': 0.7.4
+  '@vitest/ui': 0.7.7
   '@vue/composition-api': 1.4.9_vue@3.2.31
   bumpp: 7.1.1
   c8: 7.11.0
   eslint: 8.11.0
   eslint-config-prettier: 8.5.0_eslint@8.11.0
   eslint-plugin-prettier: 4.0.0_68edcf5670f37721baf5d2cac6124e4d
-  happy-dom: 2.49.0
+  happy-dom: 2.49.2
   husky: 7.0.4
   lint-staged: 12.3.7
   pinia: 2.0.12_07c15ec55bc00b109868cadfbbab2b86
@@ -43,7 +43,7 @@ devDependencies:
   tsup: 5.12.1_typescript@4.6.2
   typescript: 4.6.2
   vite: 2.8.6
-  vitest: 0.7.4_c4a06068f3e08f4bc5e949b22fdc16f0
+  vitest: 0.7.7_8e655cb3ed190087e5a2a5332d642d19
   vue: 3.2.31
   vue-demi: 0.12.4_ac2a42527c362575429f172d82b9d821
   vue2: /vue/2.6.14
@@ -393,8 +393,8 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/ui/0.7.4:
-    resolution: {integrity: sha512-FfUU1um8o+Cic44fTWxbGXv6sPMSiZxTysPxbR+2/K8t9+d0DzWsSa3lUjTRgiJQ1tiQpRP2sT4kkM/UO8XdzQ==}
+  /@vitest/ui/0.7.7:
+    resolution: {integrity: sha512-r+8w1AlUUWcHmAbNbm2wuhhtLqAL5EPtgE2MYCF3/7fjLJUkxRdox8fn/bwqAQGoPTRDOyhLdOZWlJUpk5VKcw==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -1795,8 +1795,8 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /happy-dom/2.49.0:
-    resolution: {integrity: sha512-mnPY9LmumUs8EmKyAQjutmFn/XzafvQeQ65w7MsZlHqG6OH3MratBzS0N4AAmuB3+F51KFUbUKNF763i3ZV19Q==}
+  /happy-dom/2.49.2:
+    resolution: {integrity: sha512-mZX4ojwi0ejrZ96Gh0CVYmFyGwMidF4RsSR+l7hSw4TVtucCdDp9EF7JmHyufU8dXHVLHXtrqFG2aTUOaiM8nw==}
     dependencies:
       css.escape: 1.5.1
       he: 1.2.0
@@ -3346,9 +3346,9 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.7.4_c4a06068f3e08f4bc5e949b22fdc16f0:
-    resolution: {integrity: sha512-6kyJ/YZJFVj/zEVVHFyvLvAZlbg05yAyJrk7oP+FOCFanGRYK7bBEz4qsIpNHxX+dlf5vRkbBDjpdXzGL7udeA==}
-    engines: {node: '>=14.14.0'}
+  /vitest/0.7.7_8e655cb3ed190087e5a2a5332d642d19:
+    resolution: {integrity: sha512-xU7BTB7T7GbcjFBdbZAAp/dIQUwn8bygI+cbw6Yq1oXj60oGRJ+nJ7AXvSOJyaHMTmglEoaqazyDGnCHJBXftw==}
+    engines: {node: '>=v14.19.1'}
     hasBin: true
     peerDependencies:
       '@vitest/ui': '*'
@@ -3367,10 +3367,10 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.7.4
+      '@vitest/ui': 0.7.7
       c8: 7.11.0
       chai: 4.3.6
-      happy-dom: 2.49.0
+      happy-dom: 2.49.2
       local-pkg: 0.4.1
       tinypool: 0.1.2
       tinyspy: 0.3.0
