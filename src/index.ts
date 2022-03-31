@@ -1,73 +1,13 @@
 import type {
-  PiniaPluginContext,
-  StateTree,
-  SubscriptionCallbackMutation,
-} from 'pinia'
+  PersistGlobalOpts,
+  PersistNuxtOpts,
+  PersistStoreOpts,
+  StorageLike,
+} from './opts'
+import type { PiniaPluginContext } from 'pinia'
 
-import pick from './pick'
-
-export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
-
-export interface Serializer {
-  /**
-   * Serializes state into string before storing
-   * @default JSON.stringify
-   */
-  serialize: (value: StateTree) => string
-
-  /**
-   * Deserializes string into state before hydrating
-   * @default JSON.parse
-   */
-  deserialize: (value: string) => StateTree
-}
-
-export interface PersistedStateOptions {
-  /**
-   * Storage key to use.
-   * @default $store.id
-   */
-  key?: string
-
-  /**
-   * Where to store persisted state.
-   * @default localStorage
-   */
-  storage?: StorageLike
-
-  /**
-   * Dot-notation paths to partially save state.
-   * @default undefined
-   */
-  paths?: Array<string>
-
-  /**
-   * Serializer to use
-   */
-  serializer?: Serializer
-
-  /**
-   * Hook called before state is hydrated from storage.
-   * @default undefined
-   */
-  beforeRestore?: (context: PiniaPluginContext) => void
-
-  /**
-   * Hook called after state is hydrated from storage.
-   * @default undefined
-   */
-  afterRestore?: (context: PiniaPluginContext) => void
-}
-
-export type PersistedStateFactoryOptions = Pick<
-  PersistedStateOptions,
-  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore'
->
-
-export type PersistedStateNuxtFactoryOptions = Omit<
-  PersistedStateFactoryOptions,
-  'storage'
->
+import { UseCookie } from './opts/misc'
+import { ResolveOpts, pick } from './utils'
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
@@ -75,13 +15,11 @@ declare module 'pinia' {
      * Persist store in storage.
      * @docs https://github.com/prazdevs/pinia-plugin-persistedstate.
      */
-    persist?: boolean | PersistedStateOptions
+    persist?: boolean | PersistStoreOpts
   }
 }
 
-export function createPersistedState(
-  factoryOptions: PersistedStateFactoryOptions = {},
-) {
+export default function PersistState(globalOpts: PersistGlobalOpts = {}) {
   return function (context: PiniaPluginContext): void {
     const {
       options: { persist },
@@ -90,36 +28,29 @@ export function createPersistedState(
 
     if (!persist) return
 
-    const {
-      storage = factoryOptions.storage ?? localStorage,
-      beforeRestore = factoryOptions.beforeRestore ?? null,
-      afterRestore = factoryOptions.afterRestore ?? null,
-      serializer = factoryOptions.serializer ?? {
-        serialize: JSON.stringify,
-        deserialize: JSON.parse,
-      },
-      key = store.$id,
-      paths = null,
-    } = typeof persist != 'boolean' ? persist : {}
+    const opts = ResolveOpts(
+      globalOpts,
+      typeof persist != 'boolean' ? persist : {},
+      context,
+    )
 
-    beforeRestore?.(context)
+    opts.beforeRestore?.(context, opts)
 
     try {
-      const fromStorage = storage.getItem(key)
-      if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
+      const fromStorage = opts.storage.getItem(opts.name)
+      if (fromStorage) store.$patch(opts.serializer.deserialize(fromStorage))
     } catch (_error) {}
 
-    afterRestore?.(context)
+    opts.afterRestore?.(context, opts)
 
     store.$subscribe(
-      (
-        _mutation: SubscriptionCallbackMutation<StateTree>,
-        state: StateTree,
-      ) => {
+      (_mutation, state) => {
         try {
-          const toStore = Array.isArray(paths) ? pick(state, paths) : state
+          const toStore = Array.isArray(opts.paths)
+            ? pick(state, opts.paths)
+            : state
 
-          storage.setItem(key, serializer.serialize(toStore as StateTree))
+          opts.storage.setItem(opts.name, opts.serializer.serialize(toStore))
         } catch (_error) {}
       },
       { detached: true },
@@ -127,37 +58,43 @@ export function createPersistedState(
   }
 }
 
-interface CookieOptions<T> {
-  decode: (value: string) => T
-  encode: (value: T) => string
-  [key: string]: unknown
-}
-
-interface CookieRef<T> {
-  value: T
-}
-
-export function createNuxtPersistedState(
-  useCookie: <T>(key: string, opts: CookieOptions<T>) => CookieRef<T>,
-  factoryOptions?: PersistedStateNuxtFactoryOptions,
-): (context: PiniaPluginContext) => void {
-  return createPersistedState({
-    storage: {
-      getItem: key => {
-        return useCookie(key, {
-          encode: x => x as string,
-          decode: x => x,
-        }).value as string
-      },
-      setItem: (key, value) => {
-        useCookie(key, {
-          encode: x => x as string,
-          decode: x => x,
-        }).value = value
-      },
+export function createUseCookieStorage(useCookie: UseCookie): StorageLike {
+  return {
+    getItem: key => {
+      return useCookie<string>(key, {
+        encode: x => x,
+        decode: x => x,
+      }).value
     },
-    ...factoryOptions,
+    setItem: (key, value) => {
+      useCookie<string>(key, {
+        encode: x => x,
+        decode: x => x,
+      }).value = value
+    },
+  }
+}
+
+export function NuxtPersistState(
+  useCookie: UseCookie,
+  globalOpts?: PersistNuxtOpts,
+): (context: PiniaPluginContext) => void {
+  return PersistState({
+    storage: createUseCookieStorage(useCookie),
+    ...globalOpts,
   })
 }
 
-export default createPersistedState()
+export type {
+  CookieOptions,
+  CookieRef,
+  PersistBaseOpts,
+  PersistGlobalOpts,
+  PersistHook,
+  PersistNuxtOpts,
+  PersistResolvedOpts,
+  PersistStoreOpts,
+  Serializer,
+  StorageLike,
+  UseCookie,
+} from './opts'

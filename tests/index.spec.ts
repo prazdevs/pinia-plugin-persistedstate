@@ -2,10 +2,7 @@ import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
-import Plugin, {
-  createPersistedState,
-  createNuxtPersistedState,
-} from '../src/index'
+import PersistState, { NuxtPersistState } from '../src/index'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
@@ -149,7 +146,7 @@ describe('default export', () => {
   describe('w/ key', () => {
     const useStore = defineStore(key, {
       state: () => ({ lorem: '' }),
-      persist: { key: 'mock' },
+      persist: { name: 'mock' },
     })
 
     it('persists store in localStorage under given key', async () => {
@@ -367,8 +364,8 @@ describe('factory function', () => {
   it('uses factory function options', async () => {
     //* arrange
     initializeLocalStorage(key, { lorem: 'ipsum' })
-    const afterRestore = vi.fn()
-    const beforeRestore = vi.fn()
+    const globalAfterRestore = vi.fn()
+    const globalBeforeRestore = vi.fn()
     const storage = {
       getItem: vi.fn(localStorage.getItem),
       setItem: vi.fn(localStorage.setItem),
@@ -382,9 +379,9 @@ describe('factory function', () => {
 
     //* act
     pinia.use(
-      createPersistedState({
-        afterRestore,
-        beforeRestore,
+      PersistState({
+        globalAfterRestore,
+        globalBeforeRestore,
         storage,
         serializer,
       }),
@@ -400,15 +397,15 @@ describe('factory function', () => {
     await nextTick()
 
     //* assert
-    expect(beforeRestore).toHaveBeenCalledOnce()
-    expect(afterRestore).toHaveBeenCalledOnce()
+    expect(globalAfterRestore).toHaveBeenCalledOnce()
+    expect(globalAfterRestore).toHaveBeenCalledOnce()
     expect(storage.getItem).toHaveBeenCalledOnce()
     expect(storage.setItem).toHaveBeenCalledOnce()
     expect(serializer.serialize).toHaveBeenCalledOnce()
     expect(serializer.deserialize).toHaveBeenCalledOnce()
   })
 
-  it('gets overriden by store options', async () => {
+  it('gets overridden by store options', async () => {
     //* arrange
     initializeLocalStorage(key, { lorem: 'ipsum' })
     const afterRestore = vi.fn()
@@ -424,9 +421,9 @@ describe('factory function', () => {
     const app = createApp({})
     const pinia = createPinia()
     pinia.use(
-      createPersistedState({
-        afterRestore: vi.fn(),
-        beforeRestore: vi.fn(),
+      PersistState({
+        globalAfterRestore: vi.fn(),
+        globalBeforeRestore: vi.fn(),
         storage: localStorage,
         serializer: {
           serialize: JSON.stringify,
@@ -470,7 +467,7 @@ describe('nuxt factory function', () => {
     const pinia = createPinia()
 
     //* act
-    pinia.use(createNuxtPersistedState(useCookie))
+    pinia.use(NuxtPersistState(useCookie))
     app.use(pinia)
     setActivePinia(pinia)
     const useStore = defineStore(key, {

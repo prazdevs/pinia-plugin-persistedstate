@@ -1,15 +1,34 @@
 # Changelog
 
+<a name="2.0.0"></a>
+
+## 2.0.0 (2022-03-08)
+
+### Added
+
+- Factory function for creating a storage from nuxt's `useCookie`
+- Added a Prefix
+
+### ⚠ Breaking changes 💥
+
+- Default Export is now the Factory Function
+- Renamed `key` to `name` in the store options
+- Added a prefix (old state will be lost)
+
+### Miscellaneous
+
+- Improved Factory Options
 
 <a name="1.5.1"></a>
+
 ## 1.5.1 (2022-03-08)
 
 ### Fixed
 
 - 🐛 remove nuxt3 type dependency ([#45](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/45)) [[b475be5](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/b475be5068722dd48ea3ed4bbf39e98e3a510656)]
 
-
 <a name="1.5.0"></a>
+
 ## 1.5.0 (2022-03-06)
 
 ### Added
@@ -17,8 +36,8 @@
 - ✨ add Nuxt factory function helper ([#40](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/40)) [[c7be40b](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c7be40b5e03f5a25196fdf78a8437d54a2da1fd4)]
 - 🔊 update changelog [[294b665](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/294b6658cd3d51eeb517ae5f344fa530f72b4be4)]
 
-
 <a name="1.4.0"></a>
+
 ## 1.4.0 (2022-03-06)
 
 ### Added
@@ -35,6 +54,7 @@
 - 📝 add install command ([#34](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/34)) [[575b322](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/575b322a8630ddede9cc8fbf57d9fb841df6f49e)]
 
 <a name="1.3.0"></a>
+
 ## 1.3.0 (2022-03-02)
 
 ### Added
@@ -47,14 +67,15 @@
 - 💡 add example projects ([#30](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/30)) [[9500821](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/95008217c7450cf46929ca3803c750294eb79199)]
 
 <a name="1.2.3"></a>
+
 ## 1.2.3 (2022-02-24)
 
 ### Changed
 
 - 🩹 subscribe to pinia state changes in detached mode. ([#24](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/24)) [[7d3c8e9](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/7d3c8e99a73c46a54825f6e532f9aedb462e04bb)]
 
-
 <a name="1.2.2"></a>
+
 ## 1.2.2 (2022-02-10)
 
 ### Changed
@@ -65,16 +86,16 @@
 
 - 📝 add nuxt usage docs [[c9e47ea](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c9e47ea71d2d737d2d72f27de75c53d2eec515d7)]
 
-
 <a name="1.2.1"></a>
+
 ## 1.2.1 (2022-02-01)
 
 ### Fixed
 
 - 🐛 extend DefineStoreOptionsBase ([#16](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/16)) [[e429a4e](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/e429a4e5e24ddf55950cb7580a7c6b0782d733c6)]
 
-
 <a name="1.2.0"></a>
+
 ## 1.2.0 (2022-01-29)
 
 ### Changed
@@ -85,24 +106,24 @@
 
 - 📝 add type persistence limitation and workaround [[aa52a70](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/aa52a7037905f1cc7121a2626cc6b5bbf751c94a)]
 
-
 <a name="1.1.0"></a>
+
 ## 1.1.0 (2022-01-23)
 
 ### Added
 
 - ✨ Add beforeRestore and afterRestore hooks [[fbba368](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fbba368c1ca13e06bfa024fd47781ff692406b7c)]
 
-
 <a name="1.0.3"></a>
+
 ## 1.0.3 (2021-12-25)
 
 ### Miscellaneous
 
 - ⚗️ move to vitest [[bc3c350](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/bc3c3508fc02610e6e11c58aa5adc1754edf2b95)]
 
-
 <a name="1.0.2"></a>
+
 ## 1.0.2 (2021-11-06)
 
 ### Added
@@ -119,16 +140,16 @@
 
 - 📝 fix typo in code example [[03c2fa1](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/03c2fa1e6f9cc3ca1b619f9da07155863e15f1dc)]
 
-
 <a name="1.0.1"></a>
+
 ## 1.0.1 (2021-10-30)
 
 ### Miscellaneous
 
 - 📝 add repository to package.json [[d027f60](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/d027f6061d98d307d8ecc845af619fdffbdad31c)]
 
-
 <a name="1.0.0"></a>
+
 ## 1.0.0 (2021-10-27)
 
 ### Changed
@@ -140,8 +161,8 @@
 - 📝 add documentation [[b6625df](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/b6625dfb2d84f8163f48ece27d921ed3bc3ce6ae)]
 - 🏷️ add jsdoc to types [[1520dc4](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/1520dc497b29391b47a335a95c5ca4037c0fff5c)]
 
-
 <a name="0.1.0"></a>
+
 ## 0.1.0 (2021-10-25)
 
 ### Added
