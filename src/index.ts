@@ -4,6 +4,7 @@ import type {
   SubscriptionCallbackMutation,
 } from 'pinia'
 
+import { normalizeOptions } from './normalize'
 import pick from './pick'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
@@ -91,16 +92,16 @@ export function createPersistedState(
     if (!persist) return
 
     const {
-      storage = factoryOptions.storage ?? localStorage,
-      beforeRestore = factoryOptions.beforeRestore ?? null,
-      afterRestore = factoryOptions.afterRestore ?? null,
-      serializer = factoryOptions.serializer ?? {
+      storage = localStorage,
+      beforeRestore = null,
+      afterRestore = null,
+      serializer = {
         serialize: JSON.stringify,
         deserialize: JSON.parse,
       },
       key = store.$id,
       paths = null,
-    } = typeof persist != 'boolean' ? persist : {}
+    } = normalizeOptions(persist, factoryOptions)
 
     beforeRestore?.(context)
 
