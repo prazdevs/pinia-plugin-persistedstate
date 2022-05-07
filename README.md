@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/pinia-plugin-persistedstate"><img alt="npm" src="https://img.shields.io/github/package-json/v/prazdevs/pinia-plugin-persistedstate?style=flat&color=orange" /></a>
   <a href="https://github.com/prazdevs/pinia-plugin-persistedstate/actions/workflows/push.yml"><img alt="CI" src="https://img.shields.io/github/workflow/status/prazdevs/pinia-plugin-persistedstate/Build,%20lint%20and%20test?label=ci&logo=github"></a>
-  <a href="https://codeclimate.com/github/prazdevs/pinia-plugin-persistedstate/test_coverage"><img src="https://img.shields.io/codeclimate/coverage/prazdevs/pinia-plugin-persistedstate?logo=codeclimate" alt="Coverage" /></a>
+<a href="https://app.codecov.io/gh/prazdevs/pinia-plugin-persistedstate"><img alt="Coverage" src="https://img.shields.io/codecov/c/github/prazdevs/pinia-plugin-persistedstate?logo=Codecov&logoColor=white&token=BYLAJJOOLS"></a>
   <a href="https://codeclimate.com/github/prazdevs/pinia-plugin-persistedstate/maintainability"><img src="https://img.shields.io/codeclimate/maintainability/prazdevs/pinia-plugin-persistedstate?logo=codeclimate" alt="Maintainability" /></a>
   <a href="https://github.com/prazdevs/pinia-plugin-persistedstate/tree/HEAD/LICENSE"><img alt="License" src="https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat&color=blue" /></a>
 </p>
