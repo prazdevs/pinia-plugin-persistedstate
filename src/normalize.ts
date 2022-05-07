@@ -1,14 +1,16 @@
 import type {
   PersistedStateOptions,
   PersistedStateFactoryOptions,
-} from './index'
+} from './types'
 
-const isObject = (v: unknown) => typeof v === 'object' && v !== null
+function isObject(v: unknown) {
+  return typeof v === 'object' && v !== null
+}
 
-export const normalizeOptions = (
+export function normalizeOptions(
   options: boolean | PersistedStateOptions | undefined,
   globalOptions: PersistedStateFactoryOptions,
-): PersistedStateOptions => {
+): PersistedStateOptions {
   options = isObject(options) ? options : Object.create(null)
 
   return new Proxy(options as object, {

@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 
-import pick from '../src/pick'
+import { pick } from '../src/pick'
 
 it('picks nested properties', () => {
   //* arrange

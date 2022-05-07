@@ -2,10 +2,11 @@ import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
-import Plugin, {
+import {
+  persistedState,
   createPersistedState,
   createNuxtPersistedState,
-} from '../src/index'
+} from '../src/plugin'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
@@ -39,7 +40,7 @@ describe('default export', () => {
   beforeEach(() => {
     const app = createApp({})
     const pinia = createPinia()
-    pinia.use(Plugin)
+    pinia.use(persistedState)
     app.use(pinia)
     setActivePinia(pinia)
   })

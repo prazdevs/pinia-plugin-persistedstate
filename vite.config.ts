@@ -10,10 +10,7 @@ export default defineConfig({
     silent: true,
     coverage: {
       reporter: ['lcov', 'text'],
-      include: ['src/index.ts', 'src/pick.ts'],
-    },
-    deps: {
-      inline: ['vue2', '@vue/composition-api', 'vue-demi', 'pinia'],
+      include: ['src/plugin.ts', 'src/pick.ts', 'src/normalize.ts'],
     },
   },
 })

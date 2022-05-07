@@ -16,7 +16,7 @@ function set(state: StateTree, path: Array<string>, val: unknown): StateTree {
   )
 }
 
-export default function pick(baseState: StateTree, paths: string[]): StateTree {
+export function pick(baseState: StateTree, paths: string[]): StateTree {
   return paths.reduce<StateTree>((substate, path) => {
     const pathArray = path.split('.')
     return set(substate, pathArray, get(baseState, pathArray))
