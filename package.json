@@ -65,6 +65,6 @@
     "*.ts": "eslint --ext .ts --fix"
   },
   "volta": {
-    "node": "16.13.1"
+    "node": "18.1.0"
   }
 }
