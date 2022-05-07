@@ -39,9 +39,7 @@ jobs:
         run: pnpm coverage
 
       - name: Publish coverage
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        uses: codecov/codecov-action@v2
         with:
-          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
+          token: ${{ secrets.CODECOV_TOKEN }}
         
