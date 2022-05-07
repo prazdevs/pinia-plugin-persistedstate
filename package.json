@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "build": "rimraf dist && tsup src/index.ts --dts --format cjs,esm",
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
@@ -46,6 +46,7 @@
     "lint-staged": "^12.4.1",
     "pinia": "^2.0.14",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "size-limit": "^7.0.8",
     "tsup": "^5.12.7",
     "typescript": "^4.6.4",
