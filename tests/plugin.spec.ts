@@ -280,6 +280,28 @@ describe('default export', () => {
       expect(store.lorem).toEqual('ipsum')
       expect(storage.getItem).toHaveBeenCalled()
     })
+
+    it('catches storage.get errors', () => {
+      //* arrange
+      storage.getItem.mockImplementationOnce(() => {
+        throw new Error('get_error')
+      })
+
+      //* assert
+      expect(() => useStore()).not.toThrow()
+    })
+
+    it('catches storage.set errors', () => {
+      //* arrange
+      storage.setItem.mockImplementationOnce(() => {
+        throw new Error('set_error')
+      })
+
+      //* assert
+      expect(() => {
+        useStore().lorem = 'fail'
+      }).not.toThrow()
+    })
   })
 
   describe('w/ hooks', () => {
