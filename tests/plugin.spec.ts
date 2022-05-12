@@ -361,7 +361,7 @@ describe('default export', () => {
       expect(deserialize).toHaveReturnedWith({ lorem: 'ipsum' })
     })
 
-    it('deserializes', async () => {
+    it('serializes', async () => {
       //* arrange
       const serialize = vi.fn(JSON.stringify)
       const useStore = defineStore(key, {
