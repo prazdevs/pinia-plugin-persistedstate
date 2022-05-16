@@ -10,6 +10,6 @@
     "pinia-plugin-persistedstate": "latest"
   },
   "devDependencies": {
-    "nuxt3": "latest"
+    "nuxt": "rc"
   }
 }
