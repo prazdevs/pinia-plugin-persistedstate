@@ -68,15 +68,15 @@ export function createNuxtPersistedState(
   return createPersistedState({
     storage: {
       getItem: key => {
-        return useCookie(key, {
-          encode: x => x as string,
-          decode: x => x,
-        }).value as string
+        return useCookie<string>(key, {
+          encode: encodeURIComponent,
+          decode: decodeURIComponent,
+        }).value
       },
       setItem: (key, value) => {
-        useCookie(key, {
-          encode: x => x as string,
-          decode: x => x,
+        useCookie<string>(key, {
+          encode: encodeURIComponent,
+          decode: decodeURIComponent,
         }).value = value
       },
     },
