@@ -1,4 +1,9 @@
 import type {
+  PersistedStateFactoryOptions,
+  PersistedStateNuxtFactoryOptions,
+  UseCookie,
+} from './types'
+import type {
   PiniaPluginContext,
   StateTree,
   SubscriptionCallbackMutation,
@@ -6,12 +11,6 @@ import type {
 
 import { normalizeOptions } from './normalize'
 import { pick } from './pick'
-import {
-  CookieOptions,
-  CookieRef,
-  PersistedStateFactoryOptions,
-  PersistedStateNuxtFactoryOptions,
-} from './types'
 
 export function createPersistedState(
   factoryOptions: PersistedStateFactoryOptions = {},
@@ -62,21 +61,23 @@ export function createPersistedState(
 }
 
 export function createNuxtPersistedState(
-  useCookie: <T>(key: string, opts: CookieOptions<T>) => CookieRef<T>,
+  useCookie: UseCookie,
   factoryOptions?: PersistedStateNuxtFactoryOptions,
 ): (context: PiniaPluginContext) => void {
   return createPersistedState({
     storage: {
       getItem: key => {
-        return useCookie<string>(key, {
+        return useCookie(key, {
           encode: encodeURIComponent,
           decode: decodeURIComponent,
+          ...factoryOptions?.cookieOptions,
         }).value
       },
       setItem: (key, value) => {
-        useCookie<string>(key, {
+        useCookie(key, {
           encode: encodeURIComponent,
           decode: decodeURIComponent,
+          ...factoryOptions?.cookieOptions,
         }).value = value
       },
     },
