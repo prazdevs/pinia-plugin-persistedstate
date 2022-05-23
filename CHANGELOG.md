@@ -1,6 +1,28 @@
 # Changelog
 
 
+<a name="1.6.0"></a>
+## 1.6.0 (2022-05-23)
+
+### Added
+
+- ✨ add cookieOptions ([#68](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/68)) [[3620cb6](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/3620cb6b84c593b186a4d321ea5d642d30dd287e)]
+
+
+<a name="1.5.2"></a>
+## 1.5.2 (2022-05-16)
+
+### Changed
+
+- ♻️ refactor file organization [[bff0aac](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/bff0aac50daacfef5ca763cc52199f802596f90b)]
+- ♻️ add normalizeOptions ([#59](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/59)) [[822b754](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/822b7541fc0a0a8bb750a3cf64a1c36200591c81)]
+[cf9b2a9](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/cf9b2a9382b742bfe23e518171574755fc100fd9)]
+
+### Fixed
+
+- 🐛 fix nuxt cookie encoding ([#66](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/66)) [[3312d55](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/3312d55c7a05d7f01959a3953a6ad9ed561b00ac)]
+
+
 <a name="1.5.1"></a>
 ## 1.5.1 (2022-03-08)
 
