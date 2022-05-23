@@ -1,16 +1,23 @@
 import { PiniaPluginContext, StateTree } from 'pinia'
 
+interface CookieOptions<T> {
+  decode?(value: string): T
+  encode?(value: T): string
+  domain?: string
+  expires?: Date
+  httpOnly?: boolean
+  maxAge?: number
+  sameSite?: boolean | 'lax' | 'strict' | 'none'
+  secure?: boolean
+  default?: () => T | { value: T }
+}
+
+export type UseCookie<T = string> = (
+  name: string,
+  opts?: CookieOptions<T>,
+) => { value: T }
+
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
-
-export interface CookieOptions<T> {
-  decode: (value: string) => T
-  encode: (value: T) => string
-  [key: string]: unknown
-}
-
-export interface CookieRef<T> {
-  value: T
-}
 
 export interface Serializer {
   /**
@@ -71,4 +78,4 @@ export type PersistedStateFactoryOptions = Pick<
 export type PersistedStateNuxtFactoryOptions = Omit<
   PersistedStateFactoryOptions,
   'storage'
->
+> & { cookieOptions?: CookieOptions<string> }
