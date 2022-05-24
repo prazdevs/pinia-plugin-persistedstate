@@ -1,5 +1,7 @@
 import { PiniaPluginContext, StateTree } from 'pinia'
 
+import type { Ref } from 'vue'
+
 interface CookieOptions<T> {
   decode?(value: string): T
   encode?(value: T): string
@@ -9,7 +11,7 @@ interface CookieOptions<T> {
   maxAge?: number
   sameSite?: boolean | 'lax' | 'strict' | 'none'
   secure?: boolean
-  default?: () => T | { value: T }
+  default?: () => T | Ref<T>
 }
 
 export type UseCookie<T = string> = (
