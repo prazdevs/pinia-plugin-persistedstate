@@ -1,5 +1,13 @@
 import { setActivePinia, createPinia, defineStore } from 'pinia'
-import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
+import {
+  afterEach,
+  describe,
+  beforeEach,
+  it,
+  expect,
+  vi,
+  beforeAll,
+} from 'vitest'
 import { createApp, nextTick, ref, Vue2, isVue2, install } from 'vue-demi'
 
 import {
@@ -7,7 +15,7 @@ import {
   createPersistedState,
   createNuxtPersistedState,
 } from '../src/plugin'
-import { initializeLocalStorage, readLocalStoage } from './utils'
+import { initializeLocalStorage, readLocalStorage } from './utils'
 
 const key = 'mock-store'
 
@@ -58,7 +66,7 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({})
+      expect(readLocalStorage(key)).toEqual({})
       expect(localStorage.setItem).not.toHaveBeenCalled()
     })
 
@@ -91,16 +99,19 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+      expect(readLocalStorage(key).state).toEqual({ lorem: 'ipsum' })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         key,
-        JSON.stringify({ lorem: 'ipsum' }),
+        JSON.stringify({ state: { lorem: 'ipsum' }, expiresAt: null }),
       )
     })
 
     it('rehydrates store from localStorage', async () => {
       //* arrange
-      initializeLocalStorage(key, { lorem: 'ipsum' })
+      initializeLocalStorage(key, {
+        state: { lorem: 'ipsum' },
+        expiresAt: null,
+      })
 
       //* act
       await nextTick()
@@ -126,16 +137,19 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+      expect(readLocalStorage(key).state).toEqual({ lorem: 'ipsum' })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         key,
-        JSON.stringify({ lorem: 'ipsum' }),
+        JSON.stringify({ state: { lorem: 'ipsum' }, expiresAt: null }),
       )
     })
 
     it('rehydrates store from localStorage', async () => {
       //* arrange
-      initializeLocalStorage(key, { lorem: 'ipsum' })
+      initializeLocalStorage(key, {
+        state: { lorem: 'ipsum' },
+        expiresAt: null,
+      })
 
       //* act
       await nextTick()
@@ -162,16 +176,19 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage('mock')).toEqual({ lorem: 'ipsum' })
+      expect(readLocalStorage('mock').state).toEqual({ lorem: 'ipsum' })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'mock',
-        JSON.stringify({ lorem: 'ipsum' }),
+        JSON.stringify({ state: { lorem: 'ipsum' }, expiresAt: null }),
       )
     })
 
     it('rehydrates store from localStorage under given key', async () => {
       //* arrange
-      initializeLocalStorage('mock', { lorem: 'ipsum' })
+      initializeLocalStorage('mock', {
+        state: { lorem: 'ipsum' },
+        expiresAt: null,
+      })
 
       //* act
       await nextTick()
@@ -210,15 +227,18 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({
+      expect(readLocalStorage(key).state).toEqual({
         lorem: 'ipsum',
         dolor: { consectetur: { adipiscing: 'elit' } },
       })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         key,
         JSON.stringify({
-          lorem: 'ipsum',
-          dolor: { consectetur: { adipiscing: 'elit' } },
+          state: {
+            lorem: 'ipsum',
+            dolor: { consectetur: { adipiscing: 'elit' } },
+          },
+          expiresAt: null,
         }),
       )
     })
@@ -226,8 +246,11 @@ describe('default export', () => {
     it('rehydrates store paths from localStorage', async () => {
       //* arrange
       initializeLocalStorage(key, {
-        lorem: 'ipsum',
-        dolor: { consectetur: { adipiscing: 'elit' } },
+        state: {
+          lorem: 'ipsum',
+          dolor: { consectetur: { adipiscing: 'elit' } },
+        },
+        expiresAt: null,
       })
 
       //* act
@@ -238,6 +261,114 @@ describe('default export', () => {
       expect(store.lorem).toEqual('ipsum')
       expect(store.dolor.consectetur.adipiscing).toEqual('elit')
       expect(localStorage.getItem).toHaveBeenCalledWith(key)
+    })
+  })
+
+  describe('w/ expiresIn', () => {
+    beforeEach(() => {
+      vi.useFakeTimers()
+    })
+
+    afterEach(() => {
+      vi.useRealTimers()
+    })
+
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: { key: 'mock', expiresIn: 600 },
+    })
+
+    it(`does not rehydrate store from localStorage with missing 'expiresIn'`, async () => {
+      //* arrange
+      const date = Date.now()
+      initializeLocalStorage('mock', {
+        invalidState: { lorem: 'ipsum' },
+      })
+      vi.setSystemTime(date + 300 * 1000)
+
+      //* act
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('')
+      expect(localStorage.getItem).toHaveBeenCalledWith('mock')
+    })
+
+    it(`does not rehydrate store from localStorage with invalid state`, async () => {
+      //* arrange
+      const date = Date.now()
+      initializeLocalStorage('mock', {
+        invalidState: { lorem: 'ipsum' },
+        expiresAt: date + 600 * 1000,
+      })
+      vi.setSystemTime(date + 300 * 1000)
+
+      //* act
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('')
+      expect(localStorage.getItem).toHaveBeenCalledWith('mock')
+    })
+
+    it('persists store in localStorage', async () => {
+      //* arrange
+      const store = useStore()
+      const date = Date.now()
+      vi.setSystemTime(date)
+
+      //* act
+      store.lorem = 'ipsum'
+      await nextTick()
+
+      //* assert
+      expect(readLocalStorage('mock').state).toEqual({ lorem: 'ipsum' })
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        'mock',
+        JSON.stringify({
+          state: { lorem: 'ipsum' },
+          expiresAt: date + 600 * 1000,
+        }),
+      )
+    })
+
+    it(`rehydrates store from localStorage when 'expiresIn' has not passed`, async () => {
+      //* arrange
+      const date = Date.now()
+      initializeLocalStorage('mock', {
+        state: { lorem: 'ipsum' },
+        expiresAt: date + 600 * 1000,
+      })
+      vi.setSystemTime(date + 300 * 1000)
+
+      //* act
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('ipsum')
+      expect(localStorage.getItem).toHaveBeenCalledWith('mock')
+    })
+
+    it(`does not rehydrate store from localStorage when 'expiresIn' has passed`, async () => {
+      //* arrange
+      const date = new Date(2022, 5, 20, 13, 15, 24)
+      vi.setSystemTime(date)
+      initializeLocalStorage('mock', {
+        state: { lorem: 'ipsum' },
+        expiresAt: date.getTime() + 600 * 1000,
+      })
+
+      //* act
+      vi.setSystemTime(date.getTime() + 601 * 1000)
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('')
+      expect(localStorage.getItem).toHaveBeenCalledWith('mock')
     })
   })
 
@@ -265,13 +396,15 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(stored[key]).toEqual('{"lorem":"ipsum"}')
+      expect(stored[key]).toEqual(
+        '{"state":{"lorem":"ipsum"},"expiresAt":null}',
+      )
       expect(storage.setItem).toHaveBeenCalled()
     })
 
     it('rehydrates from given storage', () => {
       //* arrange
-      stored = { 'mock-store': '{"lorem":"ipsum"}' }
+      stored = { 'mock-store': '{"state":{"lorem":"ipsum"},"expiresAt":null}' }
 
       //* act
       const store = useStore()
@@ -322,7 +455,10 @@ describe('default export', () => {
 
     it('runs hooks before and after hydration', async () => {
       //* arrange
-      initializeLocalStorage(key, { lorem: 'ipsum' })
+      initializeLocalStorage(key, {
+        state: { lorem: 'ipsum' },
+        expiresAt: null,
+      })
 
       //* act
       await nextTick()
@@ -340,7 +476,10 @@ describe('default export', () => {
   describe('w/ serializer', () => {
     it('deserializes', async () => {
       //* arrange
-      initializeLocalStorage(key, { lorem: 'ipsum' })
+      initializeLocalStorage(key, {
+        state: { lorem: 'ipsum' },
+        expiresAt: null,
+      })
       const deserialize = vi.fn(JSON.parse)
       const useStore = defineStore(key, {
         state: () => ({ lorem: '' }),
@@ -358,7 +497,10 @@ describe('default export', () => {
 
       //* assert
       expect(deserialize).toHaveBeenCalledWith(localStorage.getItem(key))
-      expect(deserialize).toHaveReturnedWith({ lorem: 'ipsum' })
+      expect(deserialize).toHaveReturnedWith({
+        state: { lorem: 'ipsum' },
+        expiresAt: null,
+      })
     })
 
     it('serializes', async () => {
@@ -380,7 +522,10 @@ describe('default export', () => {
       await nextTick()
 
       //* assert
-      expect(serialize).toHaveBeenCalledWith({ lorem: 'dolor' })
+      expect(serialize).toHaveBeenCalledWith({
+        state: { lorem: 'dolor' },
+        expiresAt: null,
+      })
       expect(serialize).toHaveReturnedWith(localStorage.getItem(key))
     })
   })
@@ -389,7 +534,7 @@ describe('default export', () => {
 describe('factory function', () => {
   it('uses factory function options', async () => {
     //* arrange
-    initializeLocalStorage(key, { lorem: 'ipsum' })
+    initializeLocalStorage(key, { state: { lorem: 'ipsum' }, expiresAt: null })
     const afterRestore = vi.fn()
     const beforeRestore = vi.fn()
     const storage = {
@@ -433,7 +578,7 @@ describe('factory function', () => {
 
   it('gets overriden by store options', async () => {
     //* arrange
-    initializeLocalStorage(key, { lorem: 'ipsum' })
+    initializeLocalStorage(key, { state: { lorem: 'ipsum' }, expiresAt: null })
     const afterRestore = vi.fn()
     const beforeRestore = vi.fn()
     const storage = {
@@ -506,6 +651,8 @@ describe('nuxt factory function', () => {
 
     //* assert
     expect(useCookie).toHaveBeenCalledTimes(2)
-    expect(cookieRef.value).toEqual('{"lorem":"dolor"}')
+    expect(cookieRef.value).toEqual(
+      '{"state":{"lorem":"dolor"},"expiresAt":null}',
+    )
   })
 })

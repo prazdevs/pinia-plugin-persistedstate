@@ -1,4 +1,5 @@
 import type {
+  LocalStore,
   PersistedStateFactoryOptions,
   PersistedStateNuxtFactoryOptions,
   UseCookie,
@@ -33,13 +34,23 @@ export function createPersistedState(
       },
       key = store.$id,
       paths = null,
+      expiresIn = null,
     } = normalizeOptions(persist, factoryOptions)
 
     beforeRestore?.(context)
 
     try {
       const fromStorage = storage.getItem(key)
-      if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
+
+      if (fromStorage) {
+        const localStore = serializer.deserialize(fromStorage)
+
+        const { expiresAt = null, state = null } = localStore
+        if ((expiresAt !== null && typeof expiresAt !== 'number') || !state)
+          throw Error('Invalid local store')
+
+        if (expiresAt === null || expiresAt >= Date.now()) store.$patch(state)
+      }
     } catch (_error) {}
 
     afterRestore?.(context)
@@ -50,9 +61,12 @@ export function createPersistedState(
         state: StateTree,
       ) => {
         try {
-          const toStore = Array.isArray(paths) ? pick(state, paths) : state
+          const toStore: LocalStore = {
+            state: Array.isArray(paths) ? pick(state, paths) : state,
+            expiresAt: expiresIn ? Date.now() + expiresIn * 1000 : null,
+          }
 
-          storage.setItem(key, serializer.serialize(toStore as StateTree))
+          storage.setItem(key, serializer.serialize(toStore))
         } catch (_error) {}
       },
       { detached: true },

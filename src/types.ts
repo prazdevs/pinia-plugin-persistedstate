@@ -21,6 +21,11 @@ export type UseCookie<T = string> = (
 
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
 
+export type LocalStore = {
+  state: StateTree
+  expiresAt: number | null
+}
+
 export interface Serializer {
   /**
    * Serializes state into string before storing
@@ -53,6 +58,12 @@ export interface PersistedStateOptions {
    * @default undefined
    */
   paths?: Array<string>
+
+  /**
+   * For how long to keep the state (seconds).
+   * @default undefined
+   */
+  expiresIn?: number
 
   /**
    * Serializer to use

@@ -79,6 +79,7 @@ In case you want to configure how the data should be persisted, `persist` can ta
 - `key: string` : Key to use in storage (defaults to the current store id).
 - `storage` : Storage like object to persist state to. Must have `getItem` and `setItem` methods (defaults to `localStorage`).
 - `paths: Array<string>` : Array of dot-notation paths to partially persist the state, `[]` means no state is persisted (defaults to `undefined` and persists the whole state).
+- `expiresIn: number` : Time in seconds, after which the state is considered invalid and not rehydrated.
 - `beforeRestore: (context) => void` : Hook executed (if set) _before_ restoring the state from local storage.
 - `afterRestore: (context) => void` : Hook executed (if set) _after_ restoring the state from local storage.
 
@@ -106,6 +107,7 @@ export const useStore = defineStore('main', {
     key: 'store-key',
     storage: window.sessionStorage,
     paths: ['nested.data'],
+    expiresIn: 600,
     beforeRestore: context => {
       console.log('Before hydration...')
     },
@@ -139,7 +141,7 @@ The plugin will use Nuxt's [`Cookies`](https://v3.nuxtjs.org/docs/usage/cookies/
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('ssr', {
-  persist: true
+  persist: true,
 })
 ```
 
@@ -153,15 +155,17 @@ Need to override default options? You can import and use `createPersistedState(o
 import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
-pinia.use(createPersistedState({
-  storage: sessionStorage,
-  beforeRestore: () => {},
-  afterRestore: () => {},
-  serializer: {
-    serialize: JSON.stringify,
-    deserialize: JSON.parse,
-  }
-}))
+pinia.use(
+  createPersistedState({
+    storage: sessionStorage,
+    beforeRestore: () => {},
+    afterRestore: () => {},
+    serializer: {
+      serialize: JSON.stringify,
+      deserialize: JSON.parse,
+    },
+  }),
+)
 ```
 
 The options passed will be used in any store declaring `persist: true`. You can still override these defaults with per-store options.
