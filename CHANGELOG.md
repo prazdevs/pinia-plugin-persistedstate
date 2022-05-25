@@ -1,6 +1,14 @@
 # Changelog
 
 
+<a name="1.6.1"></a>
+## 1.6.1 (2022-05-24)
+
+### Fixed
+
+- 🐛 fix cookiesOptions.default type ([#71](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/71)) [[02cac8a](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/02cac8a41e5317db6685a984bd27703b15b1157b)]
+
+
 <a name="1.6.0"></a>
 ## 1.6.0 (2022-05-23)
 
