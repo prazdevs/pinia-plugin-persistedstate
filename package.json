@@ -34,26 +34,26 @@
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.2.1",
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@vitest/ui": "^0.12.9",
+    "@vitest/ui": "^0.15.1",
     "@vue/composition-api": "^1.6.2",
-    "bumpp": "^7.1.1",
+    "bumpp": "^8.2.1",
     "c8": "^7.11.3",
-    "eslint": "8.16.0",
+    "eslint": "8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "happy-dom": "^4.0.1",
+    "happy-dom": "^5.3.1",
     "husky": "^8.0.1",
-    "lint-staged": "^12.4.1",
+    "lint-staged": "^13.0.2",
     "pinia": "^2.0.14",
-    "prettier": "^2.6.2",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "size-limit": "^7.0.8",
-    "tsup": "^5.12.8",
-    "typescript": "^4.6.4",
-    "vite": "^2.9.9",
-    "vitest": "^0.12.9",
-    "vue": "^3.2.36",
-    "vue-demi": "^0.12.5",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.12",
+    "vitest": "^0.15.1",
+    "vue": "^3.2.37",
+    "vue-demi": "^0.13.1",
     "vue2": "npm:vue@^2.6.14"
   },
   "size-limit": [
@@ -67,5 +67,12 @@
   },
   "volta": {
     "node": "18.1.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "vue": "3"
+      }
+    }
   }
 }
