@@ -38,21 +38,25 @@ export function createPersistedState(
     beforeRestore?.(context)
 
     try {
-      const fromStorage = storage.getItem(key)
-      if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
+      const fromStorage: unknown = storage.getItem(key)
+      if (fromStorage instanceof Promise) {
+        Promise.resolve(fromStorage).then(value => {
+          if (value) store.$patch(serializer.deserialize(value as string))
+        })
+      } else if (fromStorage)
+        store.$patch(serializer.deserialize(fromStorage as string))
     } catch (_error) {}
 
     afterRestore?.(context)
 
     store.$subscribe(
-      (
+      async (
         _mutation: SubscriptionCallbackMutation<StateTree>,
         state: StateTree,
       ) => {
         try {
           const toStore = Array.isArray(paths) ? pick(state, paths) : state
-
-          storage.setItem(key, serializer.serialize(toStore as StateTree))
+          await storage.setItem(key, serializer.serialize(toStore as StateTree))
         } catch (_error) {}
       },
       { detached: true },

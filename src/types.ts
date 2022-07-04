@@ -19,6 +19,11 @@ export type UseCookie<T = string> = (
   opts?: CookieOptions<T>,
 ) => { value: T }
 
+export type Storage = {
+  getItem(key: string): Promise<string> | string | null
+  setItem(key: string, value: string): Promise<void> | void
+}
+
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
 
 export interface Serializer {

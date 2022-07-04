@@ -304,6 +304,78 @@ describe('default export', () => {
     })
   })
 
+  describe('w/ async storage', () => {
+    let stored: Record<string, string>
+    const storage = {
+      getItem: vi.fn(key => Promise.resolve(stored[key])),
+      setItem: vi.fn((key, value) => {
+        return new Promise<void>(resolve => {
+          stored[key] = value
+          resolve()
+        })
+      }),
+    }
+
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: { storage },
+    })
+
+    it('persists to given storage', () => {
+      //* arrange
+      stored = {}
+      const store = useStore()
+
+      //* assert
+      expect.assertions(2)
+      store.$subscribe(() => {
+        expect(stored[key]).toEqual('{"lorem":"ipsum"}')
+        expect(storage.setItem).toHaveBeenCalled()
+      })
+
+      //* act
+      store.lorem = 'ipsum'
+    })
+
+    it('rehydrates from given storage', async () => {
+      //* arrange
+      stored = { 'mock-store': '{"lorem":"ipsum"}' }
+
+      //* act
+      const store = useStore()
+      expect.assertions(2)
+      await nextTick()
+
+      //* assert
+      store.$subscribe(() => {
+        expect(store.lorem).toEqual('ipsum')
+        expect(storage.getItem).toHaveBeenCalled()
+      })
+    })
+
+    it('catches storage.get errors', () => {
+      //* arrange
+      storage.getItem.mockImplementationOnce(() => {
+        throw new Error('get_error')
+      })
+
+      //* assert
+      expect(() => useStore()).not.toThrow()
+    })
+
+    it('catches storage.set errors', () => {
+      //* arrange
+      storage.setItem.mockImplementationOnce(() => {
+        throw new Error('set_error')
+      })
+
+      //* assert
+      expect(() => {
+        useStore().lorem = 'fail'
+      }).not.toThrow()
+    })
+  })
+
   describe('w/ hooks', () => {
     const beforeRestore = vi.fn(ctx => {
       ctx.store.before = 'before'
