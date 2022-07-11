@@ -408,6 +408,53 @@ describe('default export', () => {
       expect(store.after).toEqual('after')
     })
   })
+  describe('w/ hooks and async storage', () => {
+    let stored: Record<string, string>
+    const storage = {
+      getItem: vi.fn(key => Promise.resolve(stored[key])),
+      setItem: vi.fn((key, value) => {
+        return new Promise<void>(resolve => {
+          stored[key] = value
+          resolve()
+        })
+      }),
+    }
+
+    const beforeRestore = vi.fn(ctx => {
+      ctx.store.before = 'before'
+    })
+    const afterRestore = vi.fn(ctx => {
+      ctx.store.after = 'after'
+    })
+    const useStore = defineStore(key, {
+      state: () => ({
+        lorem: '',
+        before: '',
+        after: '',
+      }),
+      persist: { storage, beforeRestore, afterRestore },
+    })
+
+    it('runs hooks before and after hydration', async () => {
+      //* arrange
+      stored = { 'mock-store': '{"lorem":"ipsum"}' }
+
+      //* act
+      await nextTick()
+      const store = useStore()
+      expect.assertions(5)
+
+      await nextTick()
+      //* assert
+      store.$subscribe(() => {
+        expect(store.lorem).toEqual('ipsum')
+        expect(beforeRestore).toHaveBeenCalled()
+        expect(store.before).toEqual('before')
+        expect(afterRestore).toHaveBeenCalled()
+        expect(store.after).toEqual('after')
+      })
+    })
+  })
 
   describe('w/ serializer', () => {
     it('deserializes', async () => {
