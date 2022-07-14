@@ -3,6 +3,7 @@
   "version": "1.6.1",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "keywords": [
+    "pinia", 
     "pinia-plugin"
   ],
   "repository": "https://github.com/prazdevs/pinia-plugin-persistedstate.git",
@@ -11,11 +12,18 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup src/index.ts --dts --format cjs,esm",
+    "build": "rimraf dist && tsup",
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
