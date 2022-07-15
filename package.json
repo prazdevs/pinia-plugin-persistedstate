@@ -31,7 +31,7 @@
     "release": "bumpp  -t -p -c \":bookmark: release v\"",
     "test:ui": "vue-demi-switch 3 && vitest --ui",
     "test:watch": "vue-demi-switch 3 && vitest --watch",
-    "test:2": "vue-demi-switch 2 vue2 && vitest --run --silent tests/plugin",
+    "test:2": "vue-demi-switch 2.7 vue2 && vitest --run --silent tests/plugin",
     "test:3": "vue-demi-switch 3 && vitest --run",
     "test": "pnpm run test:2 && pnpm run test:3"
   },
@@ -41,7 +41,6 @@
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.2.1",
     "@vitest/ui": "^0.18.0",
-    "@vue/composition-api": "^1.7.0",
     "bumpp": "^8.2.1",
     "c8": "^7.11.3",
     "eslint": "8.19.0",
@@ -59,7 +58,7 @@
     "vitest": "^0.18.0",
     "vue": "^3.2.37",
     "vue-demi": "^0.13.4",
-    "vue2": "npm:vue@^2.6.14"
+    "vue2": "npm:vue@^2.7.5"
   },
   "lint-staged": {
     "*.ts": "eslint --ext .ts --fix"
