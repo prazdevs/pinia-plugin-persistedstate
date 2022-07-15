@@ -1,9 +1,9 @@
 {
   "name": "pinia-plugin-persistedstate",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "keywords": [
-    "pinia", 
+    "pinia",
     "pinia-plugin"
   ],
   "repository": "https://github.com/prazdevs/pinia-plugin-persistedstate.git",
