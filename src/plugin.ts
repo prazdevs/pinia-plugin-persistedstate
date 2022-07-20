@@ -42,12 +42,15 @@ export function createPersistedState(
       if (fromStorage instanceof Promise) {
         Promise.resolve(fromStorage).then(value => {
           if (value) store.$patch(serializer.deserialize(value as string))
+          afterRestore?.(context)
         })
-      } else if (fromStorage)
+      } else if (fromStorage) {
         store.$patch(serializer.deserialize(fromStorage as string))
-    } catch (_error) {}
-
-    afterRestore?.(context)
+        afterRestore?.(context)
+      }
+    } catch (_error) {
+      afterRestore?.(context)
+    }
 
     store.$subscribe(
       async (

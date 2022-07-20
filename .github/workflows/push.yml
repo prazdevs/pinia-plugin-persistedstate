@@ -41,6 +41,3 @@ jobs:
 
       - name: Test
         run: pnpm test
-
-      - name: Size
-        run: pnpm size

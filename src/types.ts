@@ -20,7 +20,7 @@ export type UseCookie<T = string> = (
 ) => { value: T }
 
 export type Storage = {
-  getItem(key: string): Promise<string> | string | null
+  getItem(key: string): Promise<string | null> | string | null
   setItem(key: string, value: string): Promise<void> | void
 }
 

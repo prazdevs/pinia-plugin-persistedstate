@@ -8,5 +8,11 @@
       "error",
       { "varsIgnorePattern": "^S$|^Store$" }
     ]
-  }
+  },
+  "ignorePatterns": [
+    "coverage",
+    "dist",
+    "examples",
+    "node_modules"
+  ]
 }

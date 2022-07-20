@@ -1,6 +1,14 @@
 # Changelog
 
 
+<a name="1.6.3"></a>
+## 1.6.2 (2022-07-15)
+
+### Miscellaneous
+
+- 📦 add exports map [[502fbf1](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/502fbf12fe6f248d38e3df79f79c5ffb7be33974)]
+
+
 <a name="1.6.1"></a>
 ## 1.6.1 (2022-05-24)
 

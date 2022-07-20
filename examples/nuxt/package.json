@@ -4,12 +4,10 @@
     "build": "nuxi build",
     "start": "node .output/server/index.mjs"
   },
-  "dependencies": {
+  "devDependencies": {
     "@pinia/nuxt": "latest",
     "pinia": "latest",
-    "pinia-plugin-persistedstate": "latest"
-  },
-  "devDependencies": {
+    "pinia-plugin-persistedstate": "latest",
     "nuxt": "rc"
   }
 }
