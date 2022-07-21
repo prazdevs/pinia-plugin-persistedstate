@@ -60,13 +60,13 @@ export function createPersistedState(
         try {
           const toStore = Array.isArray(paths) ? pick(state, paths) : state
           if (setItemPromise) {
-            setItemPromise = setItemPromise.then(() => {
-              return storage.setItem(key, serializer.serialize(toStore))
-            })
+            setItemPromise = setItemPromise.then(() =>
+              storage.setItem(key, serializer.serialize(toStore)),
+            )
           } else {
             const item = storage.setItem(key, serializer.serialize(toStore))
             if (item instanceof Promise) {
-              setItemPromise = Promise.resolve(item)
+              setItemPromise = item
             }
           }
         } catch (_error) {}
