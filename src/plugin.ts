@@ -51,15 +51,24 @@ export function createPersistedState(
     } catch (_error) {
       afterRestore?.(context)
     }
-
+    let setItemPromise: Promise<void> | null = null
     store.$subscribe(
-      async (
+      (
         _mutation: SubscriptionCallbackMutation<StateTree>,
         state: StateTree,
       ) => {
         try {
           const toStore = Array.isArray(paths) ? pick(state, paths) : state
-          await storage.setItem(key, serializer.serialize(toStore as StateTree))
+          if (setItemPromise) {
+            setItemPromise = setItemPromise.then(() => {
+              return storage.setItem(key, serializer.serialize(toStore))
+            })
+          } else {
+            const item = storage.setItem(key, serializer.serialize(toStore))
+            if (item instanceof Promise) {
+              setItemPromise = Promise.resolve(item)
+            }
+          }
         } catch (_error) {}
       },
       { detached: true },

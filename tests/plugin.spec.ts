@@ -337,6 +337,48 @@ describe('default export', () => {
       store.lorem = 'ipsum'
     })
 
+    it('persists to given storage taking care of race conditions', async () => {
+      vi.useFakeTimers()
+      stored = {}
+      //* arrange
+      const store = useStore()
+      const promises: Promise<void>[] = []
+
+      storage.setItem.mockImplementationOnce((key, value) => {
+        const promise = new Promise<void>(resolve =>
+          setTimeout(() => {
+            stored[key] = value
+            resolve()
+          }, 1000),
+        )
+        promises.push(promise)
+        return promise
+      })
+
+      //* act
+      store.lorem = 'ipsum'
+      await nextTick()
+
+      storage.setItem.mockImplementationOnce((key, value) => {
+        const promise = new Promise<void>(resolve => {
+          stored[key] = value
+          resolve()
+        })
+        promises.push(promise)
+        return promise
+      })
+
+      //* force second update with smaller timeout
+      store.lorem = 'after'
+      await nextTick()
+      vi.runAllTimers()
+      await nextTick()
+
+      await Promise.all(promises)
+      //* assert
+      expect(stored[key]).toEqual('{"lorem":"after"}')
+    })
+
     it('rehydrates from given storage', async () => {
       //* arrange
       stored = { 'mock-store': '{"lorem":"ipsum"}' }
@@ -423,9 +465,7 @@ describe('default export', () => {
     const beforeRestore = vi.fn(ctx => {
       ctx.store.before = 'before'
     })
-    const afterRestore = vi.fn(ctx => {
-      ctx.store.after = 'after'
-    })
+    const afterRestore = vi.fn()
     const useStore = defineStore(key, {
       state: () => ({
         lorem: '',
@@ -444,15 +484,19 @@ describe('default export', () => {
       const store = useStore()
       expect.assertions(5)
 
-      await nextTick()
-      //* assert
-      store.$subscribe(() => {
-        expect(store.lorem).toEqual('ipsum')
-        expect(beforeRestore).toHaveBeenCalled()
-        expect(store.before).toEqual('before')
-        expect(afterRestore).toHaveBeenCalled()
-        expect(store.after).toEqual('after')
+      await new Promise<void>(resolve => {
+        afterRestore.mockImplementationOnce(ctx => {
+          ctx.store.after = 'after'
+          resolve()
+        })
       })
+
+      //* assert
+      expect(store.lorem).toEqual('ipsum')
+      expect(beforeRestore).toHaveBeenCalled()
+      expect(store.before).toEqual('before')
+      expect(afterRestore).toHaveBeenCalled()
+      expect(store.after).toEqual('after')
     })
   })
 
