@@ -8,6 +8,13 @@ declare module 'pinia' {
      */
     persist?: boolean | PersistedStateOptions
   }
+  export interface PiniaCustomProperties {
+    /**
+     * Restore state manually.
+     * @docs https://github.com/prazdevs/pinia-plugin-persistedstate.
+     */
+    $restoreManually: () => void
+  }
 }
 
 export type {

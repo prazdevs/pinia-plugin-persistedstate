@@ -35,14 +35,18 @@ export function createPersistedState(
       paths = null,
     } = normalizeOptions(persist, factoryOptions)
 
-    beforeRestore?.(context)
+    store.$restoreManually = () => {
+      beforeRestore?.(context)
 
-    try {
-      const fromStorage = storage.getItem(key)
-      if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
-    } catch (_error) {}
+      try {
+        const fromStorage = storage.getItem(key)
+        if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
+      } catch (_error) {}
 
-    afterRestore?.(context)
+      afterRestore?.(context)
+    }
+
+    store.restoreManually()
 
     store.$subscribe(
       (
