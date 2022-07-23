@@ -1,21 +1,30 @@
-import type {
-  PersistedStateFactoryOptions,
-  PersistedStateNuxtFactoryOptions,
-  UseCookie,
-} from './types'
-import type {
+import {
   PiniaPluginContext,
-  StateTree,
   SubscriptionCallbackMutation,
+  StateTree,
+  Store,
 } from 'pinia'
 
-import { normalizeOptions } from './normalize'
-import { pick } from './pick'
+import normalizeOptions from './normalize'
+import pick from './pick'
+import { PersistedStateFactoryOptions, Serializer, StorageLike } from './types'
+
+function hydrateStore(
+  store: Store,
+  storage: StorageLike,
+  serializer: Serializer,
+  key: string,
+) {
+  try {
+    const fromStorage = storage?.getItem(key || '')
+    if (fromStorage) store.$patch(serializer?.deserialize(fromStorage) || {})
+  } catch (_error) {}
+}
 
 export function createPersistedState(
   factoryOptions: PersistedStateFactoryOptions = {},
 ) {
-  return function (context: PiniaPluginContext): void {
+  return (context: PiniaPluginContext) => {
     const {
       options: { persist },
       store,
@@ -23,70 +32,64 @@ export function createPersistedState(
 
     if (!persist) return
 
-    const {
-      storage = localStorage,
-      beforeRestore = null,
-      afterRestore = null,
-      serializer = {
-        serialize: JSON.stringify,
-        deserialize: JSON.parse,
-      },
-      key = store.$id,
-      paths = null,
-    } = normalizeOptions(persist, factoryOptions)
+    const persistences = (
+      Array.isArray(persist)
+        ? persist.map(p => normalizeOptions(p, factoryOptions))
+        : [normalizeOptions(persist, factoryOptions)]
+    ).map(
+      ({
+        storage = localStorage,
+        beforeRestore = null,
+        afterRestore = null,
+        serializer = {
+          serialize: JSON.stringify,
+          deserialize: JSON.parse,
+        },
+        key = store.$id,
+        paths = null,
+      }) => ({
+        storage,
+        beforeRestore,
+        afterRestore,
+        serializer,
+        key,
+        paths,
+      }),
+    )
 
-    store.$restoreManually = () => {
+    persistences.forEach(p => {
+      const { storage, serializer, key, paths, beforeRestore, afterRestore } = p
+
       beforeRestore?.(context)
 
-      try {
-        const fromStorage = storage.getItem(key)
-        if (fromStorage) store.$patch(serializer.deserialize(fromStorage))
-      } catch (_error) {}
+      hydrateStore(store, storage, serializer, key)
 
       afterRestore?.(context)
+
+      store.$subscribe(
+        (
+          _mutation: SubscriptionCallbackMutation<StateTree>,
+          state: StateTree,
+        ) => {
+          try {
+            const toStore = Array.isArray(paths) ? pick(state, paths) : state
+
+            storage.setItem(key, serializer.serialize(toStore as StateTree))
+          } catch (_error) {}
+        },
+      )
+    })
+
+    store.$hydrate = ({ runHooks = true } = {}) => {
+      persistences.forEach(p => {
+        const { beforeRestore, afterRestore, storage, serializer, key } = p
+
+        if (runHooks) beforeRestore?.(context)
+
+        hydrateStore(store, storage, serializer, key)
+
+        if (runHooks) afterRestore?.(context)
+      })
     }
-
-    store.$restoreManually()
-
-    store.$subscribe(
-      (
-        _mutation: SubscriptionCallbackMutation<StateTree>,
-        state: StateTree,
-      ) => {
-        try {
-          const toStore = Array.isArray(paths) ? pick(state, paths) : state
-
-          storage.setItem(key, serializer.serialize(toStore as StateTree))
-        } catch (_error) {}
-      },
-      { detached: true },
-    )
   }
 }
-
-export function createNuxtPersistedState(
-  useCookie: UseCookie,
-  factoryOptions?: PersistedStateNuxtFactoryOptions,
-): (context: PiniaPluginContext) => void {
-  return createPersistedState({
-    storage: {
-      getItem: key => {
-        return useCookie(key, {
-          encode: encodeURIComponent,
-          decode: decodeURIComponent,
-          ...factoryOptions?.cookieOptions,
-        }).value
-      },
-      setItem: (key, value) => {
-        useCookie(key, {
-          encode: encodeURIComponent,
-          decode: decodeURIComponent,
-          ...factoryOptions?.cookieOptions,
-        }).value = value
-      },
-    },
-    ...factoryOptions,
-  })
-}
-
-export const persistedState = createPersistedState()
