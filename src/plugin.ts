@@ -46,7 +46,7 @@ export function createPersistedState(
       afterRestore?.(context)
     }
 
-    store.restoreManually()
+    store.$restoreManually()
 
     store.$subscribe(
       (
