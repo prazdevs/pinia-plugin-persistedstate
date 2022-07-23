@@ -120,6 +120,8 @@ The config above will only persist the `nested.data` property in `sessionStorage
 
 It will also execute the `beforeRestore` and `afterRestore` hooks respectively _before_ and _after_ hydration.
 
+In case you want to restore state manually, you can use `$restoreManually` method
+
 ### Usage with Nuxt
 
 Declare a [Nuxt Plugin](https://v3.nuxtjs.org/docs/directory-structure/plugins) to add the plugin to Pinia.

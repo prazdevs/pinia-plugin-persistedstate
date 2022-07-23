@@ -8,6 +8,14 @@ declare module 'pinia' {
      */
     persist?: boolean | PersistedStateOptions
   }
+  export interface PiniaCustomProperties {
+    /**
+     * @
+     * Forces the pinia store to be rehydrated with stored data.
+     * Warning: this shouldn't be used in most cases
+     */
+    $restoreManually: () => void
+  }
 }
 
 export type {
