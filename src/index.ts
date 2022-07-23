@@ -10,8 +10,9 @@ declare module 'pinia' {
   }
   export interface PiniaCustomProperties {
     /**
-     * Restore state manually.
-     * @docs https://github.com/prazdevs/pinia-plugin-persistedstate.
+     * @
+     * Forces the pinia store to be rehydrated with stored data.
+     * Warning: this shouldn't be used in most cases
      */
     $restoreManually: () => void
   }
