@@ -1,6 +1,6 @@
-import type { PersistedStateOptions } from './types'
+import type { PersistedStateOptions } from './core/types'
 
-import { createPersistedState } from './plugin'
+import { createPersistedState } from './core/plugin'
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
@@ -32,8 +32,8 @@ declare module 'pinia' {
 export type {
   PersistedStateOptions,
   PersistedStateFactoryOptions,
-} from './types'
+} from './core/types'
 
-export { createPersistedState } from './plugin'
+export { createPersistedState } from './core/plugin'
 
 export default createPersistedState()
