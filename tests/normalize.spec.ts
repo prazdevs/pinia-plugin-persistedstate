@@ -1,6 +1,6 @@
 import { expect, it, vi } from 'vitest'
 
-import normalizeOptions from '../src/normalize'
+import normalizeOptions from '../src/core/normalize'
 
 it('merges options', () => {
   //* arrange

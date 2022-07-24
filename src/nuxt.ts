@@ -1,8 +1,8 @@
 import type { CookieParseOptions, CookieSerializeOptions } from 'cookie-es'
 import type { Ref } from 'vue'
 
-import { createPersistedState } from '../plugin'
-import { PersistedStateFactoryOptions } from '../types'
+import { createPersistedState } from '.'
+import { PersistedStateFactoryOptions } from './core/types'
 
 interface CookieOptions<T = any>
   extends Omit<

@@ -1,34 +1,45 @@
 {
   "name": "pinia-plugin-persistedstate",
   "version": "2.0.0-alpha.0",
+  "packageManager": "pnpm@7.6.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
+  "author": "prazdevs <sachabouillez@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/prazdevs/pinia-plugin-persistedstate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"
+  },
   "keywords": [
     "pinia",
     "pinia-plugin"
   ],
-  "repository": "https://github.com/prazdevs/pinia-plugin-persistedstate.git",
-  "license": "MIT",
-  "author": "Sacha 'PraZ' Bouillez",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
+    "./*": "./*",
     "./nuxt": {
       "import": "./dist/helpers/nuxt.mjs",
-      "require": "./dist/helpers/nuxt.js",
-      "types": "./dist/helpers/nuxt.d.ts"
+      "require": "./dist/helpers/nuxt.js"
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup",
+    "build": "tsup",
     "coverage": "vue-demi-switch 3 && vitest --run --coverage",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
@@ -57,7 +68,6 @@
     "lint-staged": "^13.0.3",
     "pinia": "^2.0.16",
     "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
     "tsup": "^6.1.3",
     "typescript": "^4.7.4",
     "vite": "^3.0.0",
