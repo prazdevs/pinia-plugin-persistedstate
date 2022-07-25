@@ -21,8 +21,8 @@
     },
     "./*": "./*",
     "./nuxt": {
-      "import": "./dist/helpers/nuxt.mjs",
-      "require": "./dist/helpers/nuxt.js"
+      "import": "./dist/nuxt.mjs",
+      "require": "./dist/nuxt.js"
     }
   },
   "main": "dist/index.js",
