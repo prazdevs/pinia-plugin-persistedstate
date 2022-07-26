@@ -140,7 +140,7 @@ describe('default export', () => {
       //* assert
       expect(store.lorem).toEqual('')
 
-      store.$restoreManually()
+      store.$hydrate()
       await nextTick()
 
       expect(store.lorem).toEqual('ipsum')
