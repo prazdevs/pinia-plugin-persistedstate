@@ -5,9 +5,13 @@ import {
   Store,
 } from 'pinia'
 
-import normalizeOptions from './normalize'
-import pick from './pick'
-import { PersistedStateFactoryOptions, Serializer, StorageLike } from './types'
+import normalizeOptions from '~/core/normalize'
+import pick from '~/core/pick'
+import {
+  PersistedStateFactoryOptions,
+  Serializer,
+  StorageLike,
+} from '~/core/types'
 
 function hydrateStore(
   store: Store,

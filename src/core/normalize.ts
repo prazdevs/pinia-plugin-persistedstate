@@ -1,7 +1,7 @@
 import type {
   PersistedStateOptions,
   PersistedStateFactoryOptions,
-} from './types'
+} from '~/core/types'
 
 function isObject(v: unknown) {
   return typeof v === 'object' && v !== null

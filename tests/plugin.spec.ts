@@ -2,8 +2,8 @@ import { setActivePinia, createPinia, defineStore } from 'pinia'
 import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, Vue2, isVue2, install, ref } from 'vue-demi'
 
-import { createPersistedState } from '../src/core/plugin'
-import { initializeLocalStorage, readLocalStoage } from './utils'
+import { createPersistedState } from '~/core/plugin'
+import { initializeLocalStorage, readLocalStoage } from '~~/tests/utils'
 
 const key = 'mock-store'
 

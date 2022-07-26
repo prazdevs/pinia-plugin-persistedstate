@@ -1,10 +1,10 @@
-import { createPersistedState } from './core/plugin'
+import { createPersistedState } from '~/core/plugin'
 
 export type {
   PersistedStateOptions,
   PersistedStateFactoryOptions,
-} from './core/types'
+} from '~/core/types'
 
-export { createPersistedState } from './core/plugin'
+export { createPersistedState } from '~/core/plugin'
 
 export default createPersistedState()
