@@ -20,8 +20,8 @@ function hydrateStore(
   key: string,
 ) {
   try {
-    const fromStorage = storage?.getItem(key || '')
-    if (fromStorage) store.$patch(serializer?.deserialize(fromStorage) || {})
+    const fromStorage = storage?.getItem(key)
+    if (fromStorage) store.$patch(serializer?.deserialize(fromStorage))
   } catch (_error) {}
 }
 

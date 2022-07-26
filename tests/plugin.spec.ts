@@ -17,7 +17,6 @@ beforeAll(() => {
 
 beforeEach(() => {
   let state: Record<string, string> = {}
-
   Object.defineProperty(window, 'localStorage', {
     value: {
       getItem: vi.fn(key => state[key]),
@@ -32,7 +31,7 @@ beforeEach(() => {
   })
 })
 
-describe('default export', () => {
+describe('default', () => {
   beforeEach(() => {
     const app = createApp({})
     const pinia = createPinia()
@@ -40,6 +39,7 @@ describe('default export', () => {
     app.use(pinia)
     setActivePinia(pinia)
   })
+
   describe('disabled', () => {
     const useStore = defineStore(key, {
       state: () => ({ lorem: '' }),
@@ -397,10 +397,101 @@ describe('default export', () => {
       expect(serialize).toHaveReturnedWith(localStorage.getItem(key))
     })
   })
+
+  describe('multiple persistences', () => {
+    let stored1: Record<string, string>
+    const storage1 = {
+      getItem: vi.fn(key => stored1[key]),
+      setItem: vi.fn((key, value) => {
+        stored1[key] = value
+      }),
+    }
+    let stored2: Record<string, string>
+    const storage2 = {
+      getItem: vi.fn(key => stored2[key]),
+      setItem: vi.fn((key, value) => {
+        stored2[key] = value
+      }),
+    }
+
+    const useStore = defineStore(key, {
+      state: () => ({
+        s1: '',
+        s2: '',
+      }),
+      persist: [
+        { storage: storage1, paths: ['s1'] },
+        { storage: storage2, paths: ['s2'] },
+      ],
+    })
+
+    it('persists to different storages', async () => {
+      stored1 = {}
+      stored2 = {}
+      const store = useStore()
+
+      store.s1 = 'lorem'
+      store.s2 = 'ipsum'
+      await nextTick()
+
+      expect(stored1[key]).toEqual('{"s1":"lorem"}')
+      expect(stored2[key]).toEqual('{"s2":"ipsum"}')
+      expect(storage1.setItem).toHaveBeenCalledWith(
+        'mock-store',
+        '{"s1":"lorem"}',
+      )
+      expect(storage2.setItem).toHaveBeenCalledWith(
+        'mock-store',
+        '{"s2":"ipsum"}',
+      )
+    })
+
+    it('rehydrates from different storages', () => {})
+  })
+
+  describe('$hydrate', () => {
+    const beforeRestore = vi.fn()
+    const afterRestore = vi.fn()
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: { beforeRestore, afterRestore },
+    })
+
+    it('rehydrates with storage data call', async () => {
+      //* arrange
+      const store = useStore()
+      initializeLocalStorage(key, { lorem: 'ipsum' })
+      await nextTick()
+
+      //* act
+      store.$hydrate()
+
+      //* assert
+      expect(store.lorem).toEqual('ipsum')
+      expect(beforeRestore).toHaveBeenCalled()
+      expect(afterRestore).toHaveBeenCalled()
+      expect(localStorage.getItem).toHaveNthReturnedWith(1, undefined)
+      expect(localStorage.getItem).toHaveNthReturnedWith(2, '{"lorem":"ipsum"}')
+    })
+
+    it('ignores hooks on runHooks=false', () => {
+      //* arrange
+      const store = useStore()
+      beforeRestore.mockClear()
+      afterRestore.mockClear()
+
+      //* act
+      store.$hydrate({ runHooks: false })
+
+      //* assert
+      expect(beforeRestore).not.toHaveBeenCalled()
+      expect(afterRestore).not.toHaveBeenCalled()
+    })
+  })
 })
 
-describe('factory function', () => {
-  it('uses factory function options', async () => {
+describe('w/ global options', () => {
+  it('uses global options', async () => {
     //* arrange
     initializeLocalStorage(key, { lorem: 'ipsum' })
     const afterRestore = vi.fn()
@@ -496,29 +587,3 @@ describe('factory function', () => {
     expect(serializer.deserialize).toHaveBeenCalledOnce()
   })
 })
-
-// describe('nuxt factory function', () => {
-//   it('uses cookie composable', async () => {
-//     //* arrange
-//     const cookieRef = ref()
-//     const useCookie = vi.fn(() => cookieRef)
-//     const app = createApp({})
-//     const pinia = createPinia()
-
-//     //* act
-//     pinia.use(createNuxtPersistedState(useCookie))
-//     app.use(pinia)
-//     setActivePinia(pinia)
-//     const useStore = defineStore(key, {
-//       state: () => ({ lorem: '' }),
-//       persist: true,
-//     })
-//     const store = useStore()
-//     store.lorem = 'dolor'
-//     await nextTick()
-
-//     //* assert
-//     expect(useCookie).toHaveBeenCalledTimes(2)
-//     expect(cookieRef.value).toEqual('{"lorem":"dolor"}')
-//   })
-// })

@@ -12,7 +12,7 @@ export default defineConfig({
     environment: 'happy-dom',
     coverage: {
       reporter: ['lcov', 'text'],
-      include: ['src/plugin.ts', 'src/pick.ts', 'src/normalize.ts'],
+      include: ['src/core/*.ts'],
     },
   },
 })
