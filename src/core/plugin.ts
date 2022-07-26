@@ -21,6 +21,11 @@ function hydrateStore(
   } catch (_error) {}
 }
 
+/**
+ * Creates a pinia persistence plugin
+ * @param factoryOptions global persistence options
+ * @returns pinia plugin
+ */
 export function createPersistedState(
   factoryOptions: PersistedStateFactoryOptions = {},
 ) {

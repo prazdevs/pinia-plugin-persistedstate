@@ -1,7 +1,5 @@
 import { createPersistedState } from './core/plugin'
 
-// import './core/extend'
-
 export type {
   PersistedStateOptions,
   PersistedStateFactoryOptions,
