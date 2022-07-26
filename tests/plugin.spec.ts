@@ -133,6 +133,23 @@ describe('default export', () => {
       )
     })
 
+    it('restore manually', async () => {
+      //* arrange
+      const store = useStore()
+
+      //* act
+      localStorage.setItem(key, JSON.stringify({ lorem: 'ipsum' }))
+      await nextTick()
+
+      //* assert
+      expect(store.lorem).toEqual('')
+
+      store.$restoreManually()
+      await nextTick()
+
+      expect(store.lorem).toEqual('ipsum')
+    })
+
     it('rehydrates store from localStorage', async () => {
       //* arrange
       initializeLocalStorage(key, { lorem: 'ipsum' })
