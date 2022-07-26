@@ -26,6 +26,12 @@ export type PersistedStateNuxtFactoryOptions = Omit<
   'storage'
 > & { cookieOptions?: CookieOptions<string> }
 
+/**
+ * Creates a Nuxt-specific SSR-ready pinia persistence plugin based on cookies
+ * @param useCookie pass the auto-imported useCookie from '#app'
+ * @param factoryOptions global persistence options
+ * @returns pinia plugin
+ */
 export function createNuxtPersistedState(
   useCookie: UseCookie,
   factoryOptions?: PersistedStateNuxtFactoryOptions,
