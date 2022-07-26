@@ -1,15 +1,15 @@
 import type {
   PersistedStateOptions,
   PersistedStateFactoryOptions,
-} from './types'
+} from '~/core/types'
 
 function isObject(v: unknown) {
   return typeof v === 'object' && v !== null
 }
 
-export function normalizeOptions(
+export default function normalizeOptions(
   options: boolean | PersistedStateOptions | undefined,
-  globalOptions: PersistedStateFactoryOptions,
+  factoryOptions: PersistedStateFactoryOptions,
 ): PersistedStateOptions {
   options = isObject(options) ? options : Object.create(null)
 
@@ -17,7 +17,7 @@ export function normalizeOptions(
     get(target, key, receiver) {
       return (
         Reflect.get(target, key, receiver) ||
-        Reflect.get(globalOptions, key, receiver)
+        Reflect.get(factoryOptions, key, receiver)
       )
     },
   })

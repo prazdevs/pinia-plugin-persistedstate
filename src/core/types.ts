@@ -1,23 +1,4 @@
-import { PiniaPluginContext, StateTree } from 'pinia'
-
-import type { Ref } from 'vue'
-
-interface CookieOptions<T> {
-  decode?(value: string): T
-  encode?(value: T): string
-  domain?: string
-  expires?: Date
-  httpOnly?: boolean
-  maxAge?: number
-  sameSite?: boolean | 'lax' | 'strict' | 'none'
-  secure?: boolean
-  default?: () => T | Ref<T>
-}
-
-export type UseCookie<T = string> = (
-  name: string,
-  opts?: CookieOptions<T>,
-) => { value: T }
+import type { PiniaPluginContext, StateTree } from 'pinia'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem'>
 
@@ -49,19 +30,19 @@ export interface PersistedStateOptions {
   storage?: StorageLike
 
   /**
-   * Dot-notation paths to partially save state.
+   * Dot-notation paths to partially save state. Saves everything if undefined.
    * @default undefined
    */
   paths?: Array<string>
 
   /**
-   * Serializer to use
+   * Customer serializer to serialize/deserialize state.
    */
   serializer?: Serializer
 
   /**
    * Hook called before state is hydrated from storage.
-   * @default undefined
+   * @default null
    */
   beforeRestore?: (context: PiniaPluginContext) => void
 
@@ -77,7 +58,21 @@ export type PersistedStateFactoryOptions = Pick<
   'storage' | 'serializer' | 'afterRestore' | 'beforeRestore'
 >
 
-export type PersistedStateNuxtFactoryOptions = Omit<
-  PersistedStateFactoryOptions,
-  'storage'
-> & { cookieOptions?: CookieOptions<string> }
+declare module 'pinia' {
+  export interface DefineStoreOptionsBase<S extends StateTree, Store> {
+    /**
+     * Persist store in storage.
+     * @see https://github.com/prazdevs/pinia-plugin-persistedstate
+     */
+    persist?: boolean | PersistedStateOptions | PersistedStateOptions[]
+  }
+
+  export interface PiniaCustomProperties {
+    /**
+     * Rehydrates store from persisted state
+     * Warning: this is for advances usecases, make sure you know what you're doing.
+     * @see https://github.com/prazdevs/pinia-plugin-persistedstate
+     */
+    $hydrate: (opts?: { runHooks?: boolean }) => void
+  }
+}

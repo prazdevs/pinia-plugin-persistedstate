@@ -1,7 +1,8 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/nuxt.ts'],
-  dts: true,
+  entry: ['src/*.ts'],
   format: ['cjs', 'esm'],
+  dts: true,
+  clean: true,
 })
