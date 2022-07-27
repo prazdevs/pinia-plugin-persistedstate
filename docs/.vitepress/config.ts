@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/pinia-plugin-persistedstate/',
   title: 'pinia-plugin-persistedstate',
   description: '🍍 Configurable persistence and rehydration of Pinia stores.',
   themeConfig: {
