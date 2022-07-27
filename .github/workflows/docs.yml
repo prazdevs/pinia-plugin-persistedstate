@@ -1,4 +1,4 @@
-name: deploy docs
+name: Deploy docs
 
 on:
   push:
@@ -9,15 +9,33 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
         with:
-          node-version: 16
-          cache: yarn
-      - run: yarn install --frozen-lockfile
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
 
       - name: Build
-        run: yarn docs:build
+        run: pnpm docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
