@@ -11,7 +11,7 @@ To set the repository up:
 
 | Step | Command |
 |-------|--------|
-| 1. Install [Node.js](https://nodejs.org/), using the [latest LTS](https://nodejs.org/en/about/releases/) | - |
+| 1. Install [Node.js](https://nodejs.org/), using the [current or latest LTS](https://nodejs.org/en/about/releases/) | - |
 | 2. Enable [Corepack](https://nodejs.org/api/corepack.html) | `corepack enable` |
 | 3. Install [pnpm](https://pnpm.io) | `npm i -g pnpm` |
 | 4. Install dependencies under the project root | `pnpm install` |
