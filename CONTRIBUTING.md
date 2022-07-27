@@ -80,4 +80,6 @@ When adding new features and introducing new source code into the `core` of the 
 If you need help implementing them, you can specify it in the description and we will gladly help you doing so!
 _Helpers such as the `/nuxt` don't need to be tested as they are just pre-configured plugins and rely on external tools/frameworks._
 
->Thanks for reading the guide and happy contributing!
+***
+
+_**Thanks for reading the guide and happy contributing!**_
