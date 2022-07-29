@@ -3,7 +3,7 @@
   "version": "2.0.0-alpha.1",
   "packageManager": "pnpm@7.6.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
-  "author": "prazdevs <sachabouillez@gmail.com>",
+  "author": "prazdevs",
   "license": "MIT",
   "homepage": "https://github.com/prazdevs/pinia-plugin-persistedstate",
   "repository": {
