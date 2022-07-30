@@ -8,6 +8,13 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'alternate icon', href: '/favicon.ico', type: 'image/png', sizes: '16x16' }],
   ],
+  lastUpdated: true,
+  markdown: {
+    theme: {
+      dark: 'vitesse-dark',
+      light: 'vitesse-light'
+    }
+  },
   themeConfig: {
     logo: '/logo.png',
     footer: {
@@ -29,11 +36,15 @@ export default defineConfig({
           text: 'Guide',
           items: [
             {
+              text: 'What is this?',
+              link: '/guide/what'
+            },
+            {
               text: 'Getting Started',
               link: '/guide/'
-            }
+            },
           ]
-        }
+        },
       ]
     }
   },

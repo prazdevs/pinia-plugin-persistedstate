@@ -72,4 +72,4 @@ export const useStore = defineStore(
 )
 ```
 
-Your whole store will now be saved with the [default persistence settings](/config/default/).
+Your whole store will now be saved with the [default persistence settings](/config/).

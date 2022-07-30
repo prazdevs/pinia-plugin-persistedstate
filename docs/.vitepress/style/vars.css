@@ -9,6 +9,17 @@
   --vp-c-brand-dimm: rgba(255, 195, 99, 0.08);
 }
 
+/* CODE BLOCKS */
+:root {
+  --vp-c-text-code: #5d6f5d;
+  --vp-code-block-bg: rgba(125,125,125,0.1);
+}
+.dark {
+  --vp-code-block-bg: rgba(0,0,0,0.2);
+  --vp-c-text-code: #c0cec0;
+  --vp-c-text-dark-2: rgba(235, 235, 235, 0.60);
+}
+
 /* HOME */
 :root {
   --vp-home-hero-name-color: transparent;
@@ -36,3 +47,4 @@
     --vp-home-hero-image-filter: blur(72px);
   }
 }
+
