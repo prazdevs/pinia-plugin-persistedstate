@@ -5,7 +5,7 @@
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "prazdevs",
   "license": "MIT",
-  "homepage": "https://github.com/prazdevs/pinia-plugin-persistedstate",
+  "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
   "repository": {
     "type": "git",
     "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"

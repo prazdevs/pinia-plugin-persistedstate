@@ -43,6 +43,10 @@ export default defineNuxtPlugin(nuxtApp => {
 ```
 :::
 
+:::warning
+Overriding the `storage` option in a store will break its server-side persistence/rehydration with cookies.
+:::
+
 ## Client-side persistence
 
 In case you do not want to use cookies, you can use the default `createPersistedState` in a client-only plugin.
