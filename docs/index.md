@@ -1,6 +1,6 @@
 ---
 layout: home
-title: pinia-plugin-persistedstate
+title: Home
 hero:
   name: pinia-plugin-persistedstate
   tagline: Configurable persistence and rehydration of Pinia stores.
