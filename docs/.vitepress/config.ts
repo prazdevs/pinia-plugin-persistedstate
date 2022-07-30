@@ -45,6 +45,10 @@ export default defineConfig({
             {
               text: 'Configuration',
               link: '/guide/config'
+            },
+            {
+              text: 'Limitations',
+              link: '/guide/limitations'
             }
           ]
         },
