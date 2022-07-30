@@ -12,11 +12,11 @@
 /* CODE BLOCKS */
 :root {
   --vp-c-text-code: #5d6f5d;
-  --vp-code-block-bg: rgba(125,125,125,0.1);
+  --vp-code-block-bg: #f2f2f2;
 }
 .dark {
-  --vp-code-block-bg: rgba(0,0,0,0.2);
   --vp-c-text-code: #c0cec0;
+  --vp-code-block-bg: #1a1a1a;
   --vp-c-text-dark-2: rgba(235, 235, 235, 0.60);
 }
 
