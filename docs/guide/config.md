@@ -70,6 +70,10 @@ export const useStore = defineStore('store', {
 This store will be persisted in [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage).
 :::
 
+:::warning
+Storage must be synchronous. More info in the [limitations page](/guide/limitations).
+:::
+
 ## paths
 
 - **type**: `string[]`
