@@ -60,6 +60,15 @@ export default defineConfig({
             }
           ]
         },
+        {
+          text: 'Frameworks',
+          items: [
+            {
+              text: 'Nuxt 3',
+              link: '/frameworks/nuxt-3'
+            }
+          ]
+        }
       ]
     }
   },
