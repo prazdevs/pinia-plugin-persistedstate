@@ -36,6 +36,8 @@ Any option passed to a store's `persist` configuration will override its counter
 There may be specific use cases where you need to persist data from a single store to different storages. The `persist` option also accepts an array of configurations.
 
 ```ts
+import { defineStore } from 'pinia'
+
 defineStore('store', {
   state: () => ({
     toLocal: '',
@@ -61,6 +63,8 @@ In this example, the `toLocal` value will be persisted in `localStorage` while t
 Be careful when not specifying a `paths` option or targetting a same path in two persistence configurations. This can lead to data inconsistency. During the rehydration process, persistences are processed in the same order they are decalred.
 
 ```ts
+import { defineStore } from 'pinia'
+
 defineStore('store', {
   state: () => ({
     someData: 'Hello Pinia'
@@ -81,3 +85,30 @@ In this specific case, on hydration, the data retrieved from `sessionStorage` wi
 
 ## Forcing the rehydration
 
+In case you need to manually trigger hydration from storage, every store now exposes a `$hydrate` method. By default, calling this method will also trigger the `beforeRestore` and `afterRestore` hooks. You can avoid the hooks triggering by specifying the method not to.
+
+Given this store:
+
+```ts
+import { defineStore } from 'pinia'
+
+const useStore = defineStore('store', {
+  state: () => ({
+    someData: 'Hello Pinia'
+  })
+})
+```
+
+You can call `$hydrate`:
+
+```ts
+const store = useStore()
+
+store.$hydrate({ runHooks: false })
+```
+
+This will fetch data from the storage and replace the current state with it. In the example above, hooks will not be triggered.
+
+:::warning
+In most cases, you should not need to manually hydrate the state. Make sure you know what you are doing, and the reason you are using `$hydrate` is not due to a bug (of either your implementation or the plugin itself).
+:::
