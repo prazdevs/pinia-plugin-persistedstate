@@ -17,6 +17,13 @@
   <a href="https://github.com/prazdevs/pinia-plugin-persistedstate/tree/HEAD/LICENSE"><img alt="License" src="https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat&color=blue" /></a>
 </p>
 
+
+<p align="center">
+  <a href="https://prazdevs.github.io/pinia-plugin-persistedstate/" alt="pinia-plugin-persistedstate docs" >
+    <img src="https://img.shields.io/badge/PINIA--PLUGIN--PERSISTEDSTATE-READ%20THE%20DOCS%20-blueviolet?style=for-the-badge&logo=read-the-docs&logoColor=white" />
+  </a>
+</p>
+
 ## ✨ Features
 
 - Persist Pinia stores with the same API as [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) (and more).
