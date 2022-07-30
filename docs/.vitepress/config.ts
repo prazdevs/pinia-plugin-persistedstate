@@ -31,7 +31,21 @@ export default defineConfig({
       }
     ],
     nav: [
-      { text: 'Guide', link: '/guide/', activeMatch: '/guide/' }
+      { 
+        text: 'Guide',
+        link: '/guide/',
+        activeMatch: '/guide/',
+      },
+      { 
+        text: 'Frameworks', 
+        activeMatch: '/frameworks/',
+        items: [
+          { 
+            text: 'Nuxt 3',
+            link: '/frameworks/nuxt-3',
+          }
+        ],
+      },
     ],
     sidebar: {
       '/': [
