@@ -20,6 +20,10 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: `Copyright © 2021-${new Date().getFullYear()} Sacha Bouillez & contributors`
     },
+    editLink: {
+      pattern: 'https://github.com/prazdevs/pinia-plugin-persistedstate/edit/main/docs/:path',
+      text: 'Edit this page on GitHub'
+    },
     socialLinks: [
       {
         icon: 'github',
@@ -35,8 +39,8 @@ export default defineConfig({
           text: 'Guide',
           items: [
             {
-              text: 'What is this?',
-              link: '/guide/what'
+              text: 'Why this plugin?',
+              link: '/guide/why'
             },
             {
               text: 'Getting Started',
@@ -49,6 +53,10 @@ export default defineConfig({
             {
               text: 'Limitations',
               link: '/guide/limitations'
+            },
+            {
+              text: 'Advanced Usage',
+              link: '/guide/advanced'
             }
           ]
         },
