@@ -5,8 +5,7 @@ export default defineConfig({
   title: 'pinia-plugin-persistedstate',
   description: '🍍 Configurable persistence and rehydration of Pinia stores.',
   head: [
-    ['link', { rel: 'icon', href: '/pinia-plugin-persistedstate/logo.svg', type: 'image/svg+xml' }],
-    ['link', { rel: 'alternate icon', href: '/pinia-plugin-persistedstate/favicon.ico', type: 'image/png', sizes: '16x16' }],
+    ['link', { rel: 'icon', href: '/pinia-plugin-persistedstate/favicon.ico' }],
   ],
   lastUpdated: true,
   markdown: {
