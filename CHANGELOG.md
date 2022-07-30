@@ -1,6 +1,15 @@
 # Changelog
 
 
+<a name="2.0.0"></a>
+## 2.0.0 (2022-07-30)
+
+### Added
+
+- ✨ add multiple persistences config [[66c5c75](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/66c5c75c9ae2eea7fbbb1d221bd9690773ff3ab1)]
+- ✨ add method to manually restore state ([#89](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/89)) [[125c750](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/125c750d6d3f33ae236cc6dfc475971f5d416e5c)]
+
+
 <a name="1.6.3"></a>
 ## 1.6.2 (2022-07-15)
 
