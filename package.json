@@ -1,6 +1,6 @@
 {
   "name": "pinia-plugin-persistedstate",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "packageManager": "pnpm@7.6.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "prazdevs",
@@ -46,7 +46,9 @@
       "index": [
         "./dist/index.d.ts"
       ],
-      "nuxt": ["./dist/nuxt.d.ts"]
+      "nuxt": [
+        "./dist/nuxt.d.ts"
+      ]
     }
   },
   "main": "dist/index.js",
