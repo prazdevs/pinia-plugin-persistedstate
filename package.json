@@ -60,6 +60,11 @@
   "peerDependencies": {
     "pinia": "^2.0.0"
   },
+  "peerDependenciesMeta": {
+    "pinia": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@prazdevs/eslint-config-typescript": "^3.2.1",
     "@vitest/ui": "^0.20.2",

@@ -4,6 +4,7 @@ import PersistedState from 'pinia-plugin-persistedstate'
 
 import App from './App.vue'
 
-const pinia = createPinia().use(PersistedState)
+const pinia = createPinia()
+pinia.use(PersistedState)
 
 createApp(App).use(pinia).mount('#app')

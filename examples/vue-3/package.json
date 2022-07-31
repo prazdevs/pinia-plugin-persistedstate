@@ -5,14 +5,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "pinia": "latest",
-    "pinia-plugin-persistedstate": "latest",
-    "vue": "latest"
+    "pinia": "^2.0.17",
+    "pinia-plugin-persistedstate": "^2.0.1",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "latest",
-    "typescript": "latest",
-    "vite": "latest",
-    "vue-tsc": "latest"
+    "@vitejs/plugin-vue": "^3.0.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4",
+    "vue-tsc": "^0.39.4"
   }
 }
