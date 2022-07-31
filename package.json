@@ -47,9 +47,6 @@
   },
   "typesVersions": {
     "*": {
-      "index": [
-        "./dist/index.d.ts"
-      ],
       "nuxt": [
         "./dist/nuxt.d.ts"
       ],
