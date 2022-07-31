@@ -1,6 +1,5 @@
-import type { PersistedStateOptions } from '~/core/types'
-
 import { createPersistedState } from '~/core/plugin'
+import { PersistedStateOptions } from '~/core/types'
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {

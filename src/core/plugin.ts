@@ -3,6 +3,7 @@ import {
   SubscriptionCallbackMutation,
   StateTree,
   Store,
+  PiniaPlugin,
 } from 'pinia'
 
 import normalizeOptions from '~/core/normalize'
@@ -32,7 +33,7 @@ function hydrateStore(
  */
 export function createPersistedState(
   factoryOptions: PersistedStateFactoryOptions = {},
-) {
+): PiniaPlugin {
   return (context: PiniaPluginContext) => {
     const {
       options: { persist },
