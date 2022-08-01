@@ -1,6 +1,15 @@
 # Changelog
 
 
+<a name="2.0.1"></a>
+## 2.0.1 (2022-07-31)
+
+### Fixed
+
+- 🐛 fix typings [[79f501b](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/79f501b3cb833dd2857c3d313c66323e348dd4c2)]
+- 🐛 fix type imports [[4e98ecb](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/4e98ecbb4c35bf008ba4519ebfb460775c9bf2bc)]
+
+
 <a name="2.0.0"></a>
 ## 2.0.0 (2022-07-30)
 
