@@ -1,48 +1,9 @@
-import { CookieParseOptions, CookieSerializeOptions } from 'cookie-es'
-
-import type { Ref } from 'vue'
+import { useCookie, CookieOptions } from 'nuxt/app'
 
 import { createPersistedState } from '~/core/plugin'
-import {
-  PersistedStateFactoryOptions,
-  PersistedStateOptions,
-} from '~/core/types'
+import { PersistedStateFactoryOptions } from '~/core/types'
 
-interface CookieOptions<T = any>
-  extends Omit<
-    CookieSerializeOptions & CookieParseOptions,
-    'decode' | 'encode'
-  > {
-  decode?(value: string): T
-  encode?(value: T): string
-  default?: () => T | Ref<T>
-}
-
-type CookieRef<T> = Ref<T>
-
-type UseCookie<T = string> = (
-  name: string,
-  _opts?: CookieOptions<T>,
-) => CookieRef<T>
-
-declare module 'pinia' {
-  export interface DefineStoreOptionsBase<S extends StateTree, Store> {
-    /**
-     * Persist store in storage.
-     * @see https://github.com/prazdevs/pinia-plugin-persistedstate
-     */
-    persist?: boolean | PersistedStateOptions | PersistedStateOptions[]
-  }
-
-  export interface PiniaCustomProperties {
-    /**
-     * Rehydrates store from persisted state
-     * Warning: this is for advances usecases, make sure you know what you're doing.
-     * @see https://github.com/prazdevs/pinia-plugin-persistedstate
-     */
-    $hydrate: (opts?: { runHooks?: boolean }) => void
-  }
-}
+type UseCookie = typeof useCookie
 
 export type PersistedStateNuxtFactoryOptions = Omit<
   PersistedStateFactoryOptions,
