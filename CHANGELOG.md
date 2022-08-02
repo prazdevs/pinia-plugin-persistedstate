@@ -1,6 +1,16 @@
 # Changelog
 
 
+<a name="2.1.0"></a>
+## 2.1.0 (2022-08-02)
+
+### Added
+
+- ✨ add quasar webstorage factory function [[0caa198](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/0caa19832ff2abf2854194ddb145327e01f49523)]
+
+- ✨ add quasar cookies factory function [[9997868](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/9997868484891e1d10ee2455b005ce60f325111b)]
+
+
 <a name="2.0.1"></a>
 ## 2.0.1 (2022-07-31)
 
