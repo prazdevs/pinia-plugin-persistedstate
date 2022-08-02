@@ -10,7 +10,7 @@ devDependencies:
   '@pinia/nuxt': 0.3.1
   nuxt: 3.0.0-rc.6
   pinia: 2.0.17
-  pinia-plugin-persistedstate: 2.0.1_pinia@2.0.17
+  pinia-plugin-persistedstate: link:../..
 
 packages:
 
@@ -3222,14 +3222,6 @@ packages:
   /pify/2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /pinia-plugin-persistedstate/2.0.1_pinia@2.0.17:
-    resolution: {integrity: sha512-ch9tbtBVplUfIFCg3jk3HMeWNFDIfqAvTpkiPzjeeuB8CTV+Nr+FVvGIDs3O0h3khC3Mm2ITSOVCKEWslBFZaw==}
-    peerDependencies:
-      pinia: ^2.0.0
-    dependencies:
-      pinia: 2.0.17
     dev: true
 
   /pinia/2.0.17:

@@ -9,7 +9,6 @@
   "devDependencies": {
     "@pinia/nuxt": "^0.3.1",
     "nuxt": "3.0.0-rc.6",
-    "pinia": "^2.0.17",
     "pinia-plugin-persistedstate": "^2.0.1"
   }
 }

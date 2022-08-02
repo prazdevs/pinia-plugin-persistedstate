@@ -11,7 +11,7 @@ specifiers:
 
 dependencies:
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
-  pinia-plugin-persistedstate: 2.0.1_pinia@2.0.17
+  pinia-plugin-persistedstate: link:../..
   vue: 3.2.37
 
 devDependencies:
@@ -434,14 +434,6 @@ packages:
 
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-
-  /pinia-plugin-persistedstate/2.0.1_pinia@2.0.17:
-    resolution: {integrity: sha512-ch9tbtBVplUfIFCg3jk3HMeWNFDIfqAvTpkiPzjeeuB8CTV+Nr+FVvGIDs3O0h3khC3Mm2ITSOVCKEWslBFZaw==}
-    peerDependencies:
-      pinia: ^2.0.0
-    dependencies:
-      pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
-    dev: false
 
   /pinia/2.0.17_j6bzmzd4ujpabbp5objtwxyjp4:
     resolution: {integrity: sha512-AtwLwEWQgIjofjgeFT+nxbnK5lT2QwQjaHNEDqpsi2AiCwf/NY78uWTeHUyEhiiJy8+sBmw0ujgQMoQbWiZDfA==}
