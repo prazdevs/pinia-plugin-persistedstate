@@ -43,6 +43,10 @@ export default defineConfig({
           { 
             text: 'Nuxt 3',
             link: '/frameworks/nuxt-3',
+          },
+          {
+            text: 'Quasar',
+            link: '/frameworks/quasar'
           }
         ],
       },
@@ -80,6 +84,10 @@ export default defineConfig({
             {
               text: 'Nuxt 3',
               link: '/frameworks/nuxt-3'
+            },
+            {
+              text: 'Quasar',
+              link: '/frameworks/quasar'
             }
           ]
         }

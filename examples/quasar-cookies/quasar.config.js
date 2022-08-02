@@ -5,8 +5,6 @@ const { configure } = require('quasar/wrappers');
 
 module.exports = configure(function () {
   return {
-    boot: ['persistedstate'],
-
     build: {
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],

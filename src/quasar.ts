@@ -1,11 +1,11 @@
-import type { Cookies } from 'quasar'
+import { Cookies, LocalStorage, SessionStorage } from 'quasar'
 
 import { createPersistedState } from '~/core/plugin'
 import { PersistedStateFactoryOptions } from '~/core/types'
 
 type CookieOptions = Parameters<Cookies['set']>[2]
 
-export type PersistedStateQuasarCookiesOptions = Omit<
+export type PersistedStateQuasarFactoryOptions = Omit<
   PersistedStateFactoryOptions,
   'storage'
 > & { cookiesOptions: CookieOptions }
@@ -20,7 +20,7 @@ export type PersistedStateQuasarCookiesOptions = Omit<
 export function createQuasarCookiesPersistedState(
   cookies: Cookies,
   ssrContext: unknown,
-  factoryOptions?: PersistedStateQuasarCookiesOptions,
+  factoryOptions?: PersistedStateQuasarFactoryOptions,
 ) {
   return createPersistedState({
     storage: {
@@ -32,6 +32,25 @@ export function createQuasarCookiesPersistedState(
         const c = process.env.SERVER ? cookies.parseSSR(ssrContext) : cookies
         c.set(key, JSON.parse(value), factoryOptions?.cookiesOptions)
       },
+    },
+    ...factoryOptions,
+  })
+}
+
+/**
+ * Creates a Quasar-specific pinia persistence plugin based on Quasar WebStorage plugins
+ * @param webStorage pass the imported SessionStorage/LocalStorage from 'quasar'
+ * @param factoryOptions global persistence options
+ * @returns pinia plugin
+ */
+export function createQuasarWebStoragePersistedState(
+  webStorage: SessionStorage | LocalStorage,
+  factoryOptions?: PersistedStateQuasarFactoryOptions,
+) {
+  return createPersistedState({
+    storage: {
+      getItem: webStorage.getItem,
+      setItem: webStorage.set,
     },
     ...factoryOptions,
   })

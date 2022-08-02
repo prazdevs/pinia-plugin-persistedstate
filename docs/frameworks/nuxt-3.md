@@ -2,10 +2,10 @@
 
 The plugin provides a factory function to make integration with Nuxt 3 a breeze. It is assumed you have Pinia already installed with [`@nuxt/pinia`](https://pinia.vuejs.org/ssr/nuxt.html).
 
-## SSR enabled persistence
+## SSR-enabled persistence
 
-Using Nuxt Cookies allow for persistence with full SSR support.
-Declare a plugin by creating a `persistedstate.ts` under the `plugins/` directory.
+Using Nuxt Cookies allows for persistence with full SSR support.   
+Declare a plugin by creating a `persistedstate.ts` under the `plugins/` directory:
 
 ```ts
 // /plugins/persistedstate.ts
