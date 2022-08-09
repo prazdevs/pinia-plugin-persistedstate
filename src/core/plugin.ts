@@ -87,6 +87,9 @@ export function createPersistedState(
             storage.setItem(key, serializer.serialize(toStore as StateTree))
           } catch (_error) {}
         },
+        {
+          detached: true,
+        },
       )
     })
 
