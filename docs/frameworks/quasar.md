@@ -37,8 +37,7 @@ import { createQuasarCookiesPersistedState } from 'pinia-plugin-persistedstate/q
 export default store(({ ssrContext }) => {
   const pinia = createPinia()
 
-  const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies;
-  pinia.use(createQuasarCookiesPersistedState(cookies))
+  pinia.use(createQuasarCookiesPersistedState(Cookies, ssrContext))
 
   return pinia
 })
@@ -63,9 +62,9 @@ import { createQuasarCookiesPersistedState } from 'pinia-plugin-persistedstate/q
 export default store(({ ssrContext }) => {
   const pinia = createPinia()
 
-  const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies;
   pinia.use(createQuasarCookiesPersistedState(
-    cookies,
+    Cookies, 
+    srContext, 
     {
       cookieOptions: {
         expires: 3600, 

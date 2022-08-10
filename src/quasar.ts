@@ -19,15 +19,18 @@ export type PersistedStateQuasarFactoryOptions = Omit<
  */
 export function createQuasarCookiesPersistedState(
   cookies: Cookies,
+  ssrContext: unknown,
   factoryOptions?: PersistedStateQuasarFactoryOptions,
 ) {
   return createPersistedState({
     storage: {
       getItem: key => {
-        return JSON.stringify(cookies.get(key))
+        const c = process.env.SERVER ? cookies.parseSSR(ssrContext) : cookies
+        return JSON.stringify(c.get(key))
       },
       setItem: (key, value) => {
-        cookies.set(key, JSON.parse(value), factoryOptions?.cookiesOptions)
+        const c = process.env.SERVER ? cookies.parseSSR(ssrContext) : cookies
+        c.set(key, JSON.parse(value), factoryOptions?.cookiesOptions)
       },
     },
     ...factoryOptions,
