@@ -446,7 +446,7 @@ describe('default', () => {
       )
     })
 
-    it('rehydrates from different storages', () => {})
+    // it('rehydrates from different storages', () => {})
   })
 
   describe('$hydrate', () => {
