@@ -5,8 +5,9 @@ import { createQuasarCookiesPersistedState } from 'pinia-plugin-persistedstate/q
 
 export default store(({ ssrContext }) => {
   const pinia = createPinia()
-
-  pinia.use(createQuasarCookiesPersistedState(Cookies, ssrContext))
+  
+  const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies
+  pinia.use(createQuasarCookiesPersistedState(cookies))
 
   return pinia
 })
