@@ -46,7 +46,7 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 ```
 
-3. Add the `persist` option toe the store you want to be persisted:
+3. Add the `persist` option to the store you want to be persisted:
 ```ts
 import { defineStore } from 'pinia'
 
