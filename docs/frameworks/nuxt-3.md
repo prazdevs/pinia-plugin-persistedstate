@@ -64,5 +64,5 @@ export default defineNuxtPlugin(nuxtApp => {
 ```
 
 :::warning
-Using client-only persistence when server-side rendering, the store state will most likely be the initial state and **note** the persisted state.
+Using client-only persistence when server-side rendering, the store state will most likely be the initial state and **not** the persisted state.
 :::
