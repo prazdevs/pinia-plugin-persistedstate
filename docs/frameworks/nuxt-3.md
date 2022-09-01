@@ -1,6 +1,6 @@
 # Usage With Nuxt 3
 
-The plugin provides a factory function to make integration with Nuxt 3 a breeze. It is assumed you have Pinia already installed with [`@nuxt/pinia`](https://pinia.vuejs.org/ssr/nuxt.html).
+The plugin provides a factory function to make integration with Nuxt 3 a breeze. It is assumed you have Pinia already installed with [`@pinia/nuxt`](https://pinia.vuejs.org/ssr/nuxt.html).
 
 ## SSR-enabled persistence
 
