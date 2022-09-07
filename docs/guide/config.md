@@ -102,7 +102,7 @@ export const useStore = defineStore('store', {
 In this store, only `save.me` and `saveMeToo` values will be persisted. `save.notMe` will not be persisted.
 :::
 
-To store all contents of an array, use the notation `'[]'`.
+To store all elements of an array, use the notation `'[]'`.
 
 :::details Example
 ```ts

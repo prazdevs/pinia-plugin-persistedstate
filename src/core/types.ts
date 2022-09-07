@@ -53,10 +53,6 @@ export interface PersistedStateOptions {
   afterRestore?: (context: PiniaPluginContext) => void
 }
 
-export type Mergeable = {
-  [key: string]: unknown
-}
-
 export type PersistedStateFactoryOptions = Pick<
   PersistedStateOptions,
   'storage' | 'serializer' | 'afterRestore' | 'beforeRestore'

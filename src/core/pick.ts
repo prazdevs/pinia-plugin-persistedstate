@@ -1,13 +1,14 @@
 import type { StateTree } from 'pinia'
-import type { Mergeable } from '~/core/types'
+
+export type Mergeable = Record<string, unknown>
+
+function isObject(value: unknown): boolean {
+  return value !== null && typeof value === 'object'
+}
 
 function merge(destination: Mergeable, source: Mergeable): Mergeable {
   const mergingArrays = Array.isArray(destination) && Array.isArray(source)
-  const mergingObjects =
-    typeof destination === 'object' &&
-    typeof source === 'object' &&
-    destination !== null &&
-    source !== null
+  const mergingObjects = isObject(destination) && isObject(source)
 
   if (!mergingArrays && !mergingObjects) {
     throw new Error('Can only merge object with object or array with array')
@@ -16,32 +17,26 @@ function merge(destination: Mergeable, source: Mergeable): Mergeable {
   const result = (mergingArrays ? [] : {}) as Mergeable
 
   const keys: string[] = [...Object.keys(destination), ...Object.keys(source)]
-  keys.forEach((key: string) => {
+  keys.forEach((key: string): void => {
     if (Array.isArray(destination[key]) && Array.isArray(source[key])) {
-      return (result[key] = [
+      result[key] = [
         ...Object.values(
           merge(destination[key] as Mergeable, source[key] as Mergeable),
         ),
-      ])
-    }
-
-    if (
+      ]
+    } else if (
       source[key] !== null &&
       typeof source[key] === 'object' &&
       typeof destination[key] === 'object'
     ) {
-      return (result[key] = merge(
+      result[key] = merge(
         destination[key] as Mergeable,
         source[key] as Mergeable,
-      ))
-    }
-
-    if (destination[key] !== undefined && source[key] === undefined) {
-      return (result[key] = destination[key])
-    }
-
-    if (destination[key] === undefined && source[key] !== undefined) {
-      return (result[key] = source[key])
+      )
+    } else if (destination[key] !== undefined && source[key] === undefined) {
+      result[key] = destination[key]
+    } else if (destination[key] === undefined && source[key] !== undefined) {
+      result[key] = source[key]
     }
   })
 
