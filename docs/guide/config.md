@@ -111,9 +111,9 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('store', {
   state: () => ({
     save: [
-      { me: 'saved', ignored: 'ignored' }
-      { me: 'saved-too', value: 'ignored-too' }
-      { me: 'saved-as-well', test: 'ignored-as-well' }
+      { me: 'saved', ignored: 'ignored' },
+      { me: 'saved-too', value: 'ignored-too' },
+      { me: 'saved-as-well', test: 'ignored-as-well' },
     ],
   }),
   persist: {
