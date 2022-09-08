@@ -102,6 +102,29 @@ export const useStore = defineStore('store', {
 In this store, only `save.me` and `saveMeToo` values will be persisted. `save.notMe` will not be persisted.
 :::
 
+To store all elements of an array, use the notation `'[]'`.
+
+:::details Example
+```ts
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('store', {
+  state: () => ({
+    save: [
+      { me: 'saved', ignored: 'ignored' }
+      { me: 'saved-too', value: 'ignored-too' }
+      { me: 'saved-as-well', test: 'ignored-as-well' }
+    ],
+  }),
+  persist: {
+    paths: ['save.[].me'],
+  },
+})
+```
+
+In this store, only `save[0].me`, `save[1].me` and `save[2].me` values will be persisted.
+:::
+
 ## serializer
 
 - **type**: [`Serializer`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/src/core/types.ts#L5)
