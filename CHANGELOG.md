@@ -1,6 +1,26 @@
 # Changelog
 
 
+<a name="2.2.0"></a>
+## 2.2.0 (2022-09-08)
+
+### Added
+
+- ✨ Introduce &#x60;paths&#x60;-option syntax to specify array content persistance ([#117](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/117)) [[a626c6a](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/a626c6a1418e7dec24821d51ecaeaf196ec4aa2a)]
+
+### Fixed
+
+- 🐛 externalise quasar cookie parsing ([#104](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/104)) [[a98394b](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/a98394b72bd09a4e1ed9e622e20d50655fb49275)]
+
+
+<a name="2.1.1"></a>
+## 2.1.1 (2022-08-09)
+
+### Fixed
+
+- 🐛 subscribe to mutations in detached mode [[f3326a9](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/f3326a9fe4f12872c21d9f614e53fbf084748d3d)]
+
+
 <a name="2.1.0"></a>
 ## 2.1.0 (2022-08-02)
 
