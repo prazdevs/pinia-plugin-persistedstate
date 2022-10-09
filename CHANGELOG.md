@@ -1,6 +1,15 @@
 # Changelog
 
 
+<a name="2.3.0"></a>
+## 2.3.0 (2022-10-09)
+
+### Added
+
+- ✨ add error logging with &#x60;debug&#x60; option ([#125](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/125)) [[c2782fa](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c2782fae2f137fbea5cb31cf165305c24f237cd7)]
+- 🔊 update changelog [[fc7b91a](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fc7b91a9b3e9196c34ff198b540f82bbff03cc52)]
+
+
 <a name="2.2.0"></a>
 ## 2.2.0 (2022-09-08)
 
