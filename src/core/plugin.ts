@@ -85,7 +85,9 @@ export function createPersistedState(
             const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
             storage.setItem(key, serializer.serialize(toStore as StateTree))
-          } catch (_error) {}
+          } catch (_error) {
+            console.log(_error)
+          }
         },
         {
           detached: true,
