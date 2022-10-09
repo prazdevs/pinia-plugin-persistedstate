@@ -212,3 +212,10 @@ This store will log `just restored 'store'` _after_ being rehydrated.
 :::warning
 Beware of interacting with `PiniaPluginContext`, unexpected behaviors may occur.
 :::
+
+## debug
+
+- **type**: `boolean`
+- **default**: `false`
+
+When set to true, any error that may occur while persisting/hydrating stores will be logged as `console.error`.
