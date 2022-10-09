@@ -57,6 +57,7 @@ export function createPersistedState(
         },
         key = store.$id,
         paths = null,
+        debug = false,
       }) => ({
         storage,
         beforeRestore,
@@ -64,11 +65,20 @@ export function createPersistedState(
         serializer,
         key,
         paths,
+        debug,
       }),
     )
 
-    persistences.forEach(p => {
-      const { storage, serializer, key, paths, beforeRestore, afterRestore } = p
+    persistences.forEach(persistence => {
+      const {
+        storage,
+        serializer,
+        key,
+        paths,
+        beforeRestore,
+        afterRestore,
+        debug,
+      } = persistence
 
       beforeRestore?.(context)
 
@@ -85,8 +95,8 @@ export function createPersistedState(
             const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
             storage.setItem(key, serializer.serialize(toStore as StateTree))
-          } catch (_error) {
-            console.log(_error)
+          } catch (error) {
+            if (debug) console.error(error)
           }
         },
         {

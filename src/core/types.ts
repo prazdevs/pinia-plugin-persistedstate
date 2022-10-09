@@ -51,11 +51,17 @@ export interface PersistedStateOptions {
    * @default undefined
    */
   afterRestore?: (context: PiniaPluginContext) => void
+
+  /**
+   * Logs errors in console when enabled.
+   * @default false
+   */
+  debug?: boolean
 }
 
 export type PersistedStateFactoryOptions = Pick<
   PersistedStateOptions,
-  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore'
+  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
 >
 
 declare module 'pinia' {
