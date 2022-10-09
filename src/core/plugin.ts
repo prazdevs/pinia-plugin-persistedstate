@@ -19,11 +19,14 @@ function hydrateStore(
   storage: StorageLike,
   serializer: Serializer,
   key: string,
+  debug: boolean,
 ) {
   try {
     const fromStorage = storage?.getItem(key)
     if (fromStorage) store.$patch(serializer?.deserialize(fromStorage))
-  } catch (_error) {}
+  } catch (error) {
+    if (debug) console.error(error)
+  }
 }
 
 /**
@@ -82,7 +85,7 @@ export function createPersistedState(
 
       beforeRestore?.(context)
 
-      hydrateStore(store, storage, serializer, key)
+      hydrateStore(store, storage, serializer, key, debug)
 
       afterRestore?.(context)
 
@@ -106,12 +109,13 @@ export function createPersistedState(
     })
 
     store.$hydrate = ({ runHooks = true } = {}) => {
-      persistences.forEach(p => {
-        const { beforeRestore, afterRestore, storage, serializer, key } = p
+      persistences.forEach(persistence => {
+        const { beforeRestore, afterRestore, storage, serializer, key, debug } =
+          persistence
 
         if (runHooks) beforeRestore?.(context)
 
-        hydrateStore(store, storage, serializer, key)
+        hydrateStore(store, storage, serializer, key, debug)
 
         if (runHooks) afterRestore?.(context)
       })
