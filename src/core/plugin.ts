@@ -19,11 +19,14 @@ function hydrateStore(
   storage: StorageLike,
   serializer: Serializer,
   key: string,
+  debug: boolean,
 ) {
   try {
     const fromStorage = storage?.getItem(key)
     if (fromStorage) store.$patch(serializer?.deserialize(fromStorage))
-  } catch (_error) {}
+  } catch (error) {
+    if (debug) console.error(error)
+  }
 }
 
 /**
@@ -57,6 +60,7 @@ export function createPersistedState(
         },
         key = store.$id,
         paths = null,
+        debug = false,
       }) => ({
         storage,
         beforeRestore,
@@ -64,15 +68,24 @@ export function createPersistedState(
         serializer,
         key,
         paths,
+        debug,
       }),
     )
 
-    persistences.forEach(p => {
-      const { storage, serializer, key, paths, beforeRestore, afterRestore } = p
+    persistences.forEach(persistence => {
+      const {
+        storage,
+        serializer,
+        key,
+        paths,
+        beforeRestore,
+        afterRestore,
+        debug,
+      } = persistence
 
       beforeRestore?.(context)
 
-      hydrateStore(store, storage, serializer, key)
+      hydrateStore(store, storage, serializer, key, debug)
 
       afterRestore?.(context)
 
@@ -85,8 +98,8 @@ export function createPersistedState(
             const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
             storage.setItem(key, serializer.serialize(toStore as StateTree))
-          } catch (_error) {
-            console.log(_error)
+          } catch (error) {
+            if (debug) console.error(error)
           }
         },
         {
@@ -96,12 +109,13 @@ export function createPersistedState(
     })
 
     store.$hydrate = ({ runHooks = true } = {}) => {
-      persistences.forEach(p => {
-        const { beforeRestore, afterRestore, storage, serializer, key } = p
+      persistences.forEach(persistence => {
+        const { beforeRestore, afterRestore, storage, serializer, key, debug } =
+          persistence
 
         if (runHooks) beforeRestore?.(context)
 
-        hydrateStore(store, storage, serializer, key)
+        hydrateStore(store, storage, serializer, key, debug)
 
         if (runHooks) afterRestore?.(context)
       })

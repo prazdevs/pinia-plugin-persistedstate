@@ -398,6 +398,62 @@ describe('default', () => {
     })
   })
 
+  describe('w/ debug', () => {
+    it('error logs hydration errors', () => {
+      //* arrange
+      const error = new Error('failed_hydration')
+      const spy = vi
+        .spyOn(globalThis.console, 'error')
+        .mockImplementationOnce(() => {})
+      const useStore = defineStore(key, {
+        state: () => ({ lorem: '' }),
+        persist: {
+          storage: {
+            getItem: () => {
+              throw error
+            },
+            setItem: localStorage.setItem,
+          },
+          debug: true,
+        },
+      })
+
+      //* act
+      useStore()
+
+      //* assert
+      expect(spy).toHaveBeenCalledWith(error)
+    })
+
+    it('error logs persistence errors', async () => {
+      //* arrange
+      const error = new Error('failed_persistence')
+      const spy = vi
+        .spyOn(globalThis.console, 'error')
+        .mockImplementationOnce(() => {})
+      const useStore = defineStore(key, {
+        state: () => ({ lorem: '' }),
+        persist: {
+          storage: {
+            getItem: localStorage.getItem,
+            setItem: () => {
+              throw error
+            },
+          },
+          debug: true,
+        },
+      })
+
+      //* act
+      const store = useStore()
+      store.lorem = 'ipsum'
+      await nextTick()
+
+      //* assert
+      expect(spy).toHaveBeenCalledWith(error)
+    })
+  })
+
   describe('multiple persistences', () => {
     let stored1: Record<string, string>
     const storage1 = {
