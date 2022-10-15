@@ -66,3 +66,12 @@ export default defineNuxtPlugin(nuxtApp => {
 :::warning
 Using client-only persistence when server-side rendering, the store state will most likely be the initial state and **not** the persisted state.
 :::
+
+## Note on Nuxt plugins
+
+:::warning
+It is important to note that Nuxt plugins are loaded sequentially. If any of your other plugins requires a Pinia store to be hydrated, you want to make sure the `persisted-state` plugin is loaded before. You may name the file `1.persistedstate.ts` to ensure it is loaded first.
+
+More on this can be found in [Nuxt plugins documentation](https://v3.nuxtjs.org/guide/directory-structure/plugins#plugin-registration-order).
+:::
+
