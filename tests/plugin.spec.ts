@@ -196,6 +196,42 @@ describe('default', () => {
     })
   })
 
+  describe('w/ keyPrefix', () => {
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: { keyPrefix: 'prefixed-' },
+    })
+
+    it('persists store in localStorage under given key', async () => {
+      //* arrange
+      const store = useStore()
+
+      //* act
+      store.lorem = 'ipsum'
+      await nextTick()
+
+      //* assert
+      expect(readLocalStoage(`prefixed-${key}`)).toEqual({ lorem: 'ipsum' })
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        'prefixed-mock-store',
+        JSON.stringify({ lorem: 'ipsum' }),
+      )
+    })
+
+    it('rehydrates store from localStorage under given key', async () => {
+      //* arrange
+      initializeLocalStorage('prefixed-mock-store', { lorem: 'ipsum' })
+
+      //* act
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('ipsum')
+      expect(localStorage.getItem).toHaveBeenCalledWith('prefixed-mock-store')
+    })
+  })
+
   describe('w/ paths', () => {
     const useStore = defineStore(key, {
       state: () => ({
