@@ -18,6 +18,12 @@ export interface Serializer {
 
 export interface PersistedStateOptions {
   /**
+   * Prefix to use for storage keys.
+   * @default undefined
+   */
+  keyPrefix?: string
+
+  /**
    * Storage key to use.
    * @default $store.id
    */

@@ -18,11 +18,14 @@ function hydrateStore(
   store: Store,
   storage: StorageLike,
   serializer: Serializer,
+  keyPrefix: string,
   key: string,
   debug: boolean,
 ) {
   try {
-    const fromStorage = storage?.getItem(key)
+    const fromStorage = storage?.getItem(
+      [keyPrefix, key].filter(Boolean).join(''),
+    )
     if (fromStorage) store.$patch(serializer?.deserialize(fromStorage))
   } catch (error) {
     if (debug) console.error(error)
@@ -58,6 +61,7 @@ export function createPersistedState(
           serialize: JSON.stringify,
           deserialize: JSON.parse,
         },
+        keyPrefix = undefined,
         key = store.$id,
         paths = null,
         debug = false,
@@ -66,6 +70,7 @@ export function createPersistedState(
         beforeRestore,
         afterRestore,
         serializer,
+        keyPrefix,
         key,
         paths,
         debug,
@@ -76,6 +81,7 @@ export function createPersistedState(
       const {
         storage,
         serializer,
+        keyPrefix,
         key,
         paths,
         beforeRestore,
@@ -85,7 +91,13 @@ export function createPersistedState(
 
       beforeRestore?.(context)
 
-      hydrateStore(store, storage, serializer, key, debug)
+      hydrateStore(
+        store,
+        storage,
+        serializer,
+        [keyPrefix, key].filter(Boolean).join(''),
+        debug,
+      )
 
       afterRestore?.(context)
 
@@ -97,7 +109,10 @@ export function createPersistedState(
           try {
             const toStore = Array.isArray(paths) ? pick(state, paths) : state
 
-            storage.setItem(key, serializer.serialize(toStore as StateTree))
+            storage.setItem(
+              [keyPrefix, key].filter(Boolean).join(''),
+              serializer.serialize(toStore as StateTree),
+            )
           } catch (error) {
             if (debug) console.error(error)
           }
@@ -110,12 +125,25 @@ export function createPersistedState(
 
     store.$hydrate = ({ runHooks = true } = {}) => {
       persistences.forEach(persistence => {
-        const { beforeRestore, afterRestore, storage, serializer, key, debug } =
-          persistence
+        const {
+          beforeRestore,
+          afterRestore,
+          storage,
+          serializer,
+          keyPrefix,
+          key,
+          debug,
+        } = persistence
 
         if (runHooks) beforeRestore?.(context)
 
-        hydrateStore(store, storage, serializer, key, debug)
+        hydrateStore(
+          store,
+          storage,
+          serializer,
+          [keyPrefix, key].filter(Boolean).join(''),
+          debug,
+        )
 
         if (runHooks) afterRestore?.(context)
       })
