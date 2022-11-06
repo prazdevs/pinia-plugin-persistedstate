@@ -16,16 +16,26 @@ const pinia = createPinia()
 
 pinia.use(createPersistedState({
   storage: sessionStorage,
+  key: ( { $id } ) => `_persist_${$id}`
 }))
 ```
 
 In this example, every store declaring `persist: true` will by default persist data to `sessionStorage`.
 
 Available global options include:
+- `key`
 - [`storage`](/guide/config#storage)
 - [`serializer`](/guide/config#serializer)
 - [`beforeRestore`](/guide/config#beforeRestore)
 - [`afterRestore`](/guide/config#afterRestore)
+<br>
+<br>
+### Global `key` option
+- **type**: `(store: PiniaPluginContext['store']) => string`
+- **default**: `undefined`.
+
+A global method to set keys for any store persistence. Useful to prefix the name of the key of each persistence of any store.
+
 
 :::info
 Any option passed to a store's `persist` configuration will override its counterpart declared in the global options.
@@ -112,3 +122,29 @@ This will fetch data from the storage and replace the current state with it. In 
 :::warning
 In most cases, you should not need to manually hydrate the state. Make sure you know what you are doing, and the reason you are using `$hydrate` is not due to a bug (of either your implementation or the plugin itself).
 :::
+
+## Manually persist state
+
+In case you need to manually persist the data in the storage, you can access the method in the `$persist` object available in the store.
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('store', {
+  state: () => ({
+    someData: 'Hello Pinia'
+  }),
+  action: {
+    updateSomeData( newValue ) {
+      this.someData = newValue;
+
+      this.$persist.updateInStorage();
+    }
+  },
+  persist: {
+    updationTriggers: []
+  },
+})
+```
+
+When there are multiple persistences then you will need to pass the index of the persistence you want to update.

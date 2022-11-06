@@ -57,12 +57,26 @@ export interface PersistedStateOptions {
    * @default false
    */
   debug?: boolean
+
+  /**
+   * Defines at what points can the storage be updated. 'subscribe' happens on every $subscribe
+   * of the store and 'beforeunload' happens before browser tab close/refresh
+   * @default ['subscribe']
+   */
+  updationTriggers?: Array<'subscribe' | 'beforeunload'>
 }
 
-export type PersistedStateFactoryOptions = Pick<
-  PersistedStateOptions,
-  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
->
+export interface PersistedStateFactoryOptions
+  extends Pick<
+    PersistedStateOptions,
+    'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
+  > {
+  /**
+   * Storage key to globally for all modules. Priority will be given to store level key in `persist`
+   * @default undefined
+   */
+  key?: (store: PiniaPluginContext['store']) => string
+}
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
@@ -80,5 +94,15 @@ declare module 'pinia' {
      * @see https://github.com/prazdevs/pinia-plugin-persistedstate
      */
     $hydrate: (opts?: { runHooks?: boolean }) => void
+
+    $persist: {
+      /**
+       * Manually updates storage whenever called for the store
+       * @see https://github.com/prazdevs/pinia-plugin-persistedstate
+       */
+      updateInStorage: (persistanceIndex?: number) => void
+    }
   }
 }
+
+export type PersistanceStorageUpdater = (state: StateTree) => void

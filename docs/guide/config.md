@@ -67,12 +67,30 @@ export const useStore = defineStore('store', {
 })
 ```
 
-This store will be persisted in [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage).
-:::
+## updationTriggers
 
-:::warning
-Storage must be synchronous. More info in the [limitations page](/guide/limitations).
-:::
+- **type**: [`Array<'subscribe' | 'beforeunload'>`]
+- **default**: [`['subscribe']`]
+
+When the data will actually be put in storage. 
+1. `subscribe`: implies that the data will be updated in storage on every `$subscribe` of the store. 
+2. `beforeunload`: implies that the data will only be updated in storage when the browser tab is refreshed/killed.
+
+Prefer manual updation using `$persist.updateInStorage` instead of `subscribe` when the store is being updated at high frequency
+
+:::details Example
+```ts
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('store', {
+  state: () => ({
+    someState: 'hello pinia',
+  }),
+  persist: {
+    updationTriggers: [ 'beforeunload' ]
+  },
+})
+```
 
 ## paths
 

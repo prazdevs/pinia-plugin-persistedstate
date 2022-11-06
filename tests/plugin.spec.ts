@@ -3,7 +3,7 @@ import { describe, beforeEach, it, expect, vi, beforeAll } from 'vitest'
 import { createApp, nextTick, Vue2, isVue2, install, ref } from 'vue-demi'
 
 import { createPersistedState } from '~/core/plugin'
-import { initializeLocalStorage, readLocalStoage } from '~~/tests/utils'
+import { initializeLocalStorage, readLocalStorage } from '~~/tests/utils'
 
 const key = 'mock-store'
 
@@ -48,13 +48,12 @@ describe('default', () => {
     it('does not persist store', async () => {
       //* arrange
       const store = useStore()
-
       //* act
       store.lorem = 'ipsum'
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({})
+      expect(readLocalStorage(key)).toEqual({})
       expect(localStorage.setItem).not.toHaveBeenCalled()
     })
 
@@ -87,7 +86,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+      expect(readLocalStorage(key)).toEqual({ lorem: 'ipsum' })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         key,
         JSON.stringify({ lorem: 'ipsum' }),
@@ -122,7 +121,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+      expect(readLocalStorage(key)).toEqual({ lorem: 'ipsum' })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         key,
         JSON.stringify({ lorem: 'ipsum' }),
@@ -175,7 +174,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage('mock')).toEqual({ lorem: 'ipsum' })
+      expect(readLocalStorage('mock')).toEqual({ lorem: 'ipsum' })
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'mock',
         JSON.stringify({ lorem: 'ipsum' }),
@@ -223,7 +222,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(readLocalStoage(key)).toEqual({
+      expect(readLocalStorage(key)).toEqual({
         lorem: 'ipsum',
         dolor: { consectetur: { adipiscing: 'elit' } },
       })
@@ -422,7 +421,7 @@ describe('default', () => {
       useStore()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith(error)
+      expect(spy).toHaveBeenCalledWith('[PiniaPluginPersistedState] ', error)
     })
 
     it('error logs persistence errors', async () => {
@@ -450,7 +449,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith(error)
+      expect(spy).toHaveBeenCalledWith('[PiniaPluginPersistedState] ', error)
     })
   })
 
