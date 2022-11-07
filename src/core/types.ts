@@ -59,10 +59,17 @@ export interface PersistedStateOptions {
   debug?: boolean
 }
 
-export type PersistedStateFactoryOptions = Pick<
-  PersistedStateOptions,
-  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
->
+export interface PersistedStateFactoryOptions
+  extends Pick<
+    PersistedStateOptions,
+    'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
+  > {
+  /**
+   * Storage key to globally for all modules. Priority will be given to store level key in `persist`
+   * @default undefined
+   */
+  key?: (store: PiniaPluginContext['store']) => string
+}
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {

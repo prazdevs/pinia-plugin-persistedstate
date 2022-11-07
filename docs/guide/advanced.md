@@ -16,16 +16,29 @@ const pinia = createPinia()
 
 pinia.use(createPersistedState({
   storage: sessionStorage,
+  key: ( { $id } ) => `_persist_${$id}`
 }))
 ```
 
 In this example, every store declaring `persist: true` will by default persist data to `sessionStorage`.
 
 Available global options include:
+- `key`
 - [`storage`](/guide/config#storage)
 - [`serializer`](/guide/config#serializer)
 - [`beforeRestore`](/guide/config#beforeRestore)
 - [`afterRestore`](/guide/config#afterRestore)
+
+<br>
+
+### Global `key` option
+- **type**: `(store: PiniaPluginContext['store']) => string`
+- **default**: `undefined`.
+
+<br>
+
+A global method to set keys for any store persistence. Useful to prefix the name of the key of each persistence of any store.
+
 
 :::info
 Any option passed to a store's `persist` configuration will override its counterpart declared in the global options.

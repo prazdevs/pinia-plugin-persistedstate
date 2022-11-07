@@ -38,17 +38,22 @@ export function createPersistedState(
   factoryOptions: PersistedStateFactoryOptions = {},
 ): PiniaPlugin {
   return (context: PiniaPluginContext) => {
-    const {
-      options: { persist },
-      store,
-    } = context
+    const { options, store } = context
+    const { persist } = options
+    let globalOrDefaultKey = store.$id
 
     if (!persist) return
 
+    if (typeof factoryOptions.key === 'function') {
+      globalOrDefaultKey = factoryOptions.key(store)
+    }
+
     const persistences = (
       Array.isArray(persist)
-        ? persist.map(p => normalizeOptions(p, factoryOptions))
-        : [normalizeOptions(persist, factoryOptions)]
+        ? persist.map(p =>
+            normalizeOptions(p, factoryOptions, globalOrDefaultKey),
+          )
+        : [normalizeOptions(persist, factoryOptions, globalOrDefaultKey)]
     ).map(
       ({
         storage = localStorage,
@@ -58,7 +63,7 @@ export function createPersistedState(
           serialize: JSON.stringify,
           deserialize: JSON.parse,
         },
-        key = store.$id,
+        key = globalOrDefaultKey,
         paths = null,
         debug = false,
       }) => ({
