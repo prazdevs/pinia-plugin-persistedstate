@@ -83,9 +83,37 @@ defineStore('store', {
 In this specific case, on hydration, the data retrieved from `sessionStorage` will replace the data retrieved from `localStorage`.
 :::
 
+## Manually persist state
+
+In case you need to manually persist the data in the storage, you can access the method in the `$persist` object available in the store as `$persist.updateStorage`.
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('store', {
+  state: () => ({
+    someData: 'Hello Pinia'
+  }),
+  action: {
+    updateSomeData( newValue ) {
+      this.someData = newValue;
+
+      this.$persist.updateStorage();
+    }
+  },
+  persist: {
+    updationTriggers: []
+  },
+})
+```
+
+When there are multiple persistences then you will need to pass the index of the persistence you want to update.
+
 ## Forcing the rehydration
 
-In case you need to manually trigger hydration from storage, every store now exposes a `$hydrate` method. By default, calling this method will also trigger the `beforeRestore` and `afterRestore` hooks. You can avoid the hooks triggering by specifying the method not to.
+In case you need to manually trigger hydration from storage, every store now exposes a `hydrate` method in the `$persist` object. By default, calling this method will also trigger the `beforeRestore` and `afterRestore` hooks. You can avoid the hooks triggering by specifying the method not to.
+
+When there are multiple persistences then you will need to pass the index of the persistence you want to update. if `-1` is passed then the store will be hydrated from all persistences.
 
 Given this store:
 
@@ -104,7 +132,7 @@ You can call `$hydrate`:
 ```ts
 const store = useStore()
 
-store.$hydrate({ runHooks: false })
+store.$persist.hydrate(-1, { runHooks: false })
 ```
 
 This will fetch data from the storage and replace the current state with it. In the example above, hooks will not be triggered.
