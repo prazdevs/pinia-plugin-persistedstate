@@ -140,7 +140,7 @@ describe('default', () => {
       //* assert
       expect(store.lorem).toEqual('')
 
-      store.$hydrate()
+      store.$persist.hydrate()
       await nextTick()
 
       expect(store.lorem).toEqual('ipsum')
@@ -422,7 +422,7 @@ describe('default', () => {
       useStore()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith(error)
+      expect(spy).toHaveBeenCalledWith('[PiniaPluginPersistedState] ', error)
     })
 
     it('error logs persistence errors', async () => {
@@ -450,7 +450,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith(error)
+      expect(spy).toHaveBeenCalledWith('[PiniaPluginPersistedState] ', error)
     })
   })
 
@@ -505,7 +505,7 @@ describe('default', () => {
     // it('rehydrates from different storages', () => {})
   })
 
-  describe('$hydrate', () => {
+  describe('$persist.hydrate', () => {
     const beforeRestore = vi.fn()
     const afterRestore = vi.fn()
     const useStore = defineStore(key, {
@@ -520,7 +520,7 @@ describe('default', () => {
       await nextTick()
 
       //* act
-      store.$hydrate()
+      store.$persist.hydrate()
 
       //* assert
       expect(store.lorem).toEqual('ipsum')
@@ -537,7 +537,7 @@ describe('default', () => {
       afterRestore.mockClear()
 
       //* act
-      store.$hydrate({ runHooks: false })
+      store.$persist.hydrate(-1, { runHooks: false })
 
       //* assert
       expect(beforeRestore).not.toHaveBeenCalled()

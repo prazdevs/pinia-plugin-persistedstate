@@ -64,6 +64,20 @@ export type PersistedStateFactoryOptions = Pick<
   'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
 >
 
+export type PersistenceHydrator = (opts?: { runHooks?: boolean }) => void
+
+export type PersistanceStorageUpdater = (state: StateTree) => void
+
+export type PersitenceOperationsCache<T> = Record<
+  PiniaPluginContext['store']['$id'],
+  Array<T>
+>
+
+export type DefineStorePersistOption =
+  | boolean
+  | PersistedStateOptions
+  | PersistedStateOptions[]
+
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
     /**
@@ -75,10 +89,30 @@ declare module 'pinia' {
 
   export interface PiniaCustomProperties {
     /**
-     * Rehydrates store from persisted state
-     * Warning: this is for advances usecases, make sure you know what you're doing.
-     * @see https://github.com/prazdevs/pinia-plugin-persistedstate
+     * @deprecated use `$persist.hydrate` instead
      */
     $hydrate: (opts?: { runHooks?: boolean }) => void
+
+    $persist: {
+      /**
+       * Manually updates storage with the persisted state
+       * @see https://github.com/prazdevs/pinia-plugin-persistedstate
+       * @param {number} [persistanceIndex=-1] - the index of the persistence you want to hydrate store from. `-1` will update for all
+       */
+      updateStorage: (persistanceIndex?: number) => void
+
+      /**
+       * Rehydrates store from persisted state
+       * Warning: this is for advances usecases, make sure you know what you're doing.
+       * @see https://github.com/prazdevs/pinia-plugin-persistedstate
+       * @param {number} [persistanceIndex=-1] - the index of the persistence you want to hydrate store from. `-1` will update for all
+       * @param {Object} [opts]
+       * @param {boolean} [opts.runHooks] - whether to run restore hooks
+       */
+      hydrate: (
+        persistanceIndex?: number,
+        opts?: { runHooks?: boolean },
+      ) => void
+    }
   }
 }
