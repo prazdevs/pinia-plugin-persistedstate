@@ -57,6 +57,21 @@ export interface PersistedStateOptions {
    * @default false
    */
   debug?: boolean
+
+  /**
+   * Defines at what points can the storage be updated.
+   * 'subscribe' - happens on every $subscribe
+   * 'beforeunload' - happens before browser tab close/refresh
+   * @default ['subscribe']
+   */
+  updationTriggers?: Array<'subscribe' | 'beforeunload'>
+
+  /**
+   * Defines at what points can the store be hydrated from the persisted data from storage
+   * `created` - hydration will happen on created
+   * @default ['created']
+   */
+  hydrationTriggers?: Array<'created'>
 }
 
 export type PersistedStateFactoryOptions = Pick<

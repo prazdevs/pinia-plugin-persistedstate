@@ -17,7 +17,7 @@ import {
   PersitenceOperationsCache,
   DefineStorePersistOption,
 } from '~/core/types'
-import { consoleError, consoleWarn } from '~/utils'
+import { consoleError, consoleWarn, safeAttachWindowEvent } from '~/utils'
 
 function hydrateStore(
   store: Store,
@@ -101,6 +101,8 @@ export function createPersistedState(
         key = store.$id,
         paths = null,
         debug = false,
+        updationTriggers = ['subscribe'],
+        hydrationTriggers = ['created'],
       }) => ({
         storage,
         beforeRestore,
@@ -109,6 +111,8 @@ export function createPersistedState(
         key,
         paths,
         debug,
+        updationTriggers,
+        hydrationTriggers,
       }),
     )
 
@@ -121,7 +125,10 @@ export function createPersistedState(
         beforeRestore,
         afterRestore,
         debug,
+        updationTriggers,
+        hydrationTriggers,
       } = persistence
+
       const hydrator: (opts?: { runHooks?: boolean }) => void = ({
         runHooks,
       } = {}) => {
@@ -145,17 +152,25 @@ export function createPersistedState(
       storageUpdatersCache[store.$id].push(updater)
       storeHydratorsCache[store.$id].push(hydrator)
 
-      hydrator({ runHooks: true })
+      if (hydrationTriggers.includes('created')) hydrator({ runHooks: true })
 
-      store.$subscribe(
-        (
-          _mutation: SubscriptionCallbackMutation<StateTree>,
-          state: StateTree = store.$state,
-        ) => updater(state),
-        {
-          detached: true,
-        },
-      )
+      if (updationTriggers.includes('subscribe')) {
+        store.$subscribe(
+          (
+            _mutation: SubscriptionCallbackMutation<StateTree>,
+            state: StateTree = store.$state,
+          ) => updater(state),
+          {
+            detached: true,
+          },
+        )
+      }
+
+      if (updationTriggers.includes('beforeunload')) {
+        safeAttachWindowEvent('beforeunload', () => updater(store.$state), {
+          debug,
+        })
+      }
     })
 
     store.$persist = {
