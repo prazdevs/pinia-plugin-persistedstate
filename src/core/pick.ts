@@ -27,7 +27,7 @@ function merge(destination: Mergeable, source: Mergeable): Mergeable {
         destination[key] as Mergeable,
         source[key] as Mergeable,
       )
-    } else if (!isUndefined(destination[key]) && !isUndefined(source[key])) {
+    } else if (!isUndefined(destination[key]) && isUndefined(source[key])) {
       result[key] = destination[key]
     } else if (isUndefined(destination[key]) && !isUndefined(source[key])) {
       result[key] = source[key]
