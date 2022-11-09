@@ -3,9 +3,7 @@ import type {
   PersistedStateFactoryOptions,
 } from '~/core/types'
 
-function isObject(v: unknown) {
-  return typeof v === 'object' && v !== null
-}
+import { isObject } from './is'
 
 export default function normalizeOptions(
   options: boolean | PersistedStateOptions | undefined,

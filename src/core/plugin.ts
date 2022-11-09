@@ -6,6 +6,8 @@ import {
   PiniaPlugin,
 } from 'pinia'
 
+import { isArray } from './is'
+
 import normalizeOptions from '~/core/normalize'
 import pick from '~/core/pick'
 import {
@@ -95,7 +97,7 @@ export function createPersistedState(
           state: StateTree,
         ) => {
           try {
-            const toStore = Array.isArray(paths) ? pick(state, paths) : state
+            const toStore = isArray(paths) ? pick(state, paths) : state
 
             storage.setItem(key, serializer.serialize(toStore as StateTree))
           } catch (error) {

@@ -1,13 +1,11 @@
 import type { StateTree } from 'pinia'
 
+import { isObject, isArray, isUndefined } from './is'
+
 export type Mergeable = Record<string, unknown>
 
-function isObject(value: unknown): boolean {
-  return value !== null && typeof value === 'object'
-}
-
 function merge(destination: Mergeable, source: Mergeable): Mergeable {
-  const mergingArrays = Array.isArray(destination) && Array.isArray(source)
+  const mergingArrays = isArray(destination) && isArray(source)
   const mergingObjects = isObject(destination) && isObject(source)
 
   if (!mergingArrays && !mergingObjects) {
@@ -18,24 +16,20 @@ function merge(destination: Mergeable, source: Mergeable): Mergeable {
 
   const keys: string[] = [...Object.keys(destination), ...Object.keys(source)]
   keys.forEach((key: string): void => {
-    if (Array.isArray(destination[key]) && Array.isArray(source[key])) {
+    if (isArray(destination[key]) && isArray(source[key])) {
       result[key] = [
         ...Object.values(
           merge(destination[key] as Mergeable, source[key] as Mergeable),
         ),
       ]
-    } else if (
-      source[key] !== null &&
-      typeof source[key] === 'object' &&
-      typeof destination[key] === 'object'
-    ) {
+    } else if (isObject(source[key]) && typeof destination[key] === 'object') {
       result[key] = merge(
         destination[key] as Mergeable,
         source[key] as Mergeable,
       )
-    } else if (destination[key] !== undefined && source[key] === undefined) {
+    } else if (!isUndefined(destination[key]) && !isUndefined(source[key])) {
       result[key] = destination[key]
-    } else if (destination[key] === undefined && source[key] !== undefined) {
+    } else if (isUndefined(destination[key]) && !isUndefined(source[key])) {
       result[key] = source[key]
     }
   })
@@ -45,7 +39,7 @@ function merge(destination: Mergeable, source: Mergeable): Mergeable {
 
 function get(state: StateTree, path: Array<string>): unknown {
   return path.reduce((obj, p) => {
-    if (p === '[]' && Array.isArray(obj)) return obj
+    if (p === '[]' && isArray(obj)) return obj
     return obj?.[p]
   }, state)
 }
@@ -56,20 +50,16 @@ function set(state: StateTree, path: Array<string>, val: unknown): StateTree {
     else return {}
   }, state)
 
-  if (
-    Array.isArray(modifiedState[path[path.length - 1]]) &&
-    Array.isArray(val)
-  ) {
+  if (isArray(modifiedState[path[path.length - 1]]) && isArray(val)) {
     const merged = modifiedState[path[path.length - 1]].map(
       (item: Mergeable, index: number) => {
-        if (Array.isArray(item) && typeof item !== 'object') {
+        if (isArray(item) && typeof item !== 'object') {
           return [...item, ...val[index]]
         }
 
         if (
-          typeof item === 'object' &&
-          item !== null &&
-          Object.keys(item).some(key => Array.isArray(item[key]))
+          isObject(item) &&
+          Object.keys(item).some(key => isArray(item[key]))
         ) {
           return merge(item, val[index])
         }
@@ -82,9 +72,9 @@ function set(state: StateTree, path: Array<string>, val: unknown): StateTree {
     )
     modifiedState[path[path.length - 1]] = merged
   } else if (
-    path[path.length - 1] === undefined &&
-    Array.isArray(modifiedState) &&
-    Array.isArray(val)
+    isUndefined(path[path.length - 1]) &&
+    isArray(modifiedState) &&
+    isArray(val)
   ) {
     modifiedState.push(...val)
   } else {
@@ -113,7 +103,7 @@ export default function pick(baseState: StateTree, paths: string[]): StateTree {
       for (const item of referencedArray) {
         if (
           pathArrayAfterArray.length !== 0 &&
-          (Array.isArray(item) || typeof item === 'object')
+          (isArray(item) || typeof item === 'object')
         ) {
           referencedArraySubstate.push(
             pick(item, [pathArrayAfterArray.join('.')]),
@@ -124,6 +114,6 @@ export default function pick(baseState: StateTree, paths: string[]): StateTree {
       }
       return set(substate, pathArrayBeforeArray, referencedArraySubstate)
     },
-    Array.isArray(baseState) ? [] : {},
+    isArray(baseState) ? [] : {},
   )
 }
