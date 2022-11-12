@@ -62,7 +62,13 @@ export interface PersistedStateOptions {
 export type PersistedStateFactoryOptions = Pick<
   PersistedStateOptions,
   'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
->
+> & {
+  /**
+   * Global key generator, allows pre/postfixing store keys.
+   * @default storeKey => storeKey
+   */
+  key?: (storeKey: string) => string
+}
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
