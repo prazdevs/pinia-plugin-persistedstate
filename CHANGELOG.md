@@ -1,6 +1,18 @@
 # Changelog
 
 
+<a name="2.4.0"></a>
+## 2.4.0 (2022-11-13)
+
+### Added
+
+- ✨ add global key factory option ([#137](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/137)) [[c07a772](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c07a772cac8fecaafce2cdcf37e6340cc7f6257a)]
+
+### Miscellaneous
+
+- 📝 add nuxt plugin order docs ([#126](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/126)) [[2ff9087](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/2ff908712c5b333faa238835eb6aa5ff09a6cb42)]
+
+
 <a name="2.3.0"></a>
 ## 2.3.0 (2022-10-09)
 
