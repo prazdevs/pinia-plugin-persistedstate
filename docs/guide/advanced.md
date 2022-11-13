@@ -31,6 +31,36 @@ Available global options include:
 Any option passed to a store's `persist` configuration will override its counterpart declared in the global options.
 :::
 
+## Global key option
+
+On top of other global persistence options, the `createPersistedState` factory function takes one more option: `key`. The global `key` option accepts a function that gets passed the store key and should return a string to become the new store key.
+
+```ts
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
+
+pinia.use(createPersistedState({
+  key: id => `__persisted__${id}`,
+}))
+```
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('store', {
+  state: () => ({ saved : '' }),
+  persist: true,
+})
+```
+
+In this example, the store will be persisted under `__persisted__store` key instead of `store`.
+
+:::info
+This is option should be considered when you need to prefix/postfix all store keys globally.
+:::
+
 ## Multiple persistences per-store
 
 There may be specific use cases where you need to persist data from a single store to different storages. The `persist` option also accepts an array of configurations.
