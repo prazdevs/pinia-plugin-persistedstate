@@ -1,6 +1,6 @@
 {
   "name": "pinia-plugin-persistedstate",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "packageManager": "pnpm@7.6.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "prazdevs",
