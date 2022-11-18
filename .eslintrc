@@ -1,18 +1,4 @@
 {
-  "extends": [
-    "@prazdevs/eslint-config-typescript",
-    "plugin:prettier/recommended"
-  ],
-  "rules": {
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { "varsIgnorePattern": "^S$|^Store$" }
-    ]
-  },
-  "ignorePatterns": [
-    "coverage",
-    "dist",
-    "examples",
-    "node_modules"
-  ]
+  "root": true,
+  "extends": "@antfu"
 }

@@ -11,44 +11,30 @@ export default defineConfig({
   markdown: {
     theme: {
       dark: 'vitesse-dark',
-      light: 'vitesse-light'
-    }
+      light: 'vitesse-light',
+    },
   },
   themeConfig: {
     logo: '/logo.png',
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © 2021-${new Date().getFullYear()} Sacha Bouillez & contributors`
+      copyright: `Copyright © 2021-${new Date().getFullYear()} Sacha Bouillez & contributors`,
     },
     editLink: {
       pattern: 'https://github.com/prazdevs/pinia-plugin-persistedstate/edit/main/docs/:path',
-      text: 'Edit this page on GitHub'
+      text: 'Edit this page on GitHub',
     },
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/prazdevs/pinia-plugin-persistedstate'
-      }
+        link: 'https://github.com/prazdevs/pinia-plugin-persistedstate',
+      },
     ],
     nav: [
-      { 
+      {
         text: 'Guide',
         link: '/guide/',
         activeMatch: '/guide/',
-      },
-      { 
-        text: 'Frameworks', 
-        activeMatch: '/frameworks/',
-        items: [
-          { 
-            text: 'Nuxt 3',
-            link: '/frameworks/nuxt-3',
-          },
-          {
-            text: 'Quasar',
-            link: '/frameworks/quasar'
-          }
-        ],
       },
     ],
     sidebar: {
@@ -58,40 +44,27 @@ export default defineConfig({
           items: [
             {
               text: 'Why this plugin?',
-              link: '/guide/why'
+              link: '/guide/why',
             },
             {
               text: 'Getting Started',
-              link: '/guide/'
+              link: '/guide/',
             },
             {
               text: 'Configuration',
-              link: '/guide/config'
+              link: '/guide/config',
             },
             {
               text: 'Limitations',
-              link: '/guide/limitations'
+              link: '/guide/limitations',
             },
             {
               text: 'Advanced Usage',
-              link: '/guide/advanced'
-            }
-          ]
-        },
-        {
-          text: 'Frameworks',
-          items: [
-            {
-              text: 'Nuxt 3',
-              link: '/frameworks/nuxt-3'
+              link: '/guide/advanced',
             },
-            {
-              text: 'Quasar',
-              link: '/frameworks/quasar'
-            }
-          ]
-        }
-      ]
-    }
+          ],
+        },
+      ],
+    },
   },
 })

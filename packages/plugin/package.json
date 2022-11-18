@@ -1,0 +1,18 @@
+{
+  "name": "pinia-plugin-persistedstate",
+  "version": "3.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "build": "tsup --dts --format esm,cjs src/index.ts",
+    "test:2": "vue-demi-switch 2.7 vue2 && vitest --run --silent tests/plugin",
+    "test:3": "vue-demi-switch 3 && vitest --run",
+    "test": "pnpm run test:2 && pnpm run test:3"
+  },
+  "devDependencies": {
+    "pinia": "^2.0.24"
+  }
+}

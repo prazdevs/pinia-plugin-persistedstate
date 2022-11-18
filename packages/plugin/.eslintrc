@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "varsIgnorePattern": "^S$|^Store$" }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["tests/*.ts"],
+      "rules": { "vue/one-component-per-file": "off" }
+    }
+  ]
+}

@@ -10,7 +10,6 @@ This plugin is compatible with `pinia^2.0.0`, make sure you have [Pinia installe
 - Multiple configurations per store.
 - Compatibility with Vue 2 and 3.
 - No external dependencies.
-- Super small (<1kB gzipped).
 
 
 ## Installation
