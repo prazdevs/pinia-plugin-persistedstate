@@ -1,16 +1,34 @@
 {
   "name": "pinia-plugin-persistedstate",
   "version": "3.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
-  "main": "index.js",
+  "description": "Configurable persistence and rehydration of Pinia stores.",
+  "author": "prazdevs",
+  "license": "MIT",
+  "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"
+  },
+  "keywords": ["pinia", "pinia-plugin"],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
     "build": "tsup --dts --format esm,cjs src/index.ts",
     "test:2": "vue-demi-switch 2.7 vue2 && vitest --run --silent tests/plugin",
     "test:3": "vue-demi-switch 3 && vitest --run",
     "test": "pnpm run test:2 && pnpm run test:3"
+  },
+  "peerDependencies": {
+    "pinia": "^2.0.0"
   },
   "devDependencies": {
     "pinia": "^2.0.24"

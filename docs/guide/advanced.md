@@ -50,7 +50,7 @@ pinia.use(createPersistedState({
 import { defineStore } from 'pinia'
 
 defineStore('store', {
-  state: () => ({ saved : '' }),
+  state: () => ({ saved: '' }),
   persist: true,
 })
 ```
