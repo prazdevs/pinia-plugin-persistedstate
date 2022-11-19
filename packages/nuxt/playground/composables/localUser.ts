@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-import { piniaLocalStorage } from '#pinia-plugin-persistedstate/storages'
+import { storages } from '#pinia-plugin-persistedstate'
 
 export const useLocalUser = defineStore('localuser', {
   state: () => ({
     username: 'PraZ',
   }),
   persist: {
-    storage: piniaLocalStorage(),
+    storage: storages.localStorage(),
   },
 })
