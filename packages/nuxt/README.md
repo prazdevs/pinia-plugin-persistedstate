@@ -1,6 +1,32 @@
-# Nuxt Module
+# `@pinia-plugin-persistedstate/nuxt`
 
-## Development
+> Nuxt 3 module
 
-- Run `npm run dev:prepare` to generate type stubs.
-- Use `npm run dev` to start [playground](./playground) in development mode.
+## 🚀 Quickstart
+
+1. Install with your favorite package manager:
+   - **pnpm** : `pnpm i -D @pinia-plugin-persistedstate/nuxt`
+   - npm : `npm i -D @pinia-plugin-persistedstate/nuxt`
+   - yarn : `yarn add -D @pinia-plugin-persistedstate/nuxt`
+
+2. Add the plugin to nuxt config:
+```ts
+export default defineNuxtConfig({
+  modules: [
+    '@pinia/nuxt', // needed
+    '@pinia-plugin-persistedstate/nuxt',
+  ]
+})
+```
+
+
+## 🔧 Configuration
+
+<!-- TODO CHANGE LINK TO NUXT RELATED DOCS -->
+Usage and configuration informations can be found in [the documentation](https://prazdevs.github.io/pinia-plugin-persistedstate/)
+
+
+## 📝 License
+
+Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).  
+This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENCE) license.
