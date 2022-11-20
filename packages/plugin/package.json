@@ -23,9 +23,9 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsup --dts --format esm,cjs src/index.ts",
-    "test:2": "vue-demi-switch 2.7 vue2 && vitest --run --silent tests/plugin",
-    "test:3": "vue-demi-switch 3 && vitest --run",
-    "test": "pnpm run test:2 && pnpm run test:3"
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:run": "vitest --run"
   },
   "peerDependencies": {
     "pinia": "^2.0.0"

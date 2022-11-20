@@ -1,11 +1,9 @@
 import type { StorageLike } from 'pinia-plugin-persistedstate'
 import { type CookieOptions, useCookie, useNuxtApp } from '#app'
 
-/**
- * Use Nuxt's cookies to persist pinia store
- * @param cookieOptions options to apply to cookies
- */
-const piniaCookies = (cookieOptions?: CookieOptions<string>) => ({
+const usePersistedstateCookies = (
+  cookieOptions?: Omit<CookieOptions<string>, 'encode' | 'decode'>,
+) => ({
   getItem: (key) => {
     return useCookie<string>(key, {
       ...cookieOptions,
@@ -22,11 +20,7 @@ const piniaCookies = (cookieOptions?: CookieOptions<string>) => ({
   },
 }) as StorageLike
 
-/**
- * Use `localStorage` to persist pinia store
- * Note: this storage is client-only
- */
-const piniaLocalStorage = () => ({
+const usePersistedstateLocalStorage = () => ({
   getItem: (key) => {
     return !useNuxtApp().ssrContext
       ? localStorage.getItem(key)
@@ -38,11 +32,7 @@ const piniaLocalStorage = () => ({
   },
 }) as StorageLike
 
-/**
- * Use `sessionStorage` to persist pinia store
- * Note: this storage is client-only
- */
-const piniaSessionStorage = () => ({
+const usePersistedstateSessionStorage = () => ({
   getItem: (key) => {
     return !useNuxtApp().ssrContext
       ? sessionStorage.getItem(key)
@@ -54,8 +44,9 @@ const piniaSessionStorage = () => ({
   },
 }) as StorageLike
 
-export const storages: Record<string, () => StorageLike> = {
-  cookies: piniaCookies,
-  localStorage: piniaLocalStorage,
-  sessionStorage: piniaSessionStorage,
+export const persistedState = {
+  localStorage: usePersistedstateLocalStorage(),
+  sessionStorage: usePersistedstateSessionStorage(),
+  cookies: usePersistedstateCookies(),
+  cookiesWithOptions: usePersistedstateCookies,
 }

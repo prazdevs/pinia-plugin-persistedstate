@@ -1,5 +1,5 @@
 {
-  "name": "my-module",
+  "name": "@pinia-plugin-persistedstate/nuxt",
   "type": "module",
   "version": "1.0.0",
   "license": "MIT",
