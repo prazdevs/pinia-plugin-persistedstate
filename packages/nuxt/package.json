@@ -32,5 +32,8 @@
     "@pinia/nuxt": "^0.4.4",
     "eslint": "^8.27.0",
     "nuxt": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@pinia/nuxt": "^0.4.4"
   }
 }

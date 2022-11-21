@@ -86,5 +86,7 @@ declare module 'pinia' {
      * @see https://github.com/prazdevs/pinia-plugin-persistedstate
      */
     $hydrate: (opts?: { runHooks?: boolean }) => void
+
+    $persist: () => void
   }
 }
