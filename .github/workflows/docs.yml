@@ -1,44 +1,66 @@
-name: Deploy docs
+name: Docs
 
 on:
   push:
     branches:
-      - main
+      - 'main'
+    paths:
+      - 'docs/**'
+  pull_request:
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+    branches:
+      - 'main'
+    inputs:
+      deploy:
+        description: 'Deploy ?'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
-  deploy:
+  docs:
+    name: Docs
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 7
-
-      - name: Setup node
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: pnpm
+
+      - name: Install pnpm
+        id: pnpm-install
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store
+        id: pnpm-store
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Build
-        run: pnpm docs:build
+      - name: Build docs
+        run: pnpm run docs:build
 
-      - name: Deploy to GH Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+      # TODO activate this
+      # - name: Deploy docs
+      #   if: ${{ github.event_name == 'push' || inputs.deploy }}
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: docs/.vitepress/dist
