@@ -85,7 +85,16 @@ export function createPersistedState(
 
       beforeRestore?.(context)
 
-      hydrateStore(store, storage, serializer, key, debug)
+      /**
+       * Nuxt 2 specific change, we don't need to hydrate the client because
+       * the @pinia/nuxt module already hydrates all the state on the client side.
+       *
+       * Without this change, pinia state will not be valid after client-side hydration
+       * because of a conflict with the @pinia/nuxt module.
+       */
+      if (!process.client) {
+        hydrateStore(store, storage, serializer, key, debug)
+      }
 
       afterRestore?.(context)
 

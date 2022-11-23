@@ -1,18 +1,27 @@
 {
-  "name": "pinia-plugin-persistedstate",
-  "version": "2.4.0",
+  "name": "@artmizu/pinia-plugin-persistedstate-nuxt-2",
+  "version": "2.4.1",
   "packageManager": "pnpm@7.6.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
-  "author": "prazdevs",
-  "license": "MIT",
-  "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
+  "keywords": [
+    "pinia",
+    "pinia-plugin"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"
   },
-  "keywords": [
-    "pinia",
-    "pinia-plugin"
+  "license": "MIT",
+  "author": "prazdevs",
+  "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
@@ -55,12 +64,6 @@
       ]
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "peerDependencies": {
     "pinia": "^2.0.0"
   },

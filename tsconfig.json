@@ -16,8 +16,5 @@
     "strictNullChecks": true,
     "target": "es2017"
   },
-  "exclude": [
-    "**/dist",
-    "**/node_modules"
-  ]
+  "exclude": ["**/dist", "**/node_modules"]
 }
