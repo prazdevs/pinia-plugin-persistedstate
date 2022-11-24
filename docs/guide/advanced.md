@@ -142,3 +142,33 @@ This will fetch data from the storage and replace the current state with it. In 
 :::warning
 In most cases, you should not need to manually hydrate the state. Make sure you know what you are doing, and the reason you are using `$hydrate` is not due to a bug (of either your implementation or the plugin itself).
 :::
+
+## Forcing the persistence
+
+In case you need to manually trigger persistence to storage, every store now exposes a `$persist` method. 
+
+Given this store:
+
+```ts
+import { defineStore } from 'pinia'
+
+const useStore = defineStore('store', {
+  state: () => ({
+    someData: 'Hello Pinia'
+  })
+})
+```
+
+You can call `$persist`:
+
+```ts
+const store = useStore()
+
+store.$persist()
+```
+
+This will force the store state to be persisted in configured storages.
+
+:::warning
+In most cases, you should not need to manually persist the state. Make sure you know what you are doing, and the reason you are using `$persist` is not due to a bug (of either your implementation or the plugin itself).
+:::

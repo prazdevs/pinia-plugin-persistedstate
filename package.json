@@ -1,5 +1,5 @@
 {
-  "name": "pinia-plugin-persistedstate",
+  "name": "@pinia-plugin-persistedstate/monorepo",
   "version": "3.0.0",
   "private": true,
   "packageManager": "pnpm@7.17.0",
@@ -9,9 +9,10 @@
   "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
   "scripts": {
     "build": "pnpm -r run build",
+    "test": "pnpm -r run test:run",
+    "test:coverage": "pnpm -r run test:coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "pnpm -r run test",
     "docs": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
@@ -19,6 +20,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
     "@types/node": "^18.11.9",
+    "@vitest/coverage-c8": "^0.25.2",
+    "@vitest/ui": "^0.25.2",
     "eslint": "^8.27.0",
     "happy-dom": "^7.7.0",
     "tsup": "^6.5.0",
@@ -26,8 +29,9 @@
     "vite": "^3.2.4",
     "vitepress": "1.0.0-alpha.29",
     "vitest": "^0.25.2",
-    "vue": "^3.2.45",
-    "vue-demi": "^0.13.11",
-    "vue2": "npm:vue@^2.7.14"
+    "vue": "^3.2.45"
+  },
+  "volta": {
+    "node": "18.12.1"
   }
 }

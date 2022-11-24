@@ -1,19 +1,11 @@
 import { createPinia, defineStore, setActivePinia } from 'pinia'
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { Vue2, createApp, install, isVue2, nextTick, ref } from 'vue-demi'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createApp, nextTick, ref } from 'vue'
 
 import { createPersistedState } from '../src/plugin'
 import { initializeLocalStorage, readLocalStoage } from './utils'
 
 const key = 'mock-store'
-
-beforeAll(() => {
-  if (isVue2) {
-    Vue2.config.productionTip = false
-    Vue2.config.devtools = false
-    install(Vue2)
-  }
-})
 
 beforeEach(() => {
   let state: Record<string, string> = {}

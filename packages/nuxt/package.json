@@ -1,5 +1,5 @@
 {
-  "name": "my-module",
+  "name": "@pinia-plugin-persistedstate/nuxt",
   "type": "module",
   "version": "1.0.0",
   "license": "MIT",
@@ -32,5 +32,8 @@
     "@pinia/nuxt": "^0.4.4",
     "eslint": "^8.27.0",
     "nuxt": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@pinia/nuxt": "^0.4.4"
   }
 }

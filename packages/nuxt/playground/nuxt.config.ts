@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     piniaPersistedState,
   ],
-  piniaPersistedState: {
+  piniaPersistedstate: {
     cookieOptions: {
       sameSite: true,
     },

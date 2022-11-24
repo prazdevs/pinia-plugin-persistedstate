@@ -14,17 +14,36 @@ import {
   type StorageLike,
 } from './types'
 
+interface Persistence {
+  storage: StorageLike
+  serializer: Serializer
+  key: string
+  paths: string[] | null
+  debug: boolean
+}
+
 function hydrateStore(
   store: Store,
-  storage: StorageLike,
-  serializer: Serializer,
-  key: string,
-  debug: boolean,
+  { storage, serializer, key, debug }: Persistence,
 ) {
   try {
     const fromStorage = storage?.getItem(key)
     if (fromStorage)
       store.$patch(serializer?.deserialize(fromStorage))
+  }
+  catch (error) {
+    if (debug)
+      console.error(error)
+  }
+}
+
+function persistState(
+  state: StateTree,
+  { storage, serializer, key, paths, debug }: Persistence,
+) {
+  try {
+    const toStore = Array.isArray(paths) ? pick(state, paths) : state
+    storage!.setItem(key!, serializer!.serialize(toStore as StateTree))
   }
   catch (error) {
     if (debug)
@@ -77,19 +96,11 @@ export function createPersistedState(
     )
 
     persistences.forEach((persistence) => {
-      const {
-        storage,
-        serializer,
-        key,
-        paths,
-        beforeRestore,
-        afterRestore,
-        debug,
-      } = persistence
+      const { beforeRestore, afterRestore } = persistence
 
       beforeRestore?.(context)
 
-      hydrateStore(store, storage, serializer, key, debug)
+      hydrateStore(store, persistence)
 
       afterRestore?.(context)
 
@@ -98,15 +109,7 @@ export function createPersistedState(
           _mutation: SubscriptionCallbackMutation<StateTree>,
           state: StateTree,
         ) => {
-          try {
-            const toStore = Array.isArray(paths) ? pick(state, paths) : state
-
-            storage.setItem(key, serializer.serialize(toStore as StateTree))
-          }
-          catch (error) {
-            if (debug)
-              console.error(error)
-          }
+          persistState(state, persistence)
         },
         {
           detached: true,
@@ -114,15 +117,20 @@ export function createPersistedState(
       )
     })
 
+    store.$persist = () => {
+      persistences.forEach((persistence) => {
+        persistState(store.$state, persistence)
+      })
+    }
+
     store.$hydrate = ({ runHooks = true } = {}) => {
       persistences.forEach((persistence) => {
-        const { beforeRestore, afterRestore, storage, serializer, key, debug }
-          = persistence
+        const { beforeRestore, afterRestore } = persistence
 
         if (runHooks)
           beforeRestore?.(context)
 
-        hydrateStore(store, storage, serializer, key, debug)
+        hydrateStore(store, persistence)
 
         if (runHooks)
           afterRestore?.(context)
