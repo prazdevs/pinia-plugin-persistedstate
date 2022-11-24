@@ -19,7 +19,8 @@
     "prepack": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "release": "bumpp -t \"nuxt@%s\" -c \":bookmark: release nuxt@\" -p"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",

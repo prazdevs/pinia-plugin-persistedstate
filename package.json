@@ -15,13 +15,16 @@
     "lint:fix": "eslint . --fix",
     "docs": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "release:plugin": "pnpm -F plugin run release",
+    "release:nuxt": "pnpm -F nuxt run release"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
     "@types/node": "^18.11.9",
     "@vitest/coverage-c8": "^0.25.2",
     "@vitest/ui": "^0.25.2",
+    "bumpp": "^8.2.1",
     "eslint": "^8.27.0",
     "happy-dom": "^7.7.0",
     "tsup": "^6.5.0",

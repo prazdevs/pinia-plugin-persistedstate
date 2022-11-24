@@ -25,7 +25,8 @@
     "build": "tsup --dts --format esm,cjs src/index.ts",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:run": "vitest --run"
+    "test:run": "vitest --run",
+    "release": "bumpp -t \"v%s\" -c \":bookmark: release v\""
   },
   "peerDependencies": {
     "pinia": "^2.0.0"
