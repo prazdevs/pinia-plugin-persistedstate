@@ -3,18 +3,18 @@ name: Docs
 on:
   push:
     branches:
-      - 'main'
+      - main
     paths:
-      - 'docs/**'
+      - docs/**
   pull_request:
     paths:
-      - 'docs/**'
+      - docs/**
   workflow_dispatch:
     branches:
-      - 'main'
+      - main
     inputs:
       deploy:
-        description: 'Deploy ?'
+        description: Deploy ?
         required: true
         default: false
         type: boolean
