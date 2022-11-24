@@ -2,7 +2,7 @@
   "name": "pinia-plugin-persistedstate",
   "version": "3.0.0",
   "private": true,
-  "packageManager": "pnpm@7.6.0",
+  "packageManager": "pnpm@7.17.0",
   "description": "Monorepo for pinia-plugin-persistedstate",
   "author": "prazdevs",
   "license": "MIT",
