@@ -40,6 +40,17 @@ export default defineConfig({
         activeMatch: '/guide/',
       },
       {
+        text: 'Frameworks',
+        activeMatch: '/frameworks/',
+        items: [
+          {
+            text: 'Nuxt 3',
+            link: '/frameworks/nuxt-3',
+            activeMatch: '/frameworks/nuxt-3',
+          },
+        ],
+      },
+      {
         text: currentVersion,
         items: [
           {
@@ -93,6 +104,19 @@ export default defineConfig({
             {
               text: 'Advanced Usage',
               link: '/guide/advanced',
+            },
+            {
+              text: 'Migrating from v2',
+              link: '/guide/migrating',
+            },
+          ],
+        },
+        {
+          text: 'Frameworks',
+          items: [
+            {
+              text: 'Nuxt 3',
+              link: '/frameworks/nuxt-3',
             },
           ],
         },
