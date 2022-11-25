@@ -49,6 +49,10 @@ export const useStore = defineStore('main', {
 
 By default, your stores will be persisted in cookies (using Nuxt's [`useCookie`](https://nuxt.com/docs/api/composables/use-cookie) under the hood). You can configure what storage you want to use by using the storages available under the auto-imported `persistedState` variable.
 
+:::info
+Using other storages than the ones exposed by `persistedState` may have unexpected behaviors.
+:::
+
 ### `localStorage`
 
 ```ts
@@ -116,13 +120,13 @@ Using `cookiesWithOptions()` allows you to [configure cookies](https://nuxt.com/
 
 ## Global options
 
-The module accepts some options defined in `nuxt.config.ts`:
+The module accepts some options defined in `nuxt.config.ts` under the `piniaPersistedstate` key:
 
 ```ts
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    ['@pinia-plugin-persistedstate/nuxt']
+    '@pinia-plugin-persistedstate/nuxt'
   ],
   piniaPersistedstate: {
     cookieOptions: {

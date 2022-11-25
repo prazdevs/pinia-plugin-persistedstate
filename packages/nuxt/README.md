@@ -22,8 +22,7 @@ export default defineNuxtConfig({
 
 ## 🔧 Configuration
 
-<!-- TODO CHANGE LINK TO NUXT RELATED DOCS -->
-Usage and configuration informations can be found in [the documentation](https://prazdevs.github.io/pinia-plugin-persistedstate/)
+Usage and configuration informations can be found in [the documentation](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html)
 
 
 ## 📝 License

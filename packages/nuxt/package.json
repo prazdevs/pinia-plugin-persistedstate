@@ -22,6 +22,9 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "release": "bumpp -t \"nuxt@%s\" -c \":bookmark: release nuxt@\" -p"
   },
+  "peerDependencies": {
+    "@pinia/nuxt": "^0.4.4"
+  },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",
     "pinia-plugin-persistedstate": ">=3.0.0"
@@ -33,8 +36,5 @@
     "@pinia/nuxt": "^0.4.4",
     "eslint": "^8.27.0",
     "nuxt": "^3.0.0"
-  },
-  "peerDependencies": {
-    "@pinia/nuxt": "^0.4.4"
   }
 }
