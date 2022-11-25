@@ -135,7 +135,7 @@ Custom serializer to serialize data before persisted and deserialize data before
 :::details Example
 ```ts
 import { defineStore } from 'pinia'
-import { stringify, parse } from 'zipson'
+import { parse, stringify } from 'zipson'
 
 export const useStore = defineStore('store', {
   state: () => ({

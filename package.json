@@ -1,113 +1,40 @@
 {
-  "name": "pinia-plugin-persistedstate",
-  "version": "2.4.0",
-  "packageManager": "pnpm@7.6.0",
-  "description": "Configurable persistence and rehydration of Pinia stores.",
+  "name": "@pinia-plugin-persistedstate/monorepo",
+  "version": "3.0.0",
+  "private": true,
+  "packageManager": "pnpm@7.17.0",
+  "description": "Monorepo for pinia-plugin-persistedstate",
   "author": "prazdevs",
   "license": "MIT",
   "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"
-  },
-  "keywords": [
-    "pinia",
-    "pinia-plugin"
-  ],
   "scripts": {
-    "build": "tsup",
-    "coverage": "vue-demi-switch 3 && vitest --run --coverage",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test:run",
+    "test:coverage": "pnpm -r run test:coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "docs": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "lint": "eslint --ext .ts .",
-    "lint:fix": "eslint --ext .ts --fix .",
-    "prepare": "husky install",
-    "release": "bumpp  -t -p -c \":bookmark: release v\"",
-    "test:ui": "vue-demi-switch 3 && vitest --ui",
-    "test:watch": "vue-demi-switch 3 && vitest --watch",
-    "test:2": "vue-demi-switch 2.7 vue2 && vitest --run --silent tests/plugin",
-    "test:3": "vue-demi-switch 3 && vitest --run",
-    "test": "pnpm run test:2 && pnpm run test:3"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./*": "./*",
-    "./nuxt": {
-      "import": "./dist/nuxt.mjs",
-      "require": "./dist/nuxt.js"
-    },
-    "./quasar": {
-      "import": "./dist/quasar.mjs",
-      "require": "./dist/quasar.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "nuxt": [
-        "./dist/nuxt.d.ts"
-      ],
-      "quasar": [
-        "./dist/quasar.d.ts"
-      ]
-    }
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "peerDependencies": {
-    "pinia": "^2.0.0"
-  },
-  "peerDependenciesMeta": {
-    "pinia": {
-      "optional": true
-    }
+    "release:plugin": "pnpm -F plugin run release",
+    "release:nuxt": "pnpm -F nuxt run release"
   },
   "devDependencies": {
-    "@prazdevs/eslint-config-typescript": "^3.2.1",
+    "@antfu/eslint-config": "^0.31.0",
     "@types/node": "^18.11.9",
-    "@vitest/coverage-c8": "^0.25.1",
-    "@vitest/ui": "^0.25.1",
+    "@vitest/coverage-c8": "^0.25.2",
+    "@vitest/ui": "^0.25.2",
     "bumpp": "^8.2.1",
-    "eslint": "8.27.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint": "^8.27.0",
     "happy-dom": "^7.7.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
-    "nuxt": "3.0.0-rc.13",
-    "pinia": "^2.0.23",
-    "prettier": "^2.7.1",
-    "quasar": "^2.10.1",
-    "tsup": "^6.4.0",
-    "typescript": "^4.8.4",
-    "vite": "^3.2.3",
-    "vitepress": "1.0.0-alpha.28",
-    "vitest": "^0.25.1",
-    "vue": "^3.2.45",
-    "vue-demi": "^0.13.11",
-    "vue2": "npm:vue@^2.7.5"
-  },
-  "lint-staged": {
-    "*.ts": "eslint --ext .ts --fix"
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4",
+    "vitepress": "1.0.0-alpha.29",
+    "vitest": "^0.25.2",
+    "vue": "^3.2.45"
   },
   "volta": {
-    "node": "18.1.0"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "vue": "3"
-      },
-      "ignoreMissing": [
-        "@algolia/client-search"
-      ]
-    }
+    "node": "18.12.1"
   }
 }

@@ -1,16 +1,19 @@
-name: Release
+name: CI
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
-    tags:
+    ignore-tags:
+      - nuxt@*
       - v*
-      - nuxt@
 
 jobs:
-  release:
-    name: Release
+  ci:
+    name: CI
     runs-on: ubuntu-latest
 
     steps:
@@ -47,28 +50,5 @@ jobs:
       - name: Build packages
         run: pnpm run build
 
-      - name: Run tests w/ coverage
-        run: pnpm run test:coverage
-
-      - name: Get package name
-        id: pkg
-        run: |
-          if [[ $GITHUB_REF_NAME =~ ^v.+ ]]; then
-            pkg="plugin"
-          else
-            pkg=${GITHUB_REF_NAME%@*}
-          fi
-          echo "::set-output name=pkg::$pkg"
-
-      - name: Publish coverage
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: ${{ steps.pkg.outputs.pkg }}
-          directory: ./packages/${{ steps.pks.outputs.pkg }}/coverage
-
-      - name: Publish on NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./${{ steps.pkg.outputs.pkg }}/package.json
+      - name: Run tests
+        run: pnpm run test

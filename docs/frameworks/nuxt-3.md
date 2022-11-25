@@ -1,77 +1,142 @@
-# Usage With Nuxt 3
+# Usage with Nuxt3
 
-The plugin provides a factory function to make integration with Nuxt 3 a breeze. It is assumed you have Pinia already installed with [`@pinia/nuxt`](https://pinia.vuejs.org/ssr/nuxt.html).
+Persisting pinia stores in Nuxt is easier thanks to the dedicated module.
 
-## SSR-enabled persistence
+## Installation
 
-Using Nuxt Cookies allows for persistence with full SSR support.   
-Declare a plugin by creating a `persistedstate.ts` under the `plugins/` directory:
+1. Install the dependency with your favorite package manager:
+    - pnpm:
+    ```sh
+    pnpm i -D @pinia-plugin-persistedstate/nuxt
+    ```
+    - npm:
+    ```sh
+    npm i -D @pinia-plugin-persistedstate/nuxt
+    ```
+    - yarn:
+    ```sh
+    yarn add -D @pinia-plugin-persistedstate/nuxt
+    ```
 
+2. Add the module to the Nuxt config (`nuxt.config.ts`):
 ```ts
-// /plugins/persistedstate.ts
-
-import { createNuxtPersistedState } from 'pinia-plugin-persistedstate/nuxt'
-import { useCookie } from '#app' // optional import as Nuxt will auto-import it
-
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.$pinia.use(createNuxtPersistedState(useCookie))
+export default defineNuxtConfig({
+  modules: [
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+  ],
 })
 ```
 
-`createNuxtPersistedState` accepts [global options](/guide/advanced#global-persistence-options) as second parameter with the following options available:
+## Usage
 
-- [`serializer`](/guide/config#serializer)
-- [`beforeRestore`](/guide/config#beforeRestore)
-- [`afterRestore`](/guide/config#afterRestore)
-- `cookieOptions`
+When declaring your store, set the new `persist` option to `true`.
+
+```ts
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      someState: 'hello pinia',
+    }
+  },
+  persist: true,
+})
+```
+
+## Choosing a storage
+
+By default, your stores will be persisted in cookies (using Nuxt's [`useCookie`](https://nuxt.com/docs/api/composables/use-cookie) under the hood). You can configure what storage you want to use by using the storages available under the auto-imported `persistedState` variable.
 
 :::info
-You can specify the [cookie options](https://v3.nuxtjs.org/api/composables/use-cookie#options) to the `cookieOptions` property:
+Using other storages than the ones exposed by `persistedState` may have unexpected behaviors.
+:::
+
+### `localStorage`
 
 ```ts
-import { createNuxtPersistedState } from 'pinia-plugin-persistedstate/nuxt'
+import { defineStore } from 'pinia'
 
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.$pinia.use(createNuxtPersistedState(useCookie, {
-    cookieOptions: {
-      expires: 3600, 
-      maxAge: 3600,
-      sameSite: 'strict',
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      someState: 'hello pinia',
     }
-  }))
+  },
+  persist: {
+    storage: persistedState.localStorage,
+  },
 })
 ```
-:::
 
 :::warning
-Overriding the `storage` option in a store will break its server-side persistence/rehydration with cookies.
+`localStorage` is client side only.
 :::
 
-## Client-side persistence
-
-In case you do not want to use cookies, you can use the default `createPersistedState` in a client-only plugin.
-Declare a plugin by creating a `persistedstate.client.ts` under the `plugins/` directory.
+### `sessionStorage`
 
 ```ts
-// /plugins/persistedstate.client.ts
+import { defineStore } from 'pinia'
 
-import { createPersistedState } from 'pinia-plugin-persistedstate'
-
-
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.$pinia.use(createPersistedState())
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      someState: 'hello pinia',
+    }
+  },
+  persist: {
+    storage: persistedState.sessionStorage,
+  },
 })
 ```
 
 :::warning
-Using client-only persistence when server-side rendering, the store state will most likely be the initial state and **not** the persisted state.
+`sessionStorage` is client side only.
 :::
 
-## Note on Nuxt plugins
+### `cookiesWithOptions`
 
-:::warning
-It is important to note that Nuxt plugins are loaded sequentially. If any of your other plugins requires a Pinia store to be hydrated, you want to make sure the `persisted-state` plugin is loaded before. You may name the file `1.persistedstate.ts` to ensure it is loaded first.
+```ts
+import { defineStore } from 'pinia'
 
-More on this can be found in [Nuxt plugins documentation](https://v3.nuxtjs.org/guide/directory-structure/plugins#plugin-registration-order).
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      someState: 'hello pinia',
+    }
+  },
+  persist: {
+    storage: persistedState.cookiesWithOptions({
+      sameSite: 'strict',
+    }),
+  },
+})
+```
+
+:::tip
+Using `cookiesWithOptions()` allows you to [configure cookies](https://nuxt.com/docs/api/composables/use-cookie#options). Passing no options is the same as using `cookies`, which is the default behavior.
 :::
 
+## Global options
+
+The module accepts some options defined in `nuxt.config.ts` under the `piniaPersistedstate` key:
+
+```ts
+export default defineNuxtConfig({
+  modules: [
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt'
+  ],
+  piniaPersistedstate: {
+    cookieOptions: {
+      sameSite: 'strict',
+    },
+    storage: 'localStorage'
+  },
+})
+```
+
+- `storage`: sets the storage used to persist by default (`'localStorage'`, `'sessionStorage'` or `'cookies'`).
+- `cookieOptions`: default [cookie options](https://nuxt.com/docs/api/composables/use-cookie#options) (only used when persisting in cookies).
+- `debug`: see [`debug`](/guide/config.html#debug).

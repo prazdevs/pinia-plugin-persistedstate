@@ -1,0 +1,40 @@
+{
+  "name": "@pinia-plugin-persistedstate/nuxt",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm run dev:prepare && pnpm run prepack",
+    "prepack": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "release": "bumpp -t \"nuxt@%s\" -c \":bookmark: release nuxt@\" -p"
+  },
+  "peerDependencies": {
+    "@pinia/nuxt": "^0.4.4"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0",
+    "pinia-plugin-persistedstate": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.0.0",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@pinia/nuxt": "^0.4.4",
+    "eslint": "^8.27.0",
+    "nuxt": "^3.0.0"
+  }
+}

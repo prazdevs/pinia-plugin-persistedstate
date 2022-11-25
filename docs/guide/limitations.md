@@ -11,19 +11,19 @@ Consider the following:
 const a = {
   1: 'one',
   2: 'two',
-  ...
+  // ...
 }
 const b = a
 ```
 
 Before serialization, `a` and `b` point to the same object:
 ```ts
-a === b -> true
+a === b // -> true
 ```
 
 After deserialization, `a` and `b` are two different objects with the same content:
 ```ts
-a === b -> false
+a === b // -> false
 ```
 
 As a consequence, reactivity between `a` and `b` is lost.
