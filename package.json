@@ -16,8 +16,8 @@
     "docs": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "release:plugin": "pnpm -F plugin run release",
-    "release:nuxt": "pnpm -F nuxt run release"
+    "release:plugin": "pnpm -F pinia-plugin-persistedstate run release",
+    "release:nuxt": "pnpm -F @pinia-plugin-persistedstate/nuxt run release"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
