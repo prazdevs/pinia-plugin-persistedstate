@@ -536,6 +536,25 @@ describe('default', () => {
       expect(afterRestore).not.toHaveBeenCalled()
     })
   })
+
+  describe('$persist', () => {
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: 'ipsum' }),
+      persist: true,
+    })
+
+    it('persists store on call', () => {
+      //* arrange
+      const store = useStore()
+      localStorage.clear()
+
+      //* act
+      store.$persist()
+
+      //* assert
+      expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+    })
+  })
 })
 
 describe('w/ global options', () => {
