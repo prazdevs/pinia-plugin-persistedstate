@@ -38,6 +38,13 @@
     "pinia": "^2.0.0"
   },
   "devDependencies": {
-    "pinia": "^2.0.24"
+    "pinia": "^2.0.26"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "vue"
+      ]
+    }
   }
 }

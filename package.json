@@ -22,19 +22,26 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
     "@types/node": "^18.11.9",
-    "@vitest/coverage-c8": "^0.25.2",
-    "@vitest/ui": "^0.25.2",
+    "@vitest/coverage-c8": "^0.25.3",
+    "@vitest/ui": "^0.25.3",
     "bumpp": "^8.2.1",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "happy-dom": "^7.7.0",
     "tsup": "^6.5.0",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
     "vitepress": "1.0.0-alpha.29",
-    "vitest": "^0.25.2",
+    "vitest": "^0.25.3",
     "vue": "^3.2.45"
   },
   "volta": {
     "node": "18.12.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
   }
 }
