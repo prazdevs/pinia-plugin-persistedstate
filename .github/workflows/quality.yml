@@ -66,4 +66,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: ${{ inputs.package }}
-          directory: ./packages/${{ inputs.package }}/coverage
+          directory: ./packages/${{ inputs.package }}/coverage/
