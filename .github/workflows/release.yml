@@ -70,4 +70,4 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          package: ./${{ steps.pkg.outputs.pkg }}/package.json
+          package: ./packages/${{ steps.pkg.outputs.pkg }}/package.json
