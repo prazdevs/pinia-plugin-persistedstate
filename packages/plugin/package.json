@@ -1,6 +1,6 @@
 {
   "name": "pinia-plugin-persistedstate",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "prazdevs",
   "license": "MIT",
@@ -9,7 +9,10 @@
     "type": "git",
     "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"
   },
-  "keywords": ["pinia", "pinia-plugin"],
+  "keywords": [
+    "pinia",
+    "pinia-plugin"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -20,7 +23,9 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup --dts --format esm,cjs src/index.ts",
     "test": "vitest",
