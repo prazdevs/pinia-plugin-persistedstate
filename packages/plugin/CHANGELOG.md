@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="3.0.0"></a>
+## 3.0.0 (2022-11-26)
+
+### Added
+
+- 🚀 v3 ([#142](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/142)) [[fc79fc0](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fc79fc06cfcdbbea4777a3a41ba855574749fb45)]
+
+
+### Removed
+
+- 💥 removed paths 'array' syntax.
 
 <a name="2.4.0"></a>
 ## 2.4.0 (2022-11-13)
