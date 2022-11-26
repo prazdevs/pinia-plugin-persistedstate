@@ -1,15 +1,30 @@
-name: Release
+name: Quality
 
 on:
   push:
-    tags:
-      - v*
-      - nuxt@*
+    branches:
+      - main
+    paths:
+      - docs/**
+  pull_request:
+    paths:
+      - docs/**
+  workflow_dispatch:
+    branches:
+      - main
+    inputs:
+      deploy:
+        description: Package
+        required: true
+        default: plugin
+        type: choice
+        options:
+        - plugin
+        - nuxt
 
 jobs:
-  release:
+  quality:
     name: Release
-    if: github.repository == 'prazdevs/pinia-plugin-persistedstate'
     runs-on: ubuntu-latest
 
     steps:
@@ -43,32 +58,12 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm run build
-
       - name: Run tests w/ coverage
         run: pnpm run test:coverage
-
-      - name: Get package name
-        id: pkg
-        run: |
-          if [[ $GITHUB_REF_NAME =~ ^v.+ ]]; then
-            pkg="plugin"
-          else
-            pkg=${GITHUB_REF_NAME%@*}
-          fi
-          echo "::set-output name=pkg::$pkg"
-
+      
       - name: Publish coverage
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          flags: ${{ steps.pkg.outputs.pkg }}
-          directory: ./packages/${{ steps.pks.outputs.pkg }}/coverage
-
-      - name: Publish on NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/${{ steps.pkg.outputs.pkg }}/package.json
+          flags: ${{ inputs.package }}
+          directory: ./packages/${{ inputs.package }}/coverage
