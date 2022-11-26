@@ -24,7 +24,7 @@ on:
 
 jobs:
   quality:
-    name: Release
+    name: Quality
     runs-on: ubuntu-latest
 
     steps:
