@@ -69,5 +69,6 @@ jobs:
       - name: Publish on NPM
         uses: JS-DevTools/npm-publish@v1
         with:
+          access: public
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/${{ steps.pkg.outputs.pkg }}/package.json

@@ -1,8 +1,12 @@
 {
   "name": "@pinia-plugin-persistedstate/nuxt",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prazdevs/pinia-plugin-persistedstate/tree/main/packages/nuxt"
+  },
   "exports": {
     ".": {
       "require": "./dist/module.cjs",
