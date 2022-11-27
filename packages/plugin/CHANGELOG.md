@@ -1,12 +1,19 @@
 # Changelog
 
+<a name="3.0.1"></a>
+## 3.0.1 (2022-11-27)
+
+### Fixed
+
+- 🐛 fix key factory implementation [[0d8c56e](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/0d8c56e880f0f89ac10989ff399d9c7d95709f94)]
+
+
 <a name="3.0.0"></a>
 ## 3.0.0 (2022-11-26)
 
 ### Added
 
 - 🚀 v3 ([#142](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/142)) [[fc79fc0](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fc79fc06cfcdbbea4777a3a41ba855574749fb45)]
-
 
 ### Removed
 
