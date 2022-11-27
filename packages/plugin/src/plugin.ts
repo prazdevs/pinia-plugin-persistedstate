@@ -89,7 +89,7 @@ export function createPersistedState(
         beforeRestore,
         afterRestore,
         serializer,
-        key,
+        key: (factoryOptions.key ?? (k => k))(key),
         paths,
         debug,
       }),

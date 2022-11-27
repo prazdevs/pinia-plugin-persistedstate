@@ -653,4 +653,31 @@ describe('w/ global options', () => {
     expect(serializer.serialize).toHaveBeenCalledOnce()
     expect(serializer.deserialize).toHaveBeenCalledOnce()
   })
+
+  it('uses key factory', async () => {
+    //* arrange
+    const app = createApp({})
+    const pinia = createPinia()
+    pinia.use(
+      createPersistedState({
+        key: id => `__persisted_${id}`,
+      }),
+    )
+    app.use(pinia)
+    setActivePinia(pinia)
+
+    //* act
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: true,
+    })
+    const store = useStore()
+    store.lorem = 'dolor'
+    await nextTick()
+
+    //* assert
+    expect(readLocalStoage(key)).toEqual({})
+    expect(readLocalStoage(`__persisted_${key}`))
+      .toEqual({ lorem: 'dolor' })
+  })
 })

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { expect, it, vi } from 'vitest'
 
 import { normalizeOptions } from '../src/normalize'
 
@@ -34,24 +34,3 @@ it('overrides factory options', () => {
   expect(options.beforeRestore).not.toBe(factoryRestore)
 })
 
-describe('factory key option', () => {
-  it('defaults to identity', () => {
-    //* act
-    const options = normalizeOptions({ key: 'mock_key' }, {})
-
-    //* assert
-    expect(options.key).toBe('mock_key')
-  })
-
-  it('can prefix key', () => {
-    //* act
-    const options = normalizeOptions(
-      { key: 'mock_key' },
-      { key: k => `prefixed_${k}` },
-    )
-
-    //* assert
-    expect(options.key).toBe('prefixed_mock_key')
-    expect(options.key).not.toBe('mock_key')
-  })
-})

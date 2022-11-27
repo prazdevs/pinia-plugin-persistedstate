@@ -7,10 +7,6 @@ function isObject(v: unknown) {
   return typeof v === 'object' && v !== null
 }
 
-function identity<T>(v: T) {
-  return v
-}
-
 export function normalizeOptions(
   options: boolean | PersistedStateOptions | undefined,
   factoryOptions: PersistedStateFactoryOptions,
@@ -19,11 +15,8 @@ export function normalizeOptions(
 
   return new Proxy(options as object, {
     get(target, key, receiver) {
-      if (key === 'key') {
-        return (factoryOptions.key ?? identity)(
-          Reflect.get(target, key, receiver),
-        )
-      }
+      if (key === 'key')
+        return Reflect.get(target, key, receiver)
 
       return (
         Reflect.get(target, key, receiver)
