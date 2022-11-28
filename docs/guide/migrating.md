@@ -8,7 +8,7 @@
 
 ## Usage with Nuxt
 
-You no longer need to create a Nuxt plugin to add persistence to your pinia stores in Nuxt: the Nuxt module `@pinia-plugin-persistedstate/nuxt` will setup everything for you. More information in the `dedicated documentation`(/frameworks/nuxt-3).
+You no longer need to create a Nuxt plugin to add persistence to your pinia stores in Nuxt: the Nuxt module `@pinia-plugin-persistedstate/nuxt` will setup everything for you. More information in the [`dedicated documentation`](/frameworks/nuxt-3).
 
 :::warning
 At the moment, the module only supports Nuxt 3.
