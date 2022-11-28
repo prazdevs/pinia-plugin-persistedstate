@@ -1,17 +1,7 @@
 name: Quality
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - docs/**
-  pull_request:
-    paths:
-      - docs/**
   workflow_dispatch:
-    branches:
-      - main
     inputs:
       package:
         description: Package
