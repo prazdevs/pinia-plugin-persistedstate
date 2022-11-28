@@ -1,6 +1,6 @@
 {
   "name": "@pinia-plugin-persistedstate/monorepo",
-  "version": "3.0.0",
+  "version": "3",
   "private": true,
   "packageManager": "pnpm@7.17.0",
   "description": "Monorepo for pinia-plugin-persistedstate",

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { version } from '../../package.json'
+import { version } from '../../packages/plugin/package.json'
 
 const currentVersion = `v${version}`
 
