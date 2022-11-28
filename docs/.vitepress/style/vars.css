@@ -1,11 +1,20 @@
 /* COLORS */
-:root {
+:root.dark {
   --vp-c-brand: #f2b452;
   --vp-c-brand-light: #ffc973;
   --vp-c-brand-lighter: #ffd694;
   --vp-c-brand-lightest: #ffe4bc;
   --vp-c-brand-dark: #f2b452;
   --vp-c-brand-darker: #e0a645;
+  --vp-c-brand-dimm: rgba(255, 195, 99, 0.08);
+}
+:root {
+  --vp-c-brand: #0b8216;
+  --vp-c-brand-light: #3c9b45;
+  --vp-c-brand-lighter: #6db473;
+  --vp-c-brand-lightest: #85c18b;
+  --vp-c-brand-dark: #0b8216;
+  --vp-c-brand-darker: #096812;
   --vp-c-brand-dimm: rgba(255, 195, 99, 0.08);
 }
 
