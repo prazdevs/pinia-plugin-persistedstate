@@ -20,13 +20,13 @@
     "release:nuxt": "pnpm -F @pinia-plugin-persistedstate/nuxt run release"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.31.0",
-    "@types/node": "^18.11.9",
+    "@antfu/eslint-config": "^0.33.1",
+    "@types/node": "^18.11.10",
     "@vitest/coverage-c8": "^0.25.3",
     "@vitest/ui": "^0.25.3",
     "bumpp": "^8.2.1",
-    "eslint": "^8.28.0",
-    "happy-dom": "^7.7.0",
+    "eslint": "^8.29.0",
+    "happy-dom": "^7.7.2",
     "tsup": "^6.5.0",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
