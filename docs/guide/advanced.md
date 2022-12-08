@@ -24,8 +24,8 @@ In this example, every store declaring `persist: true` will by default persist d
 Available global options include:
 - [`storage`](/guide/config#storage)
 - [`serializer`](/guide/config#serializer)
-- [`beforeRestore`](/guide/config#beforeRestore)
-- [`afterRestore`](/guide/config#afterRestore)
+- [`beforeRestore`](/guide/config#beforerestore)
+- [`afterRestore`](/guide/config#afterrestore)
 
 :::info
 Any option passed to a store's `persist` configuration will override its counterpart declared in the global options.
@@ -145,7 +145,7 @@ In most cases, you should not need to manually hydrate the state. Make sure you 
 
 ## Forcing the persistence
 
-In case you need to manually trigger persistence to storage, every store now exposes a `$persist` method. 
+In case you need to manually trigger persistence to storage, every store now exposes a `$persist` method.
 
 Given this store:
 
