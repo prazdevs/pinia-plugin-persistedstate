@@ -28,4 +28,4 @@ Usage and configuration informations can be found in [the documentation](https:/
 ## 📝 License
 
 Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).  
-This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENCE) license.
+This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE) license.
