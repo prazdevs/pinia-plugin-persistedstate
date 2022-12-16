@@ -108,6 +108,10 @@ export function createPersistedState(
         hydrateStore(store, storage, serializer, key, debug)
       }
 
+      /**
+       * Corrected the cookie setting on the client
+       * Previously, you had to do a mutation on the client to set the value in the cookie, now the plugin does it yourself
+      */
       if (process.client) {
         setValueFromPinia(store, storage, key, debug);
       }
