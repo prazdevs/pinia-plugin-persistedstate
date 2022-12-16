@@ -29,6 +29,18 @@ function hydrateStore(
   }
 }
 
+function setValueFromPinia(store, storage, key, debug) {
+  try {
+    const fromStorage = store.$state;
+    if (fromStorage) {
+      storage.setItem(key, fromStorage)
+    }
+  } catch (error) {
+    if (debug)
+      console.error(error);
+  }
+}
+
 /**
  * Creates a pinia persistence plugin
  * @param factoryOptions global persistence options
@@ -94,6 +106,10 @@ export function createPersistedState(
        */
       if (!process.client) {
         hydrateStore(store, storage, serializer, key, debug)
+      }
+
+      if (process.client) {
+        setValueFromPinia(store, storage, key, debug);
       }
 
       afterRestore?.(context)
