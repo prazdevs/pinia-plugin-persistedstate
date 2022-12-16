@@ -31,13 +31,12 @@ function hydrateStore(
 
 function setValueFromPinia(store, storage, key, debug) {
   try {
-    const fromStorage = store.$state;
+    const fromStorage = store.$state
     if (fromStorage) {
       storage.setItem(key, fromStorage)
     }
   } catch (error) {
-    if (debug)
-      console.error(error);
+    if (debug) console.error(error)
   }
 }
 
@@ -111,9 +110,9 @@ export function createPersistedState(
       /**
        * Corrected the cookie setting on the client
        * Previously, you had to do a mutation on the client to set the value in the cookie, now the plugin does it yourself
-      */
+       */
       if (process.client) {
-        setValueFromPinia(store, storage, key, debug);
+        setValueFromPinia(store, storage, key, debug)
       }
 
       afterRestore?.(context)

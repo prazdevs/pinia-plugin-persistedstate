@@ -84,7 +84,7 @@
     "happy-dom": "^7.7.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
-    "nuxt": "3.0.0-rc.13",
+    "nuxt": "3.0.0",
     "pinia": "^2.0.23",
     "prettier": "^2.7.1",
     "quasar": "^2.10.1",
