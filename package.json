@@ -1,6 +1,6 @@
 {
   "name": "@artmizu/pinia-plugin-persistedstate-nuxt-2",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "packageManager": "pnpm@7.6.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "keywords": [
