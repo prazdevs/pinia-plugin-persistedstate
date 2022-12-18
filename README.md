@@ -14,7 +14,7 @@
     <img alt="npm" src="https://img.shields.io/npm/v/pinia-plugin-persistedstate?color=%23c12127&label=version&logo=npm" />
   </a>
   <a href="https://github.com/prazdevs/pinia-plugin-persistedstate/actions/workflows/ci.yml">
-    <img alt="CI" src="https://img.shields.io/github/workflow/status/prazdevs/pinia-plugin-persistedstate/CI?color=%232088FF&logo=github%20actions">
+    <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/prazdevs/pinia-plugin-persistedstate/ci.yml?branch=main&color=2088FF&logo=github%20actions">
   </a>
   <a href="https://app.codecov.io/gh/prazdevs/pinia-plugin-persistedstate">
     <img alt="Coverage" src="https://img.shields.io/codecov/c/github/prazdevs/pinia-plugin-persistedstate?color=%23f01f7a&flag=plugin&logo=codecov">
