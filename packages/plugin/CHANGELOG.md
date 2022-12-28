@@ -1,5 +1,12 @@
 # Changelog
 
+<a name="3.0.2"></a>
+## 3.0.2 (2022-12-28)
+
+### Fixed
+
+- 🩹 map store methods before rehydration ([#162](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/162)) [[f71a54f](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/f71a54f2a9dd3f78e65b6e37c014adec5d0bae6b)]
+
 <a name="3.0.1"></a>
 ## 3.0.1 (2022-11-27)
 
