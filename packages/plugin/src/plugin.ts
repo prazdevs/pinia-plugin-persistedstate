@@ -95,6 +95,26 @@ export function createPersistedState(
       }),
     )
 
+    store.$persist = () => {
+      persistences.forEach((persistence) => {
+        persistState(store.$state, persistence)
+      })
+    }
+
+    store.$hydrate = ({ runHooks = true } = {}) => {
+      persistences.forEach((persistence) => {
+        const { beforeRestore, afterRestore } = persistence
+
+        if (runHooks)
+          beforeRestore?.(context)
+
+        hydrateStore(store, persistence)
+
+        if (runHooks)
+          afterRestore?.(context)
+      })
+    }
+
     persistences.forEach((persistence) => {
       const { beforeRestore, afterRestore } = persistence
 
@@ -116,25 +136,5 @@ export function createPersistedState(
         },
       )
     })
-
-    store.$persist = () => {
-      persistences.forEach((persistence) => {
-        persistState(store.$state, persistence)
-      })
-    }
-
-    store.$hydrate = ({ runHooks = true } = {}) => {
-      persistences.forEach((persistence) => {
-        const { beforeRestore, afterRestore } = persistence
-
-        if (runHooks)
-          beforeRestore?.(context)
-
-        hydrateStore(store, persistence)
-
-        if (runHooks)
-          afterRestore?.(context)
-      })
-    }
   }
 }
