@@ -39,12 +39,5 @@
   },
   "devDependencies": {
     "pinia": "^2.0.26"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "vue"
-      ]
-    }
   }
 }
