@@ -9,9 +9,11 @@ export default {
 	},
 	themeConfig: {
 		label: 'English',
-		selectText: 'Languages',
+		SelectText: 'Languages',
 		editLinkText: 'Suggest changes to this page',
 		lastUpdated: 'Last Updated',
+		lastUpdatedText: 'Last updated',
+		docFooter: { prev: 'Previous page', next: 'Next page' },
 
 		footer: {
 			message: 'Released under the MIT License.',
@@ -24,6 +26,14 @@ export default {
 				link: 'https://github.com/prazdevs/pinia-plugin-persistedstate',
 			},
 		],
+
+		localeLinks: {
+			text: 'Languages',
+			items: [
+				{ text: 'English', link: '/', activeMatch: '/' },
+				{ text: '简体中文', link: '/zh/', activeMatch: '/zh/' },
+			],
+		},
 
 		editLink: {
 			pattern: 'https://github.com/prazdevs/pinia-plugin-persistedstate/edit/main/docs/:path',
@@ -44,21 +54,6 @@ export default {
 						text: 'Nuxt 3',
 						link: '/frameworks/nuxt-3',
 						activeMatch: '/frameworks/nuxt-3',
-					},
-				],
-			},
-			{
-				text: 'Languages',
-				items: [
-					{
-						text: 'English',
-						link: '/',
-						activeMatch: '/',
-					},
-					{
-						text: '简体中文',
-						link: '/zh/',
-						activeMatch: '/zh/',
 					},
 				],
 			},

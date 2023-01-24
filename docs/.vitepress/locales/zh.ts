@@ -9,9 +9,11 @@ export default {
 	},
 	themeConfig: {
 		label: '简体中文',
-		selectText: '选择语言',
+		SelectText: '选择语言',
 		editLinkText: '对本页提出修改建议',
 		lastUpdated: '最后更新',
+		lastUpdatedText: '最近更新时间',
+		docFooter: { prev: '上一篇', next: '下一篇' },
 
 		footer: {
 			message: '根据 MIT 许可证发布',
@@ -24,6 +26,14 @@ export default {
 				link: 'https://github.com/prazdevs/pinia-plugin-persistedstate',
 			},
 		],
+
+		localeLinks: {
+			text: '选择语言',
+			items: [
+				{ text: 'English', link: '/', activeMatch: '/' },
+				{ text: '简体中文', link: '/zh/', activeMatch: '/zh/' },
+			],
+		},
 
 		editLink: {
 			pattern: 'https://github.com/prazdevs/pinia-plugin-persistedstate/edit/main/docs/:path',
@@ -44,21 +54,6 @@ export default {
 						text: 'Nuxt 3',
 						link: '/zh/frameworks/nuxt-3',
 						activeMatch: '/zh/frameworks/nuxt-3',
-					},
-				],
-			},
-			{
-				text: '选择语言',
-				items: [
-					{
-						text: 'English',
-						link: '/',
-						activeMatch: '/',
-					},
-					{
-						text: '简体中文',
-						link: '/zh/',
-						activeMatch: '/zh/',
 					},
 				],
 			},
