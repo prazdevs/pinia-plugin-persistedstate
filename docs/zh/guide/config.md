@@ -1,199 +1,210 @@
-# Configuration
+# 配置
 
-The plugin comes pre-configured with the following:
+该插件的预配置如下:
 
-- [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) as storage.
-- [`store.$id`](https://pinia.vuejs.org/api/interfaces/pinia.StoreProperties.html) as default key for storage.
-- [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) as serializer/deserializer.
-- The whole state is persisted to the storage.
+-   [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) 作为存储
+-   [`store.$id`](https://pinia.vuejs.org/api/interfaces/pinia.StoreProperties.html) 作为存储默认的 key
+-   [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) 作为序列化/反序列化方法
+-   整个 state 将被持久化存储
 
-However, you can pass an object to the `persist` property of the store to configure the persistence.
+但是，你可以将一个对象传递给 Store 的 `persist` 属性来配置持久化。
 
 ```ts
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    // CONFIG OPTIONS HERE
-  },
+	state: () => ({
+		someState: '你好 pinia',
+	}),
+	persist: {
+		// 在这里进行配置
+	},
 })
 ```
 
 ## key
 
-- **type**: `string`
-- **default**: `store.$id`
+-   **类型**：`string`
+-   **默认值**：`store.$id`
 
-Key used to reference the stored deserialized data in the storage.
+Key 用于引用存储中的反序列化数据
 
-:::details Example
+:::details 例如
+
 ```ts
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    key: 'my-custom-key',
-  },
+	state: () => ({
+		someState: '你好 pinia',
+	}),
+	persist: {
+		key: 'my-custom-key',
+	},
 })
 ```
 
-This store will be persisted under the `my-custom-key` key in `localStorage`.
+这个 store 将被持久化存储在 `localStorage` 中的 `my-custom-key` key 中。
 :::
 
 ## storage
 
-- **type**: [`StorageLike`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L3)
-- **default**: [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+-   **类型**：[`StorageLike`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L3)
+-   **默认值**：[`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
-Storage to persist the data to. Must have `getItem: (key: string) => string | null` and `setItem: (key: string, value: string) => void` methods.
+将数据持久化到的存储中，必须具有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 方法。
 
-:::details Example
+:::details 例如
+
 ```ts
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    storage: sessionStorage,
-  },
+	state: () => ({
+		someState: '你好 pinia',
+	}),
+	persist: {
+		storage: sessionStorage,
+	},
 })
 ```
 
-This store will be persisted in [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage).
+这个 store 将被持久化存储在 [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)中。
+
 :::
 
-:::warning
-Storage must be synchronous. More info in the [limitations page](/guide/limitations).
+:::warning 警告
+存储数据必须是同步的，更多信息前往[局限性页面](/zh/guide/limitations)查看。
 :::
 
 ## paths
 
-- **type**: `string[]`
-- **default**: `undefined`
+-   **类型**：`string[]`
+-   **默认值**：`undefined`
 
 Array of dot-notation paths to partially persist state. `[]` means no state is persisted and `undefined` or `null` means the whole state is persisted.
 
-:::details Example
+用于部分持久化 state 的点符号路径数组。`[]` 表示不持久化任何状态，`undefined` 或 `null` 表示持久化存储整个 state。
+
+:::details 例如
+
 ```ts
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-  state: () => ({
-    save: {
-      me: 'saved',
-      notMe: 'not-saved',
-    },
-    saveMeToo: 'saved',
-  }),
-  persist: {
-    paths: ['save.me', 'saveMeToo'],
-  },
+	state: () => ({
+		save: {
+			me: 'saved',
+			notMe: 'not-saved',
+		},
+		saveMeToo: 'saved',
+	}),
+	persist: {
+		paths: ['save.me', 'saveMeToo'],
+	},
 })
 ```
 
-In this store, only `save.me` and `saveMeToo` values will be persisted. `save.notMe` will not be persisted.
+该 store 中, 只有 `save.me` 和 `saveMeToo` 被持久化，而 `save.notMe` 不会被持久化。
 :::
-
 
 ## serializer
 
-- **type**: [`Serializer`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L5)
-- **default**: [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
+-   **类型**：[`Serializer`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L5)
+-   **默认值**：[`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
 
-Custom serializer to serialize data before persisted and deserialize data before rehydrating the store. Must have `serialize: (value: StateTree) => string` and `deserialize: (value: string) => StateTree` methods.
+自定义序列化程序将在持久化存储数据之前序列化数据，并在重新水合 store 之前反序列化数据。必须具有 `serialize: (value: StateTree) => string` 和 `deserialize: (value: string) => StateTree` 方法。
 
-:::details Example
+:::details 例如
+
 ```ts
 import { defineStore } from 'pinia'
 import { parse, stringify } from 'zipson'
 
 export const useStore = defineStore('store', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    serializer: {
-      deserialize: parse,
-      serialize: stringify
-    }
-  },
+	state: () => ({
+		someState: '你好 pinia',
+	}),
+	persist: {
+		serializer: {
+			deserialize: parse,
+			serialize: stringify,
+		},
+	},
 })
 ```
 
-This store will use [`zipson`](https://jgranstrom.github.io/zipson/)'s `stringify`/`parse` to handle serialization/deserialization with added compression.
+该 store 将使用 [`zipson`](https://jgranstrom.github.io/zipson/) 的 `stringify`/`parse` 处理序列化/反序列化，并进行压缩。
+
 :::
 
 ## beforeRestore
 
-- **type**: `(context: PiniaPluginContext) => void`
-- **default**: `undefined`
+-   **类型**：`(context: PiniaPluginContext) => void`
+-   **默认值**：`undefined`
 
-Hook function run before restoring a persisted state. The hook gives access to the whole [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html). This can be used to enforce specific actions before hydration.
+该钩子函数在重新持久化数据之前运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在填充数据之前强制地执行特定的操作。
 
-:::details Example
+:::details 例如
+
 ```ts
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    beforeRestore: (ctx) => {
-      console.log(`about to restore '${ctx.store.$id}'`)
-    }
-  },
+	state: () => ({
+		someState: '你好 pinia',
+	}),
+	persist: {
+		beforeRestore: (ctx) => {
+			console.log(`about to restore '${ctx.store.$id}'`)
+		},
+	},
 })
 ```
 
-This store will log `about to restore 'store'` _before_ being rehydrated.
+该 store 将会在重新持久化数据*之前*输出 `about to restore 'store'`
 :::
 
-:::warning
-Beware of interacting with `PiniaPluginContext`, unexpected behaviors may occur.
+:::warning 警告
+注意与 `PiniaPluginContext` 的交互，意外可能会出现。
+
 :::
 
 ## afterRestore
 
-- **type**: `(context: PiniaPluginContext) => void`
-- **default**: `undefined`
+-   **类型**：`(context: PiniaPluginContext) => void`
+-   **默认值**：`undefined`
 
-Hook function run after restoring a persisted state. The hook gives access to the whole [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html). This can be used to enforce specific actions after hydration.
+该钩子函数在重新持久化数据之后运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在填充数据之后强制地执行特定的操作。
 
-:::details Example
+:::details 例如
+
 ```ts
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    afterRestore: (ctx) => {
-      console.log(`just restored '${ctx.store.$id}'`)
-    }
-  },
+	state: () => ({
+		someState: '你好 pinia',
+	}),
+	persist: {
+		afterRestore: (ctx) => {
+			console.log(`just restored '${ctx.store.$id}'`)
+		},
+	},
 })
 ```
 
-This store will log `just restored 'store'` _after_ being rehydrated.
+该 store 将会在重新持久化数据*之后*输出 `just restored 'store'`
 :::
 
-:::warning
-Beware of interacting with `PiniaPluginContext`, unexpected behaviors may occur.
+:::warning 警告
+注意与 `PiniaPluginContext` 的交互，意外可能会出现。
+
 :::
 
 ## debug
 
-- **type**: `boolean`
-- **default**: `false`
+-   **类型**：`boolean`
+-   **默认值**：`false`
 
-When set to true, any error that may occur while persisting/hydrating stores will be logged as `console.error`.
+当设置为 true 时，持久化/填充 stores 时可能发生的任何错误都将使用 `console.error` 输出。
