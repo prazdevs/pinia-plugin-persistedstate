@@ -9,7 +9,7 @@ hero:
         alt: Pinia 持久化存储
     actions:
         - theme: brand
-          text: 快速开始
+          text: 开始使用
           link: /zh/guide/
         - theme: alt
           text: 在 Github 上查看
