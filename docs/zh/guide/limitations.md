@@ -1,51 +1,56 @@
-# Limitations
+# 局限性
 
-While the plugin offers a lot of flexibility and functionality, there are some limitations that should be considered.
+虽然该插件提供了很多灵活性和功能，但也有一些限制需要考虑。
 
-## References are not persisted
+## 引用不会被持久化
 
-Due to serialization process, references are lost on refresh.   
-Consider the following:
+由于数据将会被序列化，因此引用在刷新时将会丢失。
+考虑以下几点：
 
 ```ts
 const a = {
-  1: 'one',
-  2: 'two',
-  // ...
+	1: 'one',
+	2: 'two',
+	// ...
 }
 const b = a
 ```
 
-Before serialization, `a` and `b` point to the same object:
+在序列化之前， `a` 和 `b` 指向了同一个对象：
+
 ```ts
 a === b // -> true
 ```
 
-After deserialization, `a` and `b` are two different objects with the same content:
+在反序列化之后, `a` 和 `b` 是有着相同内容的不同对象：
+
 ```ts
 a === b // -> false
 ```
 
-As a consequence, reactivity between `a` and `b` is lost.
+因此，`a` 和 `b` 之间的联系将会丢失。
 
-:::tip Workaround
-To get around this, you can exclude either `a` or `b` from being persisted (using the [`paths`](/guide/config#paths) option) and use the [`afterRestore`](/guide/config#afterrestore) hook to re-populate them after hydration. That way `a` and `b` have the same refence again and reactivity is restored.
+:::tip 解决方法
+为了解决这个问题，你可以采取避免 `a` 或 `b` 被持久化的方法(使用 [`paths`](/zh/guide/config#paths) 选项)，并使用 [`afterRestore`](/zh/guide/config#afterrestore) 钩子在填充数据后重新存储它们。这样 `a` 和 `b` 就又会有着相同的引用，两者之间的联系就恢复了。
+
 :::
 
-## Non-primitive types are not persisted
+## 基本类型之外的将不会被持久化
 
-Due to the serialization process, non-primitive types such as `Date` are not rehydrated as `Date` object but as `string` instead.
+由于数据将会被序列化，非原始数据类型（如 `Date` ）不会被重新变为 `Date` 对象，而是作为 `string`。
 
-:::tip Workaround
-To get around this you can:
-- Use the [`afterRestore`](/guide/config#afterrestore) hook to recreate the objects after rehydration.
-- Use a custom [`serializer`](/guide/config#serializer) that supports the data types you want to persist.
+:::tip 解决方法
+为了解决这个问题，你可以：
+
+-   使用 [`afterRestore`](/zh/guide/config#afterrestore) 钩子函数在恢复数据之后重新创建对象。
+-   使用自定义的 [`serializer`](/zh/guide/config#serializer) 配置你想要持久化的数据类型。
+
 :::
 
-## Storage must be synchronous
+## 存储必须是同步的
 
-When providing a custom [`storage`](/guide/config#storage), its methods must be synchronous. This is due to Pinia's state subscription ([`$subscribe`](https://pinia.vuejs.org/core-concepts/state#subscribing-to-the-state)) being synchronous (like mutations).
+当提供自定义 [`storage`](/zh/guide/config#storage)时，其方法必须是同步的。这是因为 Pinia 的状态订阅（[`$subscribe`](https://pinia.vuejs.org/core-concepts/state#subscribing-to-the-state)）是同步的(与 mutations 一致)。
 
-:::tip Workaround
-To add asynchronous behavior (such as using async storages), you can try [subscribing to actions (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions).
+:::tip 解决方法
+要添加异步行为（例如使用 async storages），你可以尝试 [订阅 action (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#subscribing-to-actions)。
 :::
