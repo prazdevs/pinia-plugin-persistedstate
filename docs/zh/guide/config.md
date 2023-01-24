@@ -27,7 +27,7 @@ export const useStore = defineStore('main', {
 -   **类型**：`string`
 -   **默认值**：`store.$id`
 
-Key 用于引用存储中的反序列化数据
+Key 用于引用 storage 中的反序列化数据
 
 :::details 例如
 
@@ -81,8 +81,6 @@ export const useStore = defineStore('store', {
 
 -   **类型**：`string[]`
 -   **默认值**：`undefined`
-
-Array of dot-notation paths to partially persist state. `[]` means no state is persisted and `undefined` or `null` means the whole state is persisted.
 
 用于部分持久化 state 的点符号路径数组。`[]` 表示不持久化任何状态，`undefined` 或 `null` 表示持久化存储整个 state。
 
@@ -143,7 +141,7 @@ export const useStore = defineStore('store', {
 -   **类型**：`(context: PiniaPluginContext) => void`
 -   **默认值**：`undefined`
 
-该钩子函数在重新持久化数据之前运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在填充数据之前强制地执行特定的操作。
+该钩子函数在重新持久化数据之前运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在水合之前强制地执行特定的操作。
 
 :::details 例如
 
@@ -175,7 +173,7 @@ export const useStore = defineStore('store', {
 -   **类型**：`(context: PiniaPluginContext) => void`
 -   **默认值**：`undefined`
 
-该钩子函数在重新持久化数据之后运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在填充数据之后强制地执行特定的操作。
+该钩子函数在重新持久化数据之后运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在水合之后强制地执行特定的操作。
 
 :::details 例如
 

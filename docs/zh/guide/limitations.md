@@ -31,7 +31,7 @@ a === b // -> false
 因此，`a` 和 `b` 之间的联系将会丢失。
 
 :::tip 解决方法
-为了解决这个问题，你可以采取避免 `a` 或 `b` 被持久化的方法(使用 [`paths`](/zh/guide/config#paths) 选项)，并使用 [`afterRestore`](/zh/guide/config#afterrestore) 钩子在填充数据后重新存储它们。这样 `a` 和 `b` 就又会有着相同的引用，两者之间的联系就恢复了。
+为了解决这个问题，你可以采取避免 `a` 或 `b` 被持久化的方法(使用 [`paths`](/zh/guide/config#paths) 选项)，并使用 [`afterRestore`](/zh/guide/config#afterrestore) 钩子在水合后重新存储它们。这样 `a` 和 `b` 就又会有着相同的引用，两者之间的联系就恢复了。
 
 :::
 
@@ -42,7 +42,7 @@ a === b // -> false
 :::tip 解决方法
 为了解决这个问题，你可以：
 
--   使用 [`afterRestore`](/zh/guide/config#afterrestore) 钩子函数在恢复数据之后重新创建对象。
+-   使用 [`afterRestore`](/zh/guide/config#afterrestore) 钩子函数在再水合之后重新创建对象。
 -   使用自定义的 [`serializer`](/zh/guide/config#serializer) 配置你想要持久化的数据类型。
 
 :::

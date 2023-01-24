@@ -5,7 +5,7 @@ export default {
 	vitepressConfig: {
 		title: 'Pinia 持久化存储',
 		lang: 'zh',
-		description: '🍍 Pinia 可配置的持久性存储以及数据填充',
+		description: '🍍 Pinia 可配置的持久化存储以及数据填充',
 	},
 	themeConfig: {
 		label: '简体中文',

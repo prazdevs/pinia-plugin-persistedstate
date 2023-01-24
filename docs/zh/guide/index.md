@@ -2,7 +2,7 @@
 
 ## 概述
 
-本插件兼容 `pinia^2.0.0`，在使用之前请确保你已经 [安装 Pinia](https://pinia.vuejs.org/zh/getting-started.html)。 `pinia-plugin-persistedstate` 具有的众多功能可以使 Pinia Store 的持久性更易配置：
+本插件兼容 `pinia^2.0.0`，在使用之前请确保你已经 [安装 Pinia](https://pinia.vuejs.org/zh/getting-started.html)。 `pinia-plugin-persistedstate` 具有的众多功能可以使 Pinia Store 的持久化更易配置：
 
 -   与 [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate)相似的 API
 -   所有 Store 均可单独配置
@@ -80,4 +80,4 @@ export const useStore = defineStore(
 )
 ```
 
-现在，你的整个存储将使用[默认持久化配置](/zh/guide/config)保存。
+现在，你的整个 storage 将使用[默认持久化配置](/zh/guide/config)保存。
