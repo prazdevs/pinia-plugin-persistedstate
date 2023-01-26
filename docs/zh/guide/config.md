@@ -1,13 +1,13 @@
 # 配置
 
-该插件的预配置如下:
+该插件的默认配置如下:
 
--   [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) 作为存储
--   [`store.$id`](https://pinia.vuejs.org/api/interfaces/pinia.StoreProperties.html) 作为存储默认的 key
--   [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) 作为序列化/反序列化方法
--   整个 state 将被持久化存储
+-   使用 [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) 进行存储
+-   [`store.$id`](https://pinia.vuejs.org/api/interfaces/pinia.StoreProperties.html) 作为 storage 默认的 key
+-   使用 [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) 进行序列化/反序列化
+-   整个 state 默认将被持久化
 
-但是，你可以将一个对象传递给 Store 的 `persist` 属性来配置持久化。
+如何你不想使用默认的配置，那么你可以将一个对象传递给 Store 的 `persist` 属性来配置持久化。
 
 ```ts
 import { defineStore } from 'pinia'
@@ -17,7 +17,7 @@ export const useStore = defineStore('main', {
 		someState: '你好 pinia',
 	}),
 	persist: {
-		// 在这里进行配置
+		// 在这里进行自定义配置
 	},
 })
 ```
@@ -27,7 +27,7 @@ export const useStore = defineStore('main', {
 -   **类型**：`string`
 -   **默认值**：`store.$id`
 
-Key 用于引用 storage 中的反序列化数据
+Key 用于引用 storage 中的数据
 
 :::details 例如
 
@@ -44,15 +44,15 @@ export const useStore = defineStore('store', {
 })
 ```
 
-这个 store 将被持久化存储在 `localStorage` 中的 `my-custom-key` key 中。
+这个 Store 将被持久化存储在 `localStorage` 中的 `my-custom-key` key 中。
 :::
 
 ## storage
 
 -   **类型**：[`StorageLike`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L3)
--   **默认值**：[`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+-   **默认值**：[`localStorage`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
 
-将数据持久化到的存储中，必须具有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 方法。
+将数据持久化到的 storage 中，必须具有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 两个方法。
 
 :::details 例如
 
@@ -69,7 +69,7 @@ export const useStore = defineStore('store', {
 })
 ```
 
-这个 store 将被持久化存储在 [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)中。
+这个 store 将被持久化存储在 [`sessionStorage`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage)中。
 
 :::
 
@@ -82,7 +82,7 @@ export const useStore = defineStore('store', {
 -   **类型**：`string[]`
 -   **默认值**：`undefined`
 
-用于部分持久化 state 的点符号路径数组。`[]` 表示不持久化任何状态，`undefined` 或 `null` 表示持久化存储整个 state。
+用于指定 state 中哪些数据需要被持久化。`[]` 表示不持久化任何状态，`undefined` 或 `null` 表示持久化整个 state。
 
 :::details 例如
 
@@ -109,9 +109,9 @@ export const useStore = defineStore('store', {
 ## serializer
 
 -   **类型**：[`Serializer`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L5)
--   **默认值**：[`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
+-   **默认值**：[`JSON.stringify`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`JSON.parse`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
 
-自定义序列化程序将在持久化存储数据之前序列化数据，并在重新水合 store 之前反序列化数据。必须具有 `serialize: (value: StateTree) => string` 和 `deserialize: (value: string) => StateTree` 方法。
+该配置能够指定持久化时所使用的序列化方法，以及恢复 Store 时的反序列化方法。另外，必须具有 `serialize: (value: StateTree) => string` 和 `deserialize: (value: string) => StateTree` 方法。
 
 :::details 例如
 
@@ -141,7 +141,7 @@ export const useStore = defineStore('store', {
 -   **类型**：`(context: PiniaPluginContext) => void`
 -   **默认值**：`undefined`
 
-该钩子函数在重新持久化数据之前运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在水合之前强制地执行特定的操作。
+该 hook 将在从 storage 中恢复数据之前触发，并且它可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)，这可用于在恢复数据之前强制地执行特定的操作。
 
 :::details 例如
 
@@ -154,17 +154,17 @@ export const useStore = defineStore('store', {
 	}),
 	persist: {
 		beforeRestore: (ctx) => {
-			console.log(`about to restore '${ctx.store.$id}'`)
+			console.log(`即将恢复 '${ctx.store.$id}'`)
 		},
 	},
 })
 ```
 
-该 store 将会在重新持久化数据*之前*输出 `about to restore 'store'`
+该 Store 将会在恢复数据*之前*输出 `即将恢复 'store'`
 :::
 
 :::warning 警告
-注意与 `PiniaPluginContext` 的交互，意外可能会出现。
+请谨慎使用 `PiniaPluginContext`，意外可能会出现。
 
 :::
 
@@ -173,7 +173,7 @@ export const useStore = defineStore('store', {
 -   **类型**：`(context: PiniaPluginContext) => void`
 -   **默认值**：`undefined`
 
-该钩子函数在重新持久化数据之后运行。该 hook 可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)。这可用于在水合之后强制地执行特定的操作。
+该 hook 将在从 storage 中恢复数据之后触发，并且它可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html)，这可用于在恢复数据之后强制地执行特定的操作。
 
 :::details 例如
 
@@ -186,17 +186,17 @@ export const useStore = defineStore('store', {
 	}),
 	persist: {
 		afterRestore: (ctx) => {
-			console.log(`just restored '${ctx.store.$id}'`)
+			console.log(`刚刚恢复完 '${ctx.store.$id}'`)
 		},
 	},
 })
 ```
 
-该 store 将会在重新持久化数据*之后*输出 `just restored 'store'`
+该 Store 将会在恢复数据*之后*输出 `刚刚恢复完 'store'`
 :::
 
 :::warning 警告
-注意与 `PiniaPluginContext` 的交互，意外可能会出现。
+请谨慎使用 `PiniaPluginContext`，意外可能会出现。
 
 :::
 
@@ -205,4 +205,4 @@ export const useStore = defineStore('store', {
 -   **类型**：`boolean`
 -   **默认值**：`false`
 
-当设置为 true 时，持久化/填充 stores 时可能发生的任何错误都将使用 `console.error` 输出。
+当设置为 true 时，持久化/恢复 Store 时可能发生的任何错误都将使用 `console.error` 输出。

@@ -11,14 +11,10 @@ export default {
 		label: 'English',
 		SelectText: 'Languages',
 		editLinkText: 'Suggest changes to this page',
+		outlineTitle: 'On this page',
 		lastUpdated: 'Last Updated',
 		lastUpdatedText: 'Last updated',
 		docFooter: { prev: 'Previous page', next: 'Next page' },
-
-		footer: {
-			message: 'Released under the MIT License.',
-			copyright: `Copyright © 2021-${new Date().getFullYear()} prazdevs & contributors`,
-		},
 
 		socialLinks: [
 			{
@@ -131,6 +127,11 @@ export default {
 					],
 				},
 			],
+		},
+
+		footer: {
+			message: 'Released under the MIT License.',
+			copyright: `Copyright © 2021-${new Date().getFullYear()} prazdevs & contributors`,
 		},
 	},
 }

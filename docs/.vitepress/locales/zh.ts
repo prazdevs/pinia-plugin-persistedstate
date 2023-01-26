@@ -3,22 +3,18 @@ const currentVersion = `v${version}`
 
 export default {
 	vitepressConfig: {
-		title: 'Pinia 持久化存储',
+		title: 'pinia-plugin-persistedstate',
 		lang: 'zh',
-		description: '🍍 Pinia 可配置的持久化存储以及数据填充',
+		description: '🍍 适用于 Pinia 的持久化存储插件',
 	},
 	themeConfig: {
 		label: '简体中文',
 		SelectText: '选择语言',
 		editLinkText: '对本页提出修改建议',
+		outlineTitle: '目录',
 		lastUpdated: '最后更新',
 		lastUpdatedText: '最近更新时间',
 		docFooter: { prev: '上一篇', next: '下一篇' },
-
-		footer: {
-			message: '根据 MIT 许可证发布',
-			copyright: `Copyright © 2021-${new Date().getFullYear()} prazdevs & contributors`,
-		},
 
 		socialLinks: [
 			{
@@ -73,8 +69,8 @@ export default {
 						items: [
 							{
 								text: `${currentVersion} (当前)`,
-								activeMatch: '/',
-								link: '/',
+								activeMatch: '/zh/',
+								link: '/zh/',
 							},
 							{
 								text: 'v2.4.0',
@@ -131,6 +127,11 @@ export default {
 					],
 				},
 			],
+		},
+
+		footer: {
+			message: '根据 MIT 许可证发布',
+			copyright: `Copyright © 2021-${new Date().getFullYear()} prazdevs & contributors`,
 		},
 	},
 }

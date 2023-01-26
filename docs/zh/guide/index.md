@@ -2,13 +2,13 @@
 
 ## 概述
 
-本插件兼容 `pinia^2.0.0`，在使用之前请确保你已经 [安装 Pinia](https://pinia.vuejs.org/zh/getting-started.html)。 `pinia-plugin-persistedstate` 具有的众多功能可以使 Pinia Store 的持久化更易配置：
+本插件兼容 `pinia^2.0.0`，在使用之前请确保你已经 [安装 Pinia](https://pinia.vuejs.org/zh/getting-started.html)。 `pinia-plugin-persistedstate` 丰富的功能可以使 Pinia Store 的持久化更易配置：
 
--   与 [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate)相似的 API
+-   与 [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) 相似的 API
 -   所有 Store 均可单独配置
--   自定义存储和自定义数据序列化
--   数据充入前后的钩子函数
--   Store 配置丰富
+-   自定义 storage 和数据序列化
+-   持久化数据前后的 hook
+-   每个 Store 具有丰富的配置
 -   兼容 Vue 2 和 3
 -   无任何外部依赖
 
@@ -46,9 +46,9 @@ pinia.use(piniaPluginPersistedstate)
 
 ## 用法
 
-声明 Store 时，将 `persistent` 选项设置为 `true`。
+创建 Store 时，将 `persistent` 选项设置为 `true`。
 
-_使用 option store 语法：_
+_使用选项式 Store 语法：_
 
 ```ts
 import { defineStore } from 'pinia'
@@ -56,14 +56,14 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('main', {
 	state: () => {
 		return {
-			someState: 'hello pinia',
+			someState: '你好 pinia',
 		}
 	},
 	persist: true,
 })
 ```
 
-_或者使用 setup store 语法：_
+_或者使用组合式 Store 语法：_
 
 ```ts
 import { defineStore } from 'pinia'
@@ -71,7 +71,7 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore(
 	'main',
 	() => {
-		const someState = ref('hello pinia')
+		const someState = ref('你好 pinia')
 		return { someState }
 	},
 	{
@@ -80,4 +80,4 @@ export const useStore = defineStore(
 )
 ```
 
-现在，你的整个 storage 将使用[默认持久化配置](/zh/guide/config)保存。
+现在，你的整个 Store 将使用[默认持久化配置](/zh/guide/config)保存。
