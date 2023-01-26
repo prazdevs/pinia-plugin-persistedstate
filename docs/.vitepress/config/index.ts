@@ -5,6 +5,9 @@ import { zh } from './zh'
 
 export default defineConfig({
 	base: `/pinia-plugin-persistedstate/`,
+	head: [
+		['link', { rel: 'icon', href: '/favicon.ico' }]
+	],
 	lastUpdated: true,
 	markdown: {
 		theme: {
