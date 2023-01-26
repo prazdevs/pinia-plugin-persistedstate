@@ -30,6 +30,16 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://prazdevs.github.io/pinia-plugin-persistedstate/" alt="pinia-plugin-persistedstate english docs" >
+    English
+  </a>
+  |
+  <a href="https://prazdevs.github.io/pinia-plugin-persistedstate/zh" alt="pinia-plugin-persistedstate chinese docs" >
+    简体中文
+  </a>
+</p>
+
 ## ✨ Features
 
 - Persist Pinia stores with a friendly API inspired by [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate).
