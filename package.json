@@ -1,6 +1,6 @@
 {
   "name": "@pinia-plugin-persistedstate/monorepo",
-  "version": "3",
+  "version": "3.0.2",
   "private": true,
   "packageManager": "pnpm@7.17.0",
   "description": "Monorepo for pinia-plugin-persistedstate",
@@ -20,19 +20,19 @@
     "release:nuxt": "pnpm -F @pinia-plugin-persistedstate/nuxt run release"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.34.1",
+    "@antfu/eslint-config": "^0.35.1",
     "@types/node": "^18.11.18",
-    "@vitest/coverage-c8": "^0.28.2",
-    "@vitest/ui": "^0.28.2",
+    "@vitest/coverage-c8": "^0.28.4",
+    "@vitest/ui": "^0.28.4",
     "bumpp": "^8.2.1",
-    "eslint": "^8.32.0",
-    "happy-dom": "^8.1.5",
+    "eslint": "^8.33.0",
+    "happy-dom": "^8.2.6",
     "tsup": "^6.5.0",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.4",
-    "vitepress": "1.0.0-alpha.40",
-    "vitest": "^0.28.2",
-    "vue": "^3.2.45"
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitepress": "1.0.0-alpha.45",
+    "vitest": "^0.28.4",
+    "vue": "^3.2.47"
   },
   "volta": {
     "node": "18.12.1"
