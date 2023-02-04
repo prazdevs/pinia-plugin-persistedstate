@@ -60,8 +60,9 @@ export function createPersistedState(
   factoryOptions: PersistedStateFactoryOptions = {},
 ): PiniaPlugin {
   return (context: PiniaPluginContext) => {
+    const { auto = false } = factoryOptions
     const {
-      options: { persist },
+      options: { persist = auto },
       store,
     } = context
 

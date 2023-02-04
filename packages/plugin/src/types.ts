@@ -68,12 +68,18 @@ export type PersistedStateFactoryOptions = Pick<
    * @default storeKey => storeKey
    */
   key?: (storeKey: string) => string
+
+  /**
+   * Automatically persists all stores, opt-out individually.
+   * @default false
+   */
+  auto?: boolean
 }
 
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
     /**
-     * Persist store in storage.
+     * Persists store in storage.
      * @see https://github.com/prazdevs/pinia-plugin-persistedstate
      */
     persist?: boolean | PersistedStateOptions | PersistedStateOptions[]
