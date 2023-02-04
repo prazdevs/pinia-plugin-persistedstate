@@ -15,9 +15,9 @@ import { createPersistedState } from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
 
 pinia.use(
-	createPersistedState({
-		storage: sessionStorage,
-	})
+  createPersistedState({
+    storage: sessionStorage,
+  })
 )
 ```
 
@@ -46,9 +46,9 @@ import { createPersistedState } from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
 
 pinia.use(
-	createPersistedState({
-		key: (id) => `__persisted__${id}`,
-	})
+  createPersistedState({
+    key: id => `__persisted__${id}`,
+  })
 )
 ```
 
@@ -56,8 +56,8 @@ pinia.use(
 import { defineStore } from 'pinia'
 
 defineStore('store', {
-	state: () => ({ saved: '' }),
-	persist: true,
+  state: () => ({ saved: '' }),
+  persist: true,
 })
 ```
 
@@ -76,21 +76,21 @@ defineStore('store', {
 import { defineStore } from 'pinia'
 
 defineStore('store', {
-	state: () => ({
-		toLocal: '',
-		toSession: '',
-		toNowhere: '',
-	}),
-	persist: [
-		{
-			paths: ['toLocal'],
-			storage: localStorage,
-		},
-		{
-			paths: ['toSession'],
-			storage: sessionStorage,
-		},
-	],
+  state: () => ({
+    toLocal: '',
+    toSession: '',
+    toNowhere: '',
+  }),
+  persist: [
+    {
+      paths: ['toLocal'],
+      storage: localStorage,
+    },
+    {
+      paths: ['toSession'],
+      storage: sessionStorage,
+    },
+  ],
 })
 ```
 
@@ -104,17 +104,17 @@ defineStore('store', {
 import { defineStore } from 'pinia'
 
 defineStore('store', {
-	state: () => ({
-		someData: '你好 Pinia',
-	}),
-	persist: [
-		{
-			storage: localStorage,
-		},
-		{
-			storage: sessionStorage,
-		},
-	],
+  state: () => ({
+    someData: '你好 Pinia',
+  }),
+  persist: [
+    {
+      storage: localStorage,
+    },
+    {
+      storage: sessionStorage,
+    },
+  ],
 })
 ```
 
@@ -132,9 +132,9 @@ defineStore('store', {
 import { defineStore } from 'pinia'
 
 const useStore = defineStore('store', {
-	state: () => ({
-		someData: '你好 Pinia',
-	}),
+  state: () => ({
+    someData: '你好 Pinia',
+  }),
 })
 ```
 
@@ -163,9 +163,9 @@ store.$hydrate({ runHooks: false })
 import { defineStore } from 'pinia'
 
 const useStore = defineStore('store', {
-	state: () => ({
-		someData: '你好 Pinia',
-	}),
+  state: () => ({
+    someData: '你好 Pinia',
+  }),
 })
 ```
 

@@ -13,12 +13,12 @@
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-	state: () => ({
-		someState: '你好 pinia',
-	}),
-	persist: {
-		// 在这里进行自定义配置
-	},
+  state: () => ({
+    someState: '你好 pinia',
+  }),
+  persist: {
+    // 在这里进行自定义配置
+  },
 })
 ```
 
@@ -35,12 +35,12 @@ Key 用于引用 storage 中的数据
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-	state: () => ({
-		someState: '你好 pinia',
-	}),
-	persist: {
-		key: 'my-custom-key',
-	},
+  state: () => ({
+    someState: '你好 pinia',
+  }),
+  persist: {
+    key: 'my-custom-key',
+  },
 })
 ```
 
@@ -60,12 +60,12 @@ export const useStore = defineStore('store', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-	state: () => ({
-		someState: '你好 pinia',
-	}),
-	persist: {
-		storage: sessionStorage,
-	},
+  state: () => ({
+    someState: '你好 pinia',
+  }),
+  persist: {
+    storage: sessionStorage,
+  },
 })
 ```
 
@@ -90,16 +90,16 @@ export const useStore = defineStore('store', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-	state: () => ({
-		save: {
-			me: 'saved',
-			notMe: 'not-saved',
-		},
-		saveMeToo: 'saved',
-	}),
-	persist: {
-		paths: ['save.me', 'saveMeToo'],
-	},
+  state: () => ({
+    save: {
+      me: 'saved',
+      notMe: 'not-saved',
+    },
+    saveMeToo: 'saved',
+  }),
+  persist: {
+    paths: ['save.me', 'saveMeToo'],
+  },
 })
 ```
 
@@ -120,15 +120,15 @@ import { defineStore } from 'pinia'
 import { parse, stringify } from 'zipson'
 
 export const useStore = defineStore('store', {
-	state: () => ({
-		someState: '你好 pinia',
-	}),
-	persist: {
-		serializer: {
-			deserialize: parse,
-			serialize: stringify,
-		},
-	},
+  state: () => ({
+    someState: '你好 pinia',
+  }),
+  persist: {
+    serializer: {
+      deserialize: parse,
+      serialize: stringify,
+    },
+  },
 })
 ```
 
@@ -149,14 +149,14 @@ export const useStore = defineStore('store', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-	state: () => ({
-		someState: '你好 pinia',
-	}),
-	persist: {
-		beforeRestore: (ctx) => {
-			console.log(`即将恢复 '${ctx.store.$id}'`)
-		},
-	},
+  state: () => ({
+    someState: '你好 pinia',
+  }),
+  persist: {
+    beforeRestore: (ctx) => {
+      console.log(`即将恢复 '${ctx.store.$id}'`)
+    },
+  },
 })
 ```
 
@@ -181,14 +181,14 @@ export const useStore = defineStore('store', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
-	state: () => ({
-		someState: '你好 pinia',
-	}),
-	persist: {
-		afterRestore: (ctx) => {
-			console.log(`刚刚恢复完 '${ctx.store.$id}'`)
-		},
-	},
+  state: () => ({
+    someState: '你好 pinia',
+  }),
+  persist: {
+    afterRestore: (ctx) => {
+      console.log(`刚刚恢复完 '${ctx.store.$id}'`)
+    },
+  },
 })
 ```
 

@@ -9,9 +9,9 @@
 
 ```ts
 const a = {
-	1: 'one',
-	2: 'two',
-	// ...
+  1: 'one',
+  2: 'two',
+  // ...
 }
 const b = a
 ```

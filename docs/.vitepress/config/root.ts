@@ -8,7 +8,7 @@ export const root = {
   themeConfig: {
     lastUpdatedText: 'Last updated',
     outline: {
-      label: 'On this page'
+      label: 'On this page',
     },
     docFooter: {
       prev: 'Previous page',
@@ -111,5 +111,5 @@ export const root = {
         ],
       },
     ],
-  }
+  },
 }

@@ -11,9 +11,9 @@ import { defineStore } from 'pinia'
 import { useLocalStorage } from '@vueuse/core'
 
 defineStore('store', () => {
-	const someState = useLocalStorage('stored-state', 'initialValue')
+  const someState = useLocalStorage('stored-state', 'initialValue')
 
-	return { someState }
+  return { someState }
 })
 ```
 

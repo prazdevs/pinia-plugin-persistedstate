@@ -33,4 +33,3 @@ it('overrides factory options', () => {
   expect(options.beforeRestore).toBe(optionsRestore)
   expect(options.beforeRestore).not.toBe(factoryRestore)
 })
-

@@ -54,12 +54,12 @@ _使用选项式 Store 语法：_
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-	state: () => {
-		return {
-			someState: '你好 pinia',
-		}
-	},
-	persist: true,
+  state: () => {
+    return {
+      someState: '你好 pinia',
+    }
+  },
+  persist: true,
 })
 ```
 
@@ -69,14 +69,14 @@ _或者使用组合式 Store 语法：_
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore(
-	'main',
-	() => {
-		const someState = ref('你好 pinia')
-		return { someState }
-	},
-	{
-		persist: true,
-	}
+  'main',
+  () => {
+    const someState = ref('你好 pinia')
+    return { someState }
+  },
+  {
+    persist: true,
+  }
 )
 ```
 

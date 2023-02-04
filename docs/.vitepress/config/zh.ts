@@ -7,11 +7,11 @@ export const zh = {
   description: '🍍 适用于 Pinia 的持久化存储插件',
   themeConfig: {
     lastUpdatedText: '最近更新时间',
-    outline: { 
-      label: '目录'
+    outline: {
+      label: '目录',
     },
     docFooter: {
-      prev: '上一篇', 
+      prev: '上一篇',
       next: '下一篇',
     },
     editLink: {
@@ -110,6 +110,6 @@ export const zh = {
           },
         ],
       },
-    ]
-  }
+    ],
+  },
 }

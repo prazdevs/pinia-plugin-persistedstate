@@ -28,7 +28,7 @@
 
 ```ts
 export default defineNuxtConfig({
-	modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
 })
 ```
 
@@ -40,12 +40,12 @@ export default defineNuxtConfig({
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-	state: () => {
-		return {
-			someState: '你好 pinia',
-		}
-	},
-	persist: true,
+  state: () => {
+    return {
+      someState: '你好 pinia',
+    }
+  },
+  persist: true,
 })
 ```
 
@@ -64,14 +64,14 @@ export const useStore = defineStore('main', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-	state: () => {
-		return {
-			someState: '你好 pinia',
-		}
-	},
-	persist: {
-		storage: persistedState.localStorage,
-	},
+  state: () => {
+    return {
+      someState: '你好 pinia',
+    }
+  },
+  persist: {
+    storage: persistedState.localStorage,
+  },
 })
 ```
 
@@ -85,14 +85,14 @@ export const useStore = defineStore('main', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-	state: () => {
-		return {
-			someState: '你好 pinia',
-		}
-	},
-	persist: {
-		storage: persistedState.sessionStorage,
-	},
+  state: () => {
+    return {
+      someState: '你好 pinia',
+    }
+  },
+  persist: {
+    storage: persistedState.sessionStorage,
+  },
 })
 ```
 
@@ -106,16 +106,16 @@ export const useStore = defineStore('main', {
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
-	state: () => {
-		return {
-			someState: '你好 pinia',
-		}
-	},
-	persist: {
-		storage: persistedState.cookiesWithOptions({
-			sameSite: 'strict',
-		}),
-	},
+  state: () => {
+    return {
+      someState: '你好 pinia',
+    }
+  },
+  persist: {
+    storage: persistedState.cookiesWithOptions({
+      sameSite: 'strict',
+    }),
+  },
 })
 ```
 
@@ -130,13 +130,13 @@ export const useStore = defineStore('main', {
 
 ```ts
 export default defineNuxtConfig({
-	modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
-	piniaPersistedstate: {
-		cookieOptions: {
-			sameSite: 'strict',
-		},
-		storage: 'localStorage',
-	},
+  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  piniaPersistedstate: {
+    cookieOptions: {
+      sameSite: 'strict',
+    },
+    storage: 'localStorage',
+  },
 })
 ```
 
