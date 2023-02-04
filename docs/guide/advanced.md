@@ -61,6 +61,44 @@ In this example, the store will be persisted under `__persisted__store` key inst
 This is option should be considered when you need to prefix/postfix all store keys globally.
 :::
 
+## Auto mode
+
+The auto mode enables persistence of **all** stores by default. Persistence must be disabled explicitly with `persist: false`.
+
+```ts
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
+
+pinia.use(createPersistedState({
+  auto: true,
+}))
+```
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('persisted', {
+  state: () => ({ saved: '' }),
+})
+```
+
+In this example, this store will be automatically persisted with default settings (or specified global options).
+
+:::tip
+With auto mode on, you can opt-out of persistence individually:
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('not-persisted', {
+  state: () => ({ saved: '' }),
+  persist: false,
+})
+```
+:::
+
 ## Multiple persistences per-store
 
 There may be specific use cases where you need to persist data from a single store to different storages. The `persist` option also accepts an array of configurations.
