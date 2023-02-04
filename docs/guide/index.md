@@ -2,7 +2,7 @@
 
 ## Overview
 
-This plugin is compatible with `pinia^2.0.0`, make sure you have [Pinia installed](https://pinia.vuejs.org/getting-started.html) before proceeding. `pinia-plugin-persistedstate` comes with many features to make persistence of Pinia stores easy and configurable with:
+This plugin is compatible with `pinia^2.0.0`, make sure you have [Pinia installed](https://pinia.vuejs.org/getting-started.html) before proceeding. `pinia-plugin-persistedstate` comes with many features to make persistence of Pinia stores effortless and configurable with:
 - An API similar to [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate).
 - Per-store configuration.
 - Custom storage and custom data serializer.

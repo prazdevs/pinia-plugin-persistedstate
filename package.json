@@ -8,6 +8,7 @@
   "license": "MIT",
   "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
   "scripts": {
+    "alex": "alex docs",
     "build": "pnpm -r run build",
     "test": "pnpm -r run test:run",
     "test:coverage": "pnpm -r run test:coverage",
@@ -24,6 +25,7 @@
     "@types/node": "^18.11.18",
     "@vitest/coverage-c8": "^0.28.4",
     "@vitest/ui": "^0.28.4",
+    "alex": "^11.0.0",
     "bumpp": "^8.2.1",
     "eslint": "^8.33.0",
     "happy-dom": "^8.2.6",
@@ -52,6 +54,7 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "eslint --fix",
+    "docs/**/*.md": "alex"
   }
 }
