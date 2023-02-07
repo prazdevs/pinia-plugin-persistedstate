@@ -681,3 +681,82 @@ describe('w/ global options', () => {
       .toEqual({ lorem: 'dolor' })
   })
 })
+
+describe('auto mode', () => {
+  beforeEach(() => {
+    const app = createApp({})
+    const pinia = createPinia()
+    pinia.use(createPersistedState({ auto: true }))
+    app.use(pinia)
+    setActivePinia(pinia)
+  })
+
+  it('persists automatically', async () => {
+    //* arrange
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+    })
+    const store = useStore()
+
+    //* act
+    store.lorem = 'ipsum'
+    await nextTick()
+
+    //* assert
+    expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      key,
+      JSON.stringify({ lorem: 'ipsum' }),
+    )
+  })
+
+  it('rehydrates automatically', async () => {
+    //* arrange
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+    })
+    initializeLocalStorage(key, { lorem: 'ipsum' })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('ipsum')
+    expect(localStorage.getItem).toHaveBeenCalledWith(key)
+  })
+
+  it('opts-out of persistence', async () => {
+    //* arrange
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: false,
+    })
+    const store = useStore()
+
+    //* act
+    store.lorem = 'ipsum'
+    await nextTick()
+
+    //* assert
+    expect(readLocalStoage(key)).toEqual({})
+    expect(localStorage.setItem).not.toHaveBeenCalled()
+  })
+
+  it('opts-out of rehydration', async () => {
+    //* arrange
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: false,
+    })
+    initializeLocalStorage(key, { lorem: 'ipsum' })
+
+    //* act
+    await nextTick()
+    const store = useStore()
+
+    //* assert
+    expect(store.lorem).toEqual('')
+    expect(localStorage.getItem).not.toHaveBeenCalled()
+  })
+})
