@@ -68,6 +68,47 @@ defineStore('store', {
 
 :::
 
+## 启用所有 Store 默认持久化
+
+该配置将会使所有 Store 持久化存储，且必须配置 `persist: false` 显式禁用持久化。
+
+```ts
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
+
+pinia.use(
+  createPersistedState({
+    auto: true,
+  })
+)
+```
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('persisted', {
+  state: () => ({ saved: '' }),
+})
+```
+
+上述例子中，store 将使用默认配置（或者已有的全局配置）进行持久化存储。
+
+:::tip 提示
+当你使用该配置后，你可以单独为一个 Store 设置是否持久化：
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('not-persisted', {
+  state: () => ({ saved: '' }),
+  persist: false,
+})
+```
+
+:::
+
 ## 每个 Store 可以有多个持久化配置
 
 在某些特定的用例中，你需要将数据从单个 Store 持久化到不同的 storage 中。`persist` 选项还可以接受多个类似的配置。
