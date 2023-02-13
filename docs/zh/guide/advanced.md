@@ -68,6 +68,45 @@ defineStore('store', {
 
 :::
 
+## 自动模式
+
+默认情况下，自动模式将会持久化代理**所有** store。你必须使用 `persistent:false` 来显式禁用持久性。
+
+在下面这个例子中，这个 store 将使用默认设置（或你指定的全局配置）自动持久化。
+
+```ts
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
+
+pinia.use(createPersistedState({
+  auto: true,
+}))
+```
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('persisted', {
+  state: () => ({ saved: '' }),
+})
+```
+
+
+:::tip
+启用自动模式后，你可以单独选择 store 是否启用持久化:
+
+```ts
+import { defineStore } from 'pinia'
+
+defineStore('not-persisted', {
+  state: () => ({ saved: '' }),
+  persist: false,
+})
+```
+:::
+
 ## 每个 Store 可以有多个持久化配置
 
 在某些特定的用例中，你需要将数据从单个 Store 持久化到不同的 storage 中。`persist` 选项还可以接受多个类似的配置。
