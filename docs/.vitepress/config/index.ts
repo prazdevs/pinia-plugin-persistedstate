@@ -23,6 +23,11 @@ export default defineConfig({
         link: 'https://github.com/prazdevs/pinia-plugin-persistedstate',
       },
     ],
+    algolia: {
+      appId: '90OL5Y5T3K',
+      apiKey: '20f9f00e8b98bae16d443559f1879aa9',
+      indexName: 'pinia-plugin-persistedstate',
+    },
   },
   locales: {
     root,
