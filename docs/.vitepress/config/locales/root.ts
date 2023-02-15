@@ -1,4 +1,4 @@
-import { version } from '../../../packages/plugin/package.json'
+import { version } from '../../../../packages/plugin/package.json'
 
 export const root = {
   lang: 'en',
