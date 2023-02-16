@@ -11,10 +11,7 @@ export default defineConfig({
   ],
   lastUpdated: true,
   markdown: {
-    theme: {
-      dark: 'vitesse-dark',
-      light: 'vitesse-light',
-    },
+    theme: 'css-variables',
   },
   themeConfig: {
     logo: '/logo.svg',
