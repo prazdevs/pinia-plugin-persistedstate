@@ -184,7 +184,7 @@ html.dark .DocSearch-Logo svg .cls-2 {
  * Code blocks
  * -------------------------------------------------------------------------- */
 
-html.light {
+:root {
   --shiki-color-text: #333333;
   --shiki-color-background: #eeeeee;
   --shiki-token-constant: #4876d6;
@@ -198,7 +198,7 @@ html.light {
   --shiki-token-link: #c96765;
 }
 
-html.dark {
+html.dark:root {
   --shiki-color-text: #ffffff;
   --shiki-color-background: #333333;
   --shiki-token-constant: #82AAFF;
