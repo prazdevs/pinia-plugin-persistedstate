@@ -5,7 +5,7 @@ hero:
     name: pinia-plugin-persistedstate
     tagline: 适用于 Pinia 的持久化存储插件
     image:
-        src: /logo.png
+        src: /logo.svg
         alt: Pinia 持久化存储
     actions:
         - theme: brand

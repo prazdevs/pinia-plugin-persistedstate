@@ -29,7 +29,6 @@
   --vp-c-text-dark-2: rgba(235, 235, 235, 0.60);
 }
 
-/* HOME */
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(
@@ -42,18 +41,28 @@
     #ffc63a60,
     #8951b760
   );
-  --vp-home-hero-image-filter: blur(30px);
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+.VPHero .VPImage.image-src {
+  max-height: 192px;
 }
 
 @media (min-width: 640px) {
   :root {
     --vp-home-hero-image-filter: blur(56px);
   }
+  .VPHero .VPImage.image-src {
+    max-height: 256px;
+  }
 }
 
 @media (min-width: 960px) {
   :root {
     --vp-home-hero-image-filter: blur(72px);
+  }
+  .VPHero .VPImage.image-src {
+    max-height: 320px;
   }
 }
 

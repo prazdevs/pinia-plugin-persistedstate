@@ -5,7 +5,7 @@ hero:
   name: pinia-plugin-persistedstate
   tagline: Configurable persistence and rehydration of Pinia stores.
   image:
-    src: /logo.png
+    src: /logo.svg
     alt: pinia-plugin-persistedstate
   actions:
     - theme: brand
