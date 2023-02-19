@@ -1,11 +1,22 @@
 # Changelog
 
 <a name="3.0.2"></a>
+## 3.1.0 (2023-02-19)
+
+### Added
+
+- ✨ auto mode ([#172](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/172)) [[c30b61f](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c30b61f986abb2e0d24b1d7a28a79d7d53f9b585)]
+
+- 🏷️ improve types and type docs [[74eec7d](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/74eec7de00d313158d955fe4bdfd845198279069)]
+
+
+<a name="3.0.2"></a>
 ## 3.0.2 (2022-12-28)
 
 ### Fixed
 
 - 🩹 map store methods before rehydration ([#162](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/162)) [[f71a54f](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/f71a54f2a9dd3f78e65b6e37c014adec5d0bae6b)]
+
 
 <a name="3.0.1"></a>
 ## 3.0.1 (2022-11-27)
