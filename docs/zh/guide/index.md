@@ -7,7 +7,7 @@
 -   与 [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) 相似的 API
 -   所有 Store 均可单独配置
 -   自定义 storage 和数据序列化
--   持久化数据前后的 hook
+-   恢复持久化数据前后的 hook
 -   每个 Store 具有丰富的配置
 -   兼容 Vue 2 和 3
 -   无任何外部依赖
