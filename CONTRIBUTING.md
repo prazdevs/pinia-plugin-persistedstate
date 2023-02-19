@@ -16,6 +16,14 @@ To set the repository up:
 | 3. Install [pnpm](https://pnpm.io) | `npm i -g pnpm` |
 | 4. Install dependencies under the project root | `pnpm install` |
 
+### Packages
+
+The code is a monorepo where packages are located under `packages/` folder. You will find the base `plugin` and a `nuxt` module. Monorepo is managed through `pnpm`. Each package is released independently.
+
+### Docs
+
+Documentation lives under the `docs/` folder and is powered by [`vitepress`](https://vitepress.vuejs.org/).
+
 ## ⚡️ Commands
 
 ### `pnpm run build`
@@ -24,7 +32,7 @@ Builds the project for production into `dist/` using [`tsup`](https://tsup.egois
 
 ### `pnpm run test`
 
-Runs all tests for both Vue2 and Vue3 (thanks to [vue-demi](https://github.com/vueuse/vue-demi)) using [Vitest](https://vitest.dev/).
+Runs tests using [Vitest](https://vitest.dev/).
 
 There are also subcommands available:
 
