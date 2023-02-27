@@ -116,5 +116,5 @@ Feel free to contact me:
 
 ## 📝 License
 
-Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).  
+Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).  
 This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE) license.
