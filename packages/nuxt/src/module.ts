@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import { addImports, addPlugin, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { type CookieOptions } from 'nuxt/app'
 
