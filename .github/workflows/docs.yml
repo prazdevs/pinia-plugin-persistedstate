@@ -23,9 +23,15 @@ jobs:
   docs:
     name: Docs
     runs-on: ubuntu-latest
+    environment:
+      name: Docs (GH Pages)
+      url:  ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -57,9 +63,13 @@ jobs:
       - name: Build docs
         run: pnpm run docs:build
 
-      - name: Deploy docs
+      - name: Upload artifact
         if: ${{ github.event_name == 'push' || inputs.deploy }}
-        uses: peaceiris/actions-gh-pages@v3
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          path: 'docs/.vitepress/dist'
+
+      - name: Deploy to GitHub Pages
+        if: ${{ github.event_name == 'push' || inputs.deploy }}
+        id: deployment
+        uses: actions/deploy-pages@v1
