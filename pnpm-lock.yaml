@@ -47,35 +47,18 @@ importers:
       '@nuxt/schema': ^3.2.3
       '@nuxt/test-utils': ^3.3.1
       '@pinia/nuxt': ^0.4.7
+      defu: ^6.1.2
       eslint: ^8.36.0
       nuxt: ^3.2.3
       pinia-plugin-persistedstate: '>=3.1.0'
     dependencies:
       '@nuxt/kit': 3.2.3
+      defu: 6.1.2
       pinia-plugin-persistedstate: link:../plugin
     devDependencies:
       '@nuxt/module-builder': 0.2.1
       '@nuxt/schema': 3.2.3
       '@nuxt/test-utils': 3.3.1
-      '@pinia/nuxt': 0.4.7
-      eslint: 8.36.0
-      nuxt: 3.2.3_eslint@8.36.0
-
-  packages/nuxt-old:
-    specifiers:
-      '@nuxt/kit': ^3.2.3
-      '@nuxt/module-builder': ^0.2.1
-      '@nuxt/schema': ^3.2.3
-      '@pinia/nuxt': ^0.4.7
-      eslint: ^8.36.0
-      nuxt: ^3.2.3
-      pinia-plugin-persistedstate: '>=3.1.0'
-    dependencies:
-      '@nuxt/kit': 3.2.3
-      pinia-plugin-persistedstate: link:../plugin
-    devDependencies:
-      '@nuxt/module-builder': 0.2.1
-      '@nuxt/schema': 3.2.3
       '@pinia/nuxt': 0.4.7
       eslint: 8.36.0
       nuxt: 3.2.3_eslint@8.36.0
@@ -4223,10 +4206,6 @@ packages:
     dependencies:
       has-property-descriptors: 1.0.0
       object-keys: 1.1.1
-    dev: true
-
-  /defu/6.1.1:
-    resolution: {integrity: sha512-aA964RUCsBt0FGoNIlA3uFgo2hO+WWC0fiC6DBps/0SFzkKcYoM/3CzVLIa5xSsrFjdioMdYgAIbwo80qp2MoA==}
     dev: true
 
   /defu/6.1.2:
@@ -10388,7 +10367,7 @@ packages:
       '@rollup/pluginutils': 5.0.2_rollup@3.13.0
       chalk: 5.2.0
       consola: 2.15.3
-      defu: 6.1.1
+      defu: 6.1.2
       esbuild: 0.15.14
       globby: 13.1.2
       hookable: 5.4.2
