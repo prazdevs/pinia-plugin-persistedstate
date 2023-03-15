@@ -10,14 +10,17 @@ on:
     paths:
       - docs/**
   workflow_dispatch:
-    branches:
-      - main
     inputs:
       deploy:
         description: Deploy ?
         required: true
         default: false
         type: boolean
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   docs:
