@@ -5,16 +5,15 @@ import { type ModuleOptions } from '../module'
 
 import { defineNuxtPlugin } from '#app'
 import { persistedState } from '#imports'
-// @ts-expect-error runtime template
-import options from '#persistedstate'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const { cookieOptions, debug, storage } = options as ModuleOptions
+  const { cookieOptions, debug, storage } = useRuntimeConfig().public.persistedState
+  const pinia = nuxtApp.$pinia as Pinia
 
-  (nuxtApp.$pinia as Pinia).use(createPersistedState({
+  pinia.use(createPersistedState({
     storage: storage === 'cookies'
       ? persistedState.cookiesWithOptions(cookieOptions)
-      : persistedState[storage],
+      : persistedState[storage as ModuleOptions['storage']],
     debug,
   }))
 })

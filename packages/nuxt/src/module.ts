@@ -1,6 +1,6 @@
-import { fileURLToPath } from 'node:url'
-import { addImports, addPlugin, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { type CookieOptions } from 'nuxt/app'
+import { defu } from 'defu'
 
 export interface ModuleOptions {
   storage: 'cookies' | 'localStorage' | 'sessionStorage'
@@ -24,24 +24,20 @@ const module = defineNuxtModule<ModuleOptions>({
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir)
 
     // provides module options to runtime
-    nuxt.options.alias['#persistedstate'] = addTemplate({
-      filename: 'persistedstate.mjs',
-      getContents: () => `export default ${JSON.stringify(options, null, 2)}`,
-    }).dst
+    nuxt.options.runtimeConfig.public.persistedState
+      = defu(nuxt.options.runtimeConfig.public.persistedState, options)
 
     // provides storages to runtime
     addImports({
       name: 'persistedState',
-      from: resolve(runtimeDir, 'storages'),
+      from: resolve('./runtime/storages'),
     })
 
     // provides plugin
     nuxt.hook('modules:done', () => {
-      addPlugin(resolve(runtimeDir, 'plugin'), { append: true })
+      addPlugin(resolve('./runtime/plugin'), { append: true })
     })
   },
 })
