@@ -3,7 +3,7 @@ import { createPersistedState } from 'pinia-plugin-persistedstate'
 
 import { type ModuleOptions } from '../module'
 
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin, useRuntimeConfig } from '#app'
 import { persistedState } from '#imports'
 
 export default defineNuxtPlugin((nuxtApp) => {
