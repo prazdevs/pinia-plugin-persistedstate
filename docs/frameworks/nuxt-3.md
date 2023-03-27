@@ -45,6 +45,24 @@ export const useStore = defineStore('main', {
 })
 ```
 
+you can acheive the same result using setup stores:
+
+```ts
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore(
+  'main',
+  () => {
+    const someState = ref('hello pinia')
+    return { someState }
+  },
+  {
+    persist: true,
+    
+  },
+)
+```
+
 ## Choosing a storage
 
 By default, your stores will be persisted in cookies (using Nuxt's [`useCookie`](https://nuxt.com/docs/api/composables/use-cookie) under the hood). You can configure what storage you want to use by using the storages available under the auto-imported `persistedState` variable.
