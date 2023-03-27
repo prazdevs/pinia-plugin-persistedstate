@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '../src/module',
   ],
   piniaPersistedstate: {
+    storage: 'localStorage',
     cookieOptions: {
       sameSite: true,
     },
