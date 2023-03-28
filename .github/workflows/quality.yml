@@ -30,7 +30,6 @@ jobs:
         id: pnpm-install
         uses: pnpm/action-setup@v2
         with:
-          version: 7
           run_install: false
 
       - name: Get pnpm store
