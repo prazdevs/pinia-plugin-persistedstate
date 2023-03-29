@@ -90,7 +90,7 @@ export function createPersistedState(
         beforeRestore,
         afterRestore,
         serializer,
-        key: (factoryOptions.key ?? (k => k))(key),
+        key: (factoryOptions.key ?? (k => k))(typeof key == 'string' ? key : key(store.$id)),
         paths,
         debug,
       }),
