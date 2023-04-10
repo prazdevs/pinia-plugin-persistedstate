@@ -7,6 +7,9 @@
   "author": "prazdevs",
   "license": "MIT",
   "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "alex": "alex docs",
     "build": "stale-dep && pnpm -r run build",
@@ -39,9 +42,6 @@
     "vitepress": "1.0.0-alpha.65",
     "vitest": "^0.30.0",
     "vue": "^3.2.47"
-  },
-  "volta": {
-    "node": "18.12.1"
   },
   "pnpm": {
     "peerDependencyRules": {
