@@ -43,17 +43,8 @@
     "vitest": "^0.30.0",
     "vue": "^3.2.47"
   },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "typescript",
-        "vue"
-      ]
-    }
-  },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
     "*": "eslint --fix",
