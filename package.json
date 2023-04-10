@@ -22,22 +22,22 @@
     "release:nuxt": "pnpm -F @pinia-plugin-persistedstate/nuxt run release"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.37.0",
+    "@antfu/eslint-config": "^0.38.4",
     "@types/node": "^18.15.11",
-    "@vitest/coverage-c8": "^0.29.8",
-    "@vitest/ui": "^0.29.8",
+    "@vitest/coverage-c8": "^0.30.0",
+    "@vitest/ui": "^0.30.0",
     "alex": "^11.0.0",
     "bumpp": "^9.1.0",
     "eslint": "^8.38.0",
-    "happy-dom": "^8.9.0",
+    "happy-dom": "^9.1.9",
     "lint-staged": "^13.2.1",
     "simple-git-hooks": "^2.8.1",
     "stale-dep": "^0.6.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4",
     "vite": "^4.2.1",
-    "vitepress": "1.0.0-alpha.63",
-    "vitest": "^0.29.8",
+    "vitepress": "1.0.0-alpha.65",
+    "vitest": "^0.30.0",
     "vue": "^3.2.47"
   },
   "volta": {
