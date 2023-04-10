@@ -23,7 +23,7 @@ export interface PersistedStateOptions {
    * Storage key to use.
    * @default $store.id
    */
-  key?: string
+  key?: string | ((id: string) => string)
 
   /**
    * Where to store persisted state.

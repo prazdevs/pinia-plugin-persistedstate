@@ -188,6 +188,43 @@ describe('default', () => {
     })
   })
 
+  describe('w/ key function', () => {
+    const useStore = defineStore(key, {
+      state: () => ({ lorem: '' }),
+      persist: { key: id => `saved-${id}` },
+    })
+    const storageKey = `saved-${key}`
+
+    it('persists store in localStorage under given function key', async () => {
+      //* arrange
+      const store = useStore()
+
+      //* act
+      store.lorem = 'ipsum'
+      await nextTick()
+
+      //* assert
+      expect(readLocalStoage(storageKey)).toEqual({ lorem: 'ipsum' })
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        storageKey,
+        JSON.stringify({ lorem: 'ipsum' }),
+      )
+    })
+
+    it('rehydrates store from localStorage under given function key', async () => {
+      //* arrange
+      initializeLocalStorage(storageKey, { lorem: 'ipsum' })
+
+      //* act
+      await nextTick()
+      const store = useStore()
+
+      //* assert
+      expect(store.lorem).toEqual('ipsum')
+      expect(localStorage.getItem).toHaveBeenCalledWith(storageKey)
+    })
+  })
+
   describe('w/ paths', () => {
     const useStore = defineStore(key, {
       state: () => ({

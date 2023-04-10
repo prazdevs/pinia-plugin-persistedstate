@@ -2,7 +2,7 @@
   "name": "@pinia-plugin-persistedstate/monorepo",
   "version": "3.1.0",
   "private": true,
-  "packageManager": "pnpm@8.1.1",
+  "packageManager": "pnpm@8.2.0",
   "description": "Monorepo for pinia-plugin-persistedstate",
   "author": "prazdevs",
   "license": "MIT",
@@ -25,35 +25,26 @@
     "release:nuxt": "pnpm -F @pinia-plugin-persistedstate/nuxt run release"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.37.0",
-    "@types/node": "^18.15.10",
-    "@vitest/coverage-c8": "^0.29.7",
-    "@vitest/ui": "^0.29.7",
+    "@antfu/eslint-config": "^0.38.4",
+    "@types/node": "^18.15.11",
+    "@vitest/coverage-c8": "^0.30.0",
+    "@vitest/ui": "^0.30.0",
     "alex": "^11.0.0",
-    "bumpp": "^9.0.0",
-    "eslint": "^8.36.0",
-    "happy-dom": "^8.9.0",
-    "lint-staged": "^13.2.0",
+    "bumpp": "^9.1.0",
+    "eslint": "^8.38.0",
+    "happy-dom": "^9.1.9",
+    "lint-staged": "^13.2.1",
     "simple-git-hooks": "^2.8.1",
     "stale-dep": "^0.6.0",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.2",
+    "typescript": "^5.0.4",
     "vite": "^4.2.1",
-    "vitepress": "1.0.0-alpha.63",
-    "vitest": "^0.29.7",
+    "vitepress": "1.0.0-alpha.65",
+    "vitest": "^0.30.0",
     "vue": "^3.2.47"
   },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "typescript",
-        "vue"
-      ]
-    }
-  },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
     "*": "eslint --fix",
