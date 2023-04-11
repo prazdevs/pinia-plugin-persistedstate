@@ -1,8 +1,8 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  devtools: true,
   modules: [
-    '@nuxt/devtools',
     '@pinia/nuxt',
     '../src/module',
   ],
