@@ -46,7 +46,7 @@ pinia.use(piniaPluginPersistedstate)
 
 ## 用法
 
-创建 Store 时，将 `persistent` 选项设置为 `true`。
+创建 Store 时，将 `persist` 选项设置为 `true`。
 
 _使用选项式 Store 语法：_
 
