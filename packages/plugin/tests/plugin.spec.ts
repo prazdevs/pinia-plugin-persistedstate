@@ -592,6 +592,24 @@ describe('default', () => {
       expect(readLocalStoage(key)).toEqual({ lorem: 'ipsum' })
     })
   })
+
+  describe('hmr enabled', () => {
+    const useStoreAfterHMR = defineStore(`__hot:${key}`, {
+      state: () => ({ lorem: 'ipsum', lorem_new: 'ipsum_new' }),
+      persist: true,
+    })
+
+    it('when pinia enable hmr', () => {
+      //* arrange
+      const store = useStoreAfterHMR()
+
+      //* act
+
+      //* assert
+      expect(store.$hydrate).toBeUndefined()
+      expect(store.$persist).toBeUndefined()
+    })
+  })
 })
 
 describe('w/ global options', () => {
