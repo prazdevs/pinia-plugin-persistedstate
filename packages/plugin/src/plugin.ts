@@ -68,6 +68,8 @@ export function createPersistedState(
 
     if (!persist)
       return
+    if (store.$id.startsWith('__hot:'))
+      return
 
     const persistences = (
       Array.isArray(persist)
