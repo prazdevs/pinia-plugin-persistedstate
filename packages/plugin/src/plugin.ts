@@ -74,8 +74,17 @@ export function createPersistedState(
     /** is original store or hot store */
     const is_original = store.$id in pinia.state.value
     // if store is created as hot store, we're support to do nothing.
-    if (!is_original)
+    /* c8 ignore next 3 */
+    if (!is_original) {
+      const original_id = store.$id.replace('__hot:', '')
+      // @ts-expect-error `_s is a stripped @internal`
+      const original_store = pinia._s.get(original_id)
+      /* c8 ignore next 3 */
+      if (original_store)
+        // `$persist` original_store after anything finished
+        Promise.resolve().then(() => original_store.$persist())
       return
+    }
 
     const persistences = (
       Array.isArray(persist)
