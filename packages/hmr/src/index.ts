@@ -40,7 +40,11 @@ export function acceptHMRUpdateWithHydration(initialUseStore: any, hot: any) {
         if (!existingStore)
           return
 
-        useStore(pinia, existingStore).$hydrate?.()
+        const store = useStore(pinia, existingStore)
+        // persist after store is merged.
+        // the working data is really user need,
+        // so we don't need hydrate
+        store.$persist?.()
       }
     }
   }

@@ -64,9 +64,17 @@ export function createPersistedState(
     const {
       options: { persist = auto },
       store,
+      pinia,
     } = context
 
     if (!persist)
+      return
+    // if store is created when hmr, it will not be put in `pinia.state`.
+    // see https://github.com/vuejs/pinia/blob/v2/packages/pinia/src/store.ts#L265-L272.
+    /** is original store or hot store */
+    const is_original = store.$id in pinia.state.value
+    // if store is created as hot store, we're support to do nothing.
+    if (!is_original)
       return
 
     const persistences = (
