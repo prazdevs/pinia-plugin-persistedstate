@@ -4,7 +4,7 @@ The plugin also exposes additional APIs for more advanced use cases.
 
 ## Global persistence options
 
-Instead of using the default export when isntalling the plugin, you can use the exposed `createPersistedState` method to initialize the plugin with global options. These options become the new default options for all stores within the app.
+Instead of using the default export when installing the plugin, you can use the exposed `createPersistedState` method to initialize the plugin with global options. These options become the new default options for all stores within the app.
 
 > This method is sometimes referred to as factory function.
 
