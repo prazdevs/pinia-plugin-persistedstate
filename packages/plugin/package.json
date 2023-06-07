@@ -38,6 +38,6 @@
     "pinia": "^2.0.0"
   },
   "devDependencies": {
-    "pinia": "^2.0.36"
+    "pinia": "^2.1.3"
   }
 }
