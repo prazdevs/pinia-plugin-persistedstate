@@ -40,7 +40,7 @@ export function acceptHMRUpdateWithHydration(initialUseStore: any, hot: any) {
         if (!existingStore)
           return
 
-        useStore(pinia, existingStore).$hydrate?.()
+        useStore(pinia, existingStore)
       }
     }
   }
