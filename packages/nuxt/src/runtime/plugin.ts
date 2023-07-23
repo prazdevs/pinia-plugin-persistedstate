@@ -7,10 +7,10 @@ import { defineNuxtPlugin, useRuntimeConfig } from '#app'
 import { persistedState } from '#imports'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const { 
-    cookieOptions, 
-    debug, 
-    storage 
+  const {
+    cookieOptions,
+    debug,
+    storage,
   } = useRuntimeConfig().public.persistedState as ModuleOptions
 
   const pinia = nuxtApp.$pinia as Pinia

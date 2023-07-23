@@ -1,5 +1,6 @@
 import { addImports, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { type CookieOptions } from 'nuxt/app'
+import { type NuxtModule } from 'nuxt/schema'
 import { defu } from 'defu'
 
 export interface ModuleOptions {
@@ -8,7 +9,7 @@ export interface ModuleOptions {
   cookieOptions: CookieOptions
 }
 
-const module = defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@pinia-plugin-persistedstate/nuxt',
     configKey: 'piniaPersistedstate',
@@ -27,7 +28,7 @@ const module = defineNuxtModule<ModuleOptions>({
 
     // provides module options to runtime
     nuxt.options.runtimeConfig.public.persistedState
-      = defu(nuxt.options.runtimeConfig.public.persistedState, options)
+      = defu(nuxt.options.runtimeConfig.public.persistedState as ModuleOptions, options)
 
     // provides storages to runtime
     addImports({
@@ -40,6 +41,4 @@ const module = defineNuxtModule<ModuleOptions>({
       addPlugin(resolve('./runtime/plugin'), { append: true })
     })
   },
-})
-
-export default module
+}) satisfies NuxtModule<ModuleOptions>
