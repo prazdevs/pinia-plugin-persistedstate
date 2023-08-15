@@ -1,5 +1,7 @@
 import { createPersistedState } from './plugin'
 
+export { pick } from './pick'
+
 export {
   type PersistedStateOptions,
   type PersistedStateFactoryOptions,

@@ -1,0 +1,4 @@
+{
+  "extends": "../../playground/.nuxt/tsconfig.server.json",
+  "include": ["./", "../runtime/persist-cookie.ts"]
+}

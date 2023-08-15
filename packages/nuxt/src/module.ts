@@ -1,4 +1,4 @@
-import { addImports, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addPlugin, addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { type CookieOptions } from 'nuxt/app'
 import { type NuxtModule } from 'nuxt/schema'
 import { defu } from 'defu'
@@ -36,9 +36,15 @@ export default defineNuxtModule<ModuleOptions>({
       from: resolve('./runtime/storages'),
     })
 
+    addImports({
+      name: 'persistCookie',
+      from: resolve('./runtime/persist-cookie'),
+    })
+
     // provides plugin
     nuxt.hook('modules:done', () => {
       addPlugin(resolve('./runtime/plugin'), { append: true })
+      addServerPlugin(resolve('./server/plugin'))
     })
   },
 }) satisfies NuxtModule<ModuleOptions>
