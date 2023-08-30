@@ -9,7 +9,6 @@ it('picks nested properties', () => {
     outer1: { inner1: 'mock', inner2: 'mock2', inner3: 'mock3' },
     outer2: 'outer',
   }
-
   //* act
   const result = pick(object, ['outer1.inner1', 'outer1.inner2', 'outer2'])
 
@@ -40,4 +39,21 @@ it('creates paths for undefined values', () => {
 
   //* assert
   expect(result).to.eql({ not: { defined: { yet: undefined } } })
+})
+it('should exclude test', () => {
+  const object = {
+    ignored: 'fake',
+    outer1: { inner1: 'mock', inner2: 'mock2', inner3: 'mock3' },
+    outer2: 'outer',
+  }
+  const picks = ['outer1.inner1', 'outer1.inner2', 'outer2']
+  const excludes = ['outer1.inner1']
+  //* act
+  const result = pick(object, picks, excludes)
+
+  //* assert
+  expect(result).to.eql({
+    outer1: { inner2: 'mock2' },
+    outer2: 'outer',
+  })
 })

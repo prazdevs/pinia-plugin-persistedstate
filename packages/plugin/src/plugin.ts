@@ -43,7 +43,7 @@ function persistState(
   { storage, serializer, key, paths, debug, exclude = [] }: Persistence,
 ) {
   try {
-    const toStore = Array.isArray(paths) ? pick(state, paths?.filter(path => !exclude.includes(path))) : state
+    const toStore = Array.isArray(paths) ? pick(state, paths, exclude) : state
     storage!.setItem(key!, serializer!.serialize(toStore as StateTree))
   }
   catch (error) {
