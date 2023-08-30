@@ -38,6 +38,10 @@ export interface PersistedStateOptions {
   paths?: Array<string>
 
   /**
+   * 排除属性
+   * */
+  exclude?: Array<string>
+  /**
    * Customer serializer to serialize/deserialize state.
    */
   serializer?: Serializer
@@ -62,8 +66,8 @@ export interface PersistedStateOptions {
 }
 
 export type PersistedStateFactoryOptions = Prettify<Pick<
-  PersistedStateOptions,
-  'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
+    PersistedStateOptions,
+    'storage' | 'serializer' | 'afterRestore' | 'beforeRestore' | 'debug'
 > & {
   /**
    * Global key generator, allows pre/postfixing store keys.

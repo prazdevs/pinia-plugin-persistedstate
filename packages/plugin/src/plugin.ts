@@ -19,6 +19,7 @@ interface Persistence {
   serializer: Serializer
   key: string
   paths: string[] | null
+  exclude: Array<string>
   debug: boolean
 }
 
@@ -39,10 +40,10 @@ function hydrateStore(
 
 function persistState(
   state: StateTree,
-  { storage, serializer, key, paths, debug }: Persistence,
+  { storage, serializer, key, paths, debug, exclude = [] }: Persistence,
 ) {
   try {
-    const toStore = Array.isArray(paths) ? pick(state, paths) : state
+    const toStore = Array.isArray(paths) ? pick(state, paths?.filter(path => !exclude.includes(path))) : state
     storage!.setItem(key!, serializer!.serialize(toStore as StateTree))
   }
   catch (error) {
@@ -96,6 +97,7 @@ export function createPersistedState(
         },
         key = store.$id,
         paths = null,
+        exclude = [],
         debug = false,
       }) => ({
         storage,
@@ -105,6 +107,7 @@ export function createPersistedState(
         key: (factoryOptions.key ?? (k => k))(typeof key == 'string' ? key : key(store.$id)),
         paths,
         debug,
+        exclude,
       }),
     )
 
