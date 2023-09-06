@@ -16,8 +16,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "main": "dist/index.js",
@@ -38,6 +38,6 @@
     "pinia": "^2.0.0"
   },
   "devDependencies": {
-    "pinia": "^2.1.4"
+    "pinia": "^2.1.6"
   }
 }
