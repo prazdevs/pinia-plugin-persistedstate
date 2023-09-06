@@ -5,18 +5,17 @@ Persisting pinia stores in Nuxt is easier thanks to the dedicated module.
 ## Installation
 
 1. Install the dependency with your favorite package manager:
-    - pnpm:
-    ```sh
-    pnpm i -D @pinia-plugin-persistedstate/nuxt
-    ```
-    - npm:
-    ```sh
-    npm i -D @pinia-plugin-persistedstate/nuxt
-    ```
-    - yarn:
-    ```sh
-    yarn add -D @pinia-plugin-persistedstate/nuxt
-    ```
+  ::: code-group
+  ```sh [pnpm]
+  pnpm i -D @pinia-plugin-persistedstate/nuxt
+  ```
+  ```sh [npm]
+  npm i -D @pinia-plugin-persistedstate/nuxt
+  ```
+  ```sh [yarn]
+  yarn add -D @pinia-plugin-persistedstate/nuxt
+  ```
+  :::
 
 2. Add the module to the Nuxt config (`nuxt.config.ts`):
 ```ts
