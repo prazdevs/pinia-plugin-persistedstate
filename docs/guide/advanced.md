@@ -128,7 +128,7 @@ defineStore('store', {
 In this example, the `toLocal` value will be persisted in `localStorage` while the `toSession` value will be persisted in `sessionStorage`. `toNowhere` will not be persisted.
 
 :::warning
-Be careful when not specifying a `paths` option or targetting a same path in two persistence configurations. This can lead to data inconsistency. During the rehydration process, persistences are processed in the same order they are decalred.
+Be careful when not specifying a `paths` option or targeting the same path in two persistence configurations. This can lead to data inconsistency. During the rehydration process, persistences are processed in the same order they are declared.
 
 ```ts
 import { defineStore } from 'pinia'
