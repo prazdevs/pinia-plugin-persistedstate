@@ -101,7 +101,7 @@ All the available configuration options are explained [here](https://prazdevs.gi
 
 ## Nuxt3
 
-Are you using Pinia with Nuxt and want to add the plugin? There is a [plugin for that](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html).
+Are you using Pinia with Nuxt and want to add the persisted state plugin? There is a [plugin for that](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html).
 
 > **Note:** There is currently a [bug](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/236) with a [workaround](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/236#issuecomment-1711423612) affecting Nuxt 3.7+.
 
