@@ -99,6 +99,12 @@ export const useStore = defineStore('store', {
 
 All the available configuration options are explained [here](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/config.html).
 
+## Nuxt3
+
+Are you using Pinia with Nuxt and want to add the plugin? There is a [plugin for that](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html).
+
+> **Note:** There is currently a [bug](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/236) with a [workaround](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/236#issuecomment-1711423612) affecting Nuxt 3.7+.
+
 ## ⚠️ Limitations
 
 There are some limitations that should be considered, more on those [here](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/limitations.html).
