@@ -6,29 +6,30 @@
 
 1. 使用你喜欢的包管理器安装依赖：
 
-    - pnpm:
+  ::: code-group
 
-    ```sh
-    pnpm i -D @pinia-plugin-persistedstate/nuxt
-    ```
+  ```sh [pnpm]
+  pnpm i -D @pinia-plugin-persistedstate/nuxt
+  ```
 
-    - npm:
+  ```sh [npm]
+  npm i -D @pinia-plugin-persistedstate/nuxt
+  ```
 
-    ```sh
-    npm i -D @pinia-plugin-persistedstate/nuxt
-    ```
+  ```sh [yarn]
+  yarn add -D @pinia-plugin-persistedstate/nuxt
+  ```
 
-    - yarn:
-
-    ```sh
-    yarn add -D @pinia-plugin-persistedstate/nuxt
-    ```
+  :::
 
 2. 将模块添加到 Nuxt 配置中 (`nuxt.config.ts`)：
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  modules: [
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+  ],
 })
 ```
 
