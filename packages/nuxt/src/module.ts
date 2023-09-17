@@ -26,6 +26,8 @@ export default defineNuxtModule<ModuleOptions>({
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
+    nuxt.options.build.transpile.push(resolve('./runtime'))
+
     // provides module options to runtime
     nuxt.options.runtimeConfig.public.persistedState
       = defu(nuxt.options.runtimeConfig.public.persistedState as ModuleOptions, options)
