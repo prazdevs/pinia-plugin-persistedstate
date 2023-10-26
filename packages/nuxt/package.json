@@ -28,7 +28,7 @@
     "release": "bumpp -t \"nuxt@%s\" -c \":bookmark: release nuxt@\" -p"
   },
   "peerDependencies": {
-    "@pinia/nuxt": "^0.5.1"
+    "@pinia/nuxt": "^0.5.0"
   },
   "dependencies": {
     "@nuxt/kit": "^3.8.0",
