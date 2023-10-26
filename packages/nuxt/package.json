@@ -28,20 +28,19 @@
     "release": "bumpp -t \"nuxt@%s\" -c \":bookmark: release nuxt@\" -p"
   },
   "peerDependencies": {
-    "@pinia/nuxt": "^0.4.4"
+    "@pinia/nuxt": "^0.5.1"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.7.3",
+    "@nuxt/kit": "^3.8.0",
     "defu": "^6.1.2",
     "pinia-plugin-persistedstate": ">=3.2.0"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.8.3",
-    "@nuxt/module-builder": "^0.5.1",
-    "@nuxt/schema": "^3.7.3",
-    "@nuxt/test-utils": "^3.7.3",
-    "@pinia/nuxt": "^0.4.11",
+    "@nuxt/module-builder": "^0.5.2",
+    "@nuxt/schema": "^3.8.0",
+    "@nuxt/test-utils": "^3.8.0",
+    "@pinia/nuxt": "^0.5.1",
     "eslint": "^8.49.0",
-    "nuxt": "^3.7.3"
+    "nuxt": "^3.8.0"
   }
 }
