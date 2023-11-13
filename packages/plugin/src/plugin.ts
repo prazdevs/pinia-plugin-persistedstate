@@ -121,6 +121,7 @@ export function createPersistedState(
         if (runHooks)
           beforeRestore?.(context)
 
+        persistState(store.$state, persistence)
         hydrateStore(store, persistence)
 
         if (runHooks)
