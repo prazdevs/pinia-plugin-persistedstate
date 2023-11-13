@@ -24,12 +24,15 @@ interface Persistence {
 
 function hydrateStore(
   store: Store,
-  { storage, serializer, key, debug }: Persistence,
+  persistence: Persistence,
 ) {
+  const { storage, serializer, key, debug } = persistence
   try {
     const fromStorage = storage?.getItem(key)
     if (fromStorage)
       store.$patch(serializer?.deserialize(fromStorage))
+    else
+      persistState(store.$state, persistence)
   }
   catch (error) {
     if (debug)
