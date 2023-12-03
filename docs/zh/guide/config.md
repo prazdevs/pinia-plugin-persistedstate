@@ -52,7 +52,7 @@ export const useStore = defineStore('store', {
 -   **类型**：[`StorageLike`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L3)
 -   **默认值**：[`localStorage`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
 
-将数据持久化到的 storage 中，必须具有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 两个方法。
+将数据持久化到 storage 中，必须具有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 两个方法。
 
 :::details 例如
 
