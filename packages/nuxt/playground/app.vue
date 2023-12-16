@@ -1,6 +1,7 @@
 <script setup>
 const local = useLocalUser()
 const cookie = useCookieUser()
+const preset_cookie = usePresetCookie()
 </script>
 
 <template>
@@ -11,5 +12,9 @@ const cookie = useCookieUser()
   <div>
     <span>Cookie:</span>
     <input v-model="cookie.username">
+  </div>
+  <div>
+    <span>UserAgent:</span>
+    <input v-model="preset_cookie.token" readonly>
   </div>
 </template>

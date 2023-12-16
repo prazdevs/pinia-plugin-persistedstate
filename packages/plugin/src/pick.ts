@@ -6,13 +6,10 @@ function get(state: StateTree, path: Array<string>): unknown {
   }, state)
 }
 
+const ProtoRE = /^(__proto__)$/
 function set(state: StateTree, path: Array<string>, val: unknown): StateTree {
   return (
-    (path.slice(0, -1).reduce((obj, p) => {
-      if (/^(__proto__)$/.test(p))
-        return {}
-      else return (obj[p] = obj[p] || {})
-    }, state)[path[path.length - 1]] = val),
+    (path.slice(0, -1).reduce((obj, p) => ProtoRE.test(p) ? {} : (obj[p] ||= {}), state)[path.at(-1)!] = val),
     state
   )
 }
