@@ -10,16 +10,53 @@ import { normalizeOptions } from './normalize'
 import { pick } from './pick'
 import {
   type PersistedStateFactoryOptions,
+  type PersistedStateOptions,
   type Serializer,
   type StorageLike,
 } from './types'
 
 interface Persistence {
-  storage: StorageLike
+  storage?: StorageLike
   serializer: Serializer
   key: string
   paths: string[] | null
   debug: boolean
+  beforeRestore?: (c: PiniaPluginContext) => void
+  afterRestore?: (c: PiniaPluginContext) => void
+}
+
+function parsePersistence(factoryOptions: PersistedStateFactoryOptions, store: Store) {
+  return (o: PersistedStateOptions): Persistence | null => {
+    try {
+      const {
+        storage = localStorage,
+        beforeRestore = undefined,
+        afterRestore = undefined,
+        serializer = {
+          serialize: JSON.stringify,
+          deserialize: JSON.parse,
+        },
+        key = store.$id,
+        paths = null,
+        debug = false,
+      } = o
+
+      return {
+        storage,
+        beforeRestore,
+        afterRestore,
+        serializer,
+        key: (factoryOptions.key ?? (k => k))(typeof key == 'string' ? key : key(store.$id)),
+        paths,
+        debug,
+      }
+    }
+    catch (e) {
+      if (o.debug)
+        console.error('[pinia-plugin-persistedstate]', e)
+      return null
+    }
+  }
 }
 
 function hydrateStore(
@@ -31,9 +68,9 @@ function hydrateStore(
     if (fromStorage)
       store.$patch(serializer?.deserialize(fromStorage))
   }
-  catch (error) {
+  catch (e) {
     if (debug)
-      console.error(error)
+      console.error('[pinia-plugin-persistedstate]', e)
   }
 }
 
@@ -45,9 +82,9 @@ function persistState(
     const toStore = Array.isArray(paths) ? pick(state, paths) : state
     storage!.setItem(key!, serializer!.serialize(toStore as StateTree))
   }
-  catch (error) {
+  catch (e) {
     if (debug)
-      console.error(error)
+      console.error('[pinia-plugin-persistedstate]', e)
   }
 }
 
@@ -85,28 +122,7 @@ export function createPersistedState(
       Array.isArray(persist)
         ? persist.map(p => normalizeOptions(p, factoryOptions))
         : [normalizeOptions(persist, factoryOptions)]
-    ).map(
-      ({
-        storage = localStorage,
-        beforeRestore = null,
-        afterRestore = null,
-        serializer = {
-          serialize: JSON.stringify,
-          deserialize: JSON.parse,
-        },
-        key = store.$id,
-        paths = null,
-        debug = false,
-      }) => ({
-        storage,
-        beforeRestore,
-        afterRestore,
-        serializer,
-        key: (factoryOptions.key ?? (k => k))(typeof key == 'string' ? key : key(store.$id)),
-        paths,
-        debug,
-      }),
-    )
+    ).map(parsePersistence(factoryOptions, store)).filter(Boolean) as Persistence[]
 
     store.$persist = () => {
       persistences.forEach((persistence) => {

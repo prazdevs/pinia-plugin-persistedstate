@@ -428,6 +428,29 @@ describe('default', () => {
   })
 
   describe('w/ debug', () => {
+    it('error logs creation errors (storage permissions)', () => {
+      //* arrange
+      const error = new Error('access_denied')
+      Object.defineProperty(window, 'localStorage', {
+        get: () => { throw error }
+      })
+      const spy = vi
+        .spyOn(globalThis.console, 'error')
+        .mockImplementationOnce(() => {})
+      const useStore = defineStore(key, {
+        state: () => ({ lorem: '' }),
+        persist: {
+          debug: true,
+        },
+      })
+
+      //* act
+      useStore()
+
+      //* assert
+      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]' ,error)
+    })
+
     it('error logs hydration errors', () => {
       //* arrange
       const error = new Error('failed_hydration')
@@ -451,7 +474,7 @@ describe('default', () => {
       useStore()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith(error)
+      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]' ,error)
     })
 
     it('error logs persistence errors', async () => {
@@ -479,7 +502,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith(error)
+      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]' ,error)
     })
   })
 
