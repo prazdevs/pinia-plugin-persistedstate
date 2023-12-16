@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="3.2.1"></a>
+## 3.2.1 (2023-12-16)
+
+### Fixed
+
+- 🐛 catch persistence initialisation errors ([#251](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/251)) [[0f21016](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/0f21016ed66531d3f5158355babd2ee4f823836d)]
+
+
 <a name="3.2.0"></a>
 ## 3.2.0 (2023-07-23)
 
