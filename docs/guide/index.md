@@ -11,7 +11,6 @@ This plugin is compatible with `pinia^2.0.0`, make sure you have [Pinia installe
 - Compatibility with Vue 2 and 3.
 - No external dependencies.
 
-
 ## Installation
 
 1. Install the dependency with your favorite package manager:
@@ -68,7 +67,5 @@ export const useStore = defineStore(
 )
 ```
 :::
-
-
 
 Your whole store will now be saved with the [default persistence settings](/guide/config).

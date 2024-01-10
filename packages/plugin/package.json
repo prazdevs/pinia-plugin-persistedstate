@@ -1,5 +1,6 @@
 {
   "name": "pinia-plugin-persistedstate",
+  "type": "module",
   "version": "3.2.1",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "prazdevs",
@@ -38,6 +39,6 @@
     "pinia": "^2.0.0"
   },
   "devDependencies": {
-    "pinia": "^2.1.6"
+    "pinia": "^2.1.7"
   }
 }

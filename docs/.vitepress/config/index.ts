@@ -12,8 +12,8 @@ export default defineConfig({
   lastUpdated: true,
   markdown: {
     theme: {
-      light: 'css-variables',
-      dark: 'css-variables',
+      light: 'catppuccin-latte',
+      dark: 'catppuccin-mocha',
     },
   },
   themeConfig: {

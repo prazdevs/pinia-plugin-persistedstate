@@ -18,13 +18,11 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 ```
 
-
 ## 🔧 Configuration
 
 Usage and configuration informations can be found in [the documentation](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/)
 
-
 ## 📝 License
 
-Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).  
+Copyright © 2022 [Sacha Bouillez](https://github.com/prazdevs).
 This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE) license.

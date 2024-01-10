@@ -110,11 +110,11 @@ Want to add some feature? PRs are welcome!
 
 ## 👤 About the author
 
-Feel free to contact me: 
+Feel free to contact me:
 
 [![twitter: @prazdevs](https://img.shields.io/twitter/follow/prazdevs?style=social)](https://twitter.com/prazdevs)
 
 ## 📝 License
 
-Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).  
+Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).
 This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE) license.

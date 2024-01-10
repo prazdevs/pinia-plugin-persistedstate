@@ -71,7 +71,6 @@ If it is your first time or you need help creating a PR, you can [read the GitHu
 
 When submitting a pull request, make sure your PR's title also follows the [commit convention](#commit-convention).
 
-
 If your PR fixes or resolves an existing issue, please link it in your PR description (replace `123` with a real issue number):
 
 ```md
@@ -84,7 +83,7 @@ Commits in the PR don't matter as they are [squashed and merged](https://docs.gi
 
 To maintain this project's quality, make sure the [`build`](#pnpm-run-build), [`test`](#pnpm-run-test) run successfully on your machine before submitting the PR.
 
-When adding new features and introducing new source code into the `core` of the plugin, try to add related test cases. 
+When adding new features and introducing new source code into the `core` of the plugin, try to add related test cases.
 If you need help implementing them, you can specify it in the description and we will gladly help you doing so!
 _Helpers such as the `/nuxt` don't need to be tested as they are just pre-configured plugins and rely on external tools/frameworks._
 

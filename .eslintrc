@@ -1,5 +1,0 @@
-{
-  "root": true,
-  "extends": "@antfu",
-  "ignorePatterns": ["**/cache"]
-}

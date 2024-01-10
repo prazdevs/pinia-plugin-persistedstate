@@ -22,4 +22,3 @@ features:
   - title: Usable everywhere
     details: Compatible with Vue 2 and 3, Nuxt (SSR), and everything that can use Pinia.
 ---
-

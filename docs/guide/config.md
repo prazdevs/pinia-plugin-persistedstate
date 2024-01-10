@@ -102,7 +102,6 @@ export const useStore = defineStore('store', {
 In this store, only `save.me` and `saveMeToo` values will be persisted. `save.notMe` will not be persisted.
 :::
 
-
 ## serializer
 
 - **type**: [`Serializer`](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/packages/plugin/src/types.ts#L5)

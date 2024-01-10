@@ -1,6 +1,6 @@
 import { addImports, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
-import { type CookieOptions } from 'nuxt/app'
-import { type NuxtModule } from 'nuxt/schema'
+import type { CookieOptions } from 'nuxt/app'
+import type { NuxtModule } from 'nuxt/schema'
 import { defu } from 'defu'
 
 export interface ModuleOptions {

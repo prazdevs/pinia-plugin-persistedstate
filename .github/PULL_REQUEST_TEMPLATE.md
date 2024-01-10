@@ -19,7 +19,6 @@ Before submitting the PR, please make sure you do the following:
 
 <!-- Reference the issues this PR solves -->
 
-
 ## Additional context
 
 <!-- e.g. is there anything you'd like reviewers to focus on? -->

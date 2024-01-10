@@ -4,7 +4,7 @@ While the plugin offers a lot of flexibility and functionality, there are some l
 
 ## References are not persisted
 
-Due to serialization process, references are lost on refresh.   
+Due to serialization process, references are lost on refresh.
 Consider the following:
 
 ```ts

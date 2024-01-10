@@ -8,11 +8,11 @@ import type {
 
 import { normalizeOptions } from './normalize'
 import { pick } from './pick'
-import {
-  type PersistedStateFactoryOptions,
-  type PersistedStateOptions,
-  type Serializer,
-  type StorageLike,
+import type {
+  PersistedStateFactoryOptions,
+  PersistedStateOptions,
+  Serializer,
+  StorageLike,
 } from './types'
 
 interface Persistence {

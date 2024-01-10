@@ -1,6 +1,6 @@
 # Why this plugin ?
 
-This plugin was born in the early days of Pinia, before it officially replaced [VueX](https://vuex.vuejs.org/). It aims to reproduce [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate) for Pinia. 
+This plugin was born in the early days of Pinia, before it officially replaced [VueX](https://vuex.vuejs.org/). It aims to reproduce [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate) for Pinia.
 
 ## Do I need a plugin to persist my stores ?
 

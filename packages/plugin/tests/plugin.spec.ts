@@ -432,7 +432,7 @@ describe('default', () => {
       //* arrange
       const error = new Error('access_denied')
       Object.defineProperty(window, 'localStorage', {
-        get: () => { throw error }
+        get: () => { throw error },
       })
       const spy = vi
         .spyOn(globalThis.console, 'error')
@@ -448,7 +448,7 @@ describe('default', () => {
       useStore()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]' ,error)
+      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]', error)
     })
 
     it('error logs hydration errors', () => {
@@ -474,7 +474,7 @@ describe('default', () => {
       useStore()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]' ,error)
+      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]', error)
     })
 
     it('error logs persistence errors', async () => {
@@ -502,7 +502,7 @@ describe('default', () => {
       await nextTick()
 
       //* assert
-      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]' ,error)
+      expect(spy).toHaveBeenCalledWith('[pinia-plugin-persistedstate]', error)
     })
   })
 

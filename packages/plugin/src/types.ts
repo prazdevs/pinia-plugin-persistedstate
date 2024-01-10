@@ -1,4 +1,4 @@
-import { type PiniaPluginContext, type StateTree } from 'pinia'
+import type { PiniaPluginContext, StateTree } from 'pinia'
 
 type Prettify<T> = { [K in keyof T]: T[K] }
 
