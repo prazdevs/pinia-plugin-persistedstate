@@ -61,12 +61,15 @@ function parsePersistence(factoryOptions: PersistedStateFactoryOptions, store: S
 
 function hydrateStore(
   store: Store,
-  { storage, serializer, key, debug }: Persistence,
+  { storage, serializer, key, paths, debug }: Persistence,
 ) {
   try {
     const fromStorage = storage?.getItem(key)
-    if (fromStorage)
-      store.$patch(serializer?.deserialize(fromStorage))
+    if (fromStorage){
+      const deserialisedStorage = serializer?.deserialize(fromStorage);
+      const hydratedObject = Array.isArray(paths) ? pick(deserialisedStorage, paths) : deserialisedStorage;
+      store.$patch(hydratedObject)
+    }
   }
   catch (e) {
     if (debug)
