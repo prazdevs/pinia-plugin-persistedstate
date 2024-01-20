@@ -108,12 +108,6 @@ There are some limitations that should be considered, more on those [here](https
 Run into a problem? Open an [issue](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/new/choose).
 Want to add some feature? PRs are welcome!
 
-## 👤 About the author
-
-Feel free to contact me:
-
-[![twitter: @prazdevs](https://img.shields.io/twitter/follow/prazdevs?style=social)](https://twitter.com/prazdevs)
-
 ## 📝 License
 
 Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).
