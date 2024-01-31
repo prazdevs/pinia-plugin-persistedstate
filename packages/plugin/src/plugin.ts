@@ -21,6 +21,7 @@ interface Persistence {
   key: string
   paths: string[] | null
   debug: boolean
+  pathHydration: boolean
   beforeRestore?: (c: PiniaPluginContext) => void
   afterRestore?: (c: PiniaPluginContext) => void
 }
@@ -39,6 +40,7 @@ function parsePersistence(factoryOptions: PersistedStateFactoryOptions, store: S
         key = store.$id,
         paths = null,
         debug = false,
+        pathHydration = false
       } = o
 
       return {
@@ -49,6 +51,7 @@ function parsePersistence(factoryOptions: PersistedStateFactoryOptions, store: S
         key: (factoryOptions.key ?? (k => k))(typeof key == 'string' ? key : key(store.$id)),
         paths,
         debug,
+        pathHydration
       }
     }
     catch (e) {
@@ -61,12 +64,15 @@ function parsePersistence(factoryOptions: PersistedStateFactoryOptions, store: S
 
 function hydrateStore(
   store: Store,
-  { storage, serializer, key, debug }: Persistence,
+  { storage, serializer, key, paths, debug, pathHydration }: Persistence,
 ) {
   try {
     const fromStorage = storage?.getItem(key)
-    if (fromStorage)
-      store.$patch(serializer?.deserialize(fromStorage))
+    if (fromStorage){
+      const deserialisedStorage = serializer?.deserialize(fromStorage);
+      const hydratedObject = pathHydration && Array.isArray(paths) ? pick(deserialisedStorage, paths) : deserialisedStorage;
+      store.$patch(hydratedObject)
+    }
   }
   catch (e) {
     if (debug)
