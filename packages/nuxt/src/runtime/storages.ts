@@ -1,26 +1,39 @@
 import type { StorageLike } from 'pinia-plugin-persistedstate'
 import { type CookieOptions, useCookie, useNuxtApp } from '#app'
 
-function usePersistedstateCookies(cookieOptions?: Omit<CookieOptions<string>, 'encode' | 'decode'>) {
+function usePersistedstateCookies(
+  cookieOptions?: Omit<CookieOptions<string>, 'encode' | 'decode'>,
+): StorageLike {
   return ({
-    getItem: (key) => {
-      return useCookie<string>(key, {
-        ...cookieOptions,
-        encode: encodeURIComponent,
-        decode: decodeURIComponent,
-      }).value
-    },
+    getItem: key =>
+      cookieOptions?.readonly
+        ? useCookie<string>(key, {
+          ...cookieOptions,
+          encode: encodeURIComponent,
+          decode: decodeURIComponent,
+          readonly: true,
+        }).value
+        : useCookie<string>(key, {
+          ...cookieOptions,
+          encode: encodeURIComponent,
+          decode: decodeURIComponent,
+          readonly: false,
+        }).value,
     setItem: (key, value) => {
+      if (cookieOptions?.readonly)
+        throw new Error('Cannot set a readonly cookie.')
+
       useCookie<string>(key, {
         ...cookieOptions,
         encode: encodeURIComponent,
         decode: decodeURIComponent,
+        readonly: false,
       }).value = value
     },
-  }) as StorageLike
+  })
 }
 
-function usePersistedstateLocalStorage() {
+function usePersistedstateLocalStorage(): StorageLike {
   return ({
     getItem: (key) => {
       return !useNuxtApp().ssrContext
@@ -31,10 +44,10 @@ function usePersistedstateLocalStorage() {
       if (!useNuxtApp().ssrContext)
         localStorage.setItem(key, value)
     },
-  }) as StorageLike
+  })
 }
 
-function usePersistedstateSessionStorage() {
+function usePersistedstateSessionStorage(): StorageLike {
   return ({
     getItem: (key) => {
       return !useNuxtApp().ssrContext
@@ -45,7 +58,7 @@ function usePersistedstateSessionStorage() {
       if (!useNuxtApp().ssrContext)
         sessionStorage.setItem(key, value)
     },
-  }) as StorageLike
+  })
 }
 
 export const persistedState = {
