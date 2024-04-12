@@ -96,6 +96,21 @@ export const useStore = defineStore('store', {
   },
 })
 ```
+or
+```ts
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
+export const useStore = defineStore('store', () => {
+  const someState = ref('hello pinia')
+  return { someState }
+}, {
+  persist: {
+    storage: sessionStorage,
+    paths: ['someState']
+  }
+})
+```
 
 All the available configuration options are explained [here](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/config.html).
 
