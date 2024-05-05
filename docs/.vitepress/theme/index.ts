@@ -1,7 +1,12 @@
+import twoslashFloating from '@shikijs/vitepress-twoslash/client'
 import theme from 'vitepress/theme'
 
+import '@shikijs/vitepress-twoslash/style.css'
 import './vars.css'
 
 export default {
-  ...theme,
+  extends: theme,
+  enhanceApp({ app }) {
+    app.use(twoslashFloating)
+  },
 }

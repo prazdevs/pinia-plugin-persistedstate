@@ -62,6 +62,9 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
+      - name: Build plugin (needed for Twoslash)
+        run: pnpm --filter pinia-plugin-persistedstate build
+
       - name: Build docs
         run: pnpm run docs:build
 

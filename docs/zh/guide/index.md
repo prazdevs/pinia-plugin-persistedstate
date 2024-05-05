@@ -34,7 +34,7 @@
 
 2. 将插件添加到 pinia 实例上
 
-```ts
+```ts twoslash
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
@@ -47,7 +47,7 @@ pinia.use(piniaPluginPersistedstate)
 创建 Store 时，将 `persist` 选项设置为 `true`。
 
 ::: code-group
-```ts [选项式语法]
+```ts twoslash [选项式语法]
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
@@ -60,8 +60,9 @@ export const useStore = defineStore('main', {
 })
 ```
 
-```ts [组合式语法]
+```ts twoslash [组合式语法]
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useStore = defineStore(
   'main',

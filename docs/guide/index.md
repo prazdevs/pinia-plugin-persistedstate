@@ -27,7 +27,7 @@ This plugin is compatible with `pinia^2.0.0`, make sure you have [Pinia installe
   :::
 
 2. Add the plugin to your pinia instance:
-```ts
+```ts twoslash
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
@@ -40,7 +40,7 @@ pinia.use(piniaPluginPersistedstate)
 When declaring your store, set the new `persist` option to `true`.
 
 ::: code-group
-```ts [option syntax]
+```ts twoslash [option syntax]
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
@@ -52,8 +52,9 @@ export const useStore = defineStore('main', {
   persist: true,
 })
 ```
-```ts [setup syntax]
+```ts twoslash [setup syntax]
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useStore = defineStore(
   'main',
