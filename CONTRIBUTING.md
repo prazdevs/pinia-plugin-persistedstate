@@ -28,7 +28,7 @@ Documentation lives under the `docs/` folder and is powered by [`vitepress`](htt
 
 ### `pnpm run build`
 
-Builds the project for production into `dist/` using [`tsup`](https://tsup.egoist.sh/).
+Builds the project for production into `dist/` using [`tsup`](https://tsup.egoist.dev/).
 
 ### `pnpm run test`
 
