@@ -14,7 +14,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: '@pinia-plugin-persistedstate/nuxt',
     configKey: 'piniaPersistedstate',
     compatibility: {
-      nuxt: '^3.0.0',
+      nuxt: '>=3.0.0',
       bridge: false,
     },
   },
