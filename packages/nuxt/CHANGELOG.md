@@ -1,7 +1,15 @@
 # Changelog
 
+<a name="1.2.1"></a>
+## 1.2.1 (2024-06-25)
+
+### Changed
+
+- 🚩 indicate compatibility with new v4 major ([#309](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/309)) [[ab9e1e9](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/ab9e1e9ff3aa37c7b9fc6e9d56d58d86d33ad003)]
+
+
 <a name="1.2.0"></a>
-## 1.0.0 (2022-11-26)
+## 1.2.0 (2023-10-26)
 
 ### Changed
 
