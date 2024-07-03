@@ -19,7 +19,7 @@
   ::: code-group
 
   ```sh [pnpm]
-  pnpm i pinia-plugin-persistedstate
+  pnpm add pinia-plugin-persistedstate
   ```
 
   ```sh [npm]

@@ -5,7 +5,7 @@
 ## 🚀 Quickstart
 
 1. Install with your favorite package manager:
-   - **pnpm** : `pnpm i pinia-plugin-persistedstate`
+   - **pnpm** : `pnpm add pinia-plugin-persistedstate`
    - npm : `npm i pinia-plugin-persistedstate`
    - yarn : `yarn add pinia-plugin-persistedstate`
 
