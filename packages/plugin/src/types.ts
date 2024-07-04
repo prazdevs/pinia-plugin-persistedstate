@@ -59,6 +59,12 @@ export interface PersistedStateOptions {
    * @default false
    */
   debug?: boolean
+
+  /**
+   * Only hydrate store with values present in `paths`
+   * @default false
+   */
+  pathHydration?: boolean
 }
 
 export type PersistedStateFactoryOptions = Prettify<Pick<
