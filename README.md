@@ -1,12 +1,12 @@
 > [!WARNING]
-> You are currently viewing upcoming v4 of the package. If you are looking for v3, look into the [v3 branch](https://github.com/prazdevs/pinia-plugin-persistedstate/tree/v3)
+> You are currently viewing upcoming v4 of the package. If you are looking for v3, look into the [v3 branch](https://github.com/prazdevs/pinia-plugin-persistedstate/tree/v3).
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/prazdevs/pinia-plugin-persistedstate/main/docs/public/logo.svg" style="width: 100px">
 </p>
 
 <h1 align="center">
-  pinia-plugin-persistedstate
+  Pinia Plugin Persistedstate
 </h1>
 <p align="center">
   Configurable persistence and rehydration of Pinia stores.
