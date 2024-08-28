@@ -6,8 +6,8 @@
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
   "license": "MIT",
-  "repository": "github:prazdevs/pinia-plugin-persistedstate",
   "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate",
+  "repository": "github:prazdevs/pinia-plugin-persistedstate",
   "keywords": [
     "vue",
     "store",
@@ -72,11 +72,19 @@
     "changelogen": "^0.5.5",
     "eslint": "^9.9.1",
     "jiti": "^1.21.6",
+    "lint-staged": "^15.2.9",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
+    "simple-git-hooks": "^2.11.1",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5",
     "vue-tsc": "^2.0.29"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix --flag unstable_ts_config"
   }
 }
