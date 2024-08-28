@@ -2,7 +2,7 @@
 > You are currently viewing upcoming v4 of the package. If you are looking for v3, look into the [v3 branch](https://github.com/prazdevs/pinia-plugin-persistedstate/tree/v3)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/prazdevs/pinia-plugin-persistedstate-next/main/.github/assets/logo.svg" style="width: 100px">
+  <img src="https://raw.githubusercontent.com/prazdevs/pinia-plugin-persistedstate/main/.github/assets/logo.svg" style="width: 100px">
 </p>
 
 <h1 align="center">
