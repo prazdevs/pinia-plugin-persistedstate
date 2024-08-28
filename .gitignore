@@ -8,7 +8,6 @@ node_modules
 .temp
 .tmp
 .cache
-**/.vitepress/cache
 
 # Yarn
 **/.yarn/cache
@@ -20,9 +19,9 @@ dist
 # Nuxt
 .nuxt
 .output
+.data
 .vercel_build_output
 .build-*
-.env
 .netlify
 
 # Env
@@ -36,7 +35,6 @@ coverage
 
 # VSCode
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json

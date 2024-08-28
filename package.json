@@ -1,55 +1,82 @@
 {
-  "name": "@pinia-plugin-persistedstate/monorepo",
+  "name": "pinia-plugin-persistedstate",
   "type": "module",
-  "version": "3.1.0",
-  "private": true,
-  "packageManager": "pnpm@9.4.0",
-  "description": "Monorepo for pinia-plugin-persistedstate",
-  "author": "prazdevs",
+  "version": "4.0.0-alpha.4",
+  "packageManager": "pnpm@9.9.0",
+  "description": "Configurable persistence and rehydration of Pinia stores.",
+  "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
   "license": "MIT",
-  "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
-  "engines": {
-    "node": ">=18"
+  "repository": "github:prazdevs/pinia-plugin-persistedstate",
+  "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate",
+  "keywords": [
+    "vue",
+    "store",
+    "pinia",
+    "persistence",
+    "pinia-plugin",
+    "nuxt",
+    "nuxt-module"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt/types.d.mts",
+      "import": "./dist/nuxt/module.mjs"
+    }
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "stale-dep && pnpm -r --if-present run build",
-    "test": "stale-dep && pnpm -r --if-present run test:run",
-    "test:coverage": "stale-dep && pnpm -r --if-present run test:coverage",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "docs": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "postinstall": "stale-dep -u",
-    "release:plugin": "pnpm -F pinia-plugin-persistedstate run release",
-    "release:nuxt": "pnpm -F @pinia-plugin-persistedstate/nuxt run release"
+    "build": "pnpm build:plugin && pnpm build:module",
+    "build:plugin": "tsup src/index.ts --clean --dts --format esm",
+    "build:module": "nuxt-module-build build --outDir dist/nuxt",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint . --flag unstable_ts_config",
+    "lint:fix": "eslint . --fix --flag unstable_ts_config",
+    "typecheck": "nuxi typecheck"
+  },
+  "peerDependencies": {
+    "@pinia/nuxt": ">=0.5.0",
+    "pinia": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@pinia/nuxt": {
+      "optional": true
+    },
+    "pinia": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.13.0",
+    "deep-pick-omit": "^1.2.0",
+    "destr": "^2.0.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.21.1",
-    "@shikijs/vitepress-twoslash": "^1.9.1",
-    "@types/node": "^20.14.8",
-    "@vitest/coverage-v8": "^1.6.0",
-    "@vitest/ui": "^1.6.0",
-    "bumpp": "^9.4.1",
-    "eslint": "^9.5.0",
-    "happy-dom": "^14.12.3",
-    "lint-staged": "^15.2.7",
-    "pinia": "^2.1.7",
-    "pinia-plugin-persistedstate": "workspace:*",
-    "simple-git-hooks": "^2.11.1",
-    "stale-dep": "^0.7.0",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.2",
-    "vite": "^5.3.1",
-    "vitepress": "1.1.4",
-    "vitepress-plugin-twoslash": "^0.10.2",
-    "vitest": "^1.6.0",
-    "vue": "^3.4.30"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
-  },
-  "lint-staged": {
-    "*": "eslint --fix"
+    "@antfu/eslint-config": "^2.27.3",
+    "@nuxt/devtools": "^1.4.1",
+    "@nuxt/module-builder": "^0.8.3",
+    "@nuxt/schema": "^3.13.0",
+    "@nuxt/test-utils": "^3.14.1",
+    "@pinia/nuxt": "^0.5.4",
+    "@types/node": "^22.5.0",
+    "changelogen": "^0.5.5",
+    "eslint": "^9.9.1",
+    "jiti": "^1.21.6",
+    "nuxt": "^3.13.0",
+    "pinia": "^2.2.2",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5",
+    "vue-tsc": "^2.0.29"
   }
 }
