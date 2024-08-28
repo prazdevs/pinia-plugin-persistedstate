@@ -40,6 +40,9 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "lint": "eslint . --flag unstable_ts_config",
     "lint:fix": "eslint . --fix --flag unstable_ts_config",
     "typecheck": "nuxi typecheck"
@@ -78,7 +81,9 @@
     "simple-git-hooks": "^2.11.1",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
+    "vitepress": "^1.3.4",
     "vitest": "^2.0.5",
+    "vue": "^3.4.38",
     "vue-tsc": "^2.0.29"
   },
   "simple-git-hooks": {
