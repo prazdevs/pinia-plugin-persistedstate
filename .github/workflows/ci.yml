@@ -36,3 +36,6 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Publint
+        run: pnpm publint

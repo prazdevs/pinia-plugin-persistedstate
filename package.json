@@ -45,6 +45,7 @@
     "docs:preview": "vitepress preview docs",
     "lint": "eslint . --flag unstable_ts_config",
     "lint:fix": "eslint . --fix --flag unstable_ts_config",
+    "publint": "publint",
     "typecheck": "nuxi typecheck"
   },
   "peerDependencies": {
@@ -80,6 +81,7 @@
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
     "pinia-plugin-persistedstate": "link:",
+    "publint": "^0.2.10",
     "simple-git-hooks": "^2.11.1",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
