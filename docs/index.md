@@ -14,7 +14,8 @@ hero:
       text: View on GitHub
       link: https://github.com/prazdevs/pinia-plugin-persistedstate
   image:
-    src: /logo.svg
+    light: /logo-light.svg
+    dark: /logo-dark.svg
     alt: Pinia Plugin Persistedstate
 
 features:

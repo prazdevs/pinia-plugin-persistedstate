@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="266.88" height="412.57">
+  <path fill="none" stroke="#8839ef" stroke-width="14" d="M12.1 379.17V194.4A26.4 26.4 0 0 1 38.48 168h147.45a26.4 26.4 0 0 1 18.66 7.74l37.32 37.32a26.4 26.4 0 0 1 7.74 18.66v147.45a26.4 26.4 0 0 1-26.4 26.4H38.49a26.4 26.4 0 0 1-26.4-26.4Z"/>
+  <path fill="none" stroke="#8839ef" stroke-width="14" d="M86 231.25h89.75a7.92 7.92 0 0 0 7.92-7.91v-47.42a7.92 7.92 0 0 0-7.92-7.92H86a7.92 7.92 0 0 0-7.92 7.92v47.42a7.92 7.92 0 0 0 7.92 7.91zM51.68 339.7v65.88h158.38V339.7a7.92 7.92 0 0 0-7.92-7.92H59.6a7.92 7.92 0 0 0-7.92 7.92zM89.31 90.96C62.81 62.08 24.9 53.93 16.64 61.77c-7.7 7.32-21.86 60.9 11.7 109.99m188.6 20.25c33.89-32.2 47.94-93.89 40.97-104.84-6.1-9.6-51.32-5.9-84.14 15.56"/>
+  <path fill="none" stroke="#8839ef" stroke-width="14" d="M160.97 165.39c1.68-4.24 5.25-13.63 6.58-18.63 2.66-10 4.66-21.45 6.22-34.11C180.01 62 154.31 8.47 142.74 7.05c-11.57-1.42-50.42 44.2-56.66 94.86-3.11 25.32-3.18 46.07 1.86 61.35"/>
+  <path fill="none" stroke="#8839ef" stroke-linecap="round" stroke-linejoin="round" stroke-width="10" d="M149.19 302.84c-6.47 5.26-13.95 7.4-22.42 6.43-8.48-.96-14.76-4.48-18.85-10.55"/>
+  <circle cx="66.63" cy="272.46" r="21.45" fill="none" stroke="#8839ef" stroke-linecap="round" stroke-linejoin="round" stroke-width="10" paint-order="stroke markers fill"/>
+  <circle cx="72.16" cy="271.55" r="7" fill="#8839ef" fill-rule="evenodd" paint-order="stroke markers fill"/>
+  <circle cx="191.61" cy="275.73" r="7" fill="#8839ef" fill-rule="evenodd" paint-order="stroke markers fill"/>
+  <circle cx="196.88" cy="277.38" r="21.45" fill="none" stroke="#8839ef" stroke-linecap="round" stroke-linejoin="round" stroke-width="10" paint-order="stroke markers fill"/>
+</svg>
