@@ -1,10 +1,11 @@
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { algolia } from './algolia'
 import { en } from './en'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Pinia Plugin Persistedstate',
+  base: '/pinia-plugin-persistedstate/',
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   lastUpdated: true,
   markdown: {
@@ -24,11 +25,7 @@ export default defineConfig({
     },
     search: {
       provider: 'algolia',
-      options: {
-        appId: '90OL5Y5T3K',
-        apiKey: '20f9f00e8b98bae16d443559f1879aa9',
-        indexName: 'pinia-plugin-persistedstate',
-      },
+      options: algolia,
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/prazdevs/pinia-plugin-persistedstate' },
