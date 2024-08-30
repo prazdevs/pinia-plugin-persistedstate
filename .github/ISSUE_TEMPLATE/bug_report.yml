@@ -27,7 +27,7 @@ body:
     id: reproduction
     attributes:
       label: Reproduction
-      description: A [minimal reproduction](https://stackoverflow.com/help/minimal-reproducible-example) is **required**, it can be a StackBlitz/GitHub/whatever repo. To understand why and how, read [this article](https://antfu.me/posts/why-reproductions-are-required) by Anthony Fu. Bug reports without a proper reproduction will not be investigated.
+      description: A [minimal reproduction](https://stackoverflow.com/help/minimal-reproducible-example) is **required** (bug reports without a proper reproduction will not be investigated), it can be a StackBlitz/GitHub/whatever repo. To understand why and how, read [this article](https://antfu.me/posts/why-reproductions-are-required) by Anthony Fu.
       placeholder: Reproduction
     validations:
       required: true
