@@ -7,7 +7,16 @@
   "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
   "license": "MIT",
   "homepage": "https://prazdevs.github.io/pinia-plugin-persistedstate",
-  "repository": "github:prazdevs/pinia-plugin-persistedstate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prazdevs/pinia-plugin-persistedstate"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/prazdevs"
+  },
+  "bugs": {
+    "url": "https://github.com/prazdevs/pinia-plugin-persistedstate/issues"
+  },
   "keywords": [
     "vue",
     "store",
