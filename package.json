@@ -19,12 +19,24 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./nuxt": {
-      "types": "./dist/nuxt/types.d.mts",
-      "import": "./dist/nuxt/module.mjs"
+      "import": {
+        "types": "./dist/nuxt/types.d.mts",
+        "default": "./dist/nuxt/module.mjs"
+      },
+      "require": {
+        "types": "./dist/nuxt/types.d.ts",
+        "default": "./dist/nuxt/module.cjs"
+      }
     }
   },
   "main": "./dist/index.js",
@@ -34,7 +46,7 @@
   ],
   "scripts": {
     "build": "pnpm build:plugin && pnpm build:module",
-    "build:plugin": "tsup src/index.ts --clean --dts --format esm",
+    "build:plugin": "tsup src/index.ts --clean --dts --format esm,cjs",
     "build:module": "nuxt-module-build build --outDir dist/nuxt",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
