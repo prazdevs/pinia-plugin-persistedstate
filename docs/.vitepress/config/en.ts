@@ -9,12 +9,15 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
       pattern: 'https://github.com/prazdevs/pinia-plugin-persistedstate/edit/main/docs/:path',
     },
     nav: [
-      { text: 'Guide', link: '/guide' },
+      {
+        text: 'Guide',
+        link: '/guide/',
+        activeMatch: '/guide/',
+      },
       {
         text: 'Frameworks',
         items: [
           { text: 'Nuxt', link: '/frameworks/nuxt' },
-          { text: 'Others', link: '/frameworks/others' },
         ],
       },
       {
@@ -53,16 +56,17 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
     ],
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Guide',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
+          { text: 'Why this plugin?', link: '/guide/why' },
+          { text: 'Getting Started', link: '/guide/' },
+          { text: 'Limitations', link: '/guide/limitations' },
         ],
       },
     ],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2021-present Sacha Bouillez',
+      copyright: 'Copyright © 2021-present Sacha Bouillez & contributors',
     },
 
   },

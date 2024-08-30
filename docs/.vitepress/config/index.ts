@@ -8,6 +8,7 @@ export default defineConfig({
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   lastUpdated: true,
   markdown: {
+    typographer: true,
     codeTransformers: [
       transformerTwoslash(),
     ],
@@ -32,7 +33,6 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/prazdevs/pinia-plugin-persistedstate' },
     ],
-    externalLinkIcon: true,
   },
   locales: {
     root: {

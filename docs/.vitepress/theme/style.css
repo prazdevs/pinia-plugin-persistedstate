@@ -1,49 +1,5 @@
-/**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
- */
-
-/**
- * Colors
- *
- * Each colors have exact same color scale system with 3 levels of solid
- * colors with different brightness, and 1 soft color.
- * 
- * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
- *
- * - `XXX-2`: The color used mainly for hover state of the button.
- *
- * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
- *
- * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
- *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create a accent, such as when having inline code block inside
- *   custom containers.
- *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attched to it such as bg color for menu hover state.
- *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
- *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
- *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
- *
- * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
- * -------------------------------------------------------------------------- */
-
- :root {
+/* palette */
+:root {
   --vp-c-gray-1: #7c7f93;
   --vp-c-gray-2: #8c8fa1;
   --vp-c-gray-3: #9ca0b0;
@@ -74,7 +30,6 @@
   --vp-c-red-3: #e46f88;
   --vp-c-red-soft: rgba(210, 15, 57, 0.14);
 }
-
 .dark {
   --vp-c-gray-1: #9399b2;
   --vp-c-gray-2: #7f849c;
@@ -87,8 +42,8 @@
   --vp-c-indigo-soft: rgba(137, 180, 250, 0.16);
 
   --vp-c-purple-1: #cba6f7;
-  --vp-c-purple-2:  #a285c6;
-  --vp-c-purple-3:  #7a6494;
+  --vp-c-purple-2: #a285c6;
+  --vp-c-purple-3: #7a6494;
   --vp-c-purple-soft: rgba(203, 166, 247, 0.16);
 
   --vp-c-green-1: #a6e3a1;
@@ -105,32 +60,15 @@
   --vp-c-red-2: #c26f86;
   --vp-c-red-3: #925365;
   --vp-c-red-soft: rgba(243, 139, 168, 0.16);
-
-
 }
 
-/**
- * Colors: Background
- *
- * - `bg`: The bg color used for main screen.
- *
- * - `bg-alt`: The alternative bg color used in places such as "sidebar",
- *   or "code block".
- *
- * - `bg-elv`: The elevated bg color. This is used at parts where it "floats",
- *   such as "dialog".
- *
- * - `bg-soft`: The bg color to slightly distinguish some components from
- *   the page. Used for things like "carbon ads" or "table".
- * -------------------------------------------------------------------------- */
-
- :root {
+/* backgrounds */
+:root {
   --vp-c-bg: #eff1f5;
   --vp-c-bg-alt: #e6e9ef;
   --vp-c-bg-elv: #eff1f5;
   --vp-c-bg-soft: #e6e9ef;
 }
-
 .dark {
   --vp-c-bg: #11111b;
   --vp-c-bg-alt: #181825;
@@ -138,75 +76,32 @@
   --vp-c-bg-soft: #1e1e2e;
 }
 
-/**
- * Colors: Borders
- *
- * - `divider`: This is used for separators. This is used to divide sections
- *   within the same components, such as having separator on "h2" heading.
- *
- * - `border`: This is designed for borders on interactive components.
- *   For example this should be used for a button outline.
- *
- * - `gutter`: This is used to divide components in the page. For example
- *   the header and the lest of the page.
- * -------------------------------------------------------------------------- */
-
- :root {
+/* borders */
+:root {
   --vp-c-border: #acb0be;
   --vp-c-divider: #bcc0cc;
   --vp-c-gutter: #ccd0da;
 }
-
 .dark {
   --vp-c-border: #585b70;
   --vp-c-divider: #45475a;
   --vp-c-gutter: #313244;
 }
 
-/**
- * Colors: Text
- *
- * - `text-1`: Used for primary text.
- *
- * - `text-2`: Used for muted texts, such as "inactive menu" or "info texts".
- *
- * - `text-3`: Used for subtle texts, such as "placeholders" or "caret icon".
- * -------------------------------------------------------------------------- */
-
+/* text */
 :root {
   --vp-c-text-1: #4c4f69;
   --vp-c-text-2: #5c5f77;
   --vp-c-text-3: #6c6f85;
 }
-
 .dark {
   --vp-c-text-1: #cdd6f4;
   --vp-c-text-2: #bac2de;
   --vp-c-text-3: #a6adc8;
 }
 
-/**
- * Colors: Function
- *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
- *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
- *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
- *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
- *
- * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
- *
- * To understand the scaling system, refer to "Colors: Palette" section.
- * -------------------------------------------------------------------------- */
-
- :root {
+/* function */
+:root {
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
   --vp-c-default-3: var(--vp-c-gray-3);
@@ -253,10 +148,7 @@
   --vp-c-caution-soft: var(--vp-c-red-soft);
 }
 
-/**
- * Component: Button
- * -------------------------------------------------------------------------- */
-
+/* component: button */
 :root {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: var(--vp-c-white);
@@ -279,53 +171,31 @@
   --vp-button-alt-active-bg: var(--vp-c-default-1);
 }
 
-/**
- * Component: Home
- * -------------------------------------------------------------------------- */
-
+/* component: home */
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #8839ef 30%,
-    #5f28a7
-  );
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #8839ef 30%, #5f28a7);
 
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #e7d7fc 50%,
-    #e7d7fc 50%
-  );
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #e7d7fc 50%, #e7d7fc 50%);
   --vp-home-hero-image-filter: blur(44px);
 }
-
 .dark {
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #cba6f7 30%,
-    #dbc1f9
-  );
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #cba6f7 30%, #dbc1f9);
 
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #514263 50%,
-    #514263 50%
-  );
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #514263 50%, #514263 50%);
 }
-
 @media (min-width: 640px) {
   :root {
     --vp-home-hero-image-filter: blur(56px);
   }
 }
-
 @media (min-width: 960px) {
   :root {
     --vp-home-hero-image-filter: blur(78px);
   }
 }
 
+/* component: sidebar */
 :root {
-  --vp-nav-logo-height: 36px;
-  --vp-sidebar-width: 300px;
+  --vp-sidebar-width: 292px;
 }
