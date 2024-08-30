@@ -4,6 +4,6 @@ export const useSessionStorageStore = defineStore('session-storage', () => {
   return { username }
 }, {
   persist: {
-    storage: piniaPluginPersistedstate.sessionStorage,
+    storage: piniaPluginPersistedstate.sessionStorage(),
   },
 })

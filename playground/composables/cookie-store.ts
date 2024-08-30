@@ -4,6 +4,6 @@ export const useCookieStore = defineStore('cookie', () => {
   return { username }
 }, {
   persist: {
-    storage: piniaPluginPersistedstate.cookies,
+    storage: piniaPluginPersistedstate.cookies(),
   },
 })

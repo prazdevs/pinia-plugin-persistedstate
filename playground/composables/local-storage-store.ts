@@ -4,6 +4,6 @@ export const useLocalStorageStore = defineStore('local-storage', () => {
   return { username }
 }, {
   persist: {
-    storage: piniaPluginPersistedstate.localStorage,
+    storage: piniaPluginPersistedstate.localStorage(),
   },
 })
