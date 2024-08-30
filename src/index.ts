@@ -1,6 +1,6 @@
 import type { PiniaPluginContext } from 'pinia'
 import { destr } from 'destr'
-import { createPersistence } from './core'
+import { createPersistence } from './runtime/core'
 import type { PersistenceOptions, Serializer, StorageLike } from './types'
 
 export type { PersistenceOptions, Serializer, StorageLike }

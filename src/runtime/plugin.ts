@@ -1,7 +1,7 @@
 import type { Pinia, PiniaPluginContext } from 'pinia'
 import { destr } from 'destr'
 import type { Persistence } from '../types'
-import { createPersistence } from '../core'
+import { createPersistence } from './core'
 import { storages } from './storages'
 
 import { defineNuxtPlugin, useNuxtApp } from '#app'
@@ -16,7 +16,7 @@ function piniaPlugin(context: PiniaPluginContext) {
       serialize: data => JSON.stringify(data),
       deserialize: data => destr(data),
     },
-    storage: p.storage ?? storages.cookies,
+    storage: p.storage ?? storages.cookies(),
     beforeHydrate: p.beforeHydrate,
     afterHydrate: p.afterHydrate,
     beforePersist: p.beforePersist,
