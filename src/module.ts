@@ -27,6 +27,8 @@ export default defineNuxtModule<ModuleOptions>({
       return
     }
 
+    nuxt.options.build.transpile.push(resolver.resolve('./runtime'))
+
     addImports({
       name: 'storages',
       from: resolver.resolve('./runtime/storages'),

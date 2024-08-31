@@ -1,9 +1,9 @@
 import { destr } from 'destr'
-import { defineNuxtPlugin, useNuxtApp } from 'nuxt/app'
 import type { Pinia, PiniaPluginContext } from 'pinia'
 import type { Persistence } from '../types'
 import { createPersistence } from './core'
 import { storages } from './storages'
+import { defineNuxtPlugin, useNuxtApp } from '#app'
 
 function piniaPlugin(context: PiniaPluginContext) {
   const nuxtApp = useNuxtApp()

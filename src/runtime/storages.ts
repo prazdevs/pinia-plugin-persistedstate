@@ -1,6 +1,6 @@
-import { useCookie } from 'nuxt/app'
-import type { CookieOptions } from 'nuxt/app'
 import type { StorageLike } from '../types'
+import type { CookieOptions } from '#app'
+import { useCookie } from '#app'
 
 type CookiesStorageOptions = Omit<
   CookieOptions,
