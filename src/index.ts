@@ -4,7 +4,16 @@ import { createPersistence } from './runtime/core'
 import type { PersistenceOptions, Serializer, StorageLike } from './types'
 
 export type { PersistenceOptions, Serializer, StorageLike }
-export type PluginOptions = Pick<PersistenceOptions, 'storage'>
+
+/**
+ * Options passed to `createPersistedState` to apply globally.
+ */
+export type PluginOptions = Pick<
+  PersistenceOptions,
+  'storage' | 'debug' | 'serializer'
+> & {
+  key?: (k: string) => string
+}
 
 /**
  * Create a Pinia persistence plugin.
@@ -13,9 +22,9 @@ export type PluginOptions = Pick<PersistenceOptions, 'storage'>
 export function createPersistedState(options: PluginOptions = {}) {
   return function (context: PiniaPluginContext) {
     createPersistence(context, p => ({
-      key: p.key ?? context.store.$id,
-      debug: p.debug,
-      serializer: p.serializer ?? {
+      key: (options.key ? options.key : (x: string) => x)(p.key ?? context.store.$id),
+      debug: p.debug ?? options.debug ?? false,
+      serializer: p.serializer ?? options.serializer ?? {
         serialize: data => JSON.stringify(data),
         deserialize: data => destr(data),
       },

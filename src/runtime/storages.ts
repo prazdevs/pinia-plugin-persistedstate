@@ -2,7 +2,7 @@ import type { StorageLike } from '../types'
 import type { CookieOptions } from '#app'
 import { useCookie } from '#app'
 
-type CookiesStorageOptions = Omit<
+export type CookiesStorageOptions = Omit<
   CookieOptions,
   'encode' | 'decode' | 'default' | 'watch' | 'readonly' | 'filter'
 >

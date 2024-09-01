@@ -6,8 +6,14 @@ import {
   hasNuxtModule,
   useLogger,
 } from '@nuxt/kit'
+import { defu } from 'defu'
+import type { CookiesStorageOptions } from './runtime/storages'
+import type { PersistenceOptions } from './types'
 
-interface ModuleOptions {}
+type ModuleOptions = Pick<PersistenceOptions, 'debug'> & {
+  storage?: 'cookies' | 'localStorage' | 'sessionStorage'
+  cookieOptions?: CookiesStorageOptions
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -18,7 +24,7 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {},
-  setup(_options, nuxt) {
+  setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
     const logger = useLogger()
 
@@ -29,11 +35,21 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.build.transpile.push(resolver.resolve('./runtime'))
 
+    nuxt.options.runtimeConfig.public.piniaPluginPersistedstate
+      = defu(nuxt.options.runtimeConfig.public.piniaPluginPersistedstate, options)
+
     addImports({
       name: 'storages',
       from: resolver.resolve('./runtime/storages'),
       as: 'piniaPluginPersistedstate',
     })
+
     addPlugin(resolver.resolve('./runtime/plugin'))
   },
 })
+
+declare module 'nuxt/schema' {
+  interface PublicRuntimeConfig {
+    piniaPluginPersistedstate: ModuleOptions
+  }
+}

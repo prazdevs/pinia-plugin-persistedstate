@@ -47,7 +47,7 @@ export interface Persistence<State extends StateTree = StateTree> {
    * Log errors in console.
    * @default false
    */
-  debug?: boolean
+  debug: boolean
 
   /**
    * Synchronous storage to persist the state.
