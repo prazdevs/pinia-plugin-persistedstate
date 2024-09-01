@@ -84,6 +84,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.13.0",
     "deep-pick-omit": "^1.2.0",
+    "defu": "^6.1.4",
     "destr": "^2.0.3"
   },
   "devDependencies": {
