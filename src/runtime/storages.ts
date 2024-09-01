@@ -1,11 +1,8 @@
+import type { PublicRuntimeConfig } from 'nuxt/schema'
 import type { StorageLike } from '../types'
-import type { CookieOptions } from '#app'
 import { useCookie } from '#app'
 
-export type CookiesStorageOptions = Omit<
-  CookieOptions,
-  'encode' | 'decode' | 'default' | 'watch' | 'readonly' | 'filter'
->
+type CookiesStorageOptions = PublicRuntimeConfig['piniaPluginPersistedstate']['cookieOptions']
 
 /**
  * Cookie-based storage. Cookie options can be passed as parameter.

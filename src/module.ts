@@ -7,12 +7,15 @@ import {
   useLogger,
 } from '@nuxt/kit'
 import { defu } from 'defu'
-import type { CookiesStorageOptions } from './runtime/storages'
+import type { CookieOptions } from 'nuxt/app'
 import type { PersistenceOptions } from './types'
 
 type ModuleOptions = Pick<PersistenceOptions, 'debug'> & {
   storage?: 'cookies' | 'localStorage' | 'sessionStorage'
-  cookieOptions?: CookiesStorageOptions
+  cookieOptions?: Omit<
+    CookieOptions,
+  'encode' | 'decode' | 'default' | 'watch' | 'readonly' | 'filter'
+  >
 }
 
 export default defineNuxtModule<ModuleOptions>({
