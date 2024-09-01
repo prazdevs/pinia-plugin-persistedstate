@@ -1,7 +1,7 @@
 {
   "name": "pinia-plugin-persistedstate",
   "type": "module",
-  "version": "4.0.0-alpha.9",
+  "version": "4.0.0-alpha.10",
   "packageManager": "pnpm@9.9.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
