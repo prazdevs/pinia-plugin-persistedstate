@@ -12,7 +12,10 @@ export type PluginOptions = Pick<
   PersistenceOptions,
   'storage' | 'debug' | 'serializer'
 > & {
-  key?: (k: string) => string
+  /**
+   * Global key generator, allow pre/postfixing store keys.
+   */
+  key?: (storeKey: string) => string
 }
 
 /**
