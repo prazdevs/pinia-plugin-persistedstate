@@ -11,7 +11,19 @@ import type { CookieOptions } from 'nuxt/app'
 import type { PersistenceOptions } from './types'
 
 type ModuleOptions = Pick<PersistenceOptions, 'debug'> & {
+  /**
+   * Default storage for persistence. Only accepts presets.
+   */
   storage?: 'cookies' | 'localStorage' | 'sessionStorage'
+  /**
+   * Global key template, allow pre/postfixing store keys.
+   * @example 'my-%id-persistence' will yield 'my-<store-id>-persistence'
+   */
+  key?: `${string}%id${string}`
+  /**
+   * Options used globally by default cookie storage.
+   * Ignored for other storages.
+   */
   cookieOptions?: Omit<
     CookieOptions,
   'encode' | 'decode' | 'default' | 'watch' | 'readonly' | 'filter'

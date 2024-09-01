@@ -10,7 +10,9 @@ function piniaPlugin(context: PiniaPluginContext) {
   const options = config.public.piniaPluginPersistedstate
 
   createPersistence(context, p => ({
-    key: p.key ?? context.store.$id,
+    key: options.key
+      ? options.key.replace(/%id/g, p.key ?? context.store.$id)
+      : (p.key ?? context.store.$id),
     debug: p.debug ?? options.debug ?? false,
     serializer: p.serializer ?? {
       serialize: data => JSON.stringify(data),
