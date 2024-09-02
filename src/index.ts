@@ -34,8 +34,6 @@ export function createPersistedState(options: PluginOptions = {}) {
       storage: p.storage ?? options.storage ?? window.localStorage,
       beforeHydrate: p.beforeHydrate,
       afterHydrate: p.afterHydrate,
-      beforePersist: p.beforePersist,
-      afterPersist: p.afterPersist,
       pick: p.pick,
       omit: p.omit,
     }))

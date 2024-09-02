@@ -52,16 +52,9 @@ function persistState(
     debug,
     pick,
     omit,
-    beforePersist,
-    afterPersist,
   }: Persistence,
-  context: PiniaPluginContext,
-  runHooks = true,
 ) {
   try {
-    if (runHooks)
-      beforePersist?.(context)
-
     const picked = pick
       ? deepPickUnsafe(state, pick)
       : state
@@ -70,9 +63,6 @@ function persistState(
       : picked
     const toStorage = serializer.serialize(omitted)
     storage.setItem(key, toStorage)
-
-    if (runHooks)
-      afterPersist?.(context)
   }
   catch (error) {
     if (debug)
@@ -113,9 +103,9 @@ export function createPersistence(
     })
   }
 
-  store.$persist = ({ runHooks = true } = {}) => {
+  store.$persist = () => {
     persistences.forEach((p) => {
-      runWithContext(() => persistState(store.$state, p, context, runHooks))
+      runWithContext(() => persistState(store.$state, p))
     })
   }
 
@@ -123,7 +113,7 @@ export function createPersistence(
     runWithContext(() => hydrateStore(store, p, context))
 
     store.$subscribe(
-      (_mutation, state) => runWithContext(() => persistState(state, p, context)),
+      (_mutation, state) => runWithContext(() => persistState(state, p)),
       { detached: true },
     )
   })

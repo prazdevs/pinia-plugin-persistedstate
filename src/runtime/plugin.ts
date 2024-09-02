@@ -25,8 +25,6 @@ function piniaPlugin(context: PiniaPluginContext) {
       : storages.cookies()),
     beforeHydrate: p.beforeHydrate,
     afterHydrate: p.afterHydrate,
-    beforePersist: p.beforePersist,
-    afterPersist: p.afterPersist,
     pick: p.pick,
     omit: p.omit,
   }), nuxtApp.runWithContext)

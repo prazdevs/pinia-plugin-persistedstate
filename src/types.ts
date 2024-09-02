@@ -70,16 +70,6 @@ export interface Persistence<State extends StateTree = StateTree> {
   afterHydrate?: (context: PiniaPluginContext) => void
 
   /**
-   * Hook called before persisting state.
-   */
-  beforePersist?: (context: PiniaPluginContext) => void
-
-  /**
-   * Hook called after persisting state.
-   */
-  afterPersist?: (context: PiniaPluginContext) => void
-
-  /**
    * Dot-notation paths to pick from state before persisting.
    */
   pick?: Path<State>[] | string[]
@@ -113,6 +103,6 @@ declare module 'pinia' {
      * Persist store into configured storage
      * Warning: this is for advances usecases, make sure you know what you're doing
      */
-    $persist: (opts?: { runHooks?: boolean }) => void
+    $persist: () => void
   }
 }
