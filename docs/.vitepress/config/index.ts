@@ -6,12 +6,23 @@ import { en } from './en'
 export default defineConfig({
   title: 'Pinia Plugin Persistedstate',
   base: '/pinia-plugin-persistedstate/',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  head: [
+    ['link', {
+      rel: 'icon',
+      href: '/pinia-plugin-persistedstate/favicon.ico',
+    }],
+  ],
   lastUpdated: true,
   markdown: {
     typographer: true,
     codeTransformers: [
-      transformerTwoslash(),
+      transformerTwoslash({
+        twoslashOptions: {
+          compilerOptions: {
+            types: ['pinia-plugin-persistedstate'],
+          },
+        },
+      }),
     ],
     theme: {
       dark: 'catppuccin-mocha',
@@ -28,7 +39,10 @@ export default defineConfig({
       options: algolia,
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/prazdevs/pinia-plugin-persistedstate' },
+      {
+        icon: 'github',
+        link: 'https://github.com/prazdevs/pinia-plugin-persistedstate',
+      },
     ],
   },
   locales: {
