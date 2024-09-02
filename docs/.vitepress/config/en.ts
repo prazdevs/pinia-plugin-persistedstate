@@ -60,6 +60,7 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
         items: [
           { text: 'Why this plugin?', link: '/guide/why' },
           { text: 'Getting Started', link: '/guide/' },
+          { text: 'Configuration', link: '/guide/config' },
           { text: 'Limitations', link: '/guide/limitations' },
         ],
       },
