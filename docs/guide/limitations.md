@@ -37,7 +37,7 @@ a === b // -> false
 As a consequence, reactivity between `a` and `b` is lost.
 
 :::tip Workaround
-To get around this, you can exclude either `a` or `b` from being persisted (using the [`paths`](/guide/config#paths) option) and use the [`afterRestore`](/guide/config#afterhydrate) hook to re-populate them after hydration. That way `a` and `b` have the same refence again and reactivity is restored.
+To get around this, you can exclude either `a` or `b` from being persisted (using the [`pick`](/guide/config#pick) option) and use the [`afterHydrate`](/guide/config#afterhydrate) hook to re-populate them after hydration. That way `a` and `b` have the same refence again and reactivity is restored.
 :::
 
 ## Non-primitive types are not persisted
@@ -46,6 +46,6 @@ Due to the serialization process, non-primitive types such as `Date` are not reh
 
 :::tip Workaround
 To get around this you can:
-- Use the [`afterRestore`](/guide/config#afterhydrate) hook to recreate the objects after rehydration.
+- Use the [`afterHydrate`](/guide/config#afterhydrate) hook to recreate the objects after rehydration.
 - Use a custom [`serializer`](/guide/config#serializer) that supports the data types you want to persist.
 :::
