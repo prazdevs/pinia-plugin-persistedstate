@@ -12,6 +12,9 @@ export default defineConfig({
       href: '/pinia-plugin-persistedstate/favicon.ico',
     }],
   ],
+  sitemap: {
+    hostname: 'https://prazdevs.github.io/pinia-plugin-persistedstate/',
+  },
   lastUpdated: true,
   markdown: {
     typographer: true,
