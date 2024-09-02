@@ -197,5 +197,10 @@
 
 /* component: sidebar */
 :root {
-  --vp-sidebar-width: 292px;
+  --vp-sidebar-width: 300px;
+}
+
+/* componen: nav */
+:root {
+  --vp-nav-logo-height: 36px;
 }
