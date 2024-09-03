@@ -42,7 +42,7 @@ pinia.use(piniaPluginPersistedstate)
 When declaring your store, set the new `persist` option to `true`.
 
 ::: code-group
-```ts [setup syntax]
+```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -57,7 +57,7 @@ export const useStore = defineStore(
   },
 )
 ```
-```ts [option syntax]
+```ts{9} [option syntax]
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
