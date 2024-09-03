@@ -7,7 +7,7 @@ The plugin comes pre-configured with the following:
 - [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)/[`destr`](https://github.com/unjs/destr) as serializer/deserializer.
 - The whole state is persisted to the storage.
 
-> [!WARNING] Using the Nuxt module ?
+> [!WARNING] USING NUXT ?
 > Defaults are different with the Nuxt module to provide SSR-friendly experience. Head over to the [Nuxt usage documentation](/frameworks/nuxt) to learn more.
 
 You can pass an object to the `persist` property of the store to configure the persistence.

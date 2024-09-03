@@ -10,7 +10,7 @@ This plugin is compatible with `pinia>=2.0.0`, make sure you have [Pinia install
 - Pre/post persistence/hydration hooks.
 - Multiple configurations per store.
 
-> [!TIP] Using Nuxt ?
+> [!TIP] USING NUXT ?
 > This package exports a module for better integration with Nuxt and out of the box SSR support. Learn more about it in its [documentation](/frameworks/nuxt).
 
 ## Installation

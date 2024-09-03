@@ -62,6 +62,7 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
           { text: 'Getting Started', link: '/guide/' },
           { text: 'Configuration', link: '/guide/config' },
           { text: 'Limitations', link: '/guide/limitations' },
+          { text: 'Advanced Usage', link: '/guide/advanced' },
         ],
       },
     ],
