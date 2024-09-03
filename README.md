@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> With the upcoming v4, we are looking for contributors willing to help translate the documentation, especially Chinese, to improve developer experience! 🙏
+
 > [!WARNING]
 > You are currently viewing upcoming v4 of the package. If you are looking for v3, look into the [v3 branch](https://github.com/prazdevs/pinia-plugin-persistedstate/tree/v3).
 
