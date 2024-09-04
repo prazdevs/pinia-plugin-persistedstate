@@ -55,7 +55,7 @@
   ],
   "scripts": {
     "build": "pnpm build:plugin && pnpm build:module",
-    "build:plugin": "tsup src/index.ts --clean --dts --format esm,cjs",
+    "build:plugin": "tsup src/index.ts --dts --format esm,cjs",
     "build:module": "nuxt-module-build build --outDir dist/nuxt",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
