@@ -65,6 +65,12 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
           { text: 'Advanced Usage', link: '/guide/advanced' },
         ],
       },
+      {
+        text: 'Frameworks',
+        items: [
+          { text: 'Nuxt', link: '/frameworks/nuxt' },
+        ],
+      },
     ],
     footer: {
       message: 'Released under the MIT License.',
