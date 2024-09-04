@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Prepare playground
+        run: pnpm dev:prepare
+
       - name: Build package
         run: pnpm build
 
