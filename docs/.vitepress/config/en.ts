@@ -18,6 +18,7 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
         text: 'Frameworks',
         items: [
           { text: 'Nuxt', link: '/frameworks/nuxt' },
+          { text: 'Other Frameworks', link: '/frameworks/others' },
         ],
       },
       {
@@ -69,6 +70,7 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
         text: 'Frameworks',
         items: [
           { text: 'Nuxt', link: '/frameworks/nuxt' },
+          { text: 'Other Frameworks', link: '/frameworks/others' },
         ],
       },
     ],
