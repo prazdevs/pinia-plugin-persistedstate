@@ -149,10 +149,10 @@ export const useStore = defineStore('main', {
 
 The module accepts some options defined in `nuxt.config.ts` under the `piniaPluginPersistedstate` key:
 
-- `storage`
 - [`cookieOptions`](#cookies)
 - `debug`
 - [`key`](#global-key)
+- - `storage`
 
 > [!NOTE]
 > The global storage option only accepts string values of pre-configured storages (`'cookies'`, `'localStorage'`, `'sessionStorage'`). This is due Nuxt's way of [passing module options to runtime](https://nuxt.com/docs/guide/going-further/modules#exposing-options-to-runtime).
@@ -161,9 +161,9 @@ The module accepts some options defined in `nuxt.config.ts` under the `piniaPlug
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate/nuxt'
   ],
-  piniaPersistedstate: {
+  piniaPluginPersistedstate: {
     storage: 'cookies',
     cookieOptions: {
       sameSite: 'lax',
@@ -181,9 +181,9 @@ You can provide a template string to prefix/postfix keys used globally. The prov
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate/nuxt'
   ],
-  piniaPersistedstate: {
+  piniaPluginPersistedstate: {
     key: 'prefix_%id_postfix',
   },
 })
