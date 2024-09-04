@@ -1,9 +1,3 @@
-> [!IMPORTANT]
-> With the upcoming v4, we are looking for contributors willing to help translate the documentation, especially Chinese, to improve developer experience! 🙏
-
-> [!WARNING]
-> You are currently viewing upcoming v4 of the package. If you are looking for v3, look into the [v3 branch](https://github.com/prazdevs/pinia-plugin-persistedstate/tree/v3).
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/prazdevs/pinia-plugin-persistedstate/main/docs/public/logo-dark.svg" style="width: 100px">
 </p>
@@ -15,7 +9,7 @@
   Configurable persistence and rehydration of Pinia stores.
 </p>
 <p align="center">
-  <a href="https://npmjs.com/package/pinia-plugin-persistedstate"><img src="https://img.shields.io/npm/v/pinia-plugin-persistedstate/alpha?style=flat-square&labelColor=313244&color=cba6f7" alt="npm"></a>
+  <a href="https://npmjs.com/package/pinia-plugin-persistedstate"><img src="https://img.shields.io/npm/v/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7" alt="npm"></a>
   <a href="https://bundlephobia.com/result?p=pinia-plugin-persistedstate"><img src="https://img.shields.io/bundlephobia/minzip/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7" alt="minizipped size"></a>
   <a href="https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE"><img src="https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7" alt="license"></a>
 </p>
@@ -27,7 +21,7 @@
 
 - Persist Pinia stores with a friendly API inspired by [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate).
 - Highly customizable (storage, serializer, paths picking/omitting).
-- Out of the box SSR-friendly support for [`nuxt`]().
+- Out of the box SSR-friendly support for [`Nuxt`](#usage-with-nuxt).
 - Very smol (<2kB minzipped).
 
 ## Quickstart

@@ -1,7 +1,7 @@
 {
   "name": "pinia-plugin-persistedstate",
   "type": "module",
-  "version": "4.0.0-alpha.11",
+  "version": "4.0.0",
   "packageManager": "pnpm@9.9.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
@@ -60,7 +60,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "changelogen --release",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
