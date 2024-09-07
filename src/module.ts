@@ -28,6 +28,11 @@ type ModuleOptions = Pick<PersistenceOptions, 'debug'> & {
     CookieOptions,
   'encode' | 'decode' | 'default' | 'watch' | 'readonly' | 'filter'
   >
+
+  /**
+   * Automatically persist all stores with global defaults, opt-out individually.
+   */
+  auto?: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
