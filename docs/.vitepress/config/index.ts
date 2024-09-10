@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { algolia } from './algolia'
 import { en } from './en'
-import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
 export default defineConfig({
   title: 'Pinia Plugin Persistedstate',
@@ -38,7 +38,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      groupIconVitePlugin()
+      groupIconVitePlugin(),
     ],
   },
   themeConfig: {
