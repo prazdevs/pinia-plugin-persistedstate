@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { algolia } from './algolia'
 import { en } from './en'
 
@@ -31,6 +32,14 @@ export default defineConfig({
       dark: 'catppuccin-mocha',
       light: 'catppuccin-latte',
     },
+    config(md) {
+      md.use(groupIconMdPlugin)
+    },
+  },
+  vite: {
+    plugins: [
+      groupIconVitePlugin(),
+    ],
   },
   themeConfig: {
     logo: {

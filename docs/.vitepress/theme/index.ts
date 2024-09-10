@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 import TwoslashClient from '@shikijs/vitepress-twoslash/client'
 import '@shikijs/vitepress-twoslash/style.css'
 import './style.css'
+import 'virtual:group-icons.css'
 
 export default {
   extends: DefaultTheme,
