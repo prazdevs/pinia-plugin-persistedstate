@@ -1,5 +1,22 @@
 # Changelog
 
+## v4.0.1
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.0.0...v4.0.1)
+
+### 🩹 Fixes
+
+- Augment `@nuxt/schema` rather than `nuxt/schema` ([#330](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/330))
+
+### 📖 Documentation
+
+- Add group icon plugin ([#329](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/329))
+
+### ❤️ Contributors
+
+- Daniel Roe ([@danielroe](http://github.com/danielroe))
+- Leo ([@yuyinws](http://github.com/yuyinws))
+
 ## v4.0.0
 
 ### 🚀 Enhancements
