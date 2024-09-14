@@ -1,6 +1,6 @@
-import { deepOmitUnsafe, deepPickUnsafe } from 'deep-pick-omit'
 import type { PiniaPluginContext, StateTree, Store, StoreGeneric } from 'pinia'
 import type { Persistence, PersistenceOptions } from '../types'
+import { deepOmitUnsafe, deepPickUnsafe } from 'deep-pick-omit'
 
 function hydrateStore(
   store: Store,
