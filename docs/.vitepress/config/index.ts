@@ -38,7 +38,15 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      groupIconVitePlugin(),
+      groupIconVitePlugin({
+        customIcon: {
+          'nuxt': 'catppuccin:nuxt',
+          '.ts': 'catppuccin:typescript',
+          'pnpm': 'catppuccin:pnpm',
+          'npm': 'catppuccin:npm',
+          'yarn': 'catppuccin:yarn',
+        },
+      }),
     ],
   },
   themeConfig: {

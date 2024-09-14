@@ -204,3 +204,10 @@
 :root {
   --vp-nav-logo-height: 36px;
 }
+
+.vp-code-block-title [data-title]::before,
+.vp-code-group [data-title]::before {
+  width: 1.2em !important;
+  height: 1.2em !important;
+  margin-bottom: -0.25em !important;
+}

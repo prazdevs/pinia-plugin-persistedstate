@@ -17,8 +17,8 @@ The `pinia-plugin-persistedstate` package comes with a Nuxt module to offer an S
   ```
   :::
 
-2. Add the module to the Nuxt config (`nuxt.config.ts`):
-```ts
+1. Add the module to the Nuxt config:
+```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
@@ -152,12 +152,12 @@ The module accepts some options defined in `nuxt.config.ts` under the `piniaPlug
 - [`cookieOptions`](#cookies)
 - `debug`
 - [`key`](#global-key)
-- - `storage`
+- `storage`
 
 > [!NOTE]
 > The global storage option only accepts string values of pre-configured storages (`'cookies'`, `'localStorage'`, `'sessionStorage'`). This is due Nuxt's way of [passing module options to runtime](https://nuxt.com/docs/guide/going-further/modules#exposing-options-to-runtime).
 
-```ts{6-12}
+```ts{6-12} [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
@@ -177,7 +177,7 @@ export default defineNuxtConfig({
 
 You can provide a template string to prefix/postfix keys used globally. The provided key must include the token `%id` which will be replaced by the corresponding store's id.
 
-```ts{6}
+```ts{6} [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
