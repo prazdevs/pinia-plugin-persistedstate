@@ -73,7 +73,6 @@ function persistState(
 export function createPersistence(
   context: PiniaPluginContext,
   optionsParser: (p: PersistenceOptions) => Persistence,
-  runWithContext: (fn: () => void) => void = fn => fn(),
 ) {
   const { pinia, store, options: { persist } } = context
 
@@ -99,21 +98,21 @@ export function createPersistence(
 
   store.$hydrate = ({ runHooks = true } = {}) => {
     persistences.forEach((p) => {
-      runWithContext(() => hydrateStore(store, p, context, runHooks))
+      hydrateStore(store, p, context, runHooks)
     })
   }
 
   store.$persist = () => {
     persistences.forEach((p) => {
-      runWithContext(() => persistState(store.$state, p))
+      persistState(store.$state, p)
     })
   }
 
   persistences.forEach((p) => {
-    runWithContext(() => hydrateStore(store, p, context))
+    hydrateStore(store, p, context)
 
     store.$subscribe(
-      (_mutation, state) => runWithContext(() => persistState(state, p)),
+      (_mutation, state) => persistState(state, p),
       { detached: true },
     )
   })
