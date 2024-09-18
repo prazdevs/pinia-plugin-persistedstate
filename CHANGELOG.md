@@ -1,5 +1,28 @@
 # Changelog
 
+## v4.0.2
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.0.1...v4.0.2)
+
+### 🩹 Fixes
+
+- Infer `CookieStorageOptions` from `@nuxt/schema` rather than `nuxt/schema` ([9e77053](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/9e77053))
+- **nuxt:** Avoid calling runWithContext ([#334](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/334))
+
+### 📖 Documentation
+
+- Improve readability (code group icons + code titles) ([13b6332](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/13b6332))
+
+### 🏡 Chore
+
+- Upgrade dependencies ([ba8cd49](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/ba8cd49))
+- Upgrade dependencies ([c2ae5a0](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c2ae5a0))
+
+### ❤️ Contributors
+
+- Prazdevs <hi@praz.dev>
+- PraZ <hi@praz.dev>
+
 ## v4.0.1
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.0.0...v4.0.1)
