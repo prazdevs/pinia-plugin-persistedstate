@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { algolia } from './algolia'
 import { en } from './en'
+import { zh } from './zh'
 
 export default defineConfig({
   title: 'Pinia Plugin Persistedstate',
@@ -71,5 +72,6 @@ export default defineConfig({
       lang: 'en',
       ...en,
     },
+    zh: { label: '简体中文', ...zh }
   },
 })
