@@ -8,6 +8,22 @@ export const zh: LocaleSpecificConfig<DefaultTheme.Config> = {
       text: '建议对此页面进行更改',
       pattern: 'https://github.com/prazdevs/pinia-plugin-persistedstate/edit/main/docs/:path',
     },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+
+    outline: {
+      label: '页面导航',
+    },
+
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
     nav: [
       {
         text: '指南',
@@ -69,13 +85,13 @@ export const zh: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: '框架',
         items: [
-          { text: 'Nuxt', link: '/frameworks/nuxt' },
-          { text: '其他框架', link: '/frameworks/others' },
+          { text: 'Nuxt', link: '/zh/frameworks/nuxt' },
+          { text: '其他框架', link: '/zh/frameworks/others' },
         ],
       },
     ],
     footer: {
-      message: '在 MIT 许可证下发布。',
+      message: '基于 MIT 许可发布。',
       copyright: '版权所有 © 2021 年至今 Sacha Bouillez 及贡献者',
     },
 

@@ -47,7 +47,7 @@ export const useStore = defineStore('main', {
 
 用于引用存储中存储的反序列化数据的 Key。
 
-:::details Example
+:::details 例子
 ```ts{8} twoslash
 import { defineStore } from 'pinia'
 
@@ -71,7 +71,7 @@ export const useStore = defineStore('store', {
 
 将数据保存到 Storage 中。 必须有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 方法。
 
-:::details Example
+:::details 例子
 ```ts{8} twoslash
 import { defineStore } from 'pinia'
 
@@ -88,7 +88,7 @@ export const useStore = defineStore('store', {
 此存储将保留在 [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)中。
 :::
 
-> [!WARNING]
+> [!WARNING] 警告
 > 存储必须是同步的。更多信息请见 [限制页面](/guide/limitations.html#storage-must-be-synchronous)。
 
 ## serializer
@@ -98,7 +98,7 @@ export const useStore = defineStore('store', {
 
 自定义序列化程序，用于在持久化之前序列化数据，并在解除冻结存储之前反序列化数据。 必须有 `serialize: (value: StateTree) => string` 和 `deserialize: (value: string) => StateTree` 方法。
 
-:::details Example
+:::details 例子
 ```ts{9-11}
 import { defineStore } from 'pinia'
 import { parse, stringify } from 'zipson'
@@ -126,7 +126,7 @@ export const useStore = defineStore('store', {
 
 用于选择应持久化的内容的点表示法路径数组 `[]` 表示不持久化任何状态， `undefined` 表示持久化整个状态。
 
-:::details Example
+:::details 例子
 ```ts{12} twoslash
 import { defineStore } from 'pinia'
 
@@ -147,7 +147,7 @@ export const useStore = defineStore('store', {
 在此存储中，将保留 `save.me` 和 `saveMeToo` 。 `save.notMe` 不会持久化。
 :::
 
-> [!TIP]
+> [!TIP] 提示
 > 状态推断类型的自动补全可以帮助您选择哪些路径。
 
 ## omit
@@ -157,7 +157,7 @@ export const useStore = defineStore('store', {
 
 要从应持久化的内容中省略的点表示法路径数组。 `[]` 或 `undefined` 表示整个状态持续存在（不遗漏任何内容）。
 
-:::details Example
+:::details 例子
 ```ts{12} twoslash
 import { defineStore } from 'pinia'
 
@@ -178,7 +178,7 @@ export const useStore = defineStore('store', {
 在这个存储中，只有 `ignore.notMe` 值将被持久化。`ignore.me` 和 `ignoreMeToo` 不会被保留。
 :::
 
-> [!TIP]
+> [!TIP] 提示
 > 状态推断类型的自动补全可以帮助您确定可以省略哪些路径。
 
 ## beforeHydrate
@@ -186,9 +186,9 @@ export const useStore = defineStore('store', {
 - **类型**: `(context: PiniaPluginContext) => void`
 - **默认值**: `undefined`
 
-钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。 
+钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。
 
-:::details Example
+:::details 例子
 ```ts{8-9} twoslash
 import { defineStore } from 'pinia'
 
@@ -207,17 +207,17 @@ export const useStore = defineStore('store', {
 此存储将在rehydrated `about to hydrate 'store'` _之前_ 进行记录。
 :::
 
-> [!WARNING]
-> 当心与 `PiniaPluginContext` 交互，可能会发生意外行为。 
+> [!WARNING] 警告
+> 当心与 `PiniaPluginContext` 交互，可能会发生意外行为。
 
 ## afterHydrate
 
 - **类型**: `(context: PiniaPluginContext) => void`
 - **默认值**: `undefined`
 
-钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。 
+钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。
 
-:::details Example
+:::details 例子
 ```ts{8-9} twoslash
 import { defineStore } from 'pinia'
 
@@ -236,7 +236,7 @@ export const useStore = defineStore('store', {
 此存储将在rehydrated `about to hydrate 'store'` _之前_ 进行记录。
 :::
 
-> [!WARNING]
+> [!WARNING] 警告
 > 当心与 `PiniaPluginContext` 交互，可能会发生意外行为。
 
 ## debug
@@ -246,5 +246,5 @@ export const useStore = defineStore('store', {
 
 如果设置为 true，则在 persisting/hydrating stores 时可能发生的任何错误都将记录为  `console.error`。
 
-> [!WARNING]
+> [!WARNING] 警告
 > 不进行环境检查： 如果启用此选项，生产中也会记录错误。

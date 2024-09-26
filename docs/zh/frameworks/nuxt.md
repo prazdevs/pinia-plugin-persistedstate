@@ -1,4 +1,4 @@
-# Usage with Nuxt
+# 在 Nuxt 中使用
 
 该软件包 `pinia-plugin-persistedstate` 附带一个 Nuxt 模块，可提供开箱即用的 SSR 友好体验。
 
@@ -74,7 +74,7 @@ Nuxt 模块预配置了以下内容：
 
 您可以通过使用自动导入的 `piniaPluginPersistedstate` 变量下的可用存储来配置要使用的存储。
 
-> [!WARNING]
+> [!WARNING] 警告
 > 使用 `persistedState` 公开的存储之外的其他存储可能会出现意外行为。
 
 ### `cookies`
@@ -94,7 +94,7 @@ export const useStore = defineStore('main', {
 })
 ```
 
-> [!TIP]
+> [!TIP] 提示
 > `persistedState.Cookies` 方法接受一个对象参数来配置带有以下选项的cookie(从Nuxt的 `useCookie` 继承而来):
 >  - [`domain`](https://nuxt.com/docs/api/composables/use-cookie#domain)
 >  - [`expires`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
@@ -122,7 +122,7 @@ export const useStore = defineStore('main', {
 })
 ```
 
-> [!WARNING]
+> [!WARNING] 警告
 > `localStorage` 仅限客户端。
 
 ### `sessionStorage`
@@ -142,10 +142,10 @@ export const useStore = defineStore('main', {
 })
 ```
 
-> [!WARNING]
+> [!WARNING] 警告
 > `sessionStorage` 仅限客户端。
 
-## Global options
+## 全局选项
 
 该模块接受在 `piniaPluginPersistedstate` key下的 `nuxt.config.ts` 中定义的一些选项:
 
