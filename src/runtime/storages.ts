@@ -58,9 +58,54 @@ function sessionStorage(): StorageLike {
   }
 }
 
+/**
+ * IndexedDB-based storage.
+ * Warning: only works client-side.
+ */
+import { openDB } from 'idb';
+const DB_NAME = 'piniapersisted';
+const STORE_NAME = 'piniapersisted';
+const VERSION = 1;
+
+// Get and/or create the database
+async function initDB() {
+  return openDB(DB_NAME, VERSION, {
+    upgrade(db) {
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME);
+      }
+    },
+  });
+}
+
+function indexedDBStorage() {
+  return {
+    getItem: async (key) => {
+      if (import.meta.client) {
+        const db = await initDB();
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const store = tx.objectStore(STORE_NAME);
+        const result = await store.get(key);
+        await tx.done;
+        return result || null;
+      }
+      return null;
+    },
+    setItem: async (key, value) => {
+      if (import.meta.client) {
+        const db = await initDB();
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        await store.put(value, key);
+        await tx.done;
+      }
+    },
+  };
+}
+
 export const storages = {
   cookies,
   localStorage,
   sessionStorage,
-
+  indexedDBStorage,
 }
