@@ -83,7 +83,7 @@ export default defineNuxtConfig({
 })
 ```
 
-More information on storages and configuration in Nuxt [here](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3).
+More information on storages and configuration in Nuxt [here](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt).
 
 ## Limitations
 
