@@ -1,5 +1,17 @@
 # Changelog
 
+## v4.1.1
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.0...v4.1.1)
+
+### 🩹 Fixes
+
+- Bump deep-pick-omit to 1.2.1 (fixes falsy value persistence) ([7be6b42](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/7be6b42))
+
+### ❤️ Contributors
+
+- Prazdevs <hi@praz.dev>
+
 ## v4.1.0
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.0.2...v4.1.0)
