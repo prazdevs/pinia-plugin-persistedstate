@@ -73,8 +73,9 @@ function persistState(
 export function createPersistence(
   context: PiniaPluginContext,
   optionsParser: (p: PersistenceOptions) => Persistence,
+  auto: boolean,
 ) {
-  const { pinia, store, options: { persist } } = context
+  const { pinia, store, options: { persist = auto } } = context
 
   if (!persist)
     return
