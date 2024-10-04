@@ -7,8 +7,8 @@ This plugin was born in the early days of Pinia, before it officially replaced [
 Short answer: "_no_". There are a lot of solutions to persist store data in storages such as `localStorage` that don't even involve injecting a plugin into Pinia. Here is an example using [VueUse](https://vueuse.org/)'s `useLocalStorage` :
 
 ```ts
-import { defineStore } from 'pinia'
 import { useLocalStorage } from '@vueuse/core'
+import { defineStore } from 'pinia'
 
 defineStore('store', () => {
   const someState = useLocalStorage('stored-state', 'initialValue')

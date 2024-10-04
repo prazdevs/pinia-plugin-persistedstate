@@ -1,11 +1,10 @@
-import { destr } from 'destr'
 import type { Pinia, PiniaPluginContext } from 'pinia'
+import { defineNuxtPlugin, useRuntimeConfig } from '#app'
+import { destr } from 'destr'
 import { createPersistence } from './core'
 import { storages } from './storages'
-import { defineNuxtPlugin, useNuxtApp, useRuntimeConfig } from '#app'
 
 function piniaPlugin(context: PiniaPluginContext) {
-  const nuxtApp = useNuxtApp()
   const config = useRuntimeConfig()
   const options = config.public.piniaPluginPersistedstate
 
@@ -31,7 +30,6 @@ function piniaPlugin(context: PiniaPluginContext) {
       omit: p.omit,
     }),
     options.auto ?? false,
-    nuxtApp.runWithContext,
   )
 }
 

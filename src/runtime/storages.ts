@@ -1,4 +1,4 @@
-import type { PublicRuntimeConfig } from 'nuxt/schema'
+import type { PublicRuntimeConfig } from '@nuxt/schema'
 import type { StorageLike } from '../types'
 import { useCookie } from '#app'
 

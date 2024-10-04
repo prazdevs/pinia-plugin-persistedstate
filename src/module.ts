@@ -1,3 +1,5 @@
+import type { CookieOptions } from 'nuxt/app'
+import type { PersistenceOptions } from './types'
 import {
   addImports,
   addPlugin,
@@ -7,8 +9,6 @@ import {
   useLogger,
 } from '@nuxt/kit'
 import { defu } from 'defu'
-import type { CookieOptions } from 'nuxt/app'
-import type { PersistenceOptions } from './types'
 
 type ModuleOptions = Pick<PersistenceOptions, 'debug'> & {
   /**
@@ -68,7 +68,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
 })
 
-declare module 'nuxt/schema' {
+declare module '@nuxt/schema' {
   interface PublicRuntimeConfig {
     piniaPluginPersistedstate: ModuleOptions
   }

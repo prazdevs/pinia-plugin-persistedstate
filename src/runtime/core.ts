@@ -1,6 +1,6 @@
-import { deepOmitUnsafe, deepPickUnsafe } from 'deep-pick-omit'
 import type { PiniaPluginContext, StateTree, Store, StoreGeneric } from 'pinia'
 import type { Persistence, PersistenceOptions } from '../types'
+import { deepOmitUnsafe, deepPickUnsafe } from 'deep-pick-omit'
 
 function hydrateStore(
   store: Store,
@@ -74,7 +74,6 @@ export function createPersistence(
   context: PiniaPluginContext,
   optionsParser: (p: PersistenceOptions) => Persistence,
   auto: boolean,
-  runWithContext: (fn: () => void) => void = fn => fn(),
 ) {
   const { pinia, store, options: { persist = auto } } = context
 
@@ -100,21 +99,21 @@ export function createPersistence(
 
   store.$hydrate = ({ runHooks = true } = {}) => {
     persistences.forEach((p) => {
-      runWithContext(() => hydrateStore(store, p, context, runHooks))
+      hydrateStore(store, p, context, runHooks)
     })
   }
 
   store.$persist = () => {
     persistences.forEach((p) => {
-      runWithContext(() => persistState(store.$state, p))
+      persistState(store.$state, p)
     })
   }
 
   persistences.forEach((p) => {
-    runWithContext(() => hydrateStore(store, p, context))
+    hydrateStore(store, p, context)
 
     store.$subscribe(
-      (_mutation, state) => runWithContext(() => persistState(state, p)),
+      (_mutation, state) => persistState(state, p),
       { detached: true },
     )
   })
