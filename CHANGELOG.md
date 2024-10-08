@@ -1,5 +1,39 @@
 # Changelog
 
+## v4.1.1
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.0...v4.1.1)
+
+### 🩹 Fixes
+
+- Bump deep-pick-omit to 1.2.1 (fixes falsy value persistence) ([7be6b42](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/7be6b42))
+
+### ❤️ Contributors
+
+- Prazdevs <hi@praz.dev>
+
+## v4.1.0
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.0.2...v4.1.0)
+
+### 🚀 Enhancements
+
+- Auto mode ([#327](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/327))
+
+### 📖 Documentation
+
+- Update Nuxt links in README.md ([#340](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/340))
+
+### 🏡 Chore
+
+- Upgrade dependencies ([e1c0036](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/e1c0036))
+
+### ❤️ Contributors
+
+- Prazdevs <hi@praz.dev>
+- PraZ <hi@praz.dev>
+- Charlie ✨ ([@MIGU-EDU](http://github.com/MIGU-EDU))
+
 ## v4.0.2
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.0.1...v4.0.2)
