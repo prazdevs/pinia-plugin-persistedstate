@@ -72,6 +72,6 @@ export default defineConfig({
       lang: 'en',
       ...en,
     },
-    zh: { label: '简体中文', ...zh }
+    zh: { label: '简体中文', ...zh },
   },
 })

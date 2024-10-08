@@ -6,7 +6,6 @@
 
 在提供自定义[`storage`](/guide/config#storage)时，其方法必须是同步的。这是因为 Pinia 的状态订阅 ([`$subscribe`](https://pinia.vuejs.org/core-concepts/state#Subscribing-to-the-state)) 是同步的。
 
-
 :::tip Workaround
 要添加异步行为（例如使用异步存储），您可以尝试 [订阅操作 (`$onAction`)](https://pinia.vuejs.org/core-concepts/actions.html#Subscribing-to-actions).
 :::
