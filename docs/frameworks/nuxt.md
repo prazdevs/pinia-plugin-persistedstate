@@ -105,6 +105,9 @@ export const useStore = defineStore('main', {
 >  - [`sameSite`](https://nuxt.com/docs/api/composables/use-cookie#samesite)
 >  - [`secure`](https://nuxt.com/docs/api/composables/use-cookie#secure)
 
+> [!WARNING]
+> Be careful when saving stores with a lot of data as cookie size is **limited to 4098 bytes**. More on cookie storage in [the MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#data_storage).
+
 ### `localStorage`
 
 ```ts{10}
