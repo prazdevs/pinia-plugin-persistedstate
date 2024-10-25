@@ -1,5 +1,27 @@
 # Changelog
 
+## v4.1.2
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.1...v4.1.2)
+
+### 📖 Documentation
+
+- Add Chinese translation ([#338](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/338))
+- Add cookie max size info ([#343](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/343))
+
+### 📦 Build
+
+- Export iife build ([#349](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/349))
+
+### 🏡 Chore
+
+- Bump dependencies & lint ([3418005](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/3418005))
+
+### ❤️ Contributors
+
+- PraZ ([@prazdevs](http://github.com/prazdevs))
+- Chong Li ([@TIX007](http://github.com/TIX007))
+
 ## v4.1.1
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.0...v4.1.1)
@@ -10,7 +32,7 @@
 
 ### ❤️ Contributors
 
-- Prazdevs <hi@praz.dev>
+- PraZ ([@prazdevs](http://github.com/prazdevs))
 
 ## v4.1.0
 
@@ -30,8 +52,7 @@
 
 ### ❤️ Contributors
 
-- Prazdevs <hi@praz.dev>
-- PraZ <hi@praz.dev>
+- PraZ ([@prazdevs](http://github.com/prazdevs))
 - Charlie ✨ ([@MIGU-EDU](http://github.com/MIGU-EDU))
 
 ## v4.0.2
@@ -54,8 +75,7 @@
 
 ### ❤️ Contributors
 
-- Prazdevs <hi@praz.dev>
-- PraZ <hi@praz.dev>
+- PraZ ([@prazdevs](http://github.com/prazdevs))
 
 ## v4.0.1
 
@@ -126,7 +146,7 @@
 
 ### ❤️ Contributors
 
-- Prazdevs <hi@praz.dev>
+- PraZ ([@prazdevs](http://github.com/prazdevs))
 
 ***
 
