@@ -224,7 +224,7 @@ export const useStore = defineStore('store', {
 - **类型**: `(context: PiniaPluginContext) => void`
 - **默认值**: `undefined`
 
-钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。
+钩子函数在用持久化数据激活 store state 之后运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之后执行特定的操作。
 
 :::details 例子
 
