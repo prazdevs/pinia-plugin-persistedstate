@@ -25,11 +25,13 @@ const b = a
 ```
 
 Before serialization, `a` and `b` point to the same object:
+
 ```ts
 a === b // -> true
 ```
 
 After deserialization, `a` and `b` are two different objects with the same content:
+
 ```ts
 a === b // -> false
 ```
@@ -46,6 +48,7 @@ Due to the serialization process, non-primitive types such as `Date` are not reh
 
 :::tip Workaround
 To get around this you can:
+
 - Use the [`afterHydrate`](/guide/config#afterhydrate) hook to recreate the objects after rehydration.
 - Use a custom [`serializer`](/guide/config#serializer) that supports the data types you want to persist.
-:::
+  :::

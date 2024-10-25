@@ -27,11 +27,13 @@
 ## Quickstart
 
 1. Install with your favorite package manager:
+
    - **pnpm** : `pnpm add pinia-plugin-persistedstate`
    - npm : `npm i pinia-plugin-persistedstate`
    - yarn : `yarn add pinia-plugin-persistedstate`
 
 2. Add the plugin to pinia:
+
 ```ts
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -41,6 +43,7 @@ pinia.use(piniaPluginPersistedstate)
 ```
 
 3. Add the `persist` option to the store you want to be persisted:
+
 ```ts
 import { defineStore } from 'pinia'
 

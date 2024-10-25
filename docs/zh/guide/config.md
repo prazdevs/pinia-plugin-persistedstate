@@ -13,6 +13,7 @@
 您可以向存储的`persist`属性传递一个对象来配置持久性。
 
 ::: code-group
+
 ```ts [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -26,6 +27,7 @@ export const useStore = defineStore('main', () => {
   }
 })
 ```
+
 ```ts [option syntax]
 import { defineStore } from 'pinia'
 
@@ -38,6 +40,7 @@ export const useStore = defineStore('main', {
   },
 })
 ```
+
 :::
 
 ## key
@@ -48,6 +51,7 @@ export const useStore = defineStore('main', {
 用于引用存储中存储的反序列化数据的 Key。
 
 :::details 例子
+
 ```ts{8} twoslash
 import { defineStore } from 'pinia'
 
@@ -72,6 +76,7 @@ export const useStore = defineStore('store', {
 将数据保存到 Storage 中。 必须有 `getItem: (key: string) => string | null` 和 `setItem: (key: string, value: string) => void` 方法。
 
 :::details 例子
+
 ```ts{8} twoslash
 import { defineStore } from 'pinia'
 
@@ -99,6 +104,7 @@ export const useStore = defineStore('store', {
 自定义序列化程序，用于在持久化之前序列化数据，并在解除冻结存储之前反序列化数据。 必须有 `serialize: (value: StateTree) => string` 和 `deserialize: (value: string) => StateTree` 方法。
 
 :::details 例子
+
 ```ts{9-11}
 import { defineStore } from 'pinia'
 import { parse, stringify } from 'zipson'
@@ -127,6 +133,7 @@ export const useStore = defineStore('store', {
 用于选择应持久化的内容的点表示法路径数组 `[]` 表示不持久化任何状态， `undefined` 表示持久化整个状态。
 
 :::details 例子
+
 ```ts{12} twoslash
 import { defineStore } from 'pinia'
 
@@ -158,6 +165,7 @@ export const useStore = defineStore('store', {
 要从应持久化的内容中省略的点表示法路径数组。 `[]` 或 `undefined` 表示整个状态持续存在（不遗漏任何内容）。
 
 :::details 例子
+
 ```ts{12} twoslash
 import { defineStore } from 'pinia'
 
@@ -189,6 +197,7 @@ export const useStore = defineStore('store', {
 钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。
 
 :::details 例子
+
 ```ts{8-9} twoslash
 import { defineStore } from 'pinia'
 
@@ -218,6 +227,7 @@ export const useStore = defineStore('store', {
 钩子函数在用持久化数据激活 store state 之前运行。这个钩子可以访问整个 [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html)。 这可以用来在hydration作用之前执行特定的操作。
 
 :::details 例子
+
 ```ts{8-9} twoslash
 import { defineStore } from 'pinia'
 
@@ -244,7 +254,7 @@ export const useStore = defineStore('store', {
 - **类型**: `boolean`
 - **默认值**: `false`
 
-如果设置为 true，则在 persisting/hydrating stores 时可能发生的任何错误都将记录为  `console.error`。
+如果设置为 true，则在 persisting/hydrating stores 时可能发生的任何错误都将记录为 `console.error`。
 
 > [!WARNING] 警告
 > 不进行环境检查： 如果启用此选项，生产中也会记录错误。

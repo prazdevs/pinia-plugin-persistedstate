@@ -20,6 +20,7 @@ pinia.use(createPersistedState({
 In this example, every store declaring `persist: true` will by default persist data to `sessionStorage`.
 
 Available global options include:
+
 - [`storage`](/guide/config#storage)
 - [`serializer`](/guide/config#serializer)
 - [`debug`](/guide/config#debug)

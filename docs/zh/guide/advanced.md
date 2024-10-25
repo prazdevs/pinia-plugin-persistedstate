@@ -20,6 +20,7 @@ pinia.use(createPersistedState({
 在此示例中，每个声明 `persist: true` 的存储将默认地将数据保存到 `sessionStorage` 中。
 
 可用的全局选项包括：
+
 - [`storage`](/guide/config#storage)
 - [`serializer`](/guide/config#serializer)
 - [`debug`](/guide/config#debug)

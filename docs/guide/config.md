@@ -13,6 +13,7 @@ The plugin comes pre-configured with the following:
 You can pass an object to the `persist` property of the store to configure the persistence.
 
 ::: code-group
+
 ```ts [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -26,6 +27,7 @@ export const useStore = defineStore('main', () => {
   }
 })
 ```
+
 ```ts [option syntax]
 import { defineStore } from 'pinia'
 
@@ -38,6 +40,7 @@ export const useStore = defineStore('main', {
   },
 })
 ```
+
 :::
 
 ## key
@@ -48,6 +51,7 @@ export const useStore = defineStore('main', {
 Key used to reference the stored deserialized data in the storage.
 
 :::details Example
+
 ```ts{8} twoslash
 import { defineStore } from 'pinia'
 
@@ -72,6 +76,7 @@ This store will be persisted under the `my-custom-key` key in `localStorage`.
 Storage to persist the data to. Must have `getItem: (key: string) => string | null` and `setItem: (key: string, value: string) => void` methods.
 
 :::details Example
+
 ```ts{8} twoslash
 import { defineStore } from 'pinia'
 
@@ -99,6 +104,7 @@ This store will be persisted in [`sessionStorage`](https://developer.mozilla.org
 Custom serializer to serialize data before persisted and deserialize data before rehydrating the store. Must have `serialize: (value: StateTree) => string` and `deserialize: (value: string) => StateTree` methods.
 
 :::details Example
+
 ```ts{9-11}
 import { defineStore } from 'pinia'
 import { parse, stringify } from 'zipson'
@@ -127,6 +133,7 @@ This store will use [`zipson`](https://jgranstrom.github.io/zipson/)'s `stringif
 Array of dot-notation paths to pick what should be persisted. `[]` means no state is persisted and `undefined` means the whole state is persisted.
 
 :::details Example
+
 ```ts{12} twoslash
 import { defineStore } from 'pinia'
 
@@ -158,6 +165,7 @@ In this store, only `save.me` and `saveMeToo` values will be persisted. `save.no
 Array of dot-notation paths to omit from what should be persisted. `[]` or `undefined` means the whole state persisted (nothing is omitted).
 
 :::details Example
+
 ```ts{12} twoslash
 import { defineStore } from 'pinia'
 
@@ -189,6 +197,7 @@ In this store, only `ignore.notMe` value will be persisted. `ignore.me` and `ign
 Hook function run before hydrating a store state with persisted data. The hook gives access to the whole [`PiniaPluginContext`](https://pinia.vuejs.org/api/pinia/interfaces/PiniaPluginContext.html). This can be used to enforce specific actions before hydration.
 
 :::details Example
+
 ```ts{8-9} twoslash
 import { defineStore } from 'pinia'
 
@@ -218,6 +227,7 @@ This store will log `about to hydrate 'store'` _before_ being rehydrated.
 Hook function run after rehydrating a persisted state. The hook gives access to the whole [`PiniaPluginContext`](https://pinia.vuejs.org/api/interfaces/pinia.PiniaPluginContext.html). This can be used to enforce specific actions after hydration.
 
 :::details Example
+
 ```ts{8-9} twoslash
 import { defineStore } from 'pinia'
 

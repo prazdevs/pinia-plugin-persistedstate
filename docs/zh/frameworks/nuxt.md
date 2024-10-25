@@ -5,19 +5,24 @@
 ## 安装
 
 1. 使用你喜欢的包管理器安装依赖项：
-  ::: code-group
-  ```sh [pnpm]
-  pnpm add pinia-plugin-persistedstate
-  ```
-  ```sh [npm]
-  npm i pinia-plugin-persistedstate
-  ```
-  ```sh [yarn]
-  yarn add pinia-plugin-persistedstate
-  ```
-  :::
+   ::: code-group
+
+```sh [pnpm]
+pnpm add pinia-plugin-persistedstate
+```
+
+```sh [npm]
+npm i pinia-plugin-persistedstate
+```
+
+```sh [yarn]
+yarn add pinia-plugin-persistedstate
+```
+
+:::
 
 1. 将模块添加到 Nuxt 配置中：
+
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: [
@@ -32,6 +37,7 @@ export default defineNuxtConfig({
 在声明您的存储时，将新的 `persist` 选项设置为 `true`。
 
 ::: code-group
+
 ```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -47,6 +53,7 @@ export const useStore = defineStore(
   },
 )
 ```
+
 ```ts{9} [option syntax]
 import { defineStore } from 'pinia'
 
@@ -59,6 +66,7 @@ export const useStore = defineStore('main', {
   persist: true,
 })
 ```
+
 :::
 
 ## 预配置
@@ -96,14 +104,15 @@ export const useStore = defineStore('main', {
 
 > [!TIP] 提示
 > `persistedState.Cookies` 方法接受一个对象参数来配置带有以下选项的cookie(从Nuxt的 `useCookie` 继承而来):
->  - [`domain`](https://nuxt.com/docs/api/composables/use-cookie#domain)
->  - [`expires`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
->  - [`httpOnly`](https://nuxt.com/docs/api/composables/use-cookie#httponly)
->  - [`maxAge`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
->  - [`partitioned`](https://nuxt.com/docs/api/composables/use-cookie#partitioned)
->  - [`path`](https://nuxt.com/docs/api/composables/use-cookie#path)
->  - [`sameSite`](https://nuxt.com/docs/api/composables/use-cookie#samesite)
->  - [`secure`](https://nuxt.com/docs/api/composables/use-cookie#secure)
+>
+> - [`domain`](https://nuxt.com/docs/api/composables/use-cookie#domain)
+> - [`expires`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
+> - [`httpOnly`](https://nuxt.com/docs/api/composables/use-cookie#httponly)
+> - [`maxAge`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
+> - [`partitioned`](https://nuxt.com/docs/api/composables/use-cookie#partitioned)
+> - [`path`](https://nuxt.com/docs/api/composables/use-cookie#path)
+> - [`sameSite`](https://nuxt.com/docs/api/composables/use-cookie#samesite)
+> - [`secure`](https://nuxt.com/docs/api/composables/use-cookie#secure)
 
 ### `localStorage`
 

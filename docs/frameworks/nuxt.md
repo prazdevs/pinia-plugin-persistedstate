@@ -5,19 +5,24 @@ The `pinia-plugin-persistedstate` package comes with a Nuxt module to offer an S
 ## Installation
 
 1. Install the dependency with your favorite package manager:
-  ::: code-group
-  ```sh [pnpm]
-  pnpm add pinia-plugin-persistedstate
-  ```
-  ```sh [npm]
-  npm i pinia-plugin-persistedstate
-  ```
-  ```sh [yarn]
-  yarn add pinia-plugin-persistedstate
-  ```
-  :::
+   ::: code-group
+
+```sh [pnpm]
+pnpm add pinia-plugin-persistedstate
+```
+
+```sh [npm]
+npm i pinia-plugin-persistedstate
+```
+
+```sh [yarn]
+yarn add pinia-plugin-persistedstate
+```
+
+:::
 
 1. Add the module to the Nuxt config:
+
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: [
@@ -32,6 +37,7 @@ export default defineNuxtConfig({
 When declaring your store, set the new `persist` option to `true`.
 
 ::: code-group
+
 ```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -47,6 +53,7 @@ export const useStore = defineStore(
   },
 )
 ```
+
 ```ts{9} [option syntax]
 import { defineStore } from 'pinia'
 
@@ -59,6 +66,7 @@ export const useStore = defineStore('main', {
   persist: true,
 })
 ```
+
 :::
 
 ## Defaults
@@ -96,14 +104,15 @@ export const useStore = defineStore('main', {
 
 > [!TIP]
 > The `persistedState.cookies` method accept an object parameter to configure cookies with the following options (inherited from Nuxt's `useCookie`):
->  - [`domain`](https://nuxt.com/docs/api/composables/use-cookie#domain)
->  - [`expires`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
->  - [`httpOnly`](https://nuxt.com/docs/api/composables/use-cookie#httponly)
->  - [`maxAge`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
->  - [`partitioned`](https://nuxt.com/docs/api/composables/use-cookie#partitioned)
->  - [`path`](https://nuxt.com/docs/api/composables/use-cookie#path)
->  - [`sameSite`](https://nuxt.com/docs/api/composables/use-cookie#samesite)
->  - [`secure`](https://nuxt.com/docs/api/composables/use-cookie#secure)
+>
+> - [`domain`](https://nuxt.com/docs/api/composables/use-cookie#domain)
+> - [`expires`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
+> - [`httpOnly`](https://nuxt.com/docs/api/composables/use-cookie#httponly)
+> - [`maxAge`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
+> - [`partitioned`](https://nuxt.com/docs/api/composables/use-cookie#partitioned)
+> - [`path`](https://nuxt.com/docs/api/composables/use-cookie#path)
+> - [`sameSite`](https://nuxt.com/docs/api/composables/use-cookie#samesite)
+> - [`secure`](https://nuxt.com/docs/api/composables/use-cookie#secure)
 
 > [!WARNING]
 > Be careful when saving stores with a lot of data as cookie size is **limited to 4098 bytes**. More on cookie storage in [the MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#data_storage).
@@ -125,8 +134,7 @@ export const useStore = defineStore('main', {
 })
 ```
 
-> [!WARNING]
-> `localStorage` is client side only.
+> [!WARNING] > `localStorage` is client side only.
 
 ### `sessionStorage`
 
@@ -145,8 +153,7 @@ export const useStore = defineStore('main', {
 })
 ```
 
-> [!WARNING]
-> `sessionStorage` is client side only.
+> [!WARNING] > `sessionStorage` is client side only.
 
 ## Global options
 

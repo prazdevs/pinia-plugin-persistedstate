@@ -16,19 +16,24 @@ This plugin is compatible with `pinia>=2.0.0`, make sure you have [Pinia install
 ## Installation
 
 1. Install the dependency with your favorite package manager:
-  ::: code-group
-  ```sh [pnpm]
-  pnpm add pinia-plugin-persistedstate
-  ```
-  ```sh [npm]
-  npm i pinia-plugin-persistedstate
-  ```
-  ```sh [yarn]
-  yarn add pinia-plugin-persistedstate
-  ```
-  :::
+   ::: code-group
+
+```sh [pnpm]
+pnpm add pinia-plugin-persistedstate
+```
+
+```sh [npm]
+npm i pinia-plugin-persistedstate
+```
+
+```sh [yarn]
+yarn add pinia-plugin-persistedstate
+```
+
+:::
 
 2. Add the plugin to your pinia instance:
+
 ```ts
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -42,6 +47,7 @@ pinia.use(piniaPluginPersistedstate)
 When declaring your store, set the new `persist` option to `true`.
 
 ::: code-group
+
 ```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -57,6 +63,7 @@ export const useStore = defineStore(
   },
 )
 ```
+
 ```ts{9} [option syntax]
 import { defineStore } from 'pinia'
 
@@ -69,6 +76,7 @@ export const useStore = defineStore('main', {
   persist: true,
 })
 ```
+
 :::
 
 Your whole store will now be saved with the [default persistence settings](/guide/config).

@@ -16,19 +16,24 @@
 ## 安装
 
 1. 用您喜欢的软件包管理器安装依赖项：
-  ::: code-group
-  ```sh [pnpm]
-  pnpm add pinia-plugin-persistedstate
-  ```
-  ```sh [npm]
-  npm i pinia-plugin-persistedstate
-  ```
-  ```sh [yarn]
-  yarn add pinia-plugin-persistedstate
-  ```
-  :::
+   ::: code-group
+
+```sh [pnpm]
+pnpm add pinia-plugin-persistedstate
+```
+
+```sh [npm]
+npm i pinia-plugin-persistedstate
+```
+
+```sh [yarn]
+yarn add pinia-plugin-persistedstate
+```
+
+:::
 
 2. 将插件添加到你的 pinia 实例中：
+
 ```ts
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -42,6 +47,7 @@ pinia.use(piniaPluginPersistedstate)
 在声明您的store时，请将新`persist`选项设置为 `true`。
 
 ::: code-group
+
 ```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -57,6 +63,7 @@ export const useStore = defineStore(
   },
 )
 ```
+
 ```ts{9} [option syntax]
 import { defineStore } from 'pinia'
 
@@ -69,6 +76,7 @@ export const useStore = defineStore('main', {
   persist: true,
 })
 ```
+
 :::
 
 您的整个 store 现在将使用 [默认的持久性设置](/guide/config)进行保存。

@@ -25,11 +25,13 @@ const b = a
 ```
 
 在序列化之前，`a` 和 `b` 指向同一个对象:
+
 ```ts
 a === b // -> true
 ```
 
 在反序列化之后，`a` 和 `b` 是具有相同内容的两个不同的对象:
+
 ```ts
 a === b // -> false
 ```
@@ -37,7 +39,7 @@ a === b // -> false
 因此,`a` 和 `b` 之间的响应式丧失。
 
 :::tip Workaround
-要解决这个问题，您可以从持久化中排除 `a` 或 `b` (使用[`pick`](/guide/config#pick)选项)并使用[` afterHydrate `](/guide/config#afterhydrate)钩子在hydration后重新填充它们。这样, `a` 和 `b` 再次具有相同的参照，响应式恢复。
+要解决这个问题，您可以从持久化中排除 `a` 或 `b` (使用[`pick`](/guide/config#pick)选项)并使用[`afterHydrate`](/guide/config#afterhydrate)钩子在hydration后重新填充它们。这样, `a` 和 `b` 再次具有相同的参照，响应式恢复。
 :::
 
 ## 非基本数据类型不持久化
@@ -46,6 +48,7 @@ a === b // -> false
 
 :::tip Workaround
 要解决此问题，您可以：
+
 - 使用 [`afterHydrate`](/guide/config#afterhydrate) 钩子在rehydration后重新创建对象。
 - 使用支持要保持的数据类型 [`serializer`](/guide/config#serializer) 。
-:::
+  :::
