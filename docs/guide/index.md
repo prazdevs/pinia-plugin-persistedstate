@@ -16,7 +16,8 @@ This plugin is compatible with `pinia>=2.0.0`, make sure you have [Pinia install
 ## Installation
 
 1. Install the dependency with your favorite package manager:
-   ::: code-group
+
+::: code-group
 
 ```sh [pnpm]
 pnpm add pinia-plugin-persistedstate

@@ -16,7 +16,8 @@
 ## 安装
 
 1. 用您喜欢的软件包管理器安装依赖项：
-   ::: code-group
+
+::: code-group
 
 ```sh [pnpm]
 pnpm add pinia-plugin-persistedstate

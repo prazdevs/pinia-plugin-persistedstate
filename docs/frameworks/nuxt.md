@@ -5,7 +5,8 @@ The `pinia-plugin-persistedstate` package comes with a Nuxt module to offer an S
 ## Installation
 
 1. Install the dependency with your favorite package manager:
-   ::: code-group
+
+::: code-group
 
 ```sh [pnpm]
 pnpm add pinia-plugin-persistedstate
