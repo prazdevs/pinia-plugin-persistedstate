@@ -1,5 +1,27 @@
 # Changelog
 
+## v4.1.3
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.2...v4.1.3)
+
+### 📖 Documentation
+
+- Fix the afterHydrate describe ([#350](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/350))
+- Fix install script groups ([2bd0f25](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/2bd0f25))
+
+### 📦 Build
+
+- Bundle iife and umd with rollup ([fcad302](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fcad302))
+
+### 🏡 Chore
+
+- Bump dependencies ([76df472](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/76df472))
+
+### ❤️ Contributors
+
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
+- Erian ([@catcoal](http://github.com/catcoal))
+
 ## v4.1.2
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.1...v4.1.2)
