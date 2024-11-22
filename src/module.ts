@@ -48,7 +48,7 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
     const logger = useLogger()
 
-    if (!hasNuxtModule('@pinia/nuxt', nuxt)) {
+    if (!hasNuxtModule('pinia', nuxt)) {
       logger.warn('The `@pinia/nuxt` module was not found, `pinia-plugin-persistedstate/nuxt` will not work.')
       return
     }
