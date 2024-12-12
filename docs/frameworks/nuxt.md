@@ -172,7 +172,7 @@ The module accepts some options defined in `nuxt.config.ts` under the `piniaPlug
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate'
   ],
   piniaPluginPersistedstate: {
     storage: 'cookies',
