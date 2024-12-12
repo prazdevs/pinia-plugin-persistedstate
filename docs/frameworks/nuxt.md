@@ -28,7 +28,7 @@ yarn add pinia-plugin-persistedstate
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt',
+    'pinia-plugin-persistedstate',
   ],
 })
 ```
@@ -172,7 +172,7 @@ The module accepts some options defined in `nuxt.config.ts` under the `piniaPlug
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate'
   ],
   piniaPluginPersistedstate: {
     storage: 'cookies',
@@ -192,7 +192,7 @@ You can provide a template string to prefix/postfix keys used globally. The prov
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate'
   ],
   piniaPluginPersistedstate: {
     key: 'prefix_%id_postfix',
