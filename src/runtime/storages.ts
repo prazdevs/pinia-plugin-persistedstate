@@ -1,6 +1,6 @@
 import type { PublicRuntimeConfig } from '@nuxt/schema'
 import type { StorageLike } from '../types'
-import { useCookie } from '#app'
+import { useCookie, useRuntimeConfig } from '#app'
 
 type CookiesStorageOptions = PublicRuntimeConfig['piniaPluginPersistedstate']['cookieOptions']
 
@@ -8,12 +8,12 @@ type CookiesStorageOptions = PublicRuntimeConfig['piniaPluginPersistedstate']['c
  * Cookie-based storage. Cookie options can be passed as parameter.
  * Uses Nuxt's `useCookie` under the hood.
  */
-function cookies(options: CookiesStorageOptions = {}): StorageLike {
+function cookies(options?: CookiesStorageOptions): StorageLike {
   return {
     getItem: key => useCookie<string | null>(
       key,
       {
-        ...options,
+        ...(options ?? useRuntimeConfig().public.piniaPluginPersistedstate.cookieOptions ?? {}),
         decode: decodeURIComponent,
         readonly: true,
       },
@@ -21,7 +21,7 @@ function cookies(options: CookiesStorageOptions = {}): StorageLike {
     setItem: (key, value) => useCookie<string>(
       key,
       {
-        ...options,
+        ...(options ?? useRuntimeConfig().public.piniaPluginPersistedstate.cookieOptions ?? {}),
         encode: encodeURIComponent,
       },
     ).value = value,
@@ -62,5 +62,4 @@ export const storages = {
   cookies,
   localStorage,
   sessionStorage,
-
 }
