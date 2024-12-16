@@ -1,5 +1,27 @@
 # Changelog
 
+## v4.2.0
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.3...v4.2.0)
+
+### 🚀 Enhancements
+
+- **nuxt:** Infer global `cookieOptions` to specified `cookie` storage without options ([3c55848](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/3c55848))
+- **nuxt:** Explicit Nuxt plugin name (`pinia-plugin-persistedstate`) ([a0a4c51](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/a0a4c51))
+
+### 🩹 Fixes
+
+- **nuxt:** Check `@pinia/nuxt` module installation by `pinia` key ([#359](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/359))
+
+### 🏡 Chore
+
+- Bump dependencies (incl. pinia^2.3.0 & @pinia/nuxt^0.9.0) ([c71d618](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/c71d618))
+
+### ❤️ Contributors
+
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
+- Donald Shtjefni ([@dnldsht](http://github.com/dnldsht))
+
 ## v4.1.3
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.2...v4.1.3)
@@ -41,7 +63,7 @@
 
 ### ❤️ Contributors
 
-- PraZ ([@prazdevs](http://github.com/prazdevs))
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
 - Chong Li ([@TIX007](http://github.com/TIX007))
 
 ## v4.1.1
@@ -54,7 +76,7 @@
 
 ### ❤️ Contributors
 
-- PraZ ([@prazdevs](http://github.com/prazdevs))
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
 
 ## v4.1.0
 
@@ -74,7 +96,7 @@
 
 ### ❤️ Contributors
 
-- PraZ ([@prazdevs](http://github.com/prazdevs))
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
 - Charlie ✨ ([@MIGU-EDU](http://github.com/MIGU-EDU))
 
 ## v4.0.2
@@ -97,7 +119,7 @@
 
 ### ❤️ Contributors
 
-- PraZ ([@prazdevs](http://github.com/prazdevs))
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
 
 ## v4.0.1
 
@@ -168,7 +190,7 @@
 
 ### ❤️ Contributors
 
-- PraZ ([@prazdevs](http://github.com/prazdevs))
+- Prazdevs ([@prazdevs](http://github.com/prazdevs))
 
 ***
 
