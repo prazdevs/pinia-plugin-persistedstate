@@ -33,6 +33,9 @@ function piniaPlugin(context: PiniaPluginContext) {
   )
 }
 
-export default defineNuxtPlugin(({ $pinia }) => {
-  ($pinia as Pinia).use(piniaPlugin)
+export default defineNuxtPlugin({
+  name: 'pinia-plugin-persistedstate',
+  setup({ $pinia }) {
+    ($pinia as Pinia).use(piniaPlugin)
+  },
 })
