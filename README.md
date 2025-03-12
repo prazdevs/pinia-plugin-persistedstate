@@ -81,7 +81,7 @@ Nuxt support comes out of the box thanks to the included module. You just need t
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt', // required
-    'pinia-plugin-persistedstate/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
 })
 ```
