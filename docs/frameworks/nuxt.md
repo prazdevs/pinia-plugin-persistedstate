@@ -90,6 +90,7 @@ export const useStore = defineStore('main', {
 > The `persistedState.cookies` method accept an object parameter to configure cookies with the following options (inherited from Nuxt's `useCookie`):
 >
 > - [`domain`](https://nuxt.com/docs/api/composables/use-cookie#domain)
+> - [`encode`](https://nuxt.com/docs/api/composables/use-cookie#encode)/[`decode`](https://nuxt.com/docs/api/composables/use-cookie#decode)
 > - [`expires`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
 > - [`httpOnly`](https://nuxt.com/docs/api/composables/use-cookie#httponly)
 > - [`maxAge`](https://nuxt.com/docs/api/composables/use-cookie#maxage-expires)
@@ -143,7 +144,7 @@ export const useStore = defineStore('main', {
 
 The module accepts some options defined in `nuxt.config.ts` under the `piniaPluginPersistedstate` key:
 
-- [`cookieOptions`](#cookies)
+- [`cookieOptions`](#cookies) (except `decode` and `encode` as functions are not supported)
 - `debug`
 - [`key`](#global-key)
 - `storage`
