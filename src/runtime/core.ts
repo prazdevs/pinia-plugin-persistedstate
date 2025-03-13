@@ -83,9 +83,9 @@ export function createPersistence(
   // HMR handling, ignore stores created as 'hot' stores
   if (!(store.$id in pinia.state.value)) {
     // @ts-expect-error `_s` is a stripped @internal
-    const originalStore: StoreGeneric = pinia._s.get(store.$id.replace('__hot:', ''))
+    const originalStore = (pinia._s as Map<string, StoreGeneric>).get(store.$id.replace('__hot:', ''))
     if (originalStore)
-      Promise.resolve().then(() => originalStore.$persist())
+      void Promise.resolve().then(() => originalStore.$persist())
     return
   }
 
