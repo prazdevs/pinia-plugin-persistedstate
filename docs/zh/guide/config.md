@@ -12,9 +12,7 @@
 
 您可以向存储的`persist`属性传递一个对象来配置持久性。
 
-::: code-group
-
-```ts [setup syntax]
+```ts{8-10}
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -27,21 +25,6 @@ export const useStore = defineStore('main', () => {
   }
 })
 ```
-
-```ts [option syntax]
-import { defineStore } from 'pinia'
-
-export const useStore = defineStore('main', {
-  state: () => ({
-    someState: 'hello pinia',
-  }),
-  persist: {
-    // CONFIG OPTIONS HERE
-  },
-})
-```
-
-:::
 
 ## key
 

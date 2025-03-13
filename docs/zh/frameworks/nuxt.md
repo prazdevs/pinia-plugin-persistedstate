@@ -37,9 +37,7 @@ export default defineNuxtConfig({
 
 在声明您的存储时，将新的 `persist` 选项设置为 `true`。
 
-::: code-group
-
-```ts{11} [setup syntax]
+```ts{11}
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -54,21 +52,6 @@ export const useStore = defineStore(
   },
 )
 ```
-
-```ts{9} [option syntax]
-import { defineStore } from 'pinia'
-
-export const useStore = defineStore('main', {
-  state: () => {
-    return {
-      someState: 'hello pinia',
-    }
-  },
-  persist: true,
-})
-```
-
-:::
 
 ## 预配置
 

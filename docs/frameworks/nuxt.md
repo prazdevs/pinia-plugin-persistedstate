@@ -37,9 +37,7 @@ export default defineNuxtConfig({
 
 When declaring your store, set the new `persist` option to `true`.
 
-::: code-group
-
-```ts{11} [setup syntax]
+```ts{11}
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -54,21 +52,6 @@ export const useStore = defineStore(
   },
 )
 ```
-
-```ts{9} [option syntax]
-import { defineStore } from 'pinia'
-
-export const useStore = defineStore('main', {
-  state: () => {
-    return {
-      someState: 'hello pinia',
-    }
-  },
-  persist: true,
-})
-```
-
-:::
 
 ## Defaults
 
@@ -201,3 +184,30 @@ export default defineNuxtConfig({
 ```
 
 Any store with `my-store` as persistence key (user-provided or infered from store id) will be persisted under the `prefix_my-store_postfix` key.
+
+## Limitations
+
+### Using `cookies` with `expires` on Cloudflare workers
+
+Due to a [limitation](https://community.cloudflare.com/t/date-in-worker-is-reporting-thu-jan-01-1970-0000-gmt-0000/236503/3) with Cloudflare workers, you cannot set a Javascript `Date` in the global worker context. As a workaround, prefer using `maxAge` instead of `expires`.
+
+```ts
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
+export const useStore = defineStore(
+  'main',
+  () => {
+    const someState = ref('hello pinia')
+    return { someState }
+  },
+  {
+    persist: piniaPluginPersistedstate.cookies({
+      // DO NOT USE - the date in cloudflare worker will return 1970-01-01 // [!code --]
+      expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // [!code --]
+      // USE THIS INSTEAD // [!code ++]
+      maxAge: 365 * 24 * 60 * 60, // [!code ++]
+    }),
+  },
+)
+```
