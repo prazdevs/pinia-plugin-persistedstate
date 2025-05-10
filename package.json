@@ -2,7 +2,7 @@
   "name": "pinia-plugin-persistedstate",
   "type": "module",
   "version": "4.2.0",
-  "packageManager": "pnpm@10.6.3",
+  "packageManager": "pnpm@10.10.0",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
   "license": "MIT",
@@ -41,10 +41,6 @@
       "import": {
         "types": "./dist/nuxt/types.d.mts",
         "default": "./dist/nuxt/module.mjs"
-      },
-      "require": {
-        "types": "./dist/nuxt/types.d.ts",
-        "default": "./dist/nuxt/module.cjs"
       }
     }
   },
@@ -83,40 +79,40 @@
     }
   },
   "dependencies": {
-    "@nuxt/kit": "^3.16.0",
+    "@nuxt/kit": "^3.17.2",
     "deep-pick-omit": "^1.2.1",
     "defu": "^6.1.4",
-    "destr": "^2.0.3"
+    "destr": "^2.0.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.10.1",
-    "@iconify-json/catppuccin": "^1.2.9",
-    "@nuxt/devtools": "^2.3.0",
-    "@nuxt/module-builder": "^0.8.4",
-    "@nuxt/schema": "^3.16.0",
-    "@nuxt/test-utils": "^3.17.2",
-    "@pinia/nuxt": "^0.10.1",
+    "@antfu/eslint-config": "^4.13.0",
+    "@iconify-json/catppuccin": "^1.2.11",
+    "@nuxt/devtools": "^2.4.0",
+    "@nuxt/module-builder": "^1.0.1",
+    "@nuxt/schema": "^3.17.2",
+    "@nuxt/test-utils": "^3.18.0",
+    "@pinia/nuxt": "^0.11.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@shikijs/vitepress-twoslash": "^3.2.1",
-    "@types/node": "^22.13.10",
+    "@shikijs/vitepress-twoslash": "^3.4.0",
+    "@types/node": "^22.15.17",
     "changelogen": "^0.6.1",
-    "esbuild": "^0.25.1",
-    "eslint": "^9.22.0",
+    "esbuild": "^0.25.4",
+    "eslint": "^9.26.0",
     "eslint-plugin-format": "^1.0.1",
-    "lint-staged": "^15.5.0",
-    "nuxt": "^3.16.0",
-    "pinia": "^3.0.1",
+    "lint-staged": "^16.0.0",
+    "nuxt": "^3.17.2",
+    "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "link:",
-    "publint": "^0.3.9",
-    "rollup": "^4.35.0",
+    "publint": "^0.3.12",
+    "rollup": "^4.40.2",
     "rollup-plugin-esbuild": "^6.2.1",
-    "simple-git-hooks": "^2.11.1",
+    "simple-git-hooks": "^2.13.0",
     "tsup": "^8.4.0",
-    "typescript": "~5.6.3",
+    "typescript": "~5.8.3",
     "vitepress": "^1.6.3",
-    "vitepress-plugin-group-icons": "^1.3.7",
+    "vitepress-plugin-group-icons": "^1.5.2",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "^2.2.10"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
