@@ -1,5 +1,41 @@
 # Changelog
 
+## v4.3.0
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.2.0...v4.3.0)
+
+### 🚀 Enhancements
+
+- **nuxt:** Add encode/decode to cookies options ([f377002](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/f377002))
+
+### 🩹 Fixes
+
+- Type aware rules ([0a62a72](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/0a62a72))
+
+### 📖 Documentation
+
+- Add limitations regarding Cookies and Cloudflare Workers ([#370](https://github.com/prazdevs/pinia-plugin-persistedstate/pull/370))
+- Remove references to deprecated option syntax store declaration ([fde3b95](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fde3b95))
+- Add contributing guide ([fbeaf90](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/fbeaf90))
+
+### 🏡 Chore
+
+- ⚠️  Upgrade dependencies + pinia@3 ([ceac678](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/ceac678))
+- Update dependencies ([40eddb2](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/40eddb2))
+
+### 🤖 CI
+
+- Prepare before linting ([8c6ae57](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/8c6ae57))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Upgrade dependencies + pinia@3 ([ceac678](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/ceac678))
+
+### ❤️ Contributors
+
+- Prazdevs ([@prazdevs](https://github.com/prazdevs))
+- Ian Jamieson <i@njamieson.co.uk>
+
 ## v4.2.0
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.1.3...v4.2.0)
