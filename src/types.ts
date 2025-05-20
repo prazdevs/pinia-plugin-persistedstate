@@ -1,5 +1,5 @@
 import type { Path } from 'deep-pick-omit'
-import type { PiniaPluginContext, StateTree } from 'pinia'
+import type { PiniaPluginContext, StateTree, Store } from 'pinia'
 
 /**
  * Synchronous storage based on Web Storage API.
