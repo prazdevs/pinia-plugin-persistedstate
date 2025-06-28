@@ -2,7 +2,7 @@
   "name": "pinia-plugin-persistedstate",
   "type": "module",
   "version": "4.3.0",
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.12.4",
   "description": "Configurable persistence and rehydration of Pinia stores.",
   "author": "Sacha Bouillez <hi@praz.dev> (https://praz.dev)",
   "license": "MIT",
@@ -10,9 +10,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/prazdevs/pinia-plugin-persistedstate.git"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/prazdevs"
   },
   "bugs": {
     "url": "https://github.com/prazdevs/pinia-plugin-persistedstate/issues"
@@ -49,6 +46,12 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=24"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/prazdevs"
+  },
   "scripts": {
     "build": "pnpm build:plugin && pnpm build:umd && pnpm build:module",
     "build:plugin": "tsup src/index.ts --dts --format esm,cjs",
@@ -88,34 +91,33 @@
     "destr": "^2.0.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.13.0",
+    "@antfu/eslint-config": "^4.16.1",
     "@iconify-json/catppuccin": "^1.2.11",
-    "@nuxt/devtools": "^2.4.0",
-    "@nuxt/kit": "^3.17.2",
+    "@nuxt/devtools": "^2.5.0",
+    "@nuxt/kit": "^3.17.5",
     "@nuxt/module-builder": "^1.0.1",
-    "@nuxt/schema": "^3.17.2",
-    "@nuxt/test-utils": "^3.18.0",
-    "@pinia/nuxt": "^0.11.0",
+    "@nuxt/schema": "^3.17.5",
+    "@pinia/nuxt": "^0.11.1",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@shikijs/vitepress-twoslash": "^3.4.0",
-    "@types/node": "^22.15.17",
+    "@shikijs/vitepress-twoslash": "^3.7.0",
+    "@types/node": "^24.0.7",
     "changelogen": "^0.6.1",
-    "esbuild": "^0.25.4",
-    "eslint": "^9.26.0",
+    "esbuild": "^0.25.5",
+    "eslint": "^9.30.0",
     "eslint-plugin-format": "^1.0.1",
-    "lint-staged": "^16.0.0",
-    "nuxt": "^3.17.2",
-    "pinia": "^3.0.2",
+    "lint-staged": "^16.1.2",
+    "nuxt": "^3.17.5",
+    "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "link:",
     "publint": "^0.3.12",
-    "rollup": "^4.40.2",
+    "rollup": "^4.44.1",
     "rollup-plugin-esbuild": "^6.2.1",
     "simple-git-hooks": "^2.13.0",
-    "tsup": "^8.4.0",
+    "tsup": "^8.5.0",
     "typescript": "~5.8.3",
     "vitepress": "^1.6.3",
-    "vitepress-plugin-group-icons": "^1.5.2",
-    "vue": "^3.5.13",
+    "vitepress-plugin-group-icons": "^1.6.0",
+    "vue": "^3.5.17",
     "vue-tsc": "^2.2.10"
   },
   "simple-git-hooks": {
