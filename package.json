@@ -67,10 +67,14 @@
     "typecheck": "nuxi typecheck"
   },
   "peerDependencies": {
+    "@nuxt/kit": ">=3.0.0",
     "@pinia/nuxt": ">=0.10.0",
     "pinia": ">=3.0.0"
   },
   "peerDependenciesMeta": {
+    "@nuxt/kit": {
+      "optional": true
+    },
     "@pinia/nuxt": {
       "optional": true
     },
@@ -79,7 +83,6 @@
     }
   },
   "dependencies": {
-    "@nuxt/kit": "^3.17.2",
     "deep-pick-omit": "^1.2.1",
     "defu": "^6.1.4",
     "destr": "^2.0.5"
@@ -88,6 +91,7 @@
     "@antfu/eslint-config": "^4.13.0",
     "@iconify-json/catppuccin": "^1.2.11",
     "@nuxt/devtools": "^2.4.0",
+    "@nuxt/kit": "^3.17.2",
     "@nuxt/module-builder": "^1.0.1",
     "@nuxt/schema": "^3.17.2",
     "@nuxt/test-utils": "^3.18.0",
