@@ -55,3 +55,16 @@ To get around this you can:
 - Use the [`afterHydrate`](/guide/config#afterhydrate) hook to recreate the objects after rehydration.
 - Use a custom [`serializer`](/guide/config#serializer) that supports the data types you want to persist.
   :::
+
+## Only returned `ref()`s are persisted with setup stores
+
+When using the setup store syntax (composition), only `ref()`s that returned can be persisted. Additionally, `computed()`s cannot be persisted whether or not they are returned.
+
+This is due to how Pinia creates store from the setup declaration:
+
+> - `ref()`s become `state` properties
+> - `computed()`s becore `getters`
+
+> Note that you **must** return **all state properties** in setup stores for Pinia to pick them up as state.
+
+You can find more information in the [Pinia documentation](https://pinia.vuejs.org/core-concepts/#Setup-Stores).
