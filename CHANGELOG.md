@@ -1,5 +1,27 @@
 # Changelog
 
+## v4.4.0
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.3.0...v4.4.0)
+
+### 🚀 Enhancements
+
+- Move @nuxt/kit to peerDependencies ([4cd2337](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/4cd2337))
+
+### 📖 Documentation
+
+- Restore setup store syntax ([739bd1f](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/739bd1f))
+- **nuxt:** Add SSR/middleware limitation ([155511e](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/155511e))
+- Add setup store persisted state (returned refs only) ([7324490](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/7324490))
+
+### 🏡 Chore
+
+- Upgrade dependencies ([52e879c](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/52e879c))
+
+### ❤️ Contributors
+
+- Prazdevs ([@prazdevs](https://github.com/prazdevs))
+
 ## v4.3.0
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.2.0...v4.3.0)
