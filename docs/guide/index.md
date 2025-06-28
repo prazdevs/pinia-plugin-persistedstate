@@ -47,7 +47,9 @@ pinia.use(piniaPluginPersistedstate)
 
 When declaring your store, set the new `persist` option to `true`.
 
-```ts{11}
+::: code-group
+
+```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -62,5 +64,21 @@ export const useStore = defineStore(
   },
 )
 ```
+
+```ts{9} [option syntax]
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      someState: 'hello pinia',
+    }
+  },
+  persist: true,
+})
+
+```
+
+:::
 
 Your whole store will now be saved with the [default persistence settings](/guide/config).

@@ -12,7 +12,9 @@ The plugin comes pre-configured with the following:
 
 You can pass an object to the `persist` property of the store to configure the persistence.
 
-```ts{8-10}
+::: code-group
+
+```ts [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -25,6 +27,21 @@ export const useStore = defineStore('main', () => {
   }
 })
 ```
+
+```ts [option syntax]
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('main', {
+  state: () => ({
+    someState: 'hello pinia',
+  }),
+  persist: {
+    // CONFIG OPTIONS HERE
+  },
+})
+```
+
+:::
 
 ## key
 

@@ -47,7 +47,9 @@ pinia.use(piniaPluginPersistedstate)
 
 在声明您的store时，请将新`persist`选项设置为 `true`。
 
-```ts{11}
+::: code-group
+
+```ts{11} [setup syntax]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -62,5 +64,21 @@ export const useStore = defineStore(
   },
 )
 ```
+
+```ts{9} [option syntax]
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      someState: 'hello pinia',
+    }
+  },
+  persist: true,
+})
+
+```
+
+:::
 
 您的整个 store 现在将使用 [默认的持久性设置](/guide/config)进行保存。
