@@ -205,6 +205,20 @@ Any store with `my-store` as persistence key (user-provided or infered from stor
 
 ## Limitations
 
+### Usage in middleware and SSR with `cookies`
+
+While accessing a store within middleware is okay at any time, persisting/hydrating data from `cookies` can fail and throw a `[nuxt] A composable that requires access to the Nuxt instance was called outside of a plugin, Nuxt hook, Nuxt middleware, or Vue setup function.` error.
+This is due to Pinia stores being available and instantiating before Nuxt instance, while `pinia-plugin-persistedstate` needs a Nuxt instance to access `useCookie`.
+
+:::tip Workaround
+To work around this limitation you can:
+
+- Make sure to access the store once Nuxt instance is available (be wary of middlewares).
+- Use the `useCookie` composable directly instead of the store for this specific usecase.
+
+These solutions are far from perfect and may not fit your usecase. Keep in mind this is a Pinia plugin before being a Nuxt module.
+:::
+
 ### Using `cookies` with `expires` on Cloudflare workers
 
 Due to a [limitation](https://community.cloudflare.com/t/date-in-worker-is-reporting-thu-jan-01-1970-0000-gmt-0000/236503/3) with Cloudflare workers, you cannot set a Javascript `Date` in the global worker context. As a workaround, prefer using `maxAge` instead of `expires`.
