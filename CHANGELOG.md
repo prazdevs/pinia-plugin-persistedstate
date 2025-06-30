@@ -1,5 +1,17 @@
 # Changelog
 
+## v4.4.1
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.4.0...v4.4.1)
+
+### 🩹 Fixes
+
+- Remove node>=24 requirement ([d50bd4b](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/d50bd4b))
+
+### ❤️ Contributors
+
+- Prazdevs ([@prazdevs](https://github.com/prazdevs))
+
 ## v4.4.0
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.3.0...v4.4.0)
