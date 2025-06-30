@@ -46,9 +46,6 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=24"
-  },
   "sponsor": {
     "url": "https://github.com/sponsors/prazdevs"
   },
