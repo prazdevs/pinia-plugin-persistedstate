@@ -45,13 +45,14 @@ pinia.use(piniaPluginPersistedstate)
 3. Add the `persist` option to the store you want to be persisted:
 
 ```ts
+import type { PersistType } from 'pinia-plugin-persistedstate'
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
   state: () => ({
     someState: 'hello pinia',
   }),
-  persist: true,
+  persist: true satisfies PersistType,
 })
 ```
 
@@ -67,7 +68,7 @@ export const useStore = defineStore('store', () => {
   persist: {
     storage: sessionStorage,
     pick: ['someState'],
-  },
+  } satisfies PersistType,
 })
 ```
 

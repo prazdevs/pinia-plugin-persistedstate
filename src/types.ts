@@ -1,5 +1,5 @@
 import type { Path } from 'deep-pick-omit'
-import type { PiniaPluginContext, StateTree, Store } from 'pinia'
+import type { PiniaPluginContext, StateTree } from 'pinia'
 
 /**
  * Synchronous storage based on Web Storage API.
@@ -82,6 +82,8 @@ export interface Persistence<State extends StateTree = StateTree> {
 
 export type PersistenceOptions<State extends StateTree = StateTree> = Partial<Persistence<State>>
 
+export type PersistType = boolean | PersistenceOptions<StateTree> | PersistenceOptions<StateTree>[]
+
 declare module 'pinia' {
   // eslint-disable-next-line unused-imports/no-unused-vars
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
@@ -89,7 +91,7 @@ declare module 'pinia' {
      * Persist store in storage
      * @see https://prazdevs.github.io/pinia-plugin-persistedstate
      */
-    persist?: boolean | PersistenceOptions<S> | PersistenceOptions<S>[]
+    persist?: PersistType
   }
 
   export interface PiniaCustomProperties {
