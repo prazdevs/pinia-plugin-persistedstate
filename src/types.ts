@@ -80,7 +80,11 @@ export interface Persistence<State extends StateTree = StateTree> {
   omit?: Path<State>[] | string[]
 }
 
-export type PersistenceOptions<State extends StateTree = StateTree> = Partial<Persistence<State>>
+export type PersistenceOptions<State extends StateTree = StateTree>
+ = Partial<Persistence<State>>
+
+export type Persist<State extends StateTree = StateTree>
+ = boolean | PersistenceOptions<State> | PersistenceOptions<State>[]
 
 declare module 'pinia' {
   // eslint-disable-next-line unused-imports/no-unused-vars
@@ -89,7 +93,7 @@ declare module 'pinia' {
      * Persist store in storage
      * @see https://prazdevs.github.io/pinia-plugin-persistedstate
      */
-    persist?: boolean | PersistenceOptions<S> | PersistenceOptions<S>[]
+    persist?: Persist<S>
   }
 
   export interface PiniaCustomProperties {
