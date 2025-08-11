@@ -1,21 +1,12 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/prazdevs/pinia-plugin-persistedstate/main/docs/public/logo-dark.svg" style="width: 100px">
-</p>
+# pinia-plugin-persistedstate
 
-<h1 align="center">
-  Pinia Plugin Persistedstate
-</h1>
-<p align="center">
-  Configurable persistence and rehydration of Pinia stores.
-</p>
-<p align="center">
-  <a href="https://npmjs.com/package/pinia-plugin-persistedstate"><img src="https://img.shields.io/npm/v/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7" alt="npm"></a>
-  <a href="https://bundlephobia.com/result?p=pinia-plugin-persistedstate"><img src="https://img.shields.io/bundlephobia/minzip/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7" alt="minizipped size"></a>
-  <a href="https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE"><img src="https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7" alt="license"></a>
-</p>
-<p align="center">
-  <a href="https://prazdevs.github.io/pinia-plugin-persistedstate"><b>Documentation</b></a>
-</p>
+[![npm version][version-src]][version-href]
+[![bundle size][bundle-src]][bundle-href]
+[![license][license-src]][license-href]
+
+> Configurable persistence and rehydration of Pinia stores.
+
+[**_Read the full documentation_**](https://prazdevs.github.io/pinia-plugin-persistedstate)
 
 ## Features
 
@@ -98,3 +89,10 @@ See the [contribution guide](https://github.com/prazdevs/pinia-plugin-persisteds
 ## License
 
 [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE) © 2021-present [Sacha Bouillez](https://github.com/prazdevs)
+
+[version-src]: https://img.shields.io/npm/v/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7
+[version-href]: https://npmjs.com/package/pinia-plugin-persistedstate
+[bundle-src]: https://img.shields.io/bundlejs/size/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7
+[bundle-href]: https://bundlejs.com/?q=pinia-plugin-persistedstate
+[license-src]: https://img.shields.io/github/license/prazdevs/pinia-plugin-persistedstate?style=flat-square&labelColor=313244&color=cba6f7
+[license-href]: https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE
