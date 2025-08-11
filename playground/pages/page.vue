@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ middleware: ['login'] })
+
 async function goToLogin() {
   await navigateTo('/login')
 }
