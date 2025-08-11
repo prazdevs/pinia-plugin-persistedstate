@@ -1,5 +1,21 @@
 # Changelog
 
+## v4.5.0
+
+[compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.4.1...v4.5.0)
+
+### 🚀 Enhancements
+
+- Export `Persist` type ([bc23d5a](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/bc23d5a))
+
+### 🏡 Chore
+
+- Upgrade dependencies ([be73362](https://github.com/prazdevs/pinia-plugin-persistedstate/commit/be73362))
+
+### ❤️ Contributors
+
+- Prazdevs <hi@praz.dev>
+
 ## v4.4.1
 
 [compare changes](https://github.com/prazdevs/pinia-plugin-persistedstate/compare/v4.4.0...v4.4.1)
